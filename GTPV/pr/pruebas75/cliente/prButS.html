@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Documento sin t&iacute;tulo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.11.custom.css" rel="stylesheet" />	
+<script src="js/jquery-1.5.1.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+
+$(function() {
+
+var c = 0;
+
+function handleClick() {
+	var r1 = $(this.parentNode.parentNode.firstChild);
+	for (var i=0; i<6; i++, r1 = r1.next()) {
+		var but = r1.children().first();
+		for (var b=0; b<6; b++, but = but.next()) {
+			var t = c+" "+i+" "+b+" "; t = t+t+t+t+t+t+t+t;
+			var bg = "#"+Math.floor(Math.random()*256*256*256).toString(16);
+			but.css({backgroundColor: bg}).text(t);
+		}
+	}	
+	c++;
+}
+
+var p = $("<div>").css({position: "absolute", left: "5%", top: "5%", width: "40%", height: "40%"}).appendTo("body");
+for (var i=0; i<6; i++) {
+	var r1 = $("<div>").css({width: "100%", height: (100/6)+"%"}).appendTo(p);
+	for (var b=0; b<6; b++) {
+		$("<button>").css({width: (100/6)+"%", height: "100%", boxSizing: "border-box", color: "black", verticalAlign: "middle", borderRadius: "4px"})
+			         .appendTo(r1).click(handleClick);
+	}
+}	
+p.children().first().children().first().click();
+
+
+var p = $("<div>").css({position: "absolute", left: "55%", top: "5%", width: "40%", height: "40%"}).appendTo("body");
+for (var i=0; i<6; i++) {
+	var r1 = $("<div>").css({width: "100%", height: (100/6)+"%"}).appendTo(p);
+	for (var b=0; b<6; b++) {
+		$("<button>").css({width: (100/6)+"%", height: "100%", boxSizing: "border-box", color: "black", verticalAlign: "middle"})
+			         .appendTo(r1).click(handleClick);
+	}
+}	
+p.children().first().children().first().click();
+
+
+var p = $("<div>").css({position: "absolute", left: "5%", top: "55%", width: "40%", height: "40%"}).appendTo("body");
+for (var i=0; i<6; i++) {
+	var r1 = $("<div>").css({width: "100%", height: (100/6)+"%"}).appendTo(p);
+	for (var b=0; b<6; b++) {
+		$("<button>").css({width: (100/6)+"%", height: "100%", boxSizing: "border-box", color: "black", verticalAlign: "middle", borderRadius: "4px"})
+			         .appendTo(r1).mousedown(handleClick);
+	}
+}	
+p.children().first().children().first().mousedown();
+
+
+var p = $("<div>").css({position: "absolute", left: "55%", top: "55%", width: "40%", height: "40%"}).appendTo("body");
+for (var i=0; i<6; i++) {
+	var r1 = $("<div>").css({width: "100%", height: (100/6)+"%"}).appendTo(p);
+	for (var b=0; b<6; b++) {
+		$("<button>").css({width: (100/6)+"%", height: "100%", boxSizing: "border-box", color: "black", verticalAlign: "middle"})
+			         .appendTo(r1).mousedown(handleClick);
+	}
+}	
+p.children().first().children().first().mousedown();
+
+});
+
+</script>
+</html>

@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Documento sin título</title>
+<script src="jquery-1.5.1.js"></script>
+<script src="comServ.js"></script>
+<script type="text/javascript">
+$(function() {
+	db = openDatabase("db1","","",5000);
+/*db = openDatabase("db1","","",5000);
+db.transaction(function (tx) {tx.executeSql("select * from t1 where id =?",["5"],function(tx,r) { alert("t :"+r.rowsAffected) });});
+db = openDatabase("db1","","",5000);
+db.transaction(function (tx) {tx.executeSql("select * from t1 where id =?",["5"],function(tx,r) { alert("r :"+r.rowsAffected) });});
+*/d = new DOMParser();
+/*req = $.ajax({
+	url : "pr1.xml",
+	async : false,	
+});
+x = new XMLSerializer()
+$("pre").text(x.serializeToString(req.responseText));
+*/
+xml = "<xml><db dbName='db1'>"+
+/*
+"<statement id='create'>create table t1 (id)</statement>"+
+"<statement id='ins1'>insert into t1 values(?)</statement>"+
+"<exec id='c' idStat='create'></exec>"+
+"<exec id='i' idStat='ins1'><a>5</a></exec>"+
+"<exec id='i2' idStat='ins1'><a>4</a></exec>"+
+"<exec id='s'><statement>select * from t1 where id=?</statement><a>5</a></exec>"+*/
+"<statement>select * from t1 where id=?</statement><exec id='s2'><a>4</a></exec>"+
+"</db></xml>";
+dom = d.parseFromString(xml, "text/xml");
+processRequestServer(dom);
+});
+
+</script>
+</head>
+
+<body>
+<pre>
+</pre>
+<div>
+</div>
+</body>
+</html>

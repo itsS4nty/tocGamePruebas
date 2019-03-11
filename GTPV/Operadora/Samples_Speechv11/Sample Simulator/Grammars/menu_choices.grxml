@@ -1,0 +1,63 @@
+<?xml version= "1.0"?>
+
+<!--
+This is a very simple grammar, representing menu choices available to callers in a make believe '411' type application.
+-->
+
+<grammar mode="voice" root="top" tag-format="semantics/1.0" version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/06/grammar">
+ <rule id="top" scope="public">
+  <one-of>
+
+   <item>
+    <item repeat="0-1"> driving <tag>out.longform = true;</tag></item>
+    directions
+    <tag>out.application = "DIRECTIONS";
+	     out.grammar = "menu_choices.grxml";</tag>
+   </item>
+
+   <item>
+    sports
+    <tag>out.application = "SPORTS";
+	     out.grammar = "menu_choices.grxml";</tag>
+   </item>
+
+   <item>
+    <item repeat="0-1"> business </item>
+    search
+    <tag>out.application = "SEARCH";
+	     out.grammar = "menu_choices.grxml";</tag>
+   </item>
+
+   <item>
+    weather
+    <tag>out.application = "WEATHER";
+		 out.grammar = "menu_choices.grxml";</tag>
+   </item>
+
+   <item>
+    stock
+    <item repeat="0-1"> quotes <tag>out.longform = true;</tag></item>
+    <tag>out.application = "STOCKS";
+		 out.grammar = "menu_choices.grxml";</tag>
+   </item>
+
+   <item>
+    news
+    <item repeat="0-1"> center  <tag>out.longform = true;</tag></item>
+    <tag>out.application = "NEWS";
+		 out.grammar = "menu_choices.grxml";</tag>
+   </item>
+
+   <item>
+    <one-of>
+	  <item> travel </item>
+	  <item> traveling </item>
+	</one-of>
+	<tag>out.application = "TRAVEL";
+	     out.grammar = "menu_choices.grxml";</tag>
+   </item>
+
+  </one-of>
+ </rule>
+
+</grammar>

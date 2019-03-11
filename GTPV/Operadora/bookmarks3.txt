@@ -1,0 +1,3 @@
+http://msdn.microsoft.com/en-us/library/gg421021.aspx
+http://gotspeech.net/blogs/ksteponaitis/archive/2010/09/26/a-ucma-3-0-hello-world-app.aspx
+http://blog.greenl.ee/2011/09/30/standalone-ucma-application/

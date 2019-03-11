@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="../js/jquery-2.1.4.js"></script>
+		<script src="out/Server2.js"></script>
+	</head>
+	<body>
+		<iframe src="sandbox.html" style="display:none;" ></iframe>
+		<script>
+			/// <reference path="Server2.ts" />
+			$(function() {
+				Server.initSandbox(function() {
+					//Server.startUserPassword("tsc_test2", "sd651fco");
+					Server.debug_pr();	
+				});			
+			});
+		</script>	
+	</body>
+</html>		

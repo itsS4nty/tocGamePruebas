@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="deploymentpage.xslt" type="text/xsl"?>
+<setuppage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\..\deploy\setup\deploymentpage.xsd" shorttitle="Install" longtitle="Microsoft Unified Communications Managed API 3.0, SDK" subtitle="">
+  <multimsitask>
+    <id>Install_Files</id>
+    <title>Install Unified Communications Managed API 3.0, SDK</title>
+    <hotkey>U</hotkey>
+    <preinstall>
+      <custom>
+        <target>ShowEula</target>
+        <parameter>Setup\UCMAMetaSDK.msi</parameter>
+      </custom>
+      <custom>
+        <condition state="WmfNeededX64" />
+        <confirm title="Windows Media Format Runtime required">Windows Media Format Runtime is required in order to install Unified Communications Managed API 3.0, SDK. Installing Windows Media Format Runtime may require a system restart to complete the installation. Click OK to install Windows Media Format Runtime.</confirm>
+        <target>InstallWmfOnX64</target>
+      </custom>
+      <settings>
+        <target>GetInstallPath</target>
+        <parameter>Microsoft UCMA 3.0\SDK</parameter>
+      </settings>
+      <exe>
+        <condition state="!ProductInstalled" parameter="{4B6C7001-C7D6-3710-913E-5BC23FCE91E6}" />
+        <target>Prereq\vcredist_x64.exe</target>
+        <parameter>/QB</parameter>
+      </exe>
+      <exe>
+        <condition state="!ProductInstalled" parameter="{1F1C2DFC-2D24-3E06-BCB8-725134ADF989}" />
+        <target>Prereq\i386\vcredist_x86.exe</target>
+        <parameter>/QB</parameter>
+      </exe>
+      <msi>
+        <condition state="!ProductInstalled" parameter="{3B433087-E62E-4BF5-97F9-4AF6E1C2409C}" />
+        <target>Prereq\Speech\SpeechPlatformRuntime.msi</target>
+        <parameter>/QB</parameter>
+      </msi>
+      <msi>
+        <condition state="!ProductInstalled" parameter="{22CB8ED7-DF57-4864-BD04-F63B9CE4B494}" />
+        <target>Prereq\i386\Speech\SpeechPlatformRuntime.msi</target>
+        <parameter>/QB</parameter>
+      </msi>
+      <msi>
+        <condition state="!ProductInstalled" parameter="{66D57636-BD4B-402F-9E7D-5E89C28C8136}" />
+        <target>Prereq\Speech\en-us\MSSpeech_SR_en-US_TELE.msi</target>
+        <parameter>/QB</parameter>
+      </msi>
+      <msi>
+        <condition state="!ProductInstalled" parameter="{8466EAED-7024-4AEE-9D13-F3A55B98D114}" />
+        <target>Prereq\Speech\en-us\MSSpeech_TTS_en-US_Helen.msi</target>
+        <parameter>/QB"</parameter>
+      </msi>
+      <msi>
+        <condition state="!ProductInstalled" parameter="{53D682B6-5381-4B44-B590-584AAD0460C0}" />
+        <target>Prereq\Speech\MicrosoftSpeechPlatformSDK.msi</target>
+        <parameter>/QB"</parameter>
+      </msi>
+      <msi>
+        <condition state="!ProductInstalled" parameter="{7B2E77F2-87AD-4DFD-80F1-FB78EBB4A1AE}" />
+        <target>Prereq\BootstrapperPrereqs.msi</target>
+        <parameter>/QB</parameter>
+      </msi>
+      <msi>
+        <condition state="!ProductInstalled" parameter="{9521B708-9D80-46A3-9E58-A74ACF4E343E}" />
+        <target>Prereq\OCSCore.msi</target>
+        <parameter>/QB</parameter>
+      </msi>
+    </preinstall>
+    <msi>
+      <msifile>UcmaRuntimeUninstaller.msi</msifile>
+      <msiproduct>{949A97F8-DC8F-435b-B337-7C1ACFF24608}</msiproduct>
+      <msiparam>/QB BOOT=1 ARPSYSTEMCOMPONENT=1</msiparam>
+    </msi>
+    <msi>
+      <msifile>UcmaRuntime.msi</msifile>
+      <msiproduct>{100B5297-413F-435b-8CBB-A3D21487C221}</msiproduct>
+      <msiparam>/QB BOOT=1 ARPSYSTEMCOMPONENT=1</msiparam>
+    </msi>
+    <msi>
+      <msifile>UcmaWorkflowRuntime.msi</msifile>
+      <msiparam>/QB BOOT=1 ARPSYSTEMCOMPONENT=1</msiparam>
+      <msiproduct>{C732A314-2A0C-46D9-961B-4ED0D6B9F36E}</msiproduct>
+    </msi>
+    <msi>
+      <msifile>UCMAMetaSDK.msi</msifile>
+      <msiproduct>{0E8F73F7-F476-4EC4-B9AC-F912153DA1D2}</msiproduct>
+      <msiparam>/QB BOOT=1 ARPSYSTEMCOMPONENT=1 INSTALLDIR="{INSTALLPATH}"</msiparam>
+    </msi>
+    <msi>
+      <msifile>UcmaSdk.msi</msifile>
+      <msiproduct>{FC5782F7-1D1A-4DD0-B31E-B3FEDB1FFC56}</msiproduct>
+      <msiparam>/QB BOOT=1 ARPSYSTEMCOMPONENT=1 INSTALLDIR="{INSTALLPATH}\Core"</msiparam>
+    </msi>
+    <msi>
+      <msifile>i386\UcmaRuntime.msi</msifile>
+      <msiproduct>{2D457AB3-3231-4547-B33B-234CDE7B50AC}</msiproduct>
+      <msiparam>/QN BOOT=1 ARPSYSTEMCOMPONENT=1 INSTALLDIR="{INSTALLPATH}"</msiparam>
+    </msi>
+    <msi>
+      <msifile>i386\UcmaWorkflowRuntime.msi</msifile>
+      <msiproduct>{5A47F6A3-6DCB-4E46-99AD-8B7524094741}</msiproduct>
+      <msiparam>/QN BOOT=1 ARPSYSTEMCOMPONENT=1 INSTALLDIR="{INSTALLPATH}"</msiparam>
+    </msi>
+    <msi>
+      <msifile>UcmaWorkflowSdk.msi</msifile>
+      <msiproduct>{0F274CE7-80CC-4F19-9A6B-EFBDC8D637C9}</msiproduct>
+      <msiparam>/QB BOOT=1 ARPSYSTEMCOMPONENT=1 INSTALLDIR="{INSTALLPATH}\Workflow"</msiparam>
+    </msi>
+    <description>
+      1) Core SDK\n
+      2) Workflow SDK
+      \n
+      Prerequisites:\n
+      \t&#x2022; .NET Framework 3.5 (SP1 or a higher Service Pack version)\n
+      \t&#x2022; Visual Studio 2008 (SP1 or a higher Service Pack version)\n
+      \t\tor Visual Studio 2010\n
+      \t&#x2022; Windows Media Format Runtime\n
+      \t&#x2022; Microsoft Visual C++ 2008 Redistributable - x64 9.0.30729.4148 Package\n
+      \t&#x2022; Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.4148 Package\n
+      \t&#x2022; Microsoft Server Speech Platform Runtime (x64) Package\n
+      \t&#x2022; Microsoft Server Speech Platform Runtime (x86) Package\n
+      \t&#x2022; Microsoft Server Speech Recognition Language - TELE (en-US)\n
+      \t&#x2022; Microsoft Server Speech Text to Speech Voice (en-US, Helen)\n
+      \t&#x2022; Microsoft Speech Platform SDK (x64) v10.2 Package\n
+      \t&#x2022; Microsoft Lync Server 2010, Bootstrapper Prerequisites Installer Package\n
+      \t&#x2022; Microsoft Lync Server 2010, Core Components\n
+      \t&#x2022; Microsoft Unified Communications Managed API 3.0, Runtime\n
+    </description>
+    <help>
+      <link target="DeployMainUCMAIntro">Introduction to Microsoft Unified Communications Managed API 3.0, SDK</link>
+    </help>
+    <state repeatable="false">
+      <available state="IsUCMASdkSupportedOperatingSystem" unexpected="true" notAvailable="Unified Communications Managed API 3.0, SDK can be installed only on the following operating systems: Windows Vista with SP2, Windows Server 2008 with SP2 and newer versions of Windows."/>
+      <available state="!RebootRequired" unexpected="true" notAvailable="Please restart the system before continuing with installation."/>
+      <!--<available state="VisualStudioInstalled" unexpected="true" notAvailable="Visual Studio 2008 (SP1 or a higher Service Pack version) or Visual Studio 2010 needs to be installed in order to install SDK. Supported versions are Standard, Professional, Enterprise and Visual Studio Team System." />-->
+      <available state="!IsUCMASdkInBadState" unexpected="true" notAvailable="Unified Communications Managed API 3.0, SDK seems to be in a bad installed state. Please contact your admin."/>
+      <available state="!IsUCMASdkPrevVersionInstalled" unexpected="true" notAvailable="An older version of Unified Communications Managed API 3.0, SDK is already installed. Please uninstall it and run the setup again." />
+      <available state="!IsUCMASdkNextVersionInstalled" unexpected="true" notAvailable="A newer version of Unified Communications Managed API 3.0, SDK is already installed. Please uninstall it and run the setup again."/>
+      <available state="!IsWow64Process" unexpected="true" notAvailable="Please use 64 bit setup executable to install Unified Communications Managed API 3.0, SDK on a 64 bit machine."/>
+      <available state="!IsUCMACoreSdkInstalled" unexpected="true" notAvailable="Unified Communications Managed API 3.0, Core SDK is already installed on this machine. Please uninstall it and run the setup again." />
+      <available state="!IsUCMAWorkflowSdkInstalled" unexpected="true" notAvailable="Unified Communications Managed API 3.0, Workflow SDK is already installed on this machine. Please uninstall it and run the setup again." />
+      <available state="!IsSpeechPlatformRuntimeM6X64Installed" unexpected="true" notAvailable="Microsoft Server Speech Platform Runtime (x64) version 10.0.7135.0 is installed on this machine and is incompatible with the prerequisite version 10.2.7300.75. Please uninstall it and run the setup again." />
+      <available state="!IsSpeechPlatformRuntimeM6X86Installed" unexpected="true" notAvailable="Microsoft Server Speech Platform Runtime (x86) version 10.0.7135.0 is installed on this machine and is incompatible with the prerequisite version 10.2.7300.75. Please uninstall it and run the setup again." />
+      <available state="!IsSpeechPlatformRuntimeM7X64Installed" unexpected="true" notAvailable="Microsoft Server Speech Platform Runtime (x64) version 10.1.7200.6 is installed on this machine and is incompatible with the prerequisite version 10.2.7300.75. Please uninstall it and run the setup again." />
+      <available state="!IsSpeechPlatformRuntimeM7X86Installed" unexpected="true" notAvailable="Microsoft Server Speech Platform Runtime (x86) version 10.1.7200.6 is installed on this machine and is incompatible with the prerequisite version 10.2.7300.75. Please uninstall it and run the setup again." />
+      <available state="!IsSpeechPlatformSdkM6X64Installed" unexpected="true" notAvailable="Microsoft Speech Platform SDK (x64) version 10.0.7135.0 is installed on this machine and is incompatible with the prerequisite version 10.2.7300.75. Please uninstall it and run the setup again." />
+      <available state="!IsSpeechPlatformSdkM6X86Installed" unexpected="true" notAvailable="Microsoft Speech Platform SDK (x86) version 10.0.7135.0 is installed on this machine and is incompatible with the prerequisite version 10.2.7300.75. Please uninstall it and run the setup again." />
+      <available state="!IsSpeechPlatformSdkM7X64Installed" unexpected="true" notAvailable="Microsoft Speech Platform SDK (x64) v10.1 version 10.1.7200.6 is installed on this machine and is incompatible with the prerequisite version 10.2.7300.75. Please uninstall it and run the setup again." />
+      <available state="!IsSpeechPlatformSdkM7X86Installed" unexpected="true" notAvailable="Microsoft Speech Platform SDK (x86) v10.1 version 10.1.7200.6 is installed on this machine and is incompatible with the prerequisite version 10.2.7300.75. Please uninstall it and run the setup again." />
+    </state>
+    <onresult code="all">
+      <action verb="invalidate" state="UCMASdkCurrVersionInstalled" />
+    </onresult>
+  </multimsitask>
+  <infotask>
+    <id>autoprovisioning</id>
+    <hideunless state="UCMASdkCurrVersionInstalled"/>
+    <title>Optional</title>
+    <description>
+      Read about 'Activating a UCMA Core Trusted Application' in the Unified Communications Managed API 3.0 documentation.
+    </description>
+  </infotask>
+  <linkcolumn>
+    <externallink>
+      <id>resources</id>
+      <title>Tools and Resources</title>
+      <hotkey>T</hotkey>
+      <link> http://go.microsoft.com/fwlink/?LinkId=188416</link>
+      <description>
+        Click to access tools and other resources to help manage your Unified Communications Managed API 3.0 deployment.
+      </description>
+    </externallink>
+    <externallink>
+      <id>langpack_download_link</id>
+      <hideunless state="UCMASdkCurrVersionInstalled" />
+      <title>Additional Language Pack Download</title>
+      <hotkey>L</hotkey>
+      <link>http://go.microsoft.com/fwlink/?LinkId=189279</link>
+      <description>
+        Click to go online and download speech language packs for additional languages.
+      </description>
+    </externallink>
+  </linkcolumn>
+</setuppage>

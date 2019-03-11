@@ -1,0 +1,1071 @@
+/// <reference path="../libs/jquery/jquery.d.ts" />
+/// <reference path="db2.ts" />
+
+"use strict"
+
+module Server {
+	interface SERVER_MSG {
+		gtpv : any;
+		clientInfo : any;
+		session : any;
+		dbs : SERVER_DB[];
+		communication : number;
+	}
+	
+	interface CLIENT_MSG {
+		gtpv : any,
+		clientInfo : any,
+		session : any,
+		dbs : CLIENT_DB[]
+	}
+	
+	interface SERVER_DB {
+		dbName : string;
+		schema? : DB.schemaObjectSores;
+		id? : string;
+		abortOnError? : boolean;
+		transaction : S_SUBTRANSACTION[];
+	}
+	
+	interface CLIENT_DB {
+		dbName : string;
+		schema : DB.schemaObjectSores;
+		id? : string;
+		error? : string; 
+		transaction : C_SUBTRANSACTION[];
+	}
+	
+	interface S_SUBTRANSACTION {
+		type: string;
+		id?: string;
+		objName: string;
+		abortOnError? : boolean;
+		index?: string;
+		lower?: any;
+		upper?: any;
+		lowerOpen?: boolean;
+		upperOpen?: boolean;
+		only?: any;
+		direction?: string;
+		columns?: string[];
+		values?: any[];
+		keys?: any[];
+		filter?: string;
+		modify?: string;
+		noValues?: boolean;
+		withKeys?: boolean;
+		withPrimaryKeys?: boolean;
+	} 
+	interface C_SUBTRANSACTION {
+		type: string;
+		id?: string;
+		objName: string;
+		columns?: string[];
+		values?: any[];
+		keys?: any[];
+		primaryKeys?: any[];
+		errors?: any;
+		err?: string;
+	} 
+	
+	var my = {};
+	
+	var urlAjaxServidor = "../server/Ajax_XML_1.php"; // <base href="cliente/">
+	var defaultDelayMinutesComServer = 60;
+	var delayMinutesRetries = 5;
+	var defaultRetriesComServer = 3;
+	var retriesComServer = defaultRetriesComServer; 
+	var timeoutComServerID = null;
+
+	/**********************
+	** tratamiento datos **
+	**********************/
+/*	
+	function escapeXMLCC(str : string) {
+		function callbackReplace(str: string) {
+			return "#"+String.fromCharCode(str.charCodeAt(0) + 0x40); // 0x40 code of @
+		}
+		if (str == null) return null;
+		return str.replace(/[\x00-\x1F#]/g, callbackReplace);
+	}
+
+	function unescapeXMLCC(str: string) {
+		function callbackReplace(str: string ,p1: string) {
+			return String.fromCharCode(p1.charCodeAt(0) - 0x40);
+		}
+		if (str == null) return null;
+		return str.replace(/@(.)/g, callbackReplace);
+	}
+
+	function setAttribute(node: Element, name: string, value: string) {
+		node.setAttribute(name, escapeXMLCC(value));	
+	}
+
+	function getAttribute(node: Element, name: string) {
+		return unescapeXMLCC(node.getAttribute(name));	
+	}
+
+	function setTextContent(node: Node, value: string) {
+		node.textContent = escapeXMLCC(value);	
+	}
+
+	function getTextContent(node: Node) {
+		return unescapeXMLCC(node.textContent);	
+	}
+
+	interface ExecSql {
+		statement: string;
+		args: string[];
+		element: Element;
+		noTransaction: boolean;
+	} 
+	
+	interface UserData {
+		db? : Database;
+		statements? : { [id:string]:string };
+		execSqls? : ExecSql[];
+		nErrors? : number;
+		noTransaction? : boolean;
+		pendingChilds? : number;
+		sendRespServer? : boolean;
+		idStatement? : number;
+		args? : string[];
+		delayMinutes? : number;
+	}
+	function getUserData(node: Node) : UserData {
+		if (node["g_UserData"] == null) node["g_UserData"] = {};
+		return node["g_UserData"];
+	}
+
+	function getText(node: Node) {
+		var text = "";
+		for (var child = node.firstChild; child != null; child = child.nextSibling) {
+			if (child instanceof Text) text = text + getTextContent(child);
+		}
+		return text;
+	}
+
+	function copyAttribute(attrName: string, eIn: Element, eOut: Element) {
+		var attrValue = getAttribute(eIn, attrName);
+		if (attrValue != null) setAttribute(eOut, attrName, attrValue);	
+	}
+*/
+	/*********	
+	** send **
+	*********/
+/*	
+	var T = { // xml tags
+		gtpvServer : "gtpv-server",
+		gtpvClient : "gtpv-client",
+		init : "init",
+		session : "session",
+		communication : "communication",
+		db : "db",
+		statement : "statement",
+		exec : "exec",
+		arg : "a",
+		columns : "columns",
+		col : "c",
+		row : "row",
+		value : "v",
+		error : "error"
+	};
+	
+	var A = { // xml attr
+		id : "id",
+		name : "name",
+		reload : "reload",
+		noTransaction : "noTransaction",
+		idStatement : "idStatement",
+		NULL : "NULL",
+		prefijoCliente : "prefijoCliente",
+		idComm : "idComm",
+		Llicencia : "Llicencia",
+		delay : "delay",
+		nErrors : "nErrors",
+		rowsAffected : "ra",
+		code : "code"
+	};
+	
+	function createSendDoc() {
+		return document.implementation.createDocument("", T.gtpvClient, null);
+	}
+*/
+	var initDataSendCom: { [p:string]:string } = null;
+	export function setInitDataCom(_initData: { [p:string]:string }) { initDataSendCom = _initData; }
+	
+	var timeNextCom = -1;
+	export function programCommunication(delay: number) {
+		window.clearTimeout(timeoutComServerID);
+		timeoutComServerID = window.setTimeout(startCom, delay);
+		timeNextCom = Date.now()+delay;
+	}
+
+	function getIpLan(fInitCom) {
+		var ip;
+		ip = H.Comm.getSiteLocalAddresses();
+		if (ip == null) {
+			window.setTimeout(getIpLan, 1000, true);
+			return null;			
+		}
+		ip = ip.join(" ");
+		if (fInitCom) {
+			if (fInCommunication) fPendingCommunication = true;
+			else programCommunication(0);
+		}
+		return ip;
+	}
+	
+	var fInCommunication = false;
+	var fPendingCommunication = false;
+	function endCom() {
+		H.DB.endComServer(function() {
+			fInCommunication = false;
+			if (fPendingCommunication) {
+				fPendingCommunication = false;
+				startCom();
+			}
+		});
+	}
+	
+	function startCom() {
+		timeNextCom = -1;
+		if (fInCommunication) {
+			fPendingCommunication = true;
+			return false;
+		} 
+		fInCommunication = true;
+		H.DB.startComServer();
+
+		var doc = createSendDoc();
+		var init = (initDataSendCom || getInitIdCom());
+		var ipLan = getIpLan();
+		if (ipLan != null) init.ipLan = ipLan; 
+		insertInitNode(doc.documentElement, init);
+		send(doc);
+	}
+/*
+	function insertIdCom(parent: Element) {
+		insertInitNode(parent, getInitIdCom());
+	}
+
+	function getInitIdCom(): { [p:string]: string } { // normal Init Comunication data
+		return ({ idCom: H.ConfigGTPV.get("idCom") }); 
+	}
+
+	function insertInitNode(parent: Element, map : { [p:string]:string }) {
+		var init = parent.ownerDocument.createElement("init");
+		for (var name in map) {
+			setAttribute(init, name, map[name]);	
+		}
+		parent.insertBefore(init, parent.firstChild);
+	}
+*/
+	function handleAjaxSuccess(data: any, textStatus: string, jqXHR: JQueryXHR) {
+		// jQuery no detecta parserError como error, Chrome : html,body,parsererror, Firefox : parserError ??
+	//	var x = new XMLSerializer();
+	//	$("#preDebug").text(x.serializeToString(data));
+		if (typeof data === "string") {
+			console.log("Error communiction server:");
+			console.log(data);
+			return;
+		}
+		var errMsg = null;
+		if ((data == null) || (typeof data !== "object")) {
+			errMsg = // ?????????
+			return;
+		} else errMsg = processResponse(<SERVER_MSG>data);
+		
+/*		if (!processResponse(<Document>data)) {
+	//		$("#debug").append(document.importNode(data.documentElement,true));
+			var x = new XMLSerializer();
+			handleAjaxError(jqXHR, x.serializeToString(data), "gtpv_error");   
+			return;
+		} 
+*/		retriesComServer = defaultRetriesComServer;
+	}
+
+	function handleAjaxError(jqXHR: JQueryXHR, textStatus: string, errorThrown: string) {
+		endCom();
+
+		var delayMinutes: number;
+		if (retriesComServer > 0) {
+			retriesComServer--;
+			delayMinutes = delayMinutesRetries;
+		} else {
+			retriesComServer = defaultRetriesComServer;
+			delayMinutes = defaultDelayMinutesComServer;
+		}
+		programCommunication(delayMinutes*60*1000);
+	}
+
+	function send(out: any) {
+		$.ajax({ 
+			url: urlAjaxServidor,
+			type: "POST",
+			contentType: "application/json",
+			data : JSON.stringify(out),
+			dataType: "json",
+			timeout: 60000,
+			success: handleAjaxSuccess,
+			error : handleAjaxError
+		});
+	}
+	
+	/************
+	** receive **
+	************/
+	/*
+	function processResponse(msg : SERVER_MSG) {
+
+		function pendingChild(elem: Element, inc) {
+			if (getUserData(elem).pendingChilds == null) getUserData(elem).pendingChilds = 0;
+			getUserData(elem).pendingChilds += inc;
+			if (getUserData(elem).pendingChilds == 0) {
+				if (docOut.documentElement == elem) processOrdersRespServer();
+				else {
+					if (elem.tagName == T.db) {
+						if (getUserData(elem).nErrors > 0) setAttribute(elem, A.nErrors, ""+getUserData(elem).nErrors); 	
+					}
+					pendingChild(<Element>elem.parentNode, -1);
+				}
+			}
+		}
+
+		function getTransactionHandler(elem: Element) : SQLTransactionCallback {
+			pendingChild(elem, +1);
+			return function(tx) {
+				var noTransaction = getUserData(elem).noTransaction;
+				var execSqls = getUserData(elem).execSqls;
+				var exec: ExecSql;
+				while ((exec = execSqls.shift()) != null) {
+					var errorHandler = (noTransaction || exec.noTransaction) ? getErrorExecuteHandler(exec.element) : null;
+					// errorHandler == null -> si error ejecuta errorTransactionHandler
+					tx.executeSql(exec.statement, exec.args, getSuccessHandler(exec.element), errorHandler);
+	//				pendingChild(elem, +1);
+				}
+	//			pendingChild(elem, 0); //test pending y rellenar nodo
+			}
+		}
+		
+		function getErrorTransactionHandler(elem: Element) : SQLTransactionErrorCallback{
+			return function(err) {
+				addError(elem, err);
+				if (getUserData(elem).nErrors === 0) getUserData(elem).nErrors = 1;
+	*//*			var execSql = getUserData(node).execSql, el;
+				while ((el = execSql.shift()) != null) { 
+					if (!el.node.hasChildNodes()) node.removeChild(el.node); 
+				} 
+				getUserData(node).execSql = null;
+	*//*			pendingChild(elem, -1); 
+			}
+		}
+
+		function getSuccessTransactionHandler(elem: Element) : SQLVoidCallback {
+			return function() {
+				pendingChild(elem, -1); 
+			}
+		}
+		
+		function getSuccessHandler(elem: Element) : SQLStatementCallback {
+			return function(tx, r) {
+				setAttribute(elem, A.rowsAffected, ""+r.rowsAffected);
+				if (r.rows.length > 0) {
+					var columns:string[] = [];
+					var columnNode = docOut.createElement(T.columns);
+					var row:{ [col:string]:string };
+					var col:string;
+					row = r.rows.item(0);
+					for (col in row) {
+						var cNode = docOut.createElement(T.col);
+						setTextContent(cNode, col);
+						columnNode.appendChild(cNode);
+						columns.push(col);	
+					}
+					elem.appendChild(columnNode);
+
+					for (var i=0; i<r.rows.length; i++) {
+						var rowNode = docOut.createElement(T.row);
+						row = r.rows.item(i);
+						columns.forEach(function(col) {
+							var vNode = docOut.createElement(T.value);
+							if (row[col] == null) setAttribute(vNode, A.NULL, "");
+							else setTextContent(vNode, row[col]);
+							rowNode.appendChild(vNode);	
+						});
+						elem.appendChild(rowNode);
+					}
+				}
+	//			pendingChild(node.parentNode, -1);	
+			}
+		}
+		
+		function getErrorExecuteHandler(elem: Element) : SQLStatementErrorCallback {
+			return function(tx, err) {
+				addError(elem, err);
+				getUserData(elem.parentNode).nErrors++;
+	//			pendingChild(elem.parentNode, -1);	
+				return false; // false: ejecuta siguiente statement y suucessTransactionHandler
+			}
+		}
+		
+		function addError(elem: Element, err: SQLError) {
+			var errorElem = docOut.createElement(T.error);
+			setAttribute(errorElem, A.code, ""+err.code);
+			setTextContent(errorElem, ""+err.message);
+			elem.appendChild(errorElem);
+		}
+		
+		
+		var allowedTagsByTag: { [tag:string]:string[] } = {};
+		allowedTagsByTag[T.gtpvServer] = [T.session, T.db, T.init, T.communication];
+		allowedTagsByTag[T.db] = [T.statement, T.exec];
+		allowedTagsByTag[T.exec] = [T.arg];
+		
+		function processChilds(eIn: Element, eOut: Element, allowedTags?:string[]) {
+			if (allowedTags == null) allowedTags = allowedTagsByTag[eIn.tagName];
+			for (var child = eIn.firstElementChild; child != null; child = child.nextElementSibling) {
+				if (allowedTags.indexOf(child.tagName) != -1) {
+					switch (child.tagName) {
+						case T.db : processElemDb(child, eOut); break;
+						case T.session : processElemSession(child, eOut); break;
+						case T.statement : processElemStatement(child, eOut); break;
+						case T.exec : processElemExec(child, eOut); break;
+						case T.arg : processElemA(child, eOut); break;
+						case T.init : processElemInit(child, eOut); break;
+						case T.communication : processElemComunication(child, eOut); break;
+					}
+				}
+			}
+		}
+		
+		function processElemDb(eIn: Element, eOutParent: Element) {
+			var eOut = docOut.createElement(T.db);
+			eOutParent.appendChild(eOut);
+			getUserData(docOut.documentElement).sendRespServer = true;
+	//		getUserData(docOut.documentElement).reloadDB = (getAttribute(eIn, "reload") != null);
+			if (getAttribute(eIn, A.reload) != null) H.DB.reloadDB();
+			copyAttribute(A.id, eIn, eOut);
+	*//*		switch(getAttribute(eIn, "tipo")) {
+				case "principal" : name = H.DB.getPrincipalName(); break;
+				case "upload" : name = H.DB.getUploadName(); break;*********???????
+				default :
+					name = getAttribute(eIn, "name"); 
+					if (name == null) name = H.DB.getPrincipalName();
+			}
+			copyAttribute("tipo", eIn, eOut);
+	*//*
+			var name = getAttribute(eIn, A.name);
+			if (name == null) { name = H.DB.getPrincipalName(); }
+			setAttribute(eOut, A.name, name);
+			var db: Database = H.DB.open(name);     // TODO : error db, changeVersion
+			var ud = getUserData(eOut);
+			ud.db = db;
+			ud.statements = Object.create(null);
+			ud.execSqls = [];
+			ud.nErrors = 0;
+			ud.noTransaction = (getAttribute(eIn, A.noTransaction) != null); 
+			ud.db.transaction(getTransactionHandler(eOut), 
+				getErrorTransactionHandler(eOut), getSuccessTransactionHandler(eOut));
+			pendingChild(eOutParent, +1);
+			processChilds(eIn, eOut);
+		}
+		
+		function processElemSession(eIn: Element, eOutParent: Element) {
+	//		alert(docIn);
+			eOutParent.appendChild(docOut.importNode(eIn, true));
+		}
+		
+		function processElemStatement(eIn: Element, eOutParent: Element) {
+			var id = getAttribute(eIn, A.id);
+			var stat = getUserData(eOutParent).statements;
+			stat[id] = getText(eIn);
+		}
+		
+		function processElemExec(eIn: Element, eOutParent: Element) {
+			var eOut = docOut.createElement(T.exec);
+			eOutParent.appendChild(eOut);
+			copyAttribute(A.id, eIn, eOut);
+			getUserData(eOut).idStatement = +getAttribute(eIn, A.idStatement);
+			getUserData(eOut).args = [];
+			getUserData(eOut).noTransaction = (getAttribute(eIn, A.noTransaction) != null);
+			processChilds(eIn, eOut);
+			appendExecSql(eOut);
+		}
+		
+		function appendExecSql(element: Element) {
+			var statement = getUserData(element.parentNode).statements[getUserData(element).idStatement];
+			if (statement == null) statement=""; // ya fallara al ejecutar executeSql
+			getUserData(element.parentNode).execSqls.push(
+				{statement, args: getUserData(element).args, element, noTransaction: getUserData(element).noTransaction});
+		}
+		
+		function processElemA(eIn: Element, eOutParent: Element) {
+			var val = (getAttribute(eIn, A.NULL) != null) ? null : getText(eIn); 
+			getUserData(eOutParent).args.push(val);
+		}
+
+		function processElemInit(eIn: Element, eOutParent: Element) {
+			initDataSendCom = null;
+			var fReinit = false;
+			var prefijo = getAttribute(eIn, A.prefijoCliente);
+			if (prefijo != null) {
+				var prevPref = H.ConfigGTPV.get("prefijoCliente", false); 
+				if (prevPref != prefijo) {			
+					H.ConfigGTPV.setPrefijo(prefijo);
+					LS.init(prefijo);	
+					H.DB.init(prefijo, true);
+					if (prevPref != null) fReinit = true; // ??
+				} else prefijo = null;
+			}
+			var idComm = getAttribute(eIn, A.idComm);
+			if (idComm != null) {
+				if (idComm == "") idComm = null;
+				if (H.ConfigGTPV.get("idCom") !== idComm)
+					H.ConfigGTPV.set("idCom", idComm);
+			}
+			var llicencia = getAttribute(eIn, A.Llicencia);
+			if (llicencia != null) {
+				if (llicencia == "") llicencia = null;
+				if (H.ConfigGTPV.get("Llicencia") !== llicencia)
+					H.ConfigGTPV.set("Llicencia", llicencia);
+			}
+			if (prefijo != null) {
+				var prefijos = (H.ConfigGTPV.get("prefijos", false) || []);
+				prefijos.push(prefijo);
+				H.ConfigGTPV.set([["prefijos", prefijos, false],
+								  ["prefijoCliente", prefijo, false]], function() {
+					if (fReinit) window.location.reload();
+					else H.main.startApplication();
+				});
+			}
+		}
+
+		function processElemComunication(nodeIn: Element, nodeOutParent: Element) {
+			var delay = getAttribute(nodeIn, A.delay);
+			if (delay != null) {
+				var delayMinutes = parseInt(delay);
+				if (!isNaN(delayMinutes)) getUserData(docOut.documentElement).delayMinutes = delayMinutes;
+			}
+		}
+		
+		function processOrdersRespServer() {
+	*//*		if (getUserData(docOut.documentElement).reloadDB === true) {
+				H.DB.reloadDB();
+	//			callbackReloadDBCom.run();
+			}
+	*//*		if (H.ConfigGTPV.get("idCom") != null) {
+				if (getUserData(docOut.documentElement).sendRespServer === true) {
+					insertIdCom(docOut.documentElement);
+					send(docOut);
+				} else {
+					var delayMinutes = getUserData(docOut.documentElement).delayMinutes 
+					if (delayMinutes != null) {
+						if (delayMinutes < 0) delayMinutes = 0; 	
+					} else delayMinutes = defaultDelayMinutesComServer;
+					programCommunication(delayMinutes*60*1000);
+					endCom();
+	//				timeoutComunicacionID = setTimeout(comunicacionConServidor, delayMinutes*60*1000);
+				}
+			} else {
+				if (H.ConfigGTPV.get("prefijoCliente", false) == null) {
+					H.AppInicializarConServidor.start();
+				}
+			}
+		}		
+*/
+		function processTransaction(msgTr : TRANSACTION, db: IDBDatabase, callback:(ret:any) => void) {
+			// checks
+			if ((msgTr == null) || (typeof msgTr !== "object")) { callback("error: null || !object"); return; } 
+			
+			var outTr: TRANSACTION = { id: msgTr.id }; 
+			var msgTrObjStores = msgTr.objectStores;
+			try {	
+				if (!Array.isArray(msgTrObjStores)) throw "error: not array";
+				var tr = db.transaction(db.objectStoreNames, "readwrite");
+			} catch(e) {
+				outTr.error = e.toString();
+				outTr.objectStores = null;
+				callback(outTr);
+				return;
+			}	
+			tr.oncomplete = function(ev) {
+				callback();
+			}
+			
+			tr.onabort = function(ev) {
+				
+			}
+			
+			if (msgTr.abortOnError !== false) msgTr.abortOnError = true; 
+			outTr.objectStores = []
+			
+			for (var i=0; i<msgTrObjStores.length; i) {
+				try {
+					var outObj = <SUBTRANSACTION>{};
+					outTr.objectStores.push(outObj)
+					processTrObjStore(tr, msgTrObjStores[i], msgTr.abortOnError, outObj);
+				} catch(e) {
+					outObj.err = (typeof e === "string") ? "error: "+e : e.toString();
+					tr.abort();
+					return;	
+				}	
+			}
+		}
+			
+		function createModify(script: string, ...args:string[]) {
+			if (script == null) {
+				return function(...innerArgs:any[]) {
+					var last = <Function>innerArgs.pop();
+					last.apply(null, innerArgs);
+				}
+			} else {
+				var dataToSend:any[] = [];
+				return function(...innerArgs:any[]) {
+					
+				}
+			}
+		}	
+		function createFilter(script: string, ...args:string[]) {
+			if (script == null) {
+				return function(...innerArgs:any[]) {
+					var last = <Function>innerArgs.pop();
+					last.call(null, true);
+				}
+			} else {
+				var dataToSend:any[] = [];
+				return function(...innerArgs:any[]) {
+					
+				}
+			}
+		}	
+		
+		function processServSubTr(tr: IDBTransaction, servTr:S_SUBTRANSACTION, abortOnError: boolean, outTr:C_SUBTRANSACTION) {		
+			if ($.type(servTr) !== "object") throw "no object";
+			outTr.id = servTr.id;
+			outTr.type = servTr.type;
+			outTr.objName = servTr.objName;
+			var os = tr.objectStore(servTr.objName);
+			var index : IDBIndex; 
+			if (servTr.index != null) index = os.index(servTr.index);
+			
+			var type = servTr.type;
+			var values = servTr.values;  
+			var keys = servTr.keys;
+			var modify = servTr.modify;
+			var filter = servTr.filter;
+//					if (typeof type !== "string") throw message;
+			if ((values != null) && (!Array.isArray(values)))	throw message; //??
+			if ((keys != null) && (!Array.isArray(keys)))	throw message; //??
+			if ((modify != null) && (typeof modify !== "string"))	throw message; //??
+			if ((filter != null) && (typeof filter !== "string"))	throw message; //??
+			
+			var columns = servTr.columns;
+			if ((columns != null) && (!Array.isArray(columns))) throw message; //??
+			if (!columns.every(function(col) { return ((col == null) || (typeof col === "string")); })) throw message; //??
+						
+			var upper = servTr.upper;
+			var lower = servTr.lower;
+			var keyRange:IDBKeyRange;
+			if (lower != null) {
+				if (upper != null) keyRange = IDBKeyRange.bound(lower, upper, servTr.lowerOpen, servTr.upperOpen);
+				else keyRange = IDBKeyRange.lowerBound(lower, servTr.lowerOpen);
+			} else if (upper != null) {
+				keyRange = IDBKeyRange.upperBound(upper, servTr.upperOpen);
+			} else if (servTr.only != null) keyRange = IDBKeyRange.only(servTr.only);
+			
+			var direction = servTr.direction;
+			if ((direction != null) && (typeof direction !== "string")) throw message; //??
+
+			var noValues = servTr.noValues;
+			var withKeys = servTr.withKeys;
+			var withPrimaryKeys = servTr.withPrimaryKeys;
+			
+			if (typeof servTr.abortOnError === "boolean") abortOnError = servTr.abortOnError;
+			
+			outTr.errors = {};
+			
+			function constructValue(val: any[]) {
+				if (!columns) return val;
+				if (!Array.isArray(val)) return val;
+				var objVal:any = Object.create(null);
+				columns.forEach(function(col, idx) {
+					if (col != null) objVal[col] = val[idx];	
+				});
+				return objVal;
+			}
+			function deconstructValue(val: any) {
+				if (!columns) return val;
+				if ((val == null) || (typeof val !== "object")) return null;
+				return columns.map(function(col) {
+					if (col == null) return null;
+					return val[col];
+				});	
+			}
+
+			switch (type) {
+				case "put":
+				case "add":
+					if (values == null) throw message; 
+					if ((keys != null) && (values.length != keys.length)) throw message;
+					if (keys == null) keys = [];
+					
+					var funModify = createModify(modify, "val", "key");
+					var funFilter = createFilter(filter, "val", "key");
+					for (var i=0; i<values.length; i++) {
+						var val = constructValue(values[i]);
+						funModify(val, keys[i], i, function(val:any, key:any, i:number) {
+							funFilter(val, key, function(accepted: boolean) {
+								if (accepted) {
+									var req = (type === "put") ? os.put(val, key) : os.add(val,key);
+									req.onerror = function(ev) {
+										outTr.errors[i] = {
+											name : req.error.name,
+											message : (<any>req.error).message,
+											val,
+											key 
+										}
+										if (!abortOnError) ev.preventDefault();
+									}
+								}			
+							}); 
+						});	
+					}
+					break;
+				case "get":
+				case "delete":
+				case "update":
+					var funModify = createModify(modify, "val", "key"); //??
+					var funFilter = createFilter(filter, "val", "key");
+					if (keys == null) {
+						if (keyRange) keys = [keyRange];
+						else keys = [undefined];
+					}
+					
+					var outValues: any[] = [];
+					var outKeys: any[] = [];
+					var outPrimaryKeys : any[] = [];
+
+/*					if (!noValues) { outObj.values = []; outValues = []; }
+					if (withKeys) { outObj.keys = []; outKeys = []; }
+					if (withPrimaryKeys) { outObj.primaryKeys = []; outPrimaryKeys = []; }
+*/
+
+					var nPending = 0;					 
+					function checkPendings() {
+						if (nPending > 0) return;
+						switch (type) {
+							case "get" :
+								if (!noValues) merge
+								break;
+							case "delete" :
+								break;	
+							case "update" :
+								break;	
+						}
+					}
+
+					var fOpenKeyCursor = (noValues && index && (type === "get"));
+					for (var i=0; i<keys.length; i++) {
+						nPending++;
+						outValues.push([]);
+						outKeys.push([]);
+						outPrimaryKeys.push([])
+						var req:IDBRequest;
+						try {
+							if (fOpenKeyCursor) req = index.openKeyCursor(keys[i], direction);
+							else req = ((index) ? index : os).openCursor(keys[i],direction);
+						} catch(e) {
+							nPending--;
+							//??
+							return;
+							continue;
+						}
+						req.onsuccess = (function (i: number) { 
+							return function(ev: Event) {
+								var req = <IDBRequest>ev.target;
+								var cursor = <IDBCursorWithValue>req.result;
+								if (cursor) {
+									funModify(cursor.value, cursor.key, cursor.primaryKey, false,
+										function(val: any, key: any, primaryKey: any, fDelete: boolean) {
+											funFilter(val, key, primaryKey, function (accept: boolean) {
+												if (accept) {
+													switch (type) {
+														case "get":
+															outValues[i].push(val);
+															outKeys[i].push(key);
+															outPrimaryKeys[i].push(primaryKey); 
+															break;
+														case "delete":
+															cursor.delete();
+															break;
+														case "update":
+															var req = cursor.update(val);
+															req.onerror = function(ev){
+																
+															}	
+															break;		
+													}
+												}
+												nPending--;
+												checkPendings();
+											})
+										} )
+									cursor.continue();
+								} else {
+									nPending--;
+									if (nPending == 0) 
+								} 
+							}
+						})(i); 
+					}
+					if (nPending == 0) {
+						
+					}	
+					
+					if (keys.length == 0) return;
+					var i=0;
+					
+					
+					try {
+						var req = ((index) ? index : os).openCursor(keys[i],direction);
+						req.onsuccess = function(ev) {
+							var req = <IDBRequest>ev.target;
+							var cursor = <IDBCursorWithValue>req.result;
+							if (cursor) {
+								
+								cursor.continue();
+							} else {
+								
+							} 
+						}
+					} catch(e) {
+						
+					}
+						
+						for (var i=0; i<keys.length; i++) {
+								
+						}
+						
+						
+											
+						{ 
+							outObj.values = []}
+						if (index && msgTrObj.withPrimaryKeys) {
+							for (var i=0; i<keys.length; i++) {
+								try {
+									var req = index.getKey(keys[i]);
+								req.onsuccess = function(ev) {
+									var req = <IDBRequest>ev.target;
+									var val = req.result;
+																		
+								}
+								
+								} catch(e) {
+									
+								}	
+						}
+						for (var i=0; i<keys.length; i++) {
+							try {
+								var req = (index) ? index.get(keys[i]) : os.get(keys[i]);
+								req.onsuccess = function(ev) {
+									var req = <IDBRequest>ev.target;
+									var val = req.result;
+																		
+								}
+							} catch (e) {
+								
+							} 
+						}
+					}
+					break;	
+				default:
+			}
+		}
+		
+		function processDB(msgDB : CLIENT_DB, callback) {
+			var nameDB = msgDB.name; // ?? check
+			if (typeof nameDB !== "string") throw "yy"; //?????
+			// check schema
+			processSchema(msgDB, function(db: IDBDatabase, err: string) {
+				if (err != null) callback(err);
+				var msgTransactions = msgDB.transactions;
+				if (msgTransactions == null) msgTransactions = [];
+				if (!Array.isArray(msgTransactions)) callback(); //?? error
+				var tr = db.transaction(db.objectStoreNames, "readwrite");
+				for (var iTr=0; iTr<msgTransactions.length; iTr++) {
+					var msgTr = msgTransactions[iTr];
+					if ((msgTr == null) || (typeof msgTr !== "object") || (typeof msgTr.type !== "string")) throw "h"; //??
+					try {
+						var os = tr.objectStore(msgTr.objectStore);
+						var idx : IDBIndex; 
+						if (msgTr.index != null) idx = os.index(msgTr.index);
+						var values = msgTr.values;  
+						switch (msgTr.type) {
+							case "put":
+								if (!Array.isArray(values)) callback(); //??error
+								var keys = msgTr.keys;
+								if ((keys != null) && !Array.isArray(keys)) callback(); //?? error
+								for (var i=0; i<values.length; i++) {
+									var req = (keys) ? os.put(values[i], keys[i]) : os.put(values[i]);
+									req.onerror = (function(i: number) {
+										return function(ev:Event) {
+											req = <IDBRequest>ev.target;
+											errors[i] = [req.error.name, ,]
+										}
+									})(i);
+									
+								}
+								values.forEach(function(v) {
+									os.put()	
+								});								
+								break;
+						
+							default:
+								break;
+						}
+					} catch(e) {
+						
+					}
+					if (db.msgTr.objectStore
+					switch (msgTr.type) {
+						""
+					}
+				}
+			});
+		}
+
+		function createIndex(os:IDBObjectStore, nameIdx:string, params:DB.schemaIndex) {
+			if (!os.indexNames.contains(nameIdx))
+				os.createIndex(nameIdx, params.keyPath, {unique: params.unique, muliEntry: params.multiEntry});
+		}
+
+		function createAppIndexs(nameObj: string, db: IDBDatabase) {
+			//??????????????	
+		}	
+
+/*		function checkKeyPath(keyPath: any) {
+			if (keyPath == null) return true;
+			if (typeof keyPath === "string") return true;
+			if (!Array.isArray(keyPath)) return false;
+			for (var i=0; i< (<[]>keyPath).length; i++)
+				if (typeof keyPath[i] !== "string") return false;
+			return true;	
+		} 
+*/
+		function checkSchema(msgSchema: {[name:string]: DB.schemaObjectStore}) {
+			if (typeof msgSchema !== "object") return false;
+			for (var nameObj in msgSchema) {
+				if (msgSchema[nameObj] == null) msgSchema[nameObj] = {};
+				var msgObj = msgSchema[nameObj];
+				if (typeof msgObj !== "object") return false;
+				 
+				if (msgObj.indexs == null) msgObj.indexs = {};
+				if (typeof msgObj.indexs !== "object") return false;
+			}
+		}			
+		function processSchema(msgDB : CLIENT_DB, callback:(db: IDBDatabase, err?: string) => void) {
+			var nameDB = msgDB.name; // ?? check
+			if (typeof nameDB !== "string") {
+				callback(null, "");
+				return;
+			}	
+			var msgSchema = msgDB.schema;
+			if (msgSchema == null) msgSchema = {};
+			if (!checkSchema(msgSchema)) {
+				callback(null, "");
+				return;
+			}
+
+			function onUpgradeSchema(ev: Event) {
+				var db = <IDBDatabase>openReq.result;
+				var tr = openReq.transaction;
+				var os:IDBObjectStore;
+				try {
+					for (var nameObj in msgSchema) {
+						var msgObj = msgSchema[nameObj];
+						var create = !db.objectStoreNames.contains(nameObj);
+						if (create) {
+							os = db.createObjectStore(nameObj, { keyPath: msgObj.keyPath, autoIncrement: msgObj.autoIncrement });
+						} else {
+							os = tr.objectStore(nameObj);
+						}	
+						var msgIndexs = msgObj.indexs; 
+						for (var nameIdx in msgIndexs) {
+							createIndex(os, nameIdx, msgIndexs[nameIdx]);
+						} 
+						if (create) {
+							createAppIndexs(nameObj, db);
+						}	
+					}
+				} catch (e) { 
+					tr.abort();
+					callback(null, (<DOMException>e).toString());
+				}
+			}
+
+			var openReq = indexedDB.open(nameDB)
+			openReq.onupgradeneeded = onUpgradeSchema;
+			openReq.onsuccess = function(ev) {
+				var db = <IDBDatabase>openReq.result;
+				var tr = db.transaction(db.objectStoreNames);
+				try {
+					for (var nameObj in msgSchema) {
+						var os = tr.objectStore(nameObj);
+						//check keyPath ?
+						var msgIndexs = msgSchema[nameObj].indexs; 
+						for (var nameIdx in msgIndexs) {
+							var idx = os.index(nameIdx);
+							// check keyPath, unique, muliEntry ?
+						}
+					}	
+				} catch(e) {
+					openReq = indexedDB.open(nameDB, +db.version+1);
+					openReq.onupgradeneeded = onUpgradeSchema;
+					openReq.onsuccess = function (ev) {
+						var db = <IDBDatabase>openReq.result;
+						callback(db);						
+					}
+				}
+			}
+		}	
+		
+		
+		checkHeader
+		
+		processClientInfo
+		
+		checkLockUD
+		
+		processDbs
+		
+		process				
+		if ((docIn.documentElement == null) || (docIn.documentElement.tagName != T.gtpvServer)) return false;
+
+		var docOut = createSendDoc();
+		processChilds(docIn.documentElement, docOut.documentElement);
+		pendingChild(docOut.documentElement, 0); // test pending y realizar orden
+		return true;
+	}
+
+	
+}
+	
+//	return my;
+//}();
+
+/*var callbackReloadDBCom = function() {
+	var my = {};
+	var callbackFunctions = [];
+	my.add = function(f) {
+		if (callbackFunctions.indexOf(f) == -1) 
+			callbackFunctions.push(f);	
+	}
+	my.run = function() {
+		for (var i=0; i<callbackFunctions.length; i++) {
+			callbackFunctions[i]();
+		}
+	}
+	return my;
+}();
+*/

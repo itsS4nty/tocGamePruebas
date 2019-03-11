@@ -1,0 +1,72 @@
+<!-- Copyright @ 2001 Microsoft Corporation All Rights Reserved. -->
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>TTS Demo</TITLE>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.js"></script>          
+ 
+<SCRIPT LANGUAGE="JavaScript">
+
+// Create the Sapi SpVoice object
+var Tapi = new ActiveXObject("Tapi.Tapi");
+
+</SCRIPT>
+
+<SCRIPT FOR="window" EVENT="OnQuit()" LANGUAGE="JavaScript">
+	// Clean up voice object
+	delete Tapi;
+</SCRIPT>
+
+</HEAD>
+
+
+
+
+
+<BODY>
+<pre id="p1">
+</pre>
+<SCRIPT LANGUAGE="JavaScript">
+$(function() {
+	Tapi.Initialize();
+	var s="";
+	var adrs = Tapi.Addresses;
+	for (var i=1; i<=adrs.count; i++) {
+		var a = adrs.Item(i);
+		s+=a.AddressName+"\r";
+		s+="-------------\r";
+		s+="ADDRESSTYPES "+a.AddressCapability(0).toString(16)+"\r";
+		s+="MediaTypes "+a.MediaTypes.toString(16)+"\r";
+		s+="DynamicTerminalClasses:\r";
+	    var cl = a.DynamicTerminalClasses;
+		if (cl != null) {
+			for (var j=1; j<=cl.count; j++) {
+				s+="  "+cl.Item(j)+"\r";
+			}
+		}
+		s+="StaticTerminals:\r";
+	    var cl = a.StaticTerminals;
+		if (cl != null) {
+			for (var j=1; j<=cl.count; j++) {
+				var st = cl.Item(j);
+				s+="  name:"+st.Name+"\r";
+				s+="  TerminalClass:"+st.TerminalClass+"\r";
+				s+="  Direction:"+st.Direction.toString(16)+"\r";
+				s+="  State:"+st.State.toString(16)+"\r";
+				s+="  TerminalType:"+st.TerminalType.toString(16)+"\r";
+				
+			}
+		}
+		s+="\r";
+	}
+	$("#p1").text(s);
+});
+
+</SCRIPT>
+
+
+
+
+</BODY>
+</HTML>
+

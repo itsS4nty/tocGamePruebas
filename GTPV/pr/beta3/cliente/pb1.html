@@ -1,0 +1,38 @@
+<html>
+<head>
+<script src="jquery/jquery-1.5.1.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+
+
+$(function() {
+	b = $("<button>").text("q").appendTo("body");
+	t = b.width()+" "+b.outerWidth()+" "+b.outerWidth(true)+" "+b.height()+" "+b.outerHeight()+" "+b.outerHeight(true);
+	$("<div>").text(t).appendTo("body");
+	b = $("<button>").text("q").appendTo("body");
+	b.width("100%");
+	t = b.width()+" "+b.outerWidth()+" "+b.outerWidth(true)+" "+b.height()+" "+b.outerHeight()+" "+b.outerHeight(true);
+	$("<div>").text(t).appendTo("body");
+	b = $("<button>").text("q").appendTo("body");
+	b.width("50%");
+	t = b.width()+" "+b.outerWidth()+" "+b.outerWidth(true)+" "+b.height()+" "+b.outerHeight()+" "+b.outerHeight(true);
+	$("<div>").text(t).appendTo("body");
+	b = $("<button>").text("q").appendTo("body");
+	b.width(40);
+	t = b.width()+" "+b.outerWidth()+" "+b.outerWidth(true)+" "+b.height()+" "+b.outerHeight()+" "+b.outerHeight(true);
+	$("<div>").text(t).appendTo("body");
+	b = $("<button>").text("q").appendTo("body");
+	b.height(22);
+	t = b.width()+" "+b.outerWidth()+" "+b.outerWidth(true)+" "+b.height()+" "+b.outerHeight()+" "+b.outerHeight(true);
+	$("<div>").text(t).appendTo("body");
+	
+	
+});
+
+
+</script>
+</html>

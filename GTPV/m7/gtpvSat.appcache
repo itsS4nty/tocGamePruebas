@@ -1,0 +1,11 @@
+CACHE MANIFEST
+
+# gtpvSat.appcache
+# 01/05/12 21:09:34
+
+CACHE:
+
+./
+cliente/findHost.js
+cliente/jquery/jquery-1.7.1.mod.js
+

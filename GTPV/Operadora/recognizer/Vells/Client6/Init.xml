@@ -1,0 +1,4 @@
+<Response>
+	<Processor name="http" type="http" url="http://86.109.98.187/recognizer/"/>
+</Response>
+

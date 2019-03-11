@@ -1,0 +1,14 @@
+select * 
+from 
+    (select a.plu, b.plu as maxplu,b.c as cmaxplu, count(*) as c, row_number() over (partition by b.plu order by count(*)) as rn 
+     from [v_venut_2011-05] as a 
+             inner join
+                  (select r1.Num_tick,r1.plu,r2.c  
+                   from [v_venut_2011-05] as r1 
+                        inner join (select top 4 plu, count(*) as c from [v_venut_2011-05] group by plu order by c desc) as r2 
+                        on r1.plu = r2.plu 
+                  ) as b 
+             on (b.Num_tick = a.Num_tick) and (a.plu <> b.plu) 
+     group by a.plu,b.plu,b.c) as z
+where rn <= 8 
+order by cmaxplu desc

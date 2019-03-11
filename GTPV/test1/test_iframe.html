@@ -1,0 +1,21 @@
+<html>
+	<body>
+		<script>
+			window.onmessage = function(ev) {
+				console.log("f onm");
+				var port = ev.ports[0];
+				port.onmessage = function(ev) {
+					console.log("f onm p");
+					var data = ev.data;
+					data+= " resp p";
+					console.log("fp.postMessage", data);
+					port.postMessage(data);
+				}
+				var data = ev.data;
+				data += " resp m";
+				console.log("f.postMessage", data);
+				ev.source.postMessage(data, "*");
+			}
+		</script>
+	</body>
+</html>

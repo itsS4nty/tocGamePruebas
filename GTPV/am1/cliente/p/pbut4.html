@@ -1,0 +1,389 @@
+<html>
+<head>
+<style type="text/css">
+.cl1{
+	border: 1px solid #cccccc;
+	background-image: url(css/gtpv/img/bot.png) ;
+	background-repeat: no-repeat;
+	background-position: center bottom; 
+	font-weight: bold;
+}
+.cl2{
+	border: 1px solid #cccccc;
+	background-image: url(css/gtpv/img/bot.png) ;
+	background-repeat: no-repeat;
+	background-position: center bottom; 
+	font-weight: bold;
+	-o-background-size: 100% 100%;
+	-webkit-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+}
+.cl12{
+	border: 1px solid #cccccc;
+	background-image: url(css/gtpv/img/bot2.png) ;
+	background-repeat: no-repeat;
+	background-position: center bottom; 
+	font-weight: bold;
+}
+.cl22{
+	border: 1px solid #cccccc;
+	background-image: url(css/gtpv/img/bot2.png) ;
+	background-repeat: no-repeat;
+	background-position: center bottom; 
+	font-weight: bold;
+	-o-background-size: 100% 100%;
+	-webkit-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+}
+</style>
+<script src="jquery/jquery-1.5.1.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+
+var c=0;
+var n=10;
+
+function r(p) {
+	p.width(Math.floor((p.width())/n)*n);
+	p.height(Math.floor((p.height())/n)*n);
+}
+
+function m1(perc, cl) {
+	div2.empty();
+	var p = $("<div>").css({ display: "inline-block"}).width(perc).height(perc).appendTo(div2);
+	r(p);
+	for (var i=0; i<n; i++) {
+		var r1 = $("<div>").css({width: "100%", height: (100/n)+"%"}).appendTo(p);
+		for (var b=0; b<n; b++) {
+			$("<button>").css({width: (100/n)+"%", height: "100%", boxSizing: "border-box", color: "black", verticalAlign: "middle"})
+						 .addClass(cl).appendTo(r1).mousedown( function() {
+				time0=Date.now(); setTimeout(t,80);
+				var r1 = $(this.parentNode.parentNode.firstChild);
+				for (var i=0; i<n; i++, r1 = r1.next()) {
+					var but = r1.children().first();
+					for (var b=0; b<n; b++, but = but.next()) {
+						but.text("mmmmmmm mmm"+(c++)+"mmmmm mmm");
+	//					but.css({visibility: "visible"});
+						but.css({backgroundColor: "rgb("+(c%256)+","+((c+20)%256)+","+((c+40)%256)+")"});
+					}
+				}	
+			});
+		}
+	}	
+	p.children().first().children().first().mousedown();
+}
+
+function isBorderBox(div) { return (div.css("boxSizing") == "border-box"); }
+
+function setOW(div, w) { 
+	div.width(w-(div.outerWidth(true)-(isBorderBox(div) ? div.outerWidth() : div.width()))); 
+}
+function setOH(div, h) { 
+	div.height(h-(div.outerHeight(true)-(isBorderBox(div) ? div.outerHeight() : div.height()))); 
+}
+
+function posAbsolutePX(div, x0, y0, x1, y1) {
+	x0 = Math.round(x0); y0 = Math.round(y0);
+	x1 = Math.round(x1); y1 = Math.round(y1);
+	div.css({position: "absolute", left: x0+"px", top: y0+"px"});
+	setOW(div, x1-x0); setOH(div, y1-y0);
+}
+
+function m2(perc, cl) {
+	div2.empty();
+	var p = $("<div>").css({ display: "inline-block", position: "relative" }).width(perc).height(perc).appendTo(div2);
+	r(p);
+	
+	function redrawDivTeclatH() {
+		time0=Date.now(); setTimeout(t,80);
+		for (var i=0; i<buttonsTeclat.length; i++) {
+			var but = buttonsTeclat[i];
+			
+			but.text("mmmmmmm mmm"+(c++)+"mmmmm mmm");
+			but.css({backgroundColor: "rgb("+(c%256)+","+((c+20)%256)+","+((c+40)%256)+")"});
+		}
+	}
+	var buttonModel = $("<button>").css({boxSizing: "border-box", margin: "0px", 
+								         color: "black", /*verticalAlign: "middle"*/})
+						           .addClass(cl)
+						           .mousedown(redrawDivTeclatH);
+	var buttonsTeclat = [];
+	var nX = n, nY = n;
+	for (var x=0; x<nX; x++) {
+		for (var y=0; y<nY; y++) {
+			buttonsTeclat[x*nY+y] = buttonModel.clone(true).data("pos", x*nY+y).appendTo(p);
+		}
+	}
+
+	var w1=p.width(), h1=p.height();
+	var nX = n, nY = n;
+	for (var x=0; x<nX; x++) {
+		for (var y=0; y<nY; y++) {
+			posAbsolutePX(buttonsTeclat[x*nY+y], (x/nX)*w1, (y/nY)*h1, ((x+1)/nX)*w1, ((y+1)/nY)*h1);
+		}
+	}
+	buttonsTeclat[0].mousedown();
+}
+
+function m3(perc, cl) {
+	div2.empty();
+	var p = $("<div>").css({ display: "inline-block", position: "relative" }).width(perc).height(perc).appendTo(div2);
+	r(p);
+	
+	function redrawDivTeclatH() {
+		time0=Date.now(); setTimeout(t,80);
+		for (var i=0; i<buttonsTeclat.length; i++) {
+			var but = buttonsTeclat[i];
+			
+			but.text("mmmmmmm mmm"+(c++)+"mmmmm mmm");
+			but.css({backgroundColor: "rgb("+(c%256)+","+((c+20)%256)+","+((c+40)%256)+")"});
+		}
+	}
+	var buttonModel = $("<button>").css({margin:"0px",color: "black", height: "100%"/*verticalAlign: "middle"*/})
+						           .addClass(cl)
+						           .mousedown(redrawDivTeclatH);
+	var buttonsTeclat = [];
+	var nX = n, nY = n;
+	for (var y=0; y<nY; y++) {
+		var w = $("<div>").appendTo(p);
+		for (var x=0; x<nX; x++) {
+			buttonsTeclat[x*nY+y] = buttonModel.clone(true).data("pos", x*nY+y).appendTo(w);
+		}
+	}
+
+	var w1=p.width(), h1=p.height();
+	var nX = n, nY = n;
+	for (var y=0; y<nY; y++) {
+		var w = p.children().eq(y);
+		var y0 = Math.round((y/nY)*h1), y1 = Math.round(((y+1)/nY)*h1);
+		setOH(w, y1-y0);
+		for (var x=0; x<nX; x++) {
+			x0 = Math.round((x/nX)*w1), x1 = Math.round(((x+1)/nX)*w1); 
+			setOW(buttonsTeclat[x*nY+y], x1-x0);
+		}
+	}
+	buttonsTeclat[0].mousedown();
+}
+
+function m4(perc, cl) {
+	div2.empty();
+	var p = $("<div>").css({ display: "inline-block", position: "relative" }).width(perc).height(perc).appendTo(div2);
+	r(p);
+	
+	function redrawDivTeclatH() {
+		time0=Date.now(); setTimeout(t,80);
+		for (var i=0; i<buttonsTeclat.length; i++) {
+			var but = buttonsTeclat[i];
+			
+			but.text("mmmmmmm mmm"+(c++)+"mmmmm mmm");
+			but.css({backgroundColor: "rgb("+(c%256)+","+((c+20)%256)+","+((c+40)%256)+")"});
+		}
+	}
+	var buttonModel = $("<button>").css({color: "black", height: "100%"/*verticalAlign: "middle"*/})
+						           .addClass(cl)
+						           .mousedown(redrawDivTeclatH);
+	var buttonsTeclat = [];
+	var nX = n, nY = n;
+	for (var y=0; y<nY; y++) {
+		var w = $("<div>").appendTo(p);
+		for (var x=0; x<nX; x++) {
+			buttonsTeclat[x*nY+y] = buttonModel.clone(true).data("pos", x*nY+y).appendTo(w);
+		}
+	}
+
+	var w1=p.width(), h1=p.height();
+	var nX = n, nY = n;
+	for (var y=0; y<nY; y++) {
+		var w = p.children().eq(y);
+		var y0 = Math.round((y/nY)*h1), y1 = Math.round(((y+1)/nY)*h1);
+		w.height(/*y1-y0*//*(100/n)+"%"*/(h1/n)+"px");
+		for (var x=0; x<nX; x++) {
+			x0 = Math.round((x/nX)*w1), x1 = Math.round(((x+1)/nX)*w1);
+			var w2 = Math.round(w1/n);
+			buttonsTeclat[x*nY+y].width(/*x1-x0*//*(100/n)+"%"*/(w2+(x === nX-1?0:0))+"px");
+		}
+	}
+	buttonsTeclat[0].mousedown();
+}
+
+function m5(perc, cl) {
+	div2.empty();
+	var p = $("<div>").css({ display: "inline-block", position: "relative" }).width(perc).height(perc).appendTo(div2);
+	r(p);
+	
+	function redrawDivTeclatH() {
+		time0=Date.now(); setTimeout(t,80);
+		for (var i=0; i<buttonsTeclat.length; i++) {
+			var but = buttonsTeclat[i];
+			
+			but.text("mmmmmmm mmm"+(c++)+"mmmmm mmm");
+			but.css({backgroundColor: "rgb("+(c%256)+","+((c+20)%256)+","+((c+40)%256)+")"});
+		}
+	}
+	var buttonModel = $("<button>").css({color: "black", height: "100%"/*verticalAlign: "middle"*/})
+						           .addClass(cl)
+						           .mousedown(redrawDivTeclatH);
+	var buttonsTeclat = [];
+	var nX = n, nY = n;
+	for (var y=0; y<nY; y++) {
+		var w = $("<div>").appendTo(p);
+		for (var x=0; x<nX; x++) {
+			buttonsTeclat[x*nY+y] = buttonModel.clone(true).data("pos", x*nY+y).appendTo(w);
+		}
+	}
+
+	var w1=p.width(), h1=p.height();
+	var nX = n, nY = n;
+	for (var y=0; y<nY; y++) {
+		var w = p.children().eq(y);
+		var y0 = Math.round((y/nY)*h1), y1 = Math.round(((y+1)/nY)*h1);
+		w.height(/*y1-y0*//*(100/n)+"%"*/(h1/n)+"px");
+		for (var x=0; x<nX; x++) {
+			x0 = Math.round((x/nX)*w1), x1 = Math.round(((x+1)/nX)*w1); 
+			var w2 = Math.round(w1/n);
+			buttonsTeclat[x*nY+y].width(/*x1-x0*//*(100/n)+"%"*/(w2+(x === nX-1?1:0))+"px");
+		}
+	}
+	buttonsTeclat[0].mousedown();
+}
+
+function m6(perc, cl) {
+	div2.empty();
+	var p = $("<div>").css({ display: "inline-block", position: "relative" }).width(perc).height(perc).appendTo(div2);
+	r(p);
+	
+	function redrawDivTeclatH() {
+		time0=Date.now(); setTimeout(t,80);
+		for (var i=0; i<buttonsTeclat.length; i++) {
+			var but = buttonsTeclat[i];
+			
+			but.text("mmmmmmm mmm"+(c++)+"mmmmm mmm");
+			but.css({backgroundColor: "rgb("+(c%256)+","+((c+20)%256)+","+((c+40)%256)+")"});
+		}
+	}
+	var buttonModel = $("<button>").css({color: "black", height: "100%"/*verticalAlign: "middle"*/})
+						           .addClass(cl)
+						           .mousedown(redrawDivTeclatH);
+	var buttonsTeclat = [];
+	var nX = n, nY = n;
+	for (var y=0; y<nY; y++) {
+		var w = $("<div>").appendTo(p);
+		for (var x=0; x<nX; x++) {
+			buttonsTeclat[x*nY+y] = buttonModel.clone(true).data("pos", x*nY+y).appendTo(w);
+		}
+	}
+
+	var w1=p.width(), h1=p.height();
+	var nX = n, nY = n;
+	for (var y=0; y<nY; y++) {
+		var w = p.children().eq(y);
+		var y0 = Math.round((y/nY)*h1), y1 = Math.round(((y+1)/nY)*h1);
+		w.height(/*y1-y0*//*(100/n)+"%"*/(h1/n+(y === nY-1?1:0))+"px");
+		for (var x=0; x<nX; x++) {
+			x0 = Math.round((x/nX)*w1), x1 = Math.round(((x+1)/nX)*w1); 
+			var w2 = Math.round(w1/n);
+			buttonsTeclat[x*nY+y].width(/*x1-x0*//*(100/n)+"%"*/(w2+(x === nX-1?0:0))+"px");
+		}
+	}
+	buttonsTeclat[0].mousedown();
+}
+
+function m7(perc, cl) {
+	div2.empty();
+	var p = $("<div>").css({ display: "inline-block", position: "relative" }).width(perc).height(perc).appendTo(div2);
+	r(p);
+	
+	function redrawDivTeclatH() {
+		time0=Date.now(); setTimeout(t,80);
+		for (var i=0; i<buttonsTeclat.length; i++) {
+			var but = buttonsTeclat[i];
+			
+			but.text("mmmmmmm mmm"+(c++)+"mmmmm mmm");
+			but.css({backgroundColor: "rgb("+(c%256)+","+((c+20)%256)+","+((c+40)%256)+")"});
+		}
+	}
+	var buttonModel = $("<button>").css({color: "black", height: "100%"/*verticalAlign: "middle"*/})
+						           .addClass(cl)
+						           .mousedown(redrawDivTeclatH);
+	var buttonsTeclat = [];
+	var nX = n, nY = n;
+	for (var y=0; y<nY; y++) {
+		var w = $("<div>").appendTo(p);
+		for (var x=0; x<nX; x++) {
+			buttonsTeclat[x*nY+y] = buttonModel.clone(true).data("pos", x*nY+y).appendTo(w);
+		}
+	}
+	for (var x=0; x<nX; x++) {
+		buttonsTeclat[x*nY+(nY-1)].removeClass(cl).addClass(cl+"2");
+	}
+
+	var w1=p.width(), h1=p.height();
+	var nX = n, nY = n;
+	for (var y=0; y<nY; y++) {
+		var w = p.children().eq(y);
+		var y0 = Math.round((y/nY)*h1), y1 = Math.round(((y+1)/nY)*h1);
+		w.height(/*y1-y0*//*(100/n)+"%"*/(h1/n+(y === nY-1?1:0))+"px");
+		for (var x=0; x<nX; x++) {
+			x0 = Math.round((x/nX)*w1), x1 = Math.round(((x+1)/nX)*w1); 
+			var w2 = Math.round(w1/n);
+			buttonsTeclat[x*nY+y].width(/*x1-x0*//*(100/n)+"%"*/(w2+(x === nX-1?0:0))+"px");
+		}
+	}
+	buttonsTeclat[0].mousedown();
+}
+
+var time0;
+function t() { div3.text(Date.now()-time0); }
+
+var div1;
+var div2;
+var div3;
+
+var cl = "cl1";
+
+$(function() {
+
+	div1 = $("<div>").height("10%").css({ textAlign: "center" }).appendTo("body");
+	div2 = $("<div>").height("80%").css({ textAlign: "center" }).appendTo("body");
+	div3 = $("<div>").height("5%").css({ textAlign: "center" }).appendTo("body");
+
+	var bcl = $("<button>").text(cl).appendTo(div1).css({marginRight: "20px"}).click(function() { cl = (cl == "cl1")?"cl2":"cl1"; bcl.text(cl); }); 
+
+	$("<button>").text("test1").appendTo(div1).click(function(e) { m1("95%",cl); });
+	$("<button>").text("gtpv").appendTo(div1).click(function(e) { m2("95%",cl); });
+	$("<button>").text("gtpv div").appendTo(div1).click(function(e) { m3("95%",cl); });
+	$("<button>").text("ig size").appendTo(div1).click(function(e) { m4("95%",cl); });
+	$("<button>").text("lastcol").appendTo(div1).click(function(e) { m5("95%",cl); });
+	$("<button>").text("lastline").appendTo(div1).click(function(e) { m6("95%",cl); });
+	$("<button>").text("2 img").appendTo(div1).click(function(e) { m7("95%",cl); });
+
+//	$("<button>").text("m1 50%-1").appendTo(div1).click(function(e) { m1("50%","cl1"); });
+//	$("<button>").text("m1 50%-2").appendTo(div1).click(function(e) { m1("50%","cl2"); });
+//	$("<button>").text("m1 95%-2").appendTo(div1).click(function(e) { m1("95%","cl2"); });
+//	$("<button>").text("m2 50%-1").appendTo(div1).click(function(e) { m2("50%","cl1"); });
+//	$("<button>").text("m2 50%-2").appendTo(div1).click(function(e) { m2("50%","cl2"); });
+//	$("<button>").text("m2 95%-2").appendTo(div1).click(function(e) { m2("95%","cl2"); });
+//	$("<button>").text("m3 50%-1").appendTo(div1).click(function(e) { m3("50%","cl1"); });
+//	$("<button>").text("m3 50%-2").appendTo(div1).click(function(e) { m3("50%","cl2"); });
+//	$("<button>").text("m3 95%-2").appendTo(div1).click(function(e) { m3("95%","cl2"); });
+//	$("<button>").text("m4 50%-1").appendTo(div1).click(function(e) { m4("50%","cl1"); });
+//	$("<button>").text("m4 50%-2").appendTo(div1).click(function(e) { m4("50%","cl2"); });
+//	$("<button>").text("m4 95%-2").appendTo(div1).click(function(e) { m4("95%","cl2"); });
+//	$("<button>").text("m5 50%-1").appendTo(div1).click(function(e) { m5("50%","cl1"); });
+//	$("<button>").text("m5 50%-2").appendTo(div1).click(function(e) { m5("50%","cl2"); });
+//	$("<button>").text("m5 95%-2").appendTo(div1).click(function(e) { m5("95%","cl2"); });
+//	$("<button>").text("m6 50%-1").appendTo(div1).click(function(e) { m6("50%","cl1"); });
+//	$("<button>").text("m6 50%-2").appendTo(div1).click(function(e) { m6("50%","cl2"); });
+//	$("<button>").text("m6 95%-2").appendTo(div1).click(function(e) { m6("95%","cl2"); });
+//	$("<button>").text("m7 50%-1").appendTo(div1).click(function(e) { m7("50%","cl1"); });
+//	$("<button>").text("m7 50%-2").appendTo(div1).click(function(e) { m7("50%","cl2"); });
+//	$("<button>").text("m7 95%-2").appendTo(div1).click(function(e) { m7("95%","cl2"); });
+});
+
+
+</script>
+</html>

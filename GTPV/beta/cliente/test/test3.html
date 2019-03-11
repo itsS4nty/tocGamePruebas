@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<script src="jquery.js" ></script>
+		<script>
+			$(function() {
+				var div1 = $('#div1');
+				var but1 = $('<button>').text('hola');
+				but1.appendTo(div1);
+				div1.bind('touchstart touchmove touchend', function (ev) {
+					console.log("div1");
+					console.log(ev.type);
+					console.log(ev);
+				});
+				var div0 = $('#div0');
+				div0.bind('touchstart touchmove touchend', function (ev) {
+					console.log("div0");
+					console.log(ev.type);
+					console.log(ev);
+				});
+			});
+		</script>
+	</head>
+	<body style="margin:0;border:0;padding:0;height:100%;overflow:hidden">
+		<div id="div0" style="height:100px;border:1px solid blue;box-sizing:border-box;position:absolute;;top:0px;width:50%"></div>
+		<div id="div1" style="height:100%;position:absolute;border:1px solid red;top:0px;box-sizing:border-box;width:50%;background:yellow" >
+		</div>
+		<div style="height:100px;border:1px solid green;box-sizing:border-box"></div>
+	</body>
+</html>

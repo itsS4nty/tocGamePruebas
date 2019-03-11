@@ -1,0 +1,31 @@
+<?xml version= "1.0"?>
+
+<!--
+This is a very simple grammar, representing possible items around HELP that a caller might say. The grammar should recognize "help", "help please", or "help menu".
+-->
+
+<grammar mode="voice" root="top" tag-format="semantics/1.0" version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/06/grammar">
+ 
+ 
+ <rule id="top" scope="public">
+  
+  
+   <item>
+ 
+	help
+    
+	<one-of>
+	
+	<item repeat="0-1"> please </item>
+    <item repeat="0-1"> menu </item>
+    
+	</one-of>
+	
+	<tag>out.application = "HELP";
+	     out.grammar = "help_choices.grxml";</tag>
+    
+	</item>
+  
+ </rule>
+
+</grammar>

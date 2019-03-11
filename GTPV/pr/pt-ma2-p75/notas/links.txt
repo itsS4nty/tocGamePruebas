@@ -1,0 +1,6 @@
+touchEvents:
+http://www.the-xavi.com/articles/trouble-with-touch-events-jquery
+
+tpv
+http://es.wikipedia.org/wiki/Comandero_(hosteler%C3%ADa)
+

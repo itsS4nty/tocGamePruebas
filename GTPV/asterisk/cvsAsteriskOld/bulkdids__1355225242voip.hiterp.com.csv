@@ -1,0 +1,4 @@
+action,DID,description,destination,cidnum,alertinfo,grppre,mohclass,ringing,privacyman
+edit,931760210,TELSOMENUEVO,"from-did-direct,444,1",,,,default,,0
+edit,937161010,TELSOME1010,"app-daynight,0,1",,,,default,,0
+edit,937166868,TELSOME6868,"from-did-direct,304,1",,,,default,,0

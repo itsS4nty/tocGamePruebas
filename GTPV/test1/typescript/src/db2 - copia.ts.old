@@ -1,0 +1,56 @@
+/// <reference path="../libs/jquery/jquery.d.ts" />
+
+module DB {
+	export interface schemaDB {
+		name?: string;
+		version?: number;
+		objectStores?: schemaObjectStores
+	}
+	export interface schemaObjectStores { [name:string]:schemaObjStore };
+
+	export interface schemaObjStore {
+		keyPath?: string;
+		autoIncrement?: boolean;
+		indexs?: { [name:string]:schemaIndex };
+	}
+	export interface schemaIndex {
+		keyPath: string;
+		unique: boolean;
+		multiEntry: boolean;
+	}
+	
+	export function getSchema(dbName : string, callback:(schema:schemaDB) => void) {
+		var openReq = indexedDB.open(dbName);
+		openReq.onupgradeneeded = function (ev) {
+			openReq.transaction.abort();
+			callback({name: dbName, version:0, objectStores:{}});
+		}
+		function keyPath(v:any) { // convertir a DOMStringList a Array para json, sino es object
+			if (v instanceof DOMStringList) 
+				return Array.prototype.slice.call(v);
+			else return v;	
+		}
+		openReq.onsuccess = function (ev) {
+			var db = <IDBDatabase>openReq.result;
+			var objectStores: { [name:string]:schemaObjStore } = Object.create(null);
+			if (db.objectStoreNames.length > 0) {
+				var tr = db.transaction(db.objectStoreNames);
+				for (var idxO=0; idxO<db.objectStoreNames.length; idxO++) {
+					var indexs: { [name:string]:schemaIndex } = Object.create(null);
+					var os = tr.objectStore(db.objectStoreNames[idxO]);
+					for (var idxI=0; idxI<os.indexNames.length; idxI++) {
+						var index = os.index(os.indexNames[idxI]);
+						// falta multyEntry en lib.d.ts
+						indexs[index.name] = { keyPath: keyPath(index.keyPath), 
+								  unique: index.unique, multiEntry: (<any>index).multiEntry};
+					} 
+					objectStores[os.name] = {keyPath: keyPath(os.keyPath), indexs: indexs};				
+				}
+			}
+			var name = db.name;
+			var version = +db.version;
+			db.close();
+			callback({name, version, objectStores}); 
+		}
+	} 
+}

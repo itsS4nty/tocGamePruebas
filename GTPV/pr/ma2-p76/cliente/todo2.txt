@@ -1,0 +1,8 @@
+odbc_field_type == datetime  ok
+                   nvarchar
+
+lock db
+reloadDB finalizar comunicacion
+reintentos
+falla comunicación
+guardar delay comunicacion				   
