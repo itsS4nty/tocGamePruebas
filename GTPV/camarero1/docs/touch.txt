@@ -1,0 +1,97 @@
+touch y aplicaciones de camarero
+	ver cabeceras de funciones en touch.js:
+		touchHandler
+		scrollT
+		pageToPage
+		
+	aplicaiones de camarero:
+		Selección de dependienta
+		Comedor
+		Comanda
+		Añadir producto
+		
+	estructura de una aplicación con touch en camarero:
+		// div0: es el div que contiene la aplicación
+		var div0 = createDivAbs()._100x100().appendTo(main.getDiv()); 
+
+		// touchHandler de la aplicacion
+		var touchH = touchHandler(div0, controlTouch);
+		var controlTouch = {
+			start: function(target, curT) { // hay un touch valido
+				deactivateClick(); // desactiva algún click previo, quita div de opacidad, etc..
+				findStartTarget(target);
+				return activateClick(); // devuelve el div sobre el que se puede hacer click
+				                        // para producirse el click el touch debe empezar dentro de este div,
+										// moverse sin salir de este div y acabar dentro de este div
+			},
+			move: function(dir, difT) {
+				return controlMoveSwipe(dir, difT, null);
+			},
+			swipe: function(dir, force) {   // movimiento de pasar página
+				return controlMoveSwipe(dir, null, force);
+			},
+			end: function() {               // ya no hay touch
+				deactivateClick();
+			},
+			click: function(target) {
+				if (deactivateClick()) {
+					switch (typeTarget) {
+						case por tipo de target
+					}
+				}
+			},
+			leaveClick: function(outOfClick) { // se ha movido el touch fuera del div click
+				deactivateClick();
+				return false;
+			}
+		}
+
+		// busca un target valido (siempre sera sera o el target pasado a la función 
+		// o un ascendiente de este, o sea un div que incluya a este)
+		// a la salida startTarget tendra este div y
+		// typeTarget tendra el tipo del target (usada para hacer selects depues)
+		// moreInfoTarget tendra datos adicionales
+		function findStartTarget(target) {
+			var info = function() {
+				// buscar el target
+				// se usa la función getDOMParents(target, divAntecesor);
+				//                   devuelve [divAntecesor, hijo, hijo, ..., target] o null
+				...
+				return [targetFind, type, more];
+			}();
+			startTarget = info[0];
+			typeTarget = info[1];
+			moreInfoTarget = info[2];
+		}
+
+		// comprueba si el target es un click target
+		function activateClick() {
+			var clickableTypeTargets = [/* tipos de target clickables*/];
+			if (clickableTypeTargets.indexOf(typeTarget) == -1) return null; // no es clickable 
+			...
+			// visualizar el click (normalmente oscureciendolo)
+			clickActive = true;
+			return startTarget;
+		}
+
+		// desactiva el click
+		function deactivateClick() {
+			if (!clickActive) return false; // ya se habia desactivado antes
+			clickActive = false;
+			// desvisualizar el click(volver al estado normal)	
+			return true; // el click estaba activado y se ha desactivado
+		}
+
+		// procesar un move a swipe
+		function controlMoveSwipe(dir, difT, force) {
+			deactivateClick();
+			switch(typeTarget) {
+				// dependiendo del tipo
+				//       scroll.start(difT, force)
+				//       o
+				//       controlMain.someAction(difT,force)
+				//       o
+				//       otras acciones
+			}
+			return false;
+		}

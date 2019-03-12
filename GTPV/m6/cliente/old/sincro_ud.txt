@@ -1,0 +1,13 @@
+select download
+get upload
+select upload from tableServer
+if 0 -> {
+   insert(I) or insertdelete(D) set fecha_sincro getutcdate 
+} else {
+	if (fecha_cliente > fecha_mod_server) {
+		insert(I) or insertdelete(D) set fecha_sincro getutcdate
+	} else {
+		if (fecha_sincro_server < fecha_sincro_download) 
+	}
+	
+}   

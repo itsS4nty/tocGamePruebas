@@ -1,0 +1,7 @@
+Comunicación satelite
+
+- Host y Satelite
+
+Host: applet java que crea servidor http
+Sat:  petición de pagina web y comunicación con la aplicación en Ajax, datos json
+

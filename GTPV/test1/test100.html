@@ -1,0 +1,28 @@
+<html>
+	<body>
+		<iframe src="test_iframe.html" ></iframe>
+		<script>
+			var port;
+			onload = function() {
+				var channel = new MessageChannel();
+				port = channel.port1;
+				port.onmessage = function(ev) {
+					console.log("w onm p", ev.data);
+				}
+				var iframe = document.getElementsByTagName("iframe")[0];
+				var data = "w11";
+				console.log("w.postMessage", data);
+				iframe.contentWindow.postMessage(data,"*", [channel.port2]);
+				var data = "wp22";
+				console.log("wp.postMessage", data);
+				port.postMessage(data);
+			}
+			onmessage = function(ev) {
+				console.log("w onm",ev.data);
+				var data = "wp33"
+				console.log("w.onmessage", data);
+				port.postMessage(data);
+			}
+		</script>
+	</body>
+</html>	

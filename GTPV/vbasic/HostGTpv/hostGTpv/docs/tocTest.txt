@@ -1,0 +1,6 @@
+Toc Test
+	Ejemplo de funcionamiento de hostGTpv
+	Form1.vb
+	testData/DebugDatos.json : datos de pruebas, extraidos de un hostGTpv en web en formato json
+	
+	

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Documento sin título</title>
+</head>
+
+<body>
+<script>
+function success(tx, res) {
+	alert("success");
+}
+function error(tx,e) {
+	alert("error");
+}
+
+db = openDatabase("test1","","",5000);
+db.transaction(function(tx) {
+	tx.executeSql("CREATE TABLE t1 (id PRIMARY KEY, val)", [], success, error);
+	tx.executeSql("INSERT INTO t1 VALUES (1,'2')", [], success, error);
+	tx.executeSql("INSERT INTO t1 VALUES (1,'2')", [], success, error);
+	tx.executeSql("INSERT INTO t1 VALUES (2,'2')", [], success, error);
+	alert("ttt");
+});
+</script>
+</body>
+</html>

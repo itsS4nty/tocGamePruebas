@@ -1,0 +1,30 @@
+CACHE MANIFEST
+#Cache para una aplicación web offline.
+
+#Archivos HTML:
+index.html
+pagina1.html
+pagina2.html
+
+#Archivos JavaScript:
+javascript.js
+
+#Archivos CSS
+estilos.css
+
+#imagenes:
+imagen.gif
+
+# Opciones:
+# Forzar la descarga SIEMPRE:
+
+#NETWORK:
+#imagen.jpg
+
+# Forzar la descarga, pero evitar hacerlo si no hay conexión:
+#FALLBACK
+#imagen.jpg imagenLocal.jpg
+
+# Mostrar una sola imagen cuando no hay conexión:
+#FALLBACK
+#_img/ _img/imagenLocal.jpg

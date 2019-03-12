@@ -1,0 +1,512 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<emma:emma version="1.0" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma" xmlns="http://www.example.com/example">
+  <emma:grammar id="grammar0" ref="grammars\menu_choices.grxml" />
+  <emma:grammar id="grammar1" ref="grammars\help_choices.grxml" />
+  <emma:group id="toplevel">
+    <emma:group id="utterance_0.0.0.0">
+      <emma:info ms:status="OK">
+        <ms:audio ref="waves/utt_00.wav" type="audio/x-wav" />
+        <ms:transcript ms:status="OK">
+          <ms:original>sports</ms:original>
+          <emma:one-of id="utterance_0.0.0.0-transcript-reco-nbest-list" disjunction-type="understanding" emma:medium="acoustic" emma:mode="voice">
+            <emma:interpretation id="utterance_0.0.0.0-transcript-reco-nbest-1" emma:grammar-ref="grammar0" emma:lang="en-US" emma:tokens="sports" emma:confidence="1" emma:time-ref-uri="#utterance_0.0.0.0-transcript-reco-nbest-list" emma:offset-to-start="0" emma:duration="0" ms:typespace="ECMA-262" ms:dataType="object">
+              <emma:derived-from resource="#utterance_0.0.0.0-transcript-rule-tree-1" composite="false" />
+              <application emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">SPORTS</application>
+              <grammar emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+            </emma:interpretation>
+          </emma:one-of>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+        <ms:sessionid>8e7288d7-a3d9-4ef3-94c4-ef2d4001305c</ms:sessionid>
+        <ms:requestid>c396c545-f5aa-40a4-b56b-86fa09e612ed</ms:requestid>
+      </emma:info>
+      <emma:one-of id="utterance_0.0.0.0-reco-nbest-list" disjunction-type="understanding" emma:medium="acoustic" emma:mode="voice">
+        <emma:interpretation id="utterance_0.0.0.0-reco-nbest-1" emma:grammar-ref="grammar0" emma:lang="en-US" emma:tokens="sports" emma:confidence="0.5638461" emma:time-ref-uri="#utterance_0.0.0.0-reco-nbest-list" emma:offset-to-start="330" emma:duration="810" ms:typespace="ECMA-262" ms:dataType="object">
+          <emma:derived-from resource="#utterance_0.0.0.0-rule-tree-1" composite="false" />
+          <application emma:confidence="0.5618123" ms:actualConfidence="0" ms:dataType="string" ms:valueType="string" xmlns="">SPORTS</application>
+          <grammar emma:confidence="0.5618123" ms:actualConfidence="0" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+        </emma:interpretation>
+      </emma:one-of>
+    </emma:group>
+    <emma:group id="utterance_0.0.1.0">
+      <emma:info ms:status="OK">
+        <ms:audio ref="waves/utt_01.wav" type="audio/x-wav" />
+        <ms:transcript ms:status="OK">
+          <ms:original>[noise]</ms:original>
+          <emma:interpretation emma:uninterpreted="true" id="utterance_0.0.1.0-transcript-reco-nbest-list-1" emma:mode="voice" emma:medium="acoustic" />
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+        <ms:sessionid>8e7288d7-a3d9-4ef3-94c4-ef2d4001305c</ms:sessionid>
+        <ms:requestid>2db34dd7-3de8-4e30-8d11-52842ad89db0</ms:requestid>
+      </emma:info>
+      <emma:interpretation emma:uninterpreted="true" id="utterance_0.0.1.0-reco-nbest-list-1" emma:mode="voice" emma:medium="acoustic" />
+    </emma:group>
+    <emma:group id="utterance_0.0.2.0">
+      <emma:info ms:status="OK">
+        <ms:audio ref="waves/utt_02.wav" type="audio/x-wav" />
+        <ms:transcript ms:status="OK">
+          <ms:original>sports</ms:original>
+          <emma:one-of id="utterance_0.0.2.0-transcript-reco-nbest-list" disjunction-type="understanding" emma:medium="acoustic" emma:mode="voice">
+            <emma:interpretation id="utterance_0.0.2.0-transcript-reco-nbest-1" emma:grammar-ref="grammar0" emma:lang="en-US" emma:tokens="sports" emma:confidence="1" emma:time-ref-uri="#utterance_0.0.2.0-transcript-reco-nbest-list" emma:offset-to-start="0" emma:duration="0" ms:typespace="ECMA-262" ms:dataType="object">
+              <emma:derived-from resource="#utterance_0.0.2.0-transcript-rule-tree-1" composite="false" />
+              <application emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">SPORTS</application>
+              <grammar emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+            </emma:interpretation>
+          </emma:one-of>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+        <ms:sessionid>8e7288d7-a3d9-4ef3-94c4-ef2d4001305c</ms:sessionid>
+        <ms:requestid>1d2e8aac-e9dd-4a69-9a11-93621cabef42</ms:requestid>
+      </emma:info>
+      <emma:one-of id="utterance_0.0.2.0-reco-nbest-list" disjunction-type="understanding" emma:medium="acoustic" emma:mode="voice">
+        <emma:interpretation id="utterance_0.0.2.0-reco-nbest-1" emma:grammar-ref="grammar0" emma:lang="en-US" emma:tokens="sports" emma:confidence="0.9479059" emma:time-ref-uri="#utterance_0.0.2.0-reco-nbest-list" emma:offset-to-start="140" emma:duration="840" ms:typespace="ECMA-262" ms:dataType="object">
+          <emma:derived-from resource="#utterance_0.0.2.0-rule-tree-1" composite="false" />
+          <application emma:confidence="0.8497295" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">SPORTS</application>
+          <grammar emma:confidence="0.8497295" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+        </emma:interpretation>
+      </emma:one-of>
+    </emma:group>
+    <emma:group id="utterance_0.0.3.0">
+      <emma:info ms:status="OK">
+        <ms:audio ref="waves/utt_03.wav" type="audio/x-wav" />
+        <ms:transcript ms:status="OK">
+          <ms:original>weather</ms:original>
+          <emma:one-of id="utterance_0.0.3.0-transcript-reco-nbest-list" disjunction-type="understanding" emma:medium="acoustic" emma:mode="voice">
+            <emma:interpretation id="utterance_0.0.3.0-transcript-reco-nbest-1" emma:grammar-ref="grammar0" emma:lang="en-US" emma:tokens="weather" emma:confidence="1" emma:time-ref-uri="#utterance_0.0.3.0-transcript-reco-nbest-list" emma:offset-to-start="0" emma:duration="0" ms:typespace="ECMA-262" ms:dataType="object">
+              <emma:derived-from resource="#utterance_0.0.3.0-transcript-rule-tree-1" composite="false" />
+              <application emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">WEATHER</application>
+              <grammar emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+            </emma:interpretation>
+          </emma:one-of>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+        <ms:sessionid>8e7288d7-a3d9-4ef3-94c4-ef2d4001305c</ms:sessionid>
+        <ms:requestid>e39e34ef-a9ba-4d8e-a3f5-cf3ed1ea8b9b</ms:requestid>
+      </emma:info>
+      <emma:one-of id="utterance_0.0.3.0-reco-nbest-list" disjunction-type="understanding" emma:medium="acoustic" emma:mode="voice">
+        <emma:interpretation id="utterance_0.0.3.0-reco-nbest-1" emma:grammar-ref="grammar0" emma:lang="en-US" emma:tokens="weather" emma:confidence="0.9449926" emma:time-ref-uri="#utterance_0.0.3.0-reco-nbest-list" emma:offset-to-start="220" emma:duration="750" ms:typespace="ECMA-262" ms:dataType="object">
+          <emma:derived-from resource="#utterance_0.0.3.0-rule-tree-1" composite="false" />
+          <application emma:confidence="0.9668913" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">WEATHER</application>
+          <grammar emma:confidence="0.9668913" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+        </emma:interpretation>
+      </emma:one-of>
+    </emma:group>
+    <emma:group id="utterance_0.0.4.0">
+      <emma:info ms:status="OK">
+        <ms:audio ref="waves/utt_04.wav" type="audio/x-wav" />
+        <ms:transcript ms:status="OK">
+          <ms:original>news</ms:original>
+          <emma:one-of id="utterance_0.0.4.0-transcript-reco-nbest-list" disjunction-type="understanding" emma:medium="acoustic" emma:mode="voice">
+            <emma:interpretation id="utterance_0.0.4.0-transcript-reco-nbest-1" emma:grammar-ref="grammar0" emma:lang="en-US" emma:tokens="news" emma:confidence="1" emma:time-ref-uri="#utterance_0.0.4.0-transcript-reco-nbest-list" emma:offset-to-start="0" emma:duration="0" ms:typespace="ECMA-262" ms:dataType="object">
+              <emma:derived-from resource="#utterance_0.0.4.0-transcript-rule-tree-1" composite="false" />
+              <application emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">NEWS</application>
+              <grammar emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+            </emma:interpretation>
+          </emma:one-of>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+        <ms:sessionid>8e7288d7-a3d9-4ef3-94c4-ef2d4001305c</ms:sessionid>
+        <ms:requestid>177779a0-f657-4de7-a89d-ba28411122b1</ms:requestid>
+      </emma:info>
+      <emma:one-of id="utterance_0.0.4.0-reco-nbest-list" disjunction-type="understanding" emma:medium="acoustic" emma:mode="voice">
+        <emma:interpretation id="utterance_0.0.4.0-reco-nbest-1" emma:grammar-ref="grammar0" emma:lang="en-US" emma:tokens="news" emma:confidence="0.91182" emma:time-ref-uri="#utterance_0.0.4.0-reco-nbest-list" emma:offset-to-start="230" emma:duration="930" ms:typespace="ECMA-262" ms:dataType="object">
+          <emma:derived-from resource="#utterance_0.0.4.0-rule-tree-1" composite="false" />
+          <application emma:confidence="0.9451904" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">NEWS</application>
+          <grammar emma:confidence="0.9451904" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+        </emma:interpretation>
+      </emma:one-of>
+    </emma:group>
+    <emma:group id="utterance_0.0.5.0">
+      <emma:info ms:status="OK">
+        <ms:audio ref="waves/utt_05.wav" type="audio/x-wav" />
+        <ms:transcript ms:status="OK">
+          <ms:original>top stories</ms:original>
+          <emma:interpretation emma:uninterpreted="true" id="utterance_0.0.5.0-transcript-reco-nbest-list-1" emma:mode="voice" emma:medium="acoustic" />
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+        <ms:sessionid>8e7288d7-a3d9-4ef3-94c4-ef2d4001305c</ms:sessionid>
+        <ms:requestid>ad35593d-152b-4cfa-903b-b43d26635504</ms:requestid>
+      </emma:info>
+      <emma:interpretation emma:uninterpreted="true" id="utterance_0.0.5.0-reco-nbest-list-1" emma:mode="voice" emma:medium="acoustic" />
+    </emma:group>
+    <emma:group id="utterance_0.0.6.0">
+      <emma:info ms:status="OK">
+        <ms:audio ref="waves/utt_06.wav" type="audio/x-wav" />
+        <ms:transcript ms:status="OK">
+          <ms:original>sport</ms:original>
+          <emma:interpretation emma:uninterpreted="true" id="utterance_0.0.6.0-transcript-reco-nbest-list-1" emma:mode="voice" emma:medium="acoustic" />
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+        <ms:sessionid>8e7288d7-a3d9-4ef3-94c4-ef2d4001305c</ms:sessionid>
+        <ms:requestid>d8b4823c-ad82-4c49-a1dd-167755b92483</ms:requestid>
+      </emma:info>
+      <emma:one-of id="utterance_0.0.6.0-reco-nbest-list" disjunction-type="understanding" emma:medium="acoustic" emma:mode="voice">
+        <emma:interpretation id="utterance_0.0.6.0-reco-nbest-1" emma:grammar-ref="grammar0" emma:lang="en-US" emma:tokens="sports" emma:confidence="0.9216749" emma:time-ref-uri="#utterance_0.0.6.0-reco-nbest-list" emma:offset-to-start="130" emma:duration="600" ms:typespace="ECMA-262" ms:dataType="object">
+          <emma:derived-from resource="#utterance_0.0.6.0-rule-tree-1" composite="false" />
+          <application emma:confidence="0.9370015" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">SPORTS</application>
+          <grammar emma:confidence="0.9370015" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+        </emma:interpretation>
+      </emma:one-of>
+    </emma:group>
+    <emma:group id="utterance_0.0.7.0">
+      <emma:info ms:status="OK">
+        <ms:audio ref="waves/utt_07.wav" type="audio/x-wav" />
+        <ms:transcript ms:status="OK">
+          <ms:original>stock quotes</ms:original>
+          <emma:one-of id="utterance_0.0.7.0-transcript-reco-nbest-list" disjunction-type="understanding" emma:medium="acoustic" emma:mode="voice">
+            <emma:interpretation id="utterance_0.0.7.0-transcript-reco-nbest-1" emma:grammar-ref="grammar0" emma:lang="en-US" emma:tokens="stock quotes" emma:confidence="1" emma:time-ref-uri="#utterance_0.0.7.0-transcript-reco-nbest-list" emma:offset-to-start="0" emma:duration="0" ms:typespace="ECMA-262" ms:dataType="object">
+              <emma:derived-from resource="#utterance_0.0.7.0-transcript-rule-tree-1" composite="false" />
+              <longform emma:confidence="1" ms:actualConfidence="1" ms:dataType="boolean" ms:valueType="boolean" xmlns="">true</longform>
+              <application emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">STOCKS</application>
+              <grammar emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+            </emma:interpretation>
+          </emma:one-of>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+        <ms:sessionid>8e7288d7-a3d9-4ef3-94c4-ef2d4001305c</ms:sessionid>
+        <ms:requestid>12b9d4c3-f447-45c7-9b1f-83f6a7c49003</ms:requestid>
+      </emma:info>
+      <emma:one-of id="utterance_0.0.7.0-reco-nbest-list" disjunction-type="understanding" emma:medium="acoustic" emma:mode="voice">
+        <emma:interpretation id="utterance_0.0.7.0-reco-nbest-1" emma:grammar-ref="grammar0" emma:lang="en-US" emma:tokens="stock quotes" emma:confidence="0.8928868" emma:time-ref-uri="#utterance_0.0.7.0-reco-nbest-list" emma:offset-to-start="250" emma:duration="970" ms:typespace="ECMA-262" ms:dataType="object">
+          <emma:derived-from resource="#utterance_0.0.7.0-rule-tree-1" composite="false" />
+          <longform emma:confidence="0.8609061" ms:actualConfidence="1" ms:dataType="boolean" ms:valueType="boolean" xmlns="">true</longform>
+          <application emma:confidence="0.8609061" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">STOCKS</application>
+          <grammar emma:confidence="0.8609061" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+        </emma:interpretation>
+      </emma:one-of>
+    </emma:group>
+    <emma:group id="utterance_0.0.8.0">
+      <emma:info ms:status="OK">
+        <ms:audio ref="waves/utt_08.wav" type="audio/x-wav" />
+        <ms:transcript ms:status="OK">
+          <ms:original>weather</ms:original>
+          <emma:one-of id="utterance_0.0.8.0-transcript-reco-nbest-list" disjunction-type="understanding" emma:medium="acoustic" emma:mode="voice">
+            <emma:interpretation id="utterance_0.0.8.0-transcript-reco-nbest-1" emma:grammar-ref="grammar0" emma:lang="en-US" emma:tokens="weather" emma:confidence="1" emma:time-ref-uri="#utterance_0.0.8.0-transcript-reco-nbest-list" emma:offset-to-start="0" emma:duration="0" ms:typespace="ECMA-262" ms:dataType="object">
+              <emma:derived-from resource="#utterance_0.0.8.0-transcript-rule-tree-1" composite="false" />
+              <application emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">WEATHER</application>
+              <grammar emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+            </emma:interpretation>
+          </emma:one-of>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+        <ms:sessionid>8e7288d7-a3d9-4ef3-94c4-ef2d4001305c</ms:sessionid>
+        <ms:requestid>52b17d3d-f46b-46c3-b852-3e7d6cc1c28b</ms:requestid>
+      </emma:info>
+      <emma:one-of id="utterance_0.0.8.0-reco-nbest-list" disjunction-type="understanding" emma:medium="acoustic" emma:mode="voice">
+        <emma:interpretation id="utterance_0.0.8.0-reco-nbest-1" emma:grammar-ref="grammar0" emma:lang="en-US" emma:tokens="weather" emma:confidence="0.6197259" emma:time-ref-uri="#utterance_0.0.8.0-reco-nbest-list" emma:offset-to-start="230" emma:duration="790" ms:typespace="ECMA-262" ms:dataType="object">
+          <emma:derived-from resource="#utterance_0.0.8.0-rule-tree-1" composite="false" />
+          <application emma:confidence="0.6058497" ms:actualConfidence="0" ms:dataType="string" ms:valueType="string" xmlns="">WEATHER</application>
+          <grammar emma:confidence="0.6058497" ms:actualConfidence="0" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+        </emma:interpretation>
+      </emma:one-of>
+    </emma:group>
+    <emma:group id="utterance_0.0.9.0">
+      <emma:info ms:status="OK">
+        <ms:audio ref="waves/utt_09.wav" type="audio/x-wav" />
+        <ms:transcript ms:status="OK">
+          <ms:original>weather</ms:original>
+          <emma:one-of id="utterance_0.0.9.0-transcript-reco-nbest-list" disjunction-type="understanding" emma:medium="acoustic" emma:mode="voice">
+            <emma:interpretation id="utterance_0.0.9.0-transcript-reco-nbest-1" emma:grammar-ref="grammar0" emma:lang="en-US" emma:tokens="weather" emma:confidence="1" emma:time-ref-uri="#utterance_0.0.9.0-transcript-reco-nbest-list" emma:offset-to-start="0" emma:duration="0" ms:typespace="ECMA-262" ms:dataType="object">
+              <emma:derived-from resource="#utterance_0.0.9.0-transcript-rule-tree-1" composite="false" />
+              <application emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">WEATHER</application>
+              <grammar emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+            </emma:interpretation>
+          </emma:one-of>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+        <ms:sessionid>8e7288d7-a3d9-4ef3-94c4-ef2d4001305c</ms:sessionid>
+        <ms:requestid>9d920616-b526-4e22-a20e-d4a70f6bd28f</ms:requestid>
+      </emma:info>
+      <emma:one-of id="utterance_0.0.9.0-reco-nbest-list" disjunction-type="understanding" emma:medium="acoustic" emma:mode="voice">
+        <emma:interpretation id="utterance_0.0.9.0-reco-nbest-1" emma:grammar-ref="grammar0" emma:lang="en-US" emma:tokens="weather" emma:confidence="0.9403493" emma:time-ref-uri="#utterance_0.0.9.0-reco-nbest-list" emma:offset-to-start="230" emma:duration="770" ms:typespace="ECMA-262" ms:dataType="object">
+          <emma:derived-from resource="#utterance_0.0.9.0-rule-tree-1" composite="false" />
+          <application emma:confidence="0.962913" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">WEATHER</application>
+          <grammar emma:confidence="0.962913" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+        </emma:interpretation>
+      </emma:one-of>
+    </emma:group>
+    <emma:group id="utterance_0.0.10.0">
+      <emma:info ms:status="OK">
+        <ms:audio ref="waves/utt_10.wav" type="audio/x-wav" />
+        <ms:transcript ms:status="OK">
+          <ms:original>sports</ms:original>
+          <emma:one-of id="utterance_0.0.10.0-transcript-reco-nbest-list" disjunction-type="understanding" emma:medium="acoustic" emma:mode="voice">
+            <emma:interpretation id="utterance_0.0.10.0-transcript-reco-nbest-1" emma:grammar-ref="grammar0" emma:lang="en-US" emma:tokens="sports" emma:confidence="1" emma:time-ref-uri="#utterance_0.0.10.0-transcript-reco-nbest-list" emma:offset-to-start="0" emma:duration="0" ms:typespace="ECMA-262" ms:dataType="object">
+              <emma:derived-from resource="#utterance_0.0.10.0-transcript-rule-tree-1" composite="false" />
+              <application emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">SPORTS</application>
+              <grammar emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+            </emma:interpretation>
+          </emma:one-of>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+        <ms:sessionid>8e7288d7-a3d9-4ef3-94c4-ef2d4001305c</ms:sessionid>
+        <ms:requestid>77bdef3b-f943-4138-ae86-64f8b9ac522e</ms:requestid>
+      </emma:info>
+      <emma:one-of id="utterance_0.0.10.0-reco-nbest-list" disjunction-type="understanding" emma:medium="acoustic" emma:mode="voice">
+        <emma:interpretation id="utterance_0.0.10.0-reco-nbest-1" emma:grammar-ref="grammar0" emma:lang="en-US" emma:tokens="sports" emma:confidence="0.8278435" emma:time-ref-uri="#utterance_0.0.10.0-reco-nbest-list" emma:offset-to-start="140" emma:duration="810" ms:typespace="ECMA-262" ms:dataType="object">
+          <emma:derived-from resource="#utterance_0.0.10.0-rule-tree-1" composite="false" />
+          <application emma:confidence="0.8705698" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">SPORTS</application>
+          <grammar emma:confidence="0.8705698" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+        </emma:interpretation>
+      </emma:one-of>
+    </emma:group>
+  </emma:group>
+  <emma:derivation>
+    <emma:one-of id="utterance_0.0.0.0-word-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.0.0-word-list-1">
+        <emma:lattice initial="1" final="2" emma:time-ref-uri="#utterance_0.0.0.0-reco-nbest-1">
+          <emma:arc from="1" to="2" emma:confidence="0.5638461" emma:offset-to-start="0" emma:duration="690">sports<emma:info><ms:sapiPhraseElement ms:pronunciation="S P AO RA T S" ms:lexicalForm="sports" ms:displayAttributes="2" ms:actualConfidence="0" /></emma:info></emma:arc>
+        </emma:lattice>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.0.0-rule-tree-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.0.0-rule-tree-1" emma:confidence="0.5638461" emma:time-ref-uri="#utterance_0.0.0.0-reco-nbest-1">
+        <emma:derived-from resource="#utterance_0.0.0.0-word-list-1" composite="false" />
+        <top emma:confidence="0.5638461" ms:actualConfidence="0" emma:offset-to-start="0" emma:duration="690" xmlns="">sports</top>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.0.0-transcript-word-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.0.0-transcript-word-list-1">
+        <emma:lattice initial="1" final="2" emma:time-ref-uri="#utterance_0.0.0.0-transcript-reco-nbest-1">
+          <emma:arc from="1" to="2" emma:confidence="1" emma:offset-to-start="0" emma:duration="0">sports<emma:info><ms:sapiPhraseElement ms:pronunciation="S P AO RA T S" ms:lexicalForm="sports" ms:displayAttributes="2" ms:actualConfidence="1" /></emma:info></emma:arc>
+        </emma:lattice>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.0.0-transcript-rule-tree-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.0.0-transcript-rule-tree-1" emma:confidence="1" emma:time-ref-uri="#utterance_0.0.0.0-transcript-reco-nbest-1">
+        <emma:derived-from resource="#utterance_0.0.0.0-transcript-word-list-1" composite="false" />
+        <top emma:confidence="1" ms:actualConfidence="1" emma:offset-to-start="0" emma:duration="0" xmlns="">sports</top>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.2.0-word-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.2.0-word-list-1">
+        <emma:lattice initial="1" final="2" emma:time-ref-uri="#utterance_0.0.2.0-reco-nbest-1">
+          <emma:arc from="1" to="2" emma:confidence="0.9479059" emma:offset-to-start="0" emma:duration="740">sports<emma:info><ms:sapiPhraseElement ms:pronunciation="S P AO RA T S" ms:lexicalForm="sports" ms:displayAttributes="2" ms:actualConfidence="1" /></emma:info></emma:arc>
+        </emma:lattice>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.2.0-rule-tree-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.2.0-rule-tree-1" emma:confidence="0.9479059" emma:time-ref-uri="#utterance_0.0.2.0-reco-nbest-1">
+        <emma:derived-from resource="#utterance_0.0.2.0-word-list-1" composite="false" />
+        <top emma:confidence="0.9479059" ms:actualConfidence="1" emma:offset-to-start="0" emma:duration="740" xmlns="">sports</top>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.2.0-transcript-word-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.2.0-transcript-word-list-1">
+        <emma:lattice initial="1" final="2" emma:time-ref-uri="#utterance_0.0.2.0-transcript-reco-nbest-1">
+          <emma:arc from="1" to="2" emma:confidence="1" emma:offset-to-start="0" emma:duration="0">sports<emma:info><ms:sapiPhraseElement ms:pronunciation="S P AO RA T S" ms:lexicalForm="sports" ms:displayAttributes="2" ms:actualConfidence="1" /></emma:info></emma:arc>
+        </emma:lattice>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.2.0-transcript-rule-tree-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.2.0-transcript-rule-tree-1" emma:confidence="1" emma:time-ref-uri="#utterance_0.0.2.0-transcript-reco-nbest-1">
+        <emma:derived-from resource="#utterance_0.0.2.0-transcript-word-list-1" composite="false" />
+        <top emma:confidence="1" ms:actualConfidence="1" emma:offset-to-start="0" emma:duration="0" xmlns="">sports</top>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.3.0-word-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.3.0-word-list-1">
+        <emma:lattice initial="1" final="2" emma:time-ref-uri="#utterance_0.0.3.0-reco-nbest-1">
+          <emma:arc from="1" to="2" emma:confidence="0.9449926" emma:offset-to-start="0" emma:duration="650">weather<emma:info><ms:sapiPhraseElement ms:pronunciation="W EH DH AX RA" ms:lexicalForm="weather" ms:displayAttributes="2" ms:actualConfidence="1" /></emma:info></emma:arc>
+        </emma:lattice>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.3.0-rule-tree-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.3.0-rule-tree-1" emma:confidence="0.9449926" emma:time-ref-uri="#utterance_0.0.3.0-reco-nbest-1">
+        <emma:derived-from resource="#utterance_0.0.3.0-word-list-1" composite="false" />
+        <top emma:confidence="0.9449926" ms:actualConfidence="1" emma:offset-to-start="0" emma:duration="650" xmlns="">weather</top>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.3.0-transcript-word-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.3.0-transcript-word-list-1">
+        <emma:lattice initial="1" final="2" emma:time-ref-uri="#utterance_0.0.3.0-transcript-reco-nbest-1">
+          <emma:arc from="1" to="2" emma:confidence="1" emma:offset-to-start="0" emma:duration="0">weather<emma:info><ms:sapiPhraseElement ms:pronunciation="W EH DH AX RA" ms:lexicalForm="weather" ms:displayAttributes="2" ms:actualConfidence="1" /></emma:info></emma:arc>
+        </emma:lattice>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.3.0-transcript-rule-tree-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.3.0-transcript-rule-tree-1" emma:confidence="1" emma:time-ref-uri="#utterance_0.0.3.0-transcript-reco-nbest-1">
+        <emma:derived-from resource="#utterance_0.0.3.0-transcript-word-list-1" composite="false" />
+        <top emma:confidence="1" ms:actualConfidence="1" emma:offset-to-start="0" emma:duration="0" xmlns="">weather</top>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.4.0-word-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.4.0-word-list-1">
+        <emma:lattice initial="1" final="2" emma:time-ref-uri="#utterance_0.0.4.0-reco-nbest-1">
+          <emma:arc from="1" to="2" emma:confidence="0.9118201" emma:offset-to-start="0" emma:duration="820">news<emma:info><ms:sapiPhraseElement ms:pronunciation="N U Z" ms:lexicalForm="news" ms:displayAttributes="2" ms:actualConfidence="1" /></emma:info></emma:arc>
+        </emma:lattice>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.4.0-rule-tree-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.4.0-rule-tree-1" emma:confidence="0.91182" emma:time-ref-uri="#utterance_0.0.4.0-reco-nbest-1">
+        <emma:derived-from resource="#utterance_0.0.4.0-word-list-1" composite="false" />
+        <top emma:confidence="0.91182" ms:actualConfidence="1" emma:offset-to-start="0" emma:duration="820" xmlns="">news</top>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.4.0-transcript-word-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.4.0-transcript-word-list-1">
+        <emma:lattice initial="1" final="2" emma:time-ref-uri="#utterance_0.0.4.0-transcript-reco-nbest-1">
+          <emma:arc from="1" to="2" emma:confidence="1" emma:offset-to-start="0" emma:duration="0">news<emma:info><ms:sapiPhraseElement ms:pronunciation="N U Z" ms:lexicalForm="news" ms:displayAttributes="2" ms:actualConfidence="1" /></emma:info></emma:arc>
+        </emma:lattice>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.4.0-transcript-rule-tree-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.4.0-transcript-rule-tree-1" emma:confidence="1" emma:time-ref-uri="#utterance_0.0.4.0-transcript-reco-nbest-1">
+        <emma:derived-from resource="#utterance_0.0.4.0-transcript-word-list-1" composite="false" />
+        <top emma:confidence="1" ms:actualConfidence="1" emma:offset-to-start="0" emma:duration="0" xmlns="">news</top>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.6.0-word-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.6.0-word-list-1">
+        <emma:lattice initial="1" final="2" emma:time-ref-uri="#utterance_0.0.6.0-reco-nbest-1">
+          <emma:arc from="1" to="2" emma:confidence="0.9216749" emma:offset-to-start="0" emma:duration="500">sports<emma:info><ms:sapiPhraseElement ms:pronunciation="S P AO RA T S" ms:lexicalForm="sports" ms:displayAttributes="2" ms:actualConfidence="1" /></emma:info></emma:arc>
+        </emma:lattice>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.6.0-rule-tree-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.6.0-rule-tree-1" emma:confidence="0.9216749" emma:time-ref-uri="#utterance_0.0.6.0-reco-nbest-1">
+        <emma:derived-from resource="#utterance_0.0.6.0-word-list-1" composite="false" />
+        <top emma:confidence="0.9216749" ms:actualConfidence="1" emma:offset-to-start="0" emma:duration="500" xmlns="">sports</top>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.7.0-word-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.7.0-word-list-1">
+        <emma:lattice initial="1" final="3" emma:time-ref-uri="#utterance_0.0.7.0-reco-nbest-1">
+          <emma:arc from="1" to="2" emma:confidence="0.8581361" emma:offset-to-start="0" emma:duration="430">stock<emma:info><ms:sapiPhraseElement ms:pronunciation="S T AA K" ms:lexicalForm="stock" ms:displayAttributes="2" ms:actualConfidence="1" /></emma:info></emma:arc>
+          <emma:arc from="2" to="3" emma:confidence="0.9216229" emma:offset-to-start="430" emma:duration="520">quotes<emma:info><ms:sapiPhraseElement ms:pronunciation="K W O T S" ms:lexicalForm="quotes" ms:displayAttributes="2" ms:actualConfidence="1" /></emma:info></emma:arc>
+        </emma:lattice>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.7.0-rule-tree-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.7.0-rule-tree-1" emma:confidence="0.8928868" emma:time-ref-uri="#utterance_0.0.7.0-reco-nbest-1">
+        <emma:derived-from resource="#utterance_0.0.7.0-word-list-1" composite="false" />
+        <top emma:confidence="0.8928868" ms:actualConfidence="1" emma:offset-to-start="0" emma:duration="950" xmlns="">stock quotes</top>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.7.0-transcript-word-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.7.0-transcript-word-list-1">
+        <emma:lattice initial="1" final="3" emma:time-ref-uri="#utterance_0.0.7.0-transcript-reco-nbest-1">
+          <emma:arc from="1" to="2" emma:confidence="1" emma:offset-to-start="0" emma:duration="0">stock<emma:info><ms:sapiPhraseElement ms:pronunciation="S T AA K" ms:lexicalForm="stock" ms:displayAttributes="2" ms:actualConfidence="1" /></emma:info></emma:arc>
+          <emma:arc from="2" to="3" emma:confidence="1" emma:offset-to-start="0" emma:duration="0">quotes<emma:info><ms:sapiPhraseElement ms:pronunciation="K W O T S" ms:lexicalForm="quotes" ms:displayAttributes="2" ms:actualConfidence="1" /></emma:info></emma:arc>
+        </emma:lattice>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.7.0-transcript-rule-tree-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.7.0-transcript-rule-tree-1" emma:confidence="1" emma:time-ref-uri="#utterance_0.0.7.0-transcript-reco-nbest-1">
+        <emma:derived-from resource="#utterance_0.0.7.0-transcript-word-list-1" composite="false" />
+        <top emma:confidence="1" ms:actualConfidence="1" emma:offset-to-start="0" emma:duration="0" xmlns="">stock quotes</top>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.8.0-word-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.8.0-word-list-1">
+        <emma:lattice initial="1" final="2" emma:time-ref-uri="#utterance_0.0.8.0-reco-nbest-1">
+          <emma:arc from="1" to="2" emma:confidence="0.6197259" emma:offset-to-start="0" emma:duration="680">weather<emma:info><ms:sapiPhraseElement ms:pronunciation="W EH DH AX RA" ms:lexicalForm="weather" ms:displayAttributes="2" ms:actualConfidence="0" /></emma:info></emma:arc>
+        </emma:lattice>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.8.0-rule-tree-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.8.0-rule-tree-1" emma:confidence="0.6197259" emma:time-ref-uri="#utterance_0.0.8.0-reco-nbest-1">
+        <emma:derived-from resource="#utterance_0.0.8.0-word-list-1" composite="false" />
+        <top emma:confidence="0.6197259" ms:actualConfidence="0" emma:offset-to-start="0" emma:duration="680" xmlns="">weather</top>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.8.0-transcript-word-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.8.0-transcript-word-list-1">
+        <emma:lattice initial="1" final="2" emma:time-ref-uri="#utterance_0.0.8.0-transcript-reco-nbest-1">
+          <emma:arc from="1" to="2" emma:confidence="1" emma:offset-to-start="0" emma:duration="0">weather<emma:info><ms:sapiPhraseElement ms:pronunciation="W EH DH AX RA" ms:lexicalForm="weather" ms:displayAttributes="2" ms:actualConfidence="1" /></emma:info></emma:arc>
+        </emma:lattice>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.8.0-transcript-rule-tree-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.8.0-transcript-rule-tree-1" emma:confidence="1" emma:time-ref-uri="#utterance_0.0.8.0-transcript-reco-nbest-1">
+        <emma:derived-from resource="#utterance_0.0.8.0-transcript-word-list-1" composite="false" />
+        <top emma:confidence="1" ms:actualConfidence="1" emma:offset-to-start="0" emma:duration="0" xmlns="">weather</top>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.9.0-word-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.9.0-word-list-1">
+        <emma:lattice initial="1" final="2" emma:time-ref-uri="#utterance_0.0.9.0-reco-nbest-1">
+          <emma:arc from="1" to="2" emma:confidence="0.9403493" emma:offset-to-start="0" emma:duration="680">weather<emma:info><ms:sapiPhraseElement ms:pronunciation="W EH DH AX RA" ms:lexicalForm="weather" ms:displayAttributes="2" ms:actualConfidence="1" /></emma:info></emma:arc>
+        </emma:lattice>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.9.0-rule-tree-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.9.0-rule-tree-1" emma:confidence="0.9403493" emma:time-ref-uri="#utterance_0.0.9.0-reco-nbest-1">
+        <emma:derived-from resource="#utterance_0.0.9.0-word-list-1" composite="false" />
+        <top emma:confidence="0.9403493" ms:actualConfidence="1" emma:offset-to-start="0" emma:duration="680" xmlns="">weather</top>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.9.0-transcript-word-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.9.0-transcript-word-list-1">
+        <emma:lattice initial="1" final="2" emma:time-ref-uri="#utterance_0.0.9.0-transcript-reco-nbest-1">
+          <emma:arc from="1" to="2" emma:confidence="1" emma:offset-to-start="0" emma:duration="0">weather<emma:info><ms:sapiPhraseElement ms:pronunciation="W EH DH AX RA" ms:lexicalForm="weather" ms:displayAttributes="2" ms:actualConfidence="1" /></emma:info></emma:arc>
+        </emma:lattice>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.9.0-transcript-rule-tree-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.9.0-transcript-rule-tree-1" emma:confidence="1" emma:time-ref-uri="#utterance_0.0.9.0-transcript-reco-nbest-1">
+        <emma:derived-from resource="#utterance_0.0.9.0-transcript-word-list-1" composite="false" />
+        <top emma:confidence="1" ms:actualConfidence="1" emma:offset-to-start="0" emma:duration="0" xmlns="">weather</top>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.10.0-word-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.10.0-word-list-1">
+        <emma:lattice initial="1" final="2" emma:time-ref-uri="#utterance_0.0.10.0-reco-nbest-1">
+          <emma:arc from="1" to="2" emma:confidence="0.8278435" emma:offset-to-start="0" emma:duration="710">sports<emma:info><ms:sapiPhraseElement ms:pronunciation="S P AO RA T S" ms:lexicalForm="sports" ms:displayAttributes="2" ms:actualConfidence="1" /></emma:info></emma:arc>
+        </emma:lattice>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.10.0-rule-tree-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.10.0-rule-tree-1" emma:confidence="0.8278435" emma:time-ref-uri="#utterance_0.0.10.0-reco-nbest-1">
+        <emma:derived-from resource="#utterance_0.0.10.0-word-list-1" composite="false" />
+        <top emma:confidence="0.8278435" ms:actualConfidence="1" emma:offset-to-start="0" emma:duration="710" xmlns="">sports</top>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.10.0-transcript-word-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.10.0-transcript-word-list-1">
+        <emma:lattice initial="1" final="2" emma:time-ref-uri="#utterance_0.0.10.0-transcript-reco-nbest-1">
+          <emma:arc from="1" to="2" emma:confidence="1" emma:offset-to-start="0" emma:duration="0">sports<emma:info><ms:sapiPhraseElement ms:pronunciation="S P AO RA T S" ms:lexicalForm="sports" ms:displayAttributes="2" ms:actualConfidence="1" /></emma:info></emma:arc>
+        </emma:lattice>
+      </emma:interpretation>
+    </emma:one-of>
+    <emma:one-of id="utterance_0.0.10.0-transcript-rule-tree-list" disjunction-type="recognition">
+      <emma:interpretation id="utterance_0.0.10.0-transcript-rule-tree-1" emma:confidence="1" emma:time-ref-uri="#utterance_0.0.10.0-transcript-reco-nbest-1">
+        <emma:derived-from resource="#utterance_0.0.10.0-transcript-word-list-1" composite="false" />
+        <top emma:confidence="1" ms:actualConfidence="1" emma:offset-to-start="0" emma:duration="0" xmlns="">sports</top>
+      </emma:interpretation>
+    </emma:one-of>
+  </emma:derivation>
+</emma:emma>

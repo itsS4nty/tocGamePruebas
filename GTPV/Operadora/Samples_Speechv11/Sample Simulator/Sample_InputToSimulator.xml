@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<emma:emma version="1.0" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma" xmlns="http://www.example.com/example">
+
+  <emma:grammar id="grammar0" ref="grammars\menu_choices.grxml" />
+  <emma:grammar id="grammar1" ref="grammars\help_choices.grxml" />
+
+
+  
+  <emma:group id="toplevel">
+    <emma:group id="utterance_0.0.0.0">
+      <emma:info>
+		<ms:audio ref="waves/utt_00.wav" type="audio/x-wav" />        
+        <ms:transcript>
+          <ms:original>sports</ms:original>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+      </emma:info>
+    </emma:group>
+    
+	<emma:group id="utterance_0.0.1.0">
+      <emma:info>
+		<ms:audio ref="waves/utt_01.wav" type="audio/x-wav" />        
+        <ms:transcript>
+          <ms:original>[noise]</ms:original>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+      </emma:info>
+    </emma:group>
+    
+	<emma:group id="utterance_0.0.2.0">
+      <emma:info>
+		<ms:audio ref="waves/utt_02.wav" type="audio/x-wav" />        
+        <ms:transcript>
+          <ms:original>sports</ms:original>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+      </emma:info>
+    </emma:group>
+    
+	<emma:group id="utterance_0.0.3.0">
+      <emma:info>
+		<ms:audio ref="waves/utt_03.wav" type="audio/x-wav" />        
+        <ms:transcript>
+          <ms:original>weather</ms:original>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+      </emma:info>
+    </emma:group>
+    
+	<emma:group id="utterance_0.0.4.0">
+      <emma:info>
+		<ms:audio ref="waves/utt_04.wav" type="audio/x-wav" />        
+        <ms:transcript>
+          <ms:original>news</ms:original>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+      </emma:info>
+    </emma:group>
+    
+	<emma:group id="utterance_0.0.5.0">
+      <emma:info>
+		<ms:audio ref="waves/utt_05.wav" type="audio/x-wav" />        
+        <ms:transcript>
+          <ms:original>top stories</ms:original>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+      </emma:info>
+    </emma:group>
+    
+	<emma:group id="utterance_0.0.6.0">
+      <emma:info>
+		<ms:audio ref="waves/utt_06.wav" type="audio/x-wav" />        
+        <ms:transcript>
+          <ms:original>sport</ms:original>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+      </emma:info>
+    </emma:group>
+    
+	<emma:group id="utterance_0.0.7.0">
+      <emma:info>
+		<ms:audio ref="waves/utt_07.wav" type="audio/x-wav" />        
+		<ms:transcript>
+          <ms:original>stock quotes</ms:original>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+      </emma:info>
+    </emma:group>
+    
+	<emma:group id="utterance_0.0.8.0">
+      <emma:info>
+		<ms:audio ref="waves/utt_08.wav" type="audio/x-wav" />
+        <ms:transcript>
+          <ms:original>weather</ms:original>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+      </emma:info>
+    </emma:group>
+    
+	<emma:group id="utterance_0.0.9.0">
+      <emma:info>
+        <ms:audio ref="waves/utt_09.wav" type="audio/x-wav" />
+        <ms:transcript>
+          <ms:original>weather</ms:original>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+      </emma:info>
+    </emma:group>
+    
+	<emma:group id="utterance_0.0.10.0">
+      <emma:info>
+        <ms:audio ref="waves/utt_10.wav" type="audio/x-wav" />
+        <ms:transcript>
+          <ms:original>sports</ms:original>
+        </ms:transcript>
+        <ms:active-grammars>
+          <ms:grammar emma:grammar-ref="grammar0" />
+          <ms:grammar emma:grammar-ref="grammar1" />
+        </ms:active-grammars>
+      </emma:info>
+    </emma:group>
+  
+  </emma:group>
+</emma:emma>

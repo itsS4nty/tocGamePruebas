@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Documento sin título</title>
+<script src="cliente/jquery/jquery-1.5.1.mod.js"></script>
+<script>jquery_mod();</script>
+<script>
+function f1(a) {
+   var b = f2.ex(a+1);
+   return b+1;	
+}
+objSatString = "function(host) {\n\
+	var my = {};\n\
+	window.A = my;\n\
+	\n\
+	my.f1 = function(a) {\n\
+		return a+1;	\n\
+	}\n\
+	\n\
+	function f2(c) {\n\
+        A.c = c;\n\
+		return c+1;\n\
+	}\n\
+	var objSat = {\n\
+		q1 : function(b) {\n\
+			return f2(b+1);\n\
+		}\n\
+	}\n\
+	return objSat;\n\
+}\n"
+
+w1 = function() {
+	window.z1 = function(s) {
+		return s+1;
+	}
+}
+w2 = function() {
+	window.z2 = function(s) {
+		return s+1;
+	}
+}
+function ge(data) {
+			( window.execScript || function( data ) {
+				window[ "eval" ].call( window, data );
+			} )( data );
+}
+
+strW1 = "("+w1+")()";
+strW2 = "("+w2+")()";
+function c() {
+	f2 = eval("("+objSatString+")(\"qqq\")");
+	$.globalEval(strW1);
+	ge(strW2);
+}
+c();
+console.log(f2.q1(2));
+console.log(z1(3));
+console.log(z2(4));
+$("div");
+function x1(src) {
+	$("<script>").attr("src", src).attr("type", "text/javascript").appendTo("head");
+}
+</script>
+</head>
+
+<body>
+</body>
+</html>

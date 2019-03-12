@@ -1,0 +1,24 @@
+<html>
+<head>
+<script src="jquery/jquery-1.5.1.js"></script>
+</head>
+<body>
+<script>
+q = 1;
+b1 = $("<button>").text("b1").click(function() {
+	q=1;
+	for (var i=1; i<100000000; i++) {
+		q*=i;
+	}
+	console.log(q);
+	b2.remove();
+}).appendTo("body");
+b2 = $("<button>").text("b2").click(function() {
+	console.log("but2");
+}).appendTo("body");
+b3 = $("<button>").text("b3").click(function() {
+	b2.appendTo("body");
+}).appendTo("body");
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+IdCliente
+Password
+Version
+Producto
+
+orden
+	(cliente-servidor)
+	obtener (db,taula) marca, ultima, fecha, todo
+	
+	
+	
+	(servidor-cliente)
+	
+	
+	
+	
+	create

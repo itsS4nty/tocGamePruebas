@@ -1,0 +1,163 @@
+[from-internal]
+include => from-internal-xfer
+	[from-internal-xfer]
+	; applications are now mostly all found in from-internal-additional in _custom.conf
+	include => from-internal-custom
+		[from-internal-custom]				
+		exten => 1234,1,Playback(demo-congrats)		; extensions can dial 1234
+		exten => 1234,2,Hangup()
+		exten => h,1,Hangup()
+		include => custom-recordme			; extensions can also dial 5678 
+			; custom-recordme,5678,1 can be used as a custom target for
+			; a Digital Receptionist menu or a Ring Group
+			[custom-recordme]
+			exten => 5678,1,Wait(2)
+			exten => 5678,2,Record(/tmp/asterisk-recording:gsm)
+			exten => 5678,3,Wait(2)
+			exten => 5678,4,Playback(/tmp/asterisk-recording)
+			exten => 5678,5,Wait(2)
+			exten => 5678,6,Hangup 
+
+		exten => 12345,1,Playback(an-error-has-occured)       ; extensions can dial 1234
+		exten => 12345,2,Hangup()
+		exten => h,1,Hangup()
+
+
+		exten => 635,1,playback(vm-dialout)
+		exten => 635,2,Dial(SIP/ivr@85.52.227.175,60,m)
+		exten => 635,3,Hangup
+		exten => h,1,Hangup
+
+	(no) include => parkedcalls
+
+	; MODIFIED (PL)
+	;
+	; Currently the include for findmefollow is being auto-generated before ext-local which is the desired behavior.
+	; However, I haven't been able to do anything that I know of to force this. We need to determine if it should
+	; be hardcoded into here to make sure it doesn't change with some configuration. For now I will leave it out
+	; until we can discuss this.
+	;
+	include => ext-local-confirm
+		;------------------------------------------------------------------------
+		; [ext-local-confirm]
+		;------------------------------------------------------------------------
+		; If call confirm is being used in a ringgroup, then calls that do not require confirmation are sent
+		; to this extension instead of straight to the device.
+		;
+		; The sole purpose of sending them here is to make sure we run Macro(auto-confirm) if this
+		; extension answers the line. This takes care of clearing the database key that is used to inform
+		; other potential late comers that the extension has been answered by someone else.
+		;
+		; ALERT_INFO is deprecated in Asterisk 1.4 but still used throughout the FreePBX dialplan and
+		; usually set by dialparties.agi. This allows inheritance. Since no dialparties.agi here, set the
+		; header if it is set.
+		;
+		;------------------------------------------------------------------------
+		[ext-local-confirm]
+		exten => _LC-.,1,Noop(IN ext-local-confirm with - RT: ${RT}, RG_IDX: ${RG_IDX})
+		exten => _LC-.,n,GotoIf($["x${ALERT_INFO}"="x"]?godial)
+		exten => _LC-.,n,SIPAddHeader(Alert-Info: ${ALERT_INFO})
+		exten => _LC-.,n(godial),dial(${DB(DEVICE/${EXTEN:3}/dial)},${RT},M(auto-confirm^${RG_IDX})${DIAL_OPTIONS})
+
+	include => findmefollow-ringallv2
+		;------------------------------------------------------------------------
+		; [findmefollow-ringallv2]
+		;------------------------------------------------------------------------
+		; This context, to be included in from-internal, implements the PreRing part of findmefollow
+		; as well as the GroupRing part. It also communicates between the two so that if DND is set
+		; on the primary extension, and mastermode is enabled, then the other extensions will not ring
+		;
+		;------------------------------------------------------------------------
+		[findmefollow-ringallv2]
+		exten => _FMPR-.,1,Noop(In FMPR ${FMGRP} with ${EXTEN:5})
+		exten => _FMPR-.,n,Set(RingGroupMethod=)
+		exten => _FMPR-.,n,Set(USE_CONFIRMATION=)
+		exten => _FMPR-.,n,Set(RINGGROUP_INDEX=)
+		exten => _FMPR-.,n,Macro(simple-dial,${EXTEN:5},${FMREALPRERING})
+		exten => _FMPR-.,n,GotoIf($["${DIALSTATUS}" != "BUSY"]?nodnd)
+		exten => _FMPR-.,n,Set(DB(FM/DND/${FMGRP}/${FMUNIQUE})=DND)
+		exten => _FMPR-.,n(nodnd),Noop(Ending FMPR ${FMGRP} with ${EXTEN:5} and dialstatus ${DIALSTATUS})
+		exten => _FMPR-.,n,Hangup()
+
+		exten => _FMGL-.,1,Noop(In FMGL ${FMGRP} with ${EXTEN:5})
+		exten => _FMGL-.,n,GotoIf($["${DB(FM/DND/${FMGRP}/${FMUNIQUE})}" = "DND"]?dodnd)
+		exten => _FMGL-.,n,Wait(1)
+		exten => _FMGL-.,n,GotoIf($["${DB(FM/DND/${FMGRP}/${FMUNIQUE})}" = "DND"]?dodnd)
+		exten => _FMGL-.,n,Wait(1)
+		exten => _FMGL-.,n,GotoIf($["${DB(FM/DND/${FMGRP}/${FMUNIQUE})}" = "DND"]?dodnd)
+		exten => _FMGL-.,n,Wait(${FMPRERING})
+		exten => _FMGL-.,n,GotoIf($["${DB(FM/DND/${FMGRP}/${FMUNIQUE})}" = "DND"]?dodnd)
+		exten => _FMGL-.,n,DBDel(FM/DND/${FMGRP}/${FMUNIQUE})
+		exten => _FMGL-.,n(dodial),Macro(dial,${FMGRPTIME},${DIAL_OPTIONS},${EXTEN:5})
+		exten => _FMGL-.,n,Noop(Ending FMGL ${FMGRP} with ${EXTEN:5} and dialstatus ${DIALSTATUS})
+		exten => _FMGL-.,n,Hangup()
+		exten => _FMGL-.,n+10(dodnd),DBDel(FM/DND/${FMGRP}/${FMUNIQUE})
+		exten => _FMGL-.,n,GotoIf($["${FMPRIME}" = "FALSE"]?dodial)
+		exten => _FMGL-.,n,Noop(Got DND in FMGL ${FMGRP} with ${EXTEN:5} in ${RingGroupMethod} mode, aborting)
+		exten => _FMGL-.,n,Hangup()
+	
+	include => from-internal-additional
+		[from-internal-additional]
+		(no) include => from-internal-additional-custom
+		include => app-fmf-toggle
+		include => ext-findmefollow
+		include => fmgrps
+		include => app-callwaiting-cwoff
+		include => app-callwaiting-cwon
+		include => ext-queues
+		include => app-queue-toggle
+		include => app-pbdirectory
+		include => ext-group
+		include => grps
+		include => app-calltrace
+		include => app-directory
+		include => app-echo-test
+		include => app-speakextennum
+		include => app-speakingclock
+		include => app-cf-busy-off
+		include => app-cf-busy-off-any
+		include => app-cf-busy-on
+		include => app-cf-off
+		include => app-cf-off-any
+		include => app-cf-on
+		include => app-cf-unavailable-off
+		include => app-cf-unavailable-on
+		include => app-cf-toggle
+		include => ext-cf-hints
+		include => app-daynight-toggle
+		include => app-recordings
+		include => app-dialvm
+		include => app-vmmain
+		include => app-miscapps-1
+		include => app-miscapps-2
+		include => app-miscapps-3
+		include => app-userlogonoff
+		include => app-pickup
+		include => app-zapbarge
+		include => app-chanspy
+		include => ext-test
+			[ext-test]
+			(no) include => ext-test-custom
+			exten => 7777,1,Goto(from-pstn,${EXTEN},1)
+			exten => h,1,Macro(hangupcall,)
+		
+		include => ext-local
+		include => outbound-allroutes
+		exten => h,1,Hangup
+	
+	; This causes grief with '#' transfers, commenting out for the moment.
+	; include => bad-number
+	exten => s,1,Macro(hangupcall)
+	exten => h,1,Macro(hangupcall)
+
+include => bad-number
+	[bad-number]
+	include => bad-number-custom
+	exten => _X.,1,ResetCDR()
+	exten => _X.,n,NoCDR()
+	exten => _X.,n,Wait(1)
+	exten => _X.,n,Playback(silence/1&cannot-complete-as-dialed&check-number-dial-again,noanswer)
+	exten => _X.,n,Wait(1)
+	exten => _X.,n,Congestion(20)
+	exten => _X.,n,Hangup
+

@@ -1,0 +1,6 @@
+applet
+
+java.Applet intenta cargar todas las clases relacionadas, definidas como variables, retornos de metodos a traves de URLClassLoader,
+sino existen error y el applet no se inicializa y no se devuelve el control a javascript.
+
+ 

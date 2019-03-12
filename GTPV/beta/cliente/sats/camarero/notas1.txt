@@ -1,0 +1,12 @@
+controlTouchScroll
+
+scroll creado una vez
+
+comanda titulo mesa es boton para ir a comedor
+
+buttons for items Comanda (status)
+
+C.getItems() en agruparComanda -> noDeterministic
+
+enviar a cocina
+

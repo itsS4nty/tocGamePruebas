@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Documento sin título</title>
+<script src="jquery-1.5.1.js"></script>
+</head>
+
+<body>
+<script>
+
+
+function handleAjaxQueHago(data, status, jqXHR) {
+	var xml = jqXHR.responseXML;
+	xml = xml.documentElement;
+	var db = openDatabase("myDB","","",5000);
+	db.transaction(function(tx) {
+		if (xml.nodeName == "comando") {
+			var comando = $(xml).text();		
+			tx.executeSql(comando, [], 
+				function(t,r) {
+					resp = document.implementation.createDocument("", "comando-Respuesta");
+					var er = $(resp.documentElement);
+					er.text(r.rowsAffected); 
+					enviarRespuesta(resp);
+				},
+				function(t,e) {
+					resp = document.implementation.createDocument("", "error");
+					var er = $(resp.documentElement);
+					er.text(e.message); 
+					enviarRespuesta(resp);
+				}
+			);	
+		}
+	});
+};
+
+function enviarRespuesta(resp) {
+	var X = new XMLSerializer();
+	var xml = "<?xml version='1.0' encoding='UTF-8'?>" + X.serializeToString(resp);
+
+	$.ajax("quehago.php", {
+		type: "POST",
+		processData: false,
+		contentType: "text/xml",
+		data: xml,
+		dataType: "xml",
+		success: handleAjaxQueHago
+	});
+	
+}
+
+function primeraPeticion() {
+	resp = document.implementation.createDocument("", "xml");
+	
+	enviarRespuesta(resp);
+}
+
+$(function () {
+	//d = new DOMParser();
+	var input = $("<input type='text' id='idCliente'/>").appendTo("body");
+	var bSubmit = $("<input type='button' value='Submit'/>").appendTo("body");
+	bSubmit.click(primeraPeticion);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+﻿* httpProcessor a httpExchange
+* collection.add -> exception if exists
+q -> qs
+tratamiento de errores
+er -> object.toString()
+Event
+init sat
+* csatserver singleton
+localAddress -> /24 ??
+ipLanHost -> /24
+destroy all sats
+conceptosEntrega isAdmin javascript
+codi a integer ? -> no, para comparar
+delActives -> find codi -> indexOf
+clean mov from jsObject or jsArray
+* runCloseHandlers
+ya se capura la excepcion en satServer
+codiDep abrir comanda o.data.info ?? -> esta en props
+datos se envian en un array preo se pueden actualizar antes de salir -> no se clona es send
+cobrar comanda
+messages setLang
+compareNom
+

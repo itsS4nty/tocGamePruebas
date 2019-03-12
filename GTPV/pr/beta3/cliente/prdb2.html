@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Documento sin título</title>
+</head>
+
+<body>
+<script>
+var d = openDatabase("w","","",50000000);
+alert("entrar");
+alert("d: "+d);
+d.transaction(function (tx) {
+alert("transaction");
+	tx.executeSql("SELECT COUNT(a) as ca FROM t1",[], 
+	              function(t,r) { alert("count: "+r.rows.item(0).ca); }, function(t,e) { alert("error: "+e.message); });
+},function(e) { alert("error2: "+e.message); } );
+alert("salir");
+
+</script>
+</body>
+</html>

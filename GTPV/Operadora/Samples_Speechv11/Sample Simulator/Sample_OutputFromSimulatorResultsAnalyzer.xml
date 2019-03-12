@@ -1,0 +1,494 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Scenario xml:space="preserve">
+  <Utterances>
+    <Utterance id="utterance_0.0.0.0">
+      <AudioUri>waves/utt_00.wav</AudioUri>
+      <AudioType>audio/x-wav</AudioType>
+      <TranscriptText>sports</TranscriptText>
+      <TranscriptSemantics ms:typespace="ECMA-262" ms:dataType="object" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma">
+        <application emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">SPORTS</application>
+        <grammar emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+      </TranscriptSemantics>
+      <TranscriptRuleTree>
+        <Rule id="top" uri="grammars\menu_choices.grxml">sports</Rule>
+      </TranscriptRuleTree>
+      <TranscriptPronunciation>S P AO RA T S</TranscriptPronunciation>
+      <TranscriptConfidence>1.0000000</TranscriptConfidence>
+      <TranscriptSemanticConfidence>1.0000000</TranscriptSemanticConfidence>
+      <RecoResultText>sports</RecoResultText>
+      <RecoResultSemantics ms:typespace="ECMA-262" ms:dataType="object" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma">
+        <application emma:confidence="0.5618123" ms:actualConfidence="0" ms:dataType="string" ms:valueType="string" xmlns="">SPORTS</application>
+        <grammar emma:confidence="0.5618123" ms:actualConfidence="0" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+      </RecoResultSemantics>
+      <RecoResultRuleTree>
+        <Rule id="top" uri="grammars\menu_choices.grxml">sports</Rule>
+      </RecoResultRuleTree>
+      <RecoResultPronunciation>S P AO RA T S</RecoResultPronunciation>
+      <RecoResultConfidence>0.5638461</RecoResultConfidence>
+      <RecoResultSemanticConfidence>0.5618123</RecoResultSemanticConfidence>
+      <InGrammar>True</InGrammar>
+      <SemanticsMatch>True</SemanticsMatch>
+      <WordError wordCount="1" insertions="0" deletions="0" substitutions="0" />
+    </Utterance>
+    <Utterance id="utterance_0.0.1.0">
+      <AudioUri>waves/utt_01.wav</AudioUri>
+      <AudioType>audio/x-wav</AudioType>
+      <TranscriptText>[noise]</TranscriptText>
+      <RecoResultConfidence>0.0000000</RecoResultConfidence>
+      <RecoResultSemanticConfidence>0.0000000</RecoResultSemanticConfidence>
+      <InGrammar>False</InGrammar>
+      <SemanticsMatch>True</SemanticsMatch>
+      <WordError wordCount="1" insertions="0" deletions="1" substitutions="0" />
+    </Utterance>
+    <Utterance id="utterance_0.0.2.0">
+      <AudioUri>waves/utt_02.wav</AudioUri>
+      <AudioType>audio/x-wav</AudioType>
+      <TranscriptText>sports</TranscriptText>
+      <TranscriptSemantics ms:typespace="ECMA-262" ms:dataType="object" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma">
+        <application emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">SPORTS</application>
+        <grammar emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+      </TranscriptSemantics>
+      <TranscriptRuleTree>
+        <Rule id="top" uri="grammars\menu_choices.grxml">sports</Rule>
+      </TranscriptRuleTree>
+      <TranscriptPronunciation>S P AO RA T S</TranscriptPronunciation>
+      <TranscriptConfidence>1.0000000</TranscriptConfidence>
+      <TranscriptSemanticConfidence>1.0000000</TranscriptSemanticConfidence>
+      <RecoResultText>sports</RecoResultText>
+      <RecoResultSemantics ms:typespace="ECMA-262" ms:dataType="object" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma">
+        <application emma:confidence="0.8497295" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">SPORTS</application>
+        <grammar emma:confidence="0.8497295" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+      </RecoResultSemantics>
+      <RecoResultRuleTree>
+        <Rule id="top" uri="grammars\menu_choices.grxml">sports</Rule>
+      </RecoResultRuleTree>
+      <RecoResultPronunciation>S P AO RA T S</RecoResultPronunciation>
+      <RecoResultConfidence>0.9479059</RecoResultConfidence>
+      <RecoResultSemanticConfidence>0.8497295</RecoResultSemanticConfidence>
+      <InGrammar>True</InGrammar>
+      <SemanticsMatch>True</SemanticsMatch>
+      <WordError wordCount="1" insertions="0" deletions="0" substitutions="0" />
+    </Utterance>
+    <Utterance id="utterance_0.0.3.0">
+      <AudioUri>waves/utt_03.wav</AudioUri>
+      <AudioType>audio/x-wav</AudioType>
+      <TranscriptText>weather</TranscriptText>
+      <TranscriptSemantics ms:typespace="ECMA-262" ms:dataType="object" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma">
+        <application emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">WEATHER</application>
+        <grammar emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+      </TranscriptSemantics>
+      <TranscriptRuleTree>
+        <Rule id="top" uri="grammars\menu_choices.grxml">weather</Rule>
+      </TranscriptRuleTree>
+      <TranscriptPronunciation>W EH DH AX RA</TranscriptPronunciation>
+      <TranscriptConfidence>1.0000000</TranscriptConfidence>
+      <TranscriptSemanticConfidence>1.0000000</TranscriptSemanticConfidence>
+      <RecoResultText>weather</RecoResultText>
+      <RecoResultSemantics ms:typespace="ECMA-262" ms:dataType="object" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma">
+        <application emma:confidence="0.9668913" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">WEATHER</application>
+        <grammar emma:confidence="0.9668913" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+      </RecoResultSemantics>
+      <RecoResultRuleTree>
+        <Rule id="top" uri="grammars\menu_choices.grxml">weather</Rule>
+      </RecoResultRuleTree>
+      <RecoResultPronunciation>W EH DH AX RA</RecoResultPronunciation>
+      <RecoResultConfidence>0.9449926</RecoResultConfidence>
+      <RecoResultSemanticConfidence>0.9668913</RecoResultSemanticConfidence>
+      <InGrammar>True</InGrammar>
+      <SemanticsMatch>True</SemanticsMatch>
+      <WordError wordCount="1" insertions="0" deletions="0" substitutions="0" />
+    </Utterance>
+    <Utterance id="utterance_0.0.4.0">
+      <AudioUri>waves/utt_04.wav</AudioUri>
+      <AudioType>audio/x-wav</AudioType>
+      <TranscriptText>news</TranscriptText>
+      <TranscriptSemantics ms:typespace="ECMA-262" ms:dataType="object" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma">
+        <application emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">NEWS</application>
+        <grammar emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+      </TranscriptSemantics>
+      <TranscriptRuleTree>
+        <Rule id="top" uri="grammars\menu_choices.grxml">news</Rule>
+      </TranscriptRuleTree>
+      <TranscriptPronunciation>N U Z</TranscriptPronunciation>
+      <TranscriptConfidence>1.0000000</TranscriptConfidence>
+      <TranscriptSemanticConfidence>1.0000000</TranscriptSemanticConfidence>
+      <RecoResultText>news</RecoResultText>
+      <RecoResultSemantics ms:typespace="ECMA-262" ms:dataType="object" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma">
+        <application emma:confidence="0.9451904" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">NEWS</application>
+        <grammar emma:confidence="0.9451904" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+      </RecoResultSemantics>
+      <RecoResultRuleTree>
+        <Rule id="top" uri="grammars\menu_choices.grxml">news</Rule>
+      </RecoResultRuleTree>
+      <RecoResultPronunciation>N U Z</RecoResultPronunciation>
+      <RecoResultConfidence>0.9118200</RecoResultConfidence>
+      <RecoResultSemanticConfidence>0.9451904</RecoResultSemanticConfidence>
+      <InGrammar>True</InGrammar>
+      <SemanticsMatch>True</SemanticsMatch>
+      <WordError wordCount="1" insertions="0" deletions="0" substitutions="0" />
+    </Utterance>
+    <Utterance id="utterance_0.0.5.0">
+      <AudioUri>waves/utt_05.wav</AudioUri>
+      <AudioType>audio/x-wav</AudioType>
+      <TranscriptText>top stories</TranscriptText>
+      <RecoResultConfidence>0.0000000</RecoResultConfidence>
+      <RecoResultSemanticConfidence>0.0000000</RecoResultSemanticConfidence>
+      <InGrammar>False</InGrammar>
+      <SemanticsMatch>True</SemanticsMatch>
+      <WordError wordCount="2" insertions="0" deletions="2" substitutions="0" />
+    </Utterance>
+    <Utterance id="utterance_0.0.6.0">
+      <AudioUri>waves/utt_06.wav</AudioUri>
+      <AudioType>audio/x-wav</AudioType>
+      <TranscriptText>sport</TranscriptText>
+      <RecoResultText>sports</RecoResultText>
+      <RecoResultSemantics ms:typespace="ECMA-262" ms:dataType="object" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma">
+        <application emma:confidence="0.9370015" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">SPORTS</application>
+        <grammar emma:confidence="0.9370015" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+      </RecoResultSemantics>
+      <RecoResultRuleTree>
+        <Rule id="top" uri="grammars\menu_choices.grxml">sports</Rule>
+      </RecoResultRuleTree>
+      <RecoResultPronunciation>S P AO RA T S</RecoResultPronunciation>
+      <RecoResultConfidence>0.9216749</RecoResultConfidence>
+      <RecoResultSemanticConfidence>0.9370015</RecoResultSemanticConfidence>
+      <InGrammar>False</InGrammar>
+      <SemanticsMatch>False</SemanticsMatch>
+      <WordError wordCount="1" insertions="0" deletions="0" substitutions="1" />
+    </Utterance>
+    <Utterance id="utterance_0.0.7.0">
+      <AudioUri>waves/utt_07.wav</AudioUri>
+      <AudioType>audio/x-wav</AudioType>
+      <TranscriptText>stock quotes</TranscriptText>
+      <TranscriptSemantics ms:typespace="ECMA-262" ms:dataType="object" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma">
+        <longform emma:confidence="1" ms:actualConfidence="1" ms:dataType="boolean" ms:valueType="boolean" xmlns="">true</longform>
+        <application emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">STOCKS</application>
+        <grammar emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+      </TranscriptSemantics>
+      <TranscriptRuleTree>
+        <Rule id="top" uri="grammars\menu_choices.grxml">stock quotes</Rule>
+      </TranscriptRuleTree>
+      <TranscriptPronunciation>S T AA K K W O T S</TranscriptPronunciation>
+      <TranscriptConfidence>1.0000000</TranscriptConfidence>
+      <TranscriptSemanticConfidence>1.0000000</TranscriptSemanticConfidence>
+      <RecoResultText>stock quotes</RecoResultText>
+      <RecoResultSemantics ms:typespace="ECMA-262" ms:dataType="object" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma">
+        <longform emma:confidence="0.8609061" ms:actualConfidence="1" ms:dataType="boolean" ms:valueType="boolean" xmlns="">true</longform>
+        <application emma:confidence="0.8609061" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">STOCKS</application>
+        <grammar emma:confidence="0.8609061" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+      </RecoResultSemantics>
+      <RecoResultRuleTree>
+        <Rule id="top" uri="grammars\menu_choices.grxml">stock quotes</Rule>
+      </RecoResultRuleTree>
+      <RecoResultPronunciation>S T AA K K W O T S</RecoResultPronunciation>
+      <RecoResultConfidence>0.8928868</RecoResultConfidence>
+      <RecoResultSemanticConfidence>0.8609061</RecoResultSemanticConfidence>
+      <InGrammar>True</InGrammar>
+      <SemanticsMatch>True</SemanticsMatch>
+      <WordError wordCount="2" insertions="0" deletions="0" substitutions="0" />
+    </Utterance>
+    <Utterance id="utterance_0.0.8.0">
+      <AudioUri>waves/utt_08.wav</AudioUri>
+      <AudioType>audio/x-wav</AudioType>
+      <TranscriptText>weather</TranscriptText>
+      <TranscriptSemantics ms:typespace="ECMA-262" ms:dataType="object" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma">
+        <application emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">WEATHER</application>
+        <grammar emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+      </TranscriptSemantics>
+      <TranscriptRuleTree>
+        <Rule id="top" uri="grammars\menu_choices.grxml">weather</Rule>
+      </TranscriptRuleTree>
+      <TranscriptPronunciation>W EH DH AX RA</TranscriptPronunciation>
+      <TranscriptConfidence>1.0000000</TranscriptConfidence>
+      <TranscriptSemanticConfidence>1.0000000</TranscriptSemanticConfidence>
+      <RecoResultText>weather</RecoResultText>
+      <RecoResultSemantics ms:typespace="ECMA-262" ms:dataType="object" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma">
+        <application emma:confidence="0.6058497" ms:actualConfidence="0" ms:dataType="string" ms:valueType="string" xmlns="">WEATHER</application>
+        <grammar emma:confidence="0.6058497" ms:actualConfidence="0" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+      </RecoResultSemantics>
+      <RecoResultRuleTree>
+        <Rule id="top" uri="grammars\menu_choices.grxml">weather</Rule>
+      </RecoResultRuleTree>
+      <RecoResultPronunciation>W EH DH AX RA</RecoResultPronunciation>
+      <RecoResultConfidence>0.6197259</RecoResultConfidence>
+      <RecoResultSemanticConfidence>0.6058497</RecoResultSemanticConfidence>
+      <InGrammar>True</InGrammar>
+      <SemanticsMatch>True</SemanticsMatch>
+      <WordError wordCount="1" insertions="0" deletions="0" substitutions="0" />
+    </Utterance>
+    <Utterance id="utterance_0.0.9.0">
+      <AudioUri>waves/utt_09.wav</AudioUri>
+      <AudioType>audio/x-wav</AudioType>
+      <TranscriptText>weather</TranscriptText>
+      <TranscriptSemantics ms:typespace="ECMA-262" ms:dataType="object" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma">
+        <application emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">WEATHER</application>
+        <grammar emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+      </TranscriptSemantics>
+      <TranscriptRuleTree>
+        <Rule id="top" uri="grammars\menu_choices.grxml">weather</Rule>
+      </TranscriptRuleTree>
+      <TranscriptPronunciation>W EH DH AX RA</TranscriptPronunciation>
+      <TranscriptConfidence>1.0000000</TranscriptConfidence>
+      <TranscriptSemanticConfidence>1.0000000</TranscriptSemanticConfidence>
+      <RecoResultText>weather</RecoResultText>
+      <RecoResultSemantics ms:typespace="ECMA-262" ms:dataType="object" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma">
+        <application emma:confidence="0.962913" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">WEATHER</application>
+        <grammar emma:confidence="0.962913" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+      </RecoResultSemantics>
+      <RecoResultRuleTree>
+        <Rule id="top" uri="grammars\menu_choices.grxml">weather</Rule>
+      </RecoResultRuleTree>
+      <RecoResultPronunciation>W EH DH AX RA</RecoResultPronunciation>
+      <RecoResultConfidence>0.9403493</RecoResultConfidence>
+      <RecoResultSemanticConfidence>0.9629130</RecoResultSemanticConfidence>
+      <InGrammar>True</InGrammar>
+      <SemanticsMatch>True</SemanticsMatch>
+      <WordError wordCount="1" insertions="0" deletions="0" substitutions="0" />
+    </Utterance>
+    <Utterance id="utterance_0.0.10.0">
+      <AudioUri>waves/utt_10.wav</AudioUri>
+      <AudioType>audio/x-wav</AudioType>
+      <TranscriptText>sports</TranscriptText>
+      <TranscriptSemantics ms:typespace="ECMA-262" ms:dataType="object" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma">
+        <application emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">SPORTS</application>
+        <grammar emma:confidence="1" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+      </TranscriptSemantics>
+      <TranscriptRuleTree>
+        <Rule id="top" uri="grammars\menu_choices.grxml">sports</Rule>
+      </TranscriptRuleTree>
+      <TranscriptPronunciation>S P AO RA T S</TranscriptPronunciation>
+      <TranscriptConfidence>1.0000000</TranscriptConfidence>
+      <TranscriptSemanticConfidence>1.0000000</TranscriptSemanticConfidence>
+      <RecoResultText>sports</RecoResultText>
+      <RecoResultSemantics ms:typespace="ECMA-262" ms:dataType="object" xmlns:ms="http://www.microsoft.com/xmlns/webreco" xmlns:emma="http://www.w3.org/2003/04/emma">
+        <application emma:confidence="0.8705698" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">SPORTS</application>
+        <grammar emma:confidence="0.8705698" ms:actualConfidence="1" ms:dataType="string" ms:valueType="string" xmlns="">menu_choices.grxml</grammar>
+      </RecoResultSemantics>
+      <RecoResultRuleTree>
+        <Rule id="top" uri="grammars\menu_choices.grxml">sports</Rule>
+      </RecoResultRuleTree>
+      <RecoResultPronunciation>S P AO RA T S</RecoResultPronunciation>
+      <RecoResultConfidence>0.8278435</RecoResultConfidence>
+      <RecoResultSemanticConfidence>0.8705698</RecoResultSemanticConfidence>
+      <InGrammar>True</InGrammar>
+      <SemanticsMatch>True</SemanticsMatch>
+      <WordError wordCount="1" insertions="0" deletions="0" substitutions="0" />
+    </Utterance>
+  </Utterances>
+  <Analysis>
+    <WordError wordCount="13" insertions="0" deletions="3" substitutions="1" rate="0.3076923" />
+    <PhraseError phraseCount="11" correct="8" incorrect="3" rate="0.2727273" />
+    <SemanticError phraseCount="11" correct="10" incorrect="1" rate="0.0909091" />
+    <OutOfGrammar total="3">
+      <Phrase count="1">[noise]</Phrase>
+      <Phrase count="1">sport</Phrase>
+      <Phrase count="1">top stories</Phrase>
+    </OutOfGrammar>
+    <ConfidenceThreshold type="phrase">
+      <Bin threshold="0.00" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.01" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.02" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.03" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.04" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.05" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.06" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.07" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.08" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.09" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.10" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.11" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.12" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.13" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.14" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.15" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.16" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.17" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.18" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.19" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.20" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.21" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.22" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.23" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.24" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.25" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.26" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.27" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.28" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.29" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.30" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.31" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.32" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.33" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.34" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.35" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.36" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.37" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.38" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.39" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.40" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.41" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.42" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.43" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.44" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.45" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.46" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.47" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.48" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.49" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.50" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.51" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.52" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.53" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.54" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.55" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.56" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.57" CA_all="0.6363636" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0909091" CA_in="0.8750000" FA_in="0.0000000" FR_in="0.1250000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="7" FA_in_count="0" FR_in_count="1" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.58" CA_all="0.6363636" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0909091" CA_in="0.8750000" FA_in="0.0000000" FR_in="0.1250000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="7" FA_in_count="0" FR_in_count="1" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.59" CA_all="0.6363636" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0909091" CA_in="0.8750000" FA_in="0.0000000" FR_in="0.1250000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="7" FA_in_count="0" FR_in_count="1" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.60" CA_all="0.6363636" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0909091" CA_in="0.8750000" FA_in="0.0000000" FR_in="0.1250000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="7" FA_in_count="0" FR_in_count="1" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.61" CA_all="0.6363636" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0909091" CA_in="0.8750000" FA_in="0.0000000" FR_in="0.1250000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="7" FA_in_count="0" FR_in_count="1" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.62" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.63" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.64" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.65" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.66" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.67" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.68" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.69" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.70" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.71" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.72" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.73" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.74" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.75" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.76" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.77" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.78" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.79" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.80" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.81" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.82" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.83" CA_all="0.4545455" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.2727273" CA_in="0.6250000" FA_in="0.0000000" FR_in="0.3750000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="5" FA_in_count="0" FR_in_count="3" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.84" CA_all="0.4545455" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.2727273" CA_in="0.6250000" FA_in="0.0000000" FR_in="0.3750000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="5" FA_in_count="0" FR_in_count="3" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.85" CA_all="0.4545455" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.2727273" CA_in="0.6250000" FA_in="0.0000000" FR_in="0.3750000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="5" FA_in_count="0" FR_in_count="3" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.86" CA_all="0.4545455" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.2727273" CA_in="0.6250000" FA_in="0.0000000" FR_in="0.3750000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="5" FA_in_count="0" FR_in_count="3" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.87" CA_all="0.4545455" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.2727273" CA_in="0.6250000" FA_in="0.0000000" FR_in="0.3750000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="5" FA_in_count="0" FR_in_count="3" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.88" CA_all="0.4545455" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.2727273" CA_in="0.6250000" FA_in="0.0000000" FR_in="0.3750000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="5" FA_in_count="0" FR_in_count="3" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.89" CA_all="0.4545455" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.2727273" CA_in="0.6250000" FA_in="0.0000000" FR_in="0.3750000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="5" FA_in_count="0" FR_in_count="3" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.90" CA_all="0.3636364" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.3636364" CA_in="0.5000000" FA_in="0.0000000" FR_in="0.5000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="4" FA_in_count="0" FR_in_count="4" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.91" CA_all="0.3636364" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.3636364" CA_in="0.5000000" FA_in="0.0000000" FR_in="0.5000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="4" FA_in_count="0" FR_in_count="4" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.92" CA_all="0.2727273" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.4545455" CA_in="0.3750000" FA_in="0.0000000" FR_in="0.6250000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="3" FA_in_count="0" FR_in_count="5" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.93" CA_all="0.2727273" FA_all="0.0000000" CR_all="0.2727273" FR_all="0.4545455" CA_in="0.3750000" FA_in="0.0000000" FR_in="0.6250000" CR_out="1.0000000" FA_out="0.0000000" CA_in_count="3" FA_in_count="0" FR_in_count="5" CR_out_count="3" FA_out_count="0" />
+      <Bin threshold="0.94" CA_all="0.2727273" FA_all="0.0000000" CR_all="0.2727273" FR_all="0.4545455" CA_in="0.3750000" FA_in="0.0000000" FR_in="0.6250000" CR_out="1.0000000" FA_out="0.0000000" CA_in_count="3" FA_in_count="0" FR_in_count="5" CR_out_count="3" FA_out_count="0" />
+      <Bin threshold="0.95" CA_all="0.0000000" FA_all="0.0000000" CR_all="0.2727273" FR_all="0.7272727" CA_in="0.0000000" FA_in="0.0000000" FR_in="1.0000000" CR_out="1.0000000" FA_out="0.0000000" CA_in_count="0" FA_in_count="0" FR_in_count="8" CR_out_count="3" FA_out_count="0" />
+      <Bin threshold="0.96" CA_all="0.0000000" FA_all="0.0000000" CR_all="0.2727273" FR_all="0.7272727" CA_in="0.0000000" FA_in="0.0000000" FR_in="1.0000000" CR_out="1.0000000" FA_out="0.0000000" CA_in_count="0" FA_in_count="0" FR_in_count="8" CR_out_count="3" FA_out_count="0" />
+      <Bin threshold="0.97" CA_all="0.0000000" FA_all="0.0000000" CR_all="0.2727273" FR_all="0.7272727" CA_in="0.0000000" FA_in="0.0000000" FR_in="1.0000000" CR_out="1.0000000" FA_out="0.0000000" CA_in_count="0" FA_in_count="0" FR_in_count="8" CR_out_count="3" FA_out_count="0" />
+      <Bin threshold="0.98" CA_all="0.0000000" FA_all="0.0000000" CR_all="0.2727273" FR_all="0.7272727" CA_in="0.0000000" FA_in="0.0000000" FR_in="1.0000000" CR_out="1.0000000" FA_out="0.0000000" CA_in_count="0" FA_in_count="0" FR_in_count="8" CR_out_count="3" FA_out_count="0" />
+      <Bin threshold="0.99" CA_all="0.0000000" FA_all="0.0000000" CR_all="0.2727273" FR_all="0.7272727" CA_in="0.0000000" FA_in="0.0000000" FR_in="1.0000000" CR_out="1.0000000" FA_out="0.0000000" CA_in_count="0" FA_in_count="0" FR_in_count="8" CR_out_count="3" FA_out_count="0" />
+      <Bin threshold="1.00" CA_all="0.0000000" FA_all="0.0000000" CR_all="0.2727273" FR_all="0.7272727" CA_in="0.0000000" FA_in="0.0000000" FR_in="1.0000000" CR_out="1.0000000" FA_out="0.0000000" CA_in_count="0" FA_in_count="0" FR_in_count="8" CR_out_count="3" FA_out_count="0" />
+    </ConfidenceThreshold>
+    <ConfidenceThreshold type="semantic">
+      <Bin threshold="0.00" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.01" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.02" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.03" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.04" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.05" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.06" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.07" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.08" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.09" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.10" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.11" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.12" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.13" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.14" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.15" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.16" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.17" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.18" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.19" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.20" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.21" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.22" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.23" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.24" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.25" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.26" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.27" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.28" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.29" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.30" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.31" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.32" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.33" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.34" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.35" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.36" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.37" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.38" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.39" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.40" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.41" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.42" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.43" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.44" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.45" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.46" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.47" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.48" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.49" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.50" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.51" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.52" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.53" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.54" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.55" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.56" CA_all="0.7272727" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0000000" CA_in="1.0000000" FA_in="0.0000000" FR_in="0.0000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="8" FA_in_count="0" FR_in_count="0" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.57" CA_all="0.6363636" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0909091" CA_in="0.8750000" FA_in="0.0000000" FR_in="0.1250000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="7" FA_in_count="0" FR_in_count="1" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.58" CA_all="0.6363636" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0909091" CA_in="0.8750000" FA_in="0.0000000" FR_in="0.1250000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="7" FA_in_count="0" FR_in_count="1" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.59" CA_all="0.6363636" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0909091" CA_in="0.8750000" FA_in="0.0000000" FR_in="0.1250000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="7" FA_in_count="0" FR_in_count="1" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.60" CA_all="0.6363636" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.0909091" CA_in="0.8750000" FA_in="0.0000000" FR_in="0.1250000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="7" FA_in_count="0" FR_in_count="1" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.61" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.62" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.63" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.64" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.65" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.66" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.67" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.68" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.69" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.70" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.71" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.72" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.73" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.74" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.75" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.76" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.77" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.78" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.79" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.80" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.81" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.82" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.83" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.84" CA_all="0.5454545" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.1818182" CA_in="0.7500000" FA_in="0.0000000" FR_in="0.2500000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="6" FA_in_count="0" FR_in_count="2" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.85" CA_all="0.4545455" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.2727273" CA_in="0.6250000" FA_in="0.0000000" FR_in="0.3750000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="5" FA_in_count="0" FR_in_count="3" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.86" CA_all="0.4545455" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.2727273" CA_in="0.6250000" FA_in="0.0000000" FR_in="0.3750000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="5" FA_in_count="0" FR_in_count="3" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.87" CA_all="0.3636364" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.3636364" CA_in="0.5000000" FA_in="0.0000000" FR_in="0.5000000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="4" FA_in_count="0" FR_in_count="4" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.88" CA_all="0.2727273" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.4545455" CA_in="0.3750000" FA_in="0.0000000" FR_in="0.6250000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="3" FA_in_count="0" FR_in_count="5" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.89" CA_all="0.2727273" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.4545455" CA_in="0.3750000" FA_in="0.0000000" FR_in="0.6250000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="3" FA_in_count="0" FR_in_count="5" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.90" CA_all="0.2727273" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.4545455" CA_in="0.3750000" FA_in="0.0000000" FR_in="0.6250000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="3" FA_in_count="0" FR_in_count="5" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.91" CA_all="0.2727273" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.4545455" CA_in="0.3750000" FA_in="0.0000000" FR_in="0.6250000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="3" FA_in_count="0" FR_in_count="5" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.92" CA_all="0.2727273" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.4545455" CA_in="0.3750000" FA_in="0.0000000" FR_in="0.6250000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="3" FA_in_count="0" FR_in_count="5" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.93" CA_all="0.2727273" FA_all="0.0909091" CR_all="0.1818182" FR_all="0.4545455" CA_in="0.3750000" FA_in="0.0000000" FR_in="0.6250000" CR_out="0.6666667" FA_out="0.3333333" CA_in_count="3" FA_in_count="0" FR_in_count="5" CR_out_count="2" FA_out_count="1" />
+      <Bin threshold="0.94" CA_all="0.2727273" FA_all="0.0000000" CR_all="0.2727273" FR_all="0.4545455" CA_in="0.3750000" FA_in="0.0000000" FR_in="0.6250000" CR_out="1.0000000" FA_out="0.0000000" CA_in_count="3" FA_in_count="0" FR_in_count="5" CR_out_count="3" FA_out_count="0" />
+      <Bin threshold="0.95" CA_all="0.1818182" FA_all="0.0000000" CR_all="0.2727273" FR_all="0.5454545" CA_in="0.2500000" FA_in="0.0000000" FR_in="0.7500000" CR_out="1.0000000" FA_out="0.0000000" CA_in_count="2" FA_in_count="0" FR_in_count="6" CR_out_count="3" FA_out_count="0" />
+      <Bin threshold="0.96" CA_all="0.1818182" FA_all="0.0000000" CR_all="0.2727273" FR_all="0.5454545" CA_in="0.2500000" FA_in="0.0000000" FR_in="0.7500000" CR_out="1.0000000" FA_out="0.0000000" CA_in_count="2" FA_in_count="0" FR_in_count="6" CR_out_count="3" FA_out_count="0" />
+      <Bin threshold="0.97" CA_all="0.0000000" FA_all="0.0000000" CR_all="0.2727273" FR_all="0.7272727" CA_in="0.0000000" FA_in="0.0000000" FR_in="1.0000000" CR_out="1.0000000" FA_out="0.0000000" CA_in_count="0" FA_in_count="0" FR_in_count="8" CR_out_count="3" FA_out_count="0" />
+      <Bin threshold="0.98" CA_all="0.0000000" FA_all="0.0000000" CR_all="0.2727273" FR_all="0.7272727" CA_in="0.0000000" FA_in="0.0000000" FR_in="1.0000000" CR_out="1.0000000" FA_out="0.0000000" CA_in_count="0" FA_in_count="0" FR_in_count="8" CR_out_count="3" FA_out_count="0" />
+      <Bin threshold="0.99" CA_all="0.0000000" FA_all="0.0000000" CR_all="0.2727273" FR_all="0.7272727" CA_in="0.0000000" FA_in="0.0000000" FR_in="1.0000000" CR_out="1.0000000" FA_out="0.0000000" CA_in_count="0" FA_in_count="0" FR_in_count="8" CR_out_count="3" FA_out_count="0" />
+      <Bin threshold="1.00" CA_all="0.0000000" FA_all="0.0000000" CR_all="0.2727273" FR_all="0.7272727" CA_in="0.0000000" FA_in="0.0000000" FR_in="1.0000000" CR_out="1.0000000" FA_out="0.0000000" CA_in_count="0" FA_in_count="0" FR_in_count="8" CR_out_count="3" FA_out_count="0" />
+    </ConfidenceThreshold>
+  </Analysis>
+</Scenario>
