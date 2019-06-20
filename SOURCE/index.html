@@ -1,170 +1,169 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	<title>TocGame - Panel de venta</title>
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Poppins:300,400,500,600" rel="stylesheet">
-  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="assets/css/vendor.bundle.css">
-	<link rel="stylesheet" href="assets/css/app.bundle.css">
-	<link rel="stylesheet" href="assets/css/theme-a.css">
-</head>
-
-<body>
-	<div id="app_wrapper">
-		<header id="app_topnavbar-wrapper">
-			<nav role="navigation" class="navbar topnavbar">
-				<div class="nav-wrapper">
-					<div id="logo_wrapper" class="nav navbar-nav">
-						<ul>
-							<li class="logo-icon">
-								<a href="index.html">
-									<div class="logo">
-										<img src="assets/img/logo/logo-icon.png" alt="Logo">
-									</div>
-									<h1 class="brand-text">365 Café</h1>
-								</a>
-							</li>
-						</ul>
-						
-					</div>
-					<ul class="nav navbar-nav left-menu">
-						<li class="dropdown dropdown-lg app_menu_launcher">
-							<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown" aria-expanded="false">
-								<i class="zmdi zmdi-apps"></i>
-							</a>
-							<ul class="dropdown-menu dropdown-lg-menu dropdown-menu-left btn-primary p-15 text-center">
-								<li>
-									<ul>
-										<li><a href="app-mail.html"><i class="zmdi zmdi-email"></i><span>Mail</span></a></li>
-										<li><a href="javascript:void(0)"><i class="zmdi zmdi-accounts-list"></i><span>Contacts</span></a></li>
-										<li><a href="javascript:void(0)"><i class="zmdi zmdi-comment-text"></i><span>Chat</span></a></li>
-									</ul>
-								</li>
-								<li>
-									<ul>
-										<li><a href="app-notes.html"><i class="mdi mdi-lightbulb"></i><span>Notes</span></a></li>
-										<li><a href="app-taskboard.html"><i class="zmdi zmdi-view-column"></i><span>Taskboard</span></a></li>
-										<li><a href="javascript:void(0)"><i class="zmdi zmdi-calendar-note"></i><span>Calendar</span></a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>						
-					</ul>
-					<ul class="nav navbar-nav pull-right">
-						<li class="select-menu hidden-xs hidden-sm">
-							<select class="select form-control country" style="display:none">
-								<option option="ES">Español</option>
-								<option option="EN">English</option>
-								<option option="FN"> Français</option>
-								<option option="IT">Italiano</option>
-							</select>
-						</li>
-						<li class="dropdown hidden-xs hidden-sm">
-							<a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
-								<span class="badge mini status danger"></span>
-								<i class="zmdi zmdi-notifications"></i>
-							</a>
-							<ul class="dropdown-menu dropdown-lg-menu dropdown-menu-right dropdown-alt">
-								<li class="dropdown-menu-header">
-									<ul class="card-actions icons  left-top">
-										<li class="withoutripple">
-											<a href="javascript:void(0)" class="withoutripple">
-												<i class="zmdi zmdi-settings"></i>
-											</a>
-										</li>
-									</ul>
-									<h5>NOTIFICACIONES</h5>
-									<ul class="card-actions icons right-top">
-										<li>
-											<a href="javascript:void(0)">
-												<i class="zmdi zmdi-check-all"></i>
-											</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<div class="card">
-										<a href="javascript:void(0)" class="pull-right dismiss" data-dismiss="close">
-											<i class="zmdi zmdi-close"></i>
-										</a>
-										<div class="card-body">
-											<ul class="list-group ">
-												<li class="list-group-item ">
-													<span class="pull-left"><img src="assets/img/profiles/11.jpg" alt="" class="img-circle max-w-40 m-r-10 "></span>
-													<div class="list-group-item-body">
-														<div class="list-group-item-heading">Dakota Johnson</div>
-														<div class="list-group-item-text">Do you want to grab some sushi for lunch?</div>
-													</div>
-												</li>
-											</ul>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<title>TocGame - Panel de venta</title>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Poppins:300,400,500,600" rel="stylesheet">
+		<link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="assets/css/vendor.bundle.css">
+		<link rel="stylesheet" href="assets/css/app.bundle.css">
+		<link rel="stylesheet" href="assets/css/theme-a.css">
+		<link rel="stylesheet" href="assets/css/tablaScrolleable.css">
+	</head>
+	<body>
+		<div id="app_wrapper">
+			<header id="app_topnavbar-wrapper">
+				<nav role="navigation" class="navbar topnavbar">
+					<div class="nav-wrapper">
+						<div id="logo_wrapper" class="nav navbar-nav">
+							<ul>
+								<li class="logo-icon">
+									<a href="index.html">
+										<div class="logo">
+											<img src="assets/img/logo/logo-icon.png" alt="Logo">
 										</div>
-									</div>
-								</li>
-								<li>
-									<div class="card">
-										<a href="javascript:void(0)" class="pull-right dismiss" data-dismiss="close">
-											<i class="zmdi zmdi-close"></i>
-										</a>
-										<div class="card-body">
-											<ul class="list-group ">
-												<li class="list-group-item ">
-													<span class="pull-left"><img src="assets/img/profiles/07.jpg" alt="" class="img-circle max-w-40 m-r-10 "></span>
-													<div class="list-group-item-body">
-														<div class="list-group-item-heading">Todd Cook</div>
-														<div class="list-group-item-text">Let"s schedule a meeting with our design team at 10am.</div>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="card">
-										<a href="javascript:void(0)" class="pull-right dismiss" data-dismiss="close">
-											<i class="zmdi zmdi-close"></i>
-										</a>
-										<div class="card-body">
-											<ul class="list-group ">
-												<li class="list-group-item ">
-													<span class="pull-left"><img src="assets/img/profiles/05.jpg" alt="" class="img-circle max-w-40 m-r-10 "></span>
-													<div class="list-group-item-body">
-														<div class="list-group-item-heading">Jennifer Ross</div>
-														<div class="list-group-item-text">We"re looking to hire two more protypers to our team.</div>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</li>
-								<li class="dropdown-menu-footer">
-									<a href="javascript:void(0)">
-										Ver todo
+										<h1 class="brand-text">365 Café</h1>
 									</a>
 								</li>
 							</ul>
-						</li>
-						<li class="last">
-							<a href="javascript:void(0)" data-toggle-state="sidebar-overlay-open" data-key="rightSideBar">
+						</div>
+						<ul class="nav navbar-nav left-menu">
+							<li class="dropdown dropdown-lg app_menu_launcher">
+								<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown" aria-expanded="false">
+								<i class="zmdi zmdi-apps"></i>
+								</a>
+								<ul class="dropdown-menu dropdown-lg-menu dropdown-menu-left btn-primary p-15 text-center">
+									<li>
+										<ul>
+											<li><a href=""><i class="zmdi zmdi-email"></i><span>Mensajes</span></a></li>
+											<li><a href=""><i class="zmdi zmdi-accounts-list"></i><span>Emplead@</span></a></li>
+											<li><a href="javascript:void(0)"><i class="zmdi zmdi-comment-text"></i><span>Caja</span></a></li>
+										</ul>
+									</li>
+									<li>
+										<ul>
+											<li><a href=""><i class="mdi mdi-lightbulb"></i><span>Config.</span></a></li>
+											<li><a href=""><i class="zmdi zmdi-view-column"></i><span>Asistentes</span></a></li>
+											<li><a href=""><i class="zmdi zmdi-calendar-note"></i><span>Datos</span></a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<ul class="nav navbar-nav pull-right">
+							<li class="select-menu hidden-xs hidden-sm">
+								<select class="select form-control country" style="display:none">
+									<option option="ES">Español</option>
+									<option option="EN">English</option>
+									<option option="FN"> Français</option>
+									<option option="IT">Italiano</option>
+								</select>
+							</li>
+							<li class="dropdown hidden-xs hidden-sm">
+								<a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
+								<span class="badge mini status danger"></span>
+								<i class="zmdi zmdi-notifications"></i>
+								</a>
+								<ul class="dropdown-menu dropdown-lg-menu dropdown-menu-right dropdown-alt">
+									<li class="dropdown-menu-header">
+										<ul class="card-actions icons  left-top">
+											<li class="withoutripple">
+												<a href="javascript:void(0)" class="withoutripple">
+												<i class="zmdi zmdi-settings"></i>
+												</a>
+											</li>
+										</ul>
+										<h5>NOTIFICACIONES</h5>
+										<ul class="card-actions icons right-top">
+											<li>
+												<a href="javascript:void(0)">
+												<i class="zmdi zmdi-check-all"></i>
+												</a>
+											</li>
+										</ul>
+									</li>
+									<!--
+										<li>
+											<div class="card">
+												<a href="javascript:void(0)" class="pull-right dismiss" data-dismiss="close">
+													<i class="zmdi zmdi-close"></i>
+												</a>
+												<div class="card-body">
+													<ul class="list-group ">
+														<li class="list-group-item ">
+															<span class="pull-left"><img src="assets/img/profiles/11.jpg" alt="" class="img-circle max-w-40 m-r-10 "></span>
+															<div class="list-group-item-body">
+																<div class="list-group-item-heading">Dakota Johnson</div>
+																<div class="list-group-item-text">Do you want to grab some sushi for lunch?</div>
+															</div>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="card">
+												<a href="javascript:void(0)" class="pull-right dismiss" data-dismiss="close">
+													<i class="zmdi zmdi-close"></i>
+												</a>
+												<div class="card-body">
+													<ul class="list-group ">
+														<li class="list-group-item ">
+															<span class="pull-left"><img src="assets/img/profiles/07.jpg" alt="" class="img-circle max-w-40 m-r-10 "></span>
+															<div class="list-group-item-body">
+																<div class="list-group-item-heading">Todd Cook</div>
+																<div class="list-group-item-text">Let"s schedule a meeting with our design team at 10am.</div>
+															</div>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="card">
+												<a href="javascript:void(0)" class="pull-right dismiss" data-dismiss="close">
+													<i class="zmdi zmdi-close"></i>
+												</a>
+												<div class="card-body">
+													<ul class="list-group ">
+														<li class="list-group-item ">
+															<span class="pull-left"><img src="assets/img/profiles/05.jpg" alt="" class="img-circle max-w-40 m-r-10 "></span>
+															<div class="list-group-item-body">
+																<div class="list-group-item-heading">Jennifer Ross</div>
+																<div class="list-group-item-text">We"re looking to hire two more protypers to our team.</div>
+															</div>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</li>-->
+									<li class="dropdown-menu-footer">
+										<a href="javascript:void(0)">
+										Ver todo
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="last">
+								<a href="javascript:void(0)" data-toggle-state="sidebar-overlay-open" data-key="rightSideBar">
 								<i class="mdi mdi-playlist-plus"></i>
-							</a>
-						</li>
-					</ul>
-				</div>
-				<form role="search" action="" class="navbar-form" id="navbar_form">
-					<div class="form-group">
-						<input type="text" placeholder="Search and press enter..." class="form-control" id="navbar_search" autocomplete="off">
-						<i data-navsearch-close class="zmdi zmdi-close close-search"></i>
+								</a>
+							</li>
+						</ul>
 					</div>
-					<button type="submit" class="hidden btn btn-default">Submit</button>
-				</form>
-			</nav>
-		</header>
-	<section id="content_outer_wrapper">
+					<form role="search" action="" class="navbar-form" id="navbar_form">
+						<div class="form-group">
+							<input type="text" placeholder="Search and press enter..." class="form-control" id="navbar_search" autocomplete="off">
+							<i data-navsearch-close class="zmdi zmdi-close close-search"></i>
+						</div>
+						<button type="submit" class="hidden btn btn-default">Submit</button>
+					</form>
+				</nav>
+			</header>
+			<section id="content_outer_wrapper">
 				<div id="content_wrapper">
 					<div id="content" class="container-fluid">
 						<div class="content-body">
@@ -172,13 +171,22 @@
 								<div class="col-md-12">
 									<div class="btn-group btn-group-justified" role="group">
 										<div class="btn-group" role="group">
-											<button class="btn btn-info btn-lg">Menú 1<div class="ripple-container"></div></button>
+											<button class="btn btn-info btn-lg">
+												Menú 1
+												<div class="ripple-container"></div>
+											</button>
 										</div>
 										<div class="btn-group" style="left: 5px;" role="group">
-											<button class="btn btn-info btn-lg">Menú 2<div class="ripple-container"></div></button>
+											<button class="btn btn-info btn-lg">
+												Menú 2
+												<div class="ripple-container"></div>
+											</button>
 										</div>
 										<div class="btn-group" style="left: 10px;" role="group">
-											<button class="btn btn-info btn-lg">Menú 3<div class="ripple-container"></div></button>
+											<button class="btn btn-info btn-lg">
+												Menú 3
+												<div class="ripple-container"></div>
+											</button>
 										</div>
 									</div>
 								</div>
@@ -187,102 +195,190 @@
 								<div class="col-md-12">
 									<div class="btn-group btn-group-justified" role="group">
 										<div class="btn-group" role="group">
-											<button class="btn btn-danger btn-lg">Submenú 1<div class="ripple-container"></div></button>
+											<button class="btn btn-danger btn-lg">
+												Submenú 1
+												<div class="ripple-container"></div>
+											</button>
 										</div>
 										<div class="btn-group" style="left: 4px;" role="group">
-											<button class="btn btn-danger btn-lg">Submenú 2<div class="ripple-container"></div></button>
+											<button class="btn btn-danger btn-lg">
+												Submenú 2
+												<div class="ripple-container"></div>
+											</button>
 										</div>
 										<div class="btn-group" style="left: 8px;" role="group">
-											<button class="btn btn-danger btn-lg">Submenú 3<div class="ripple-container"></div></button>
+											<button class="btn btn-danger btn-lg">
+												Submenú 3
+												<div class="ripple-container"></div>
+											</button>
 										</div>
 										<div class="btn-group" style="left: 12px;" role="group">
-											<button class="btn btn-danger btn-lg">Submenú 4<div class="ripple-container"></div></button>
+											<button class="btn btn-danger btn-lg">
+												Submenú 4
+												<div class="ripple-container"></div>
+											</button>
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-2">
-									<button class="btn btn-primary btn-lg btn-block">Tecla 1<div class="ripple-container"></div></button>
-									<button class="btn btn-primary btn-lg btn-block">Tecla 2<div class="ripple-container"></div></button>
-									<button class="btn btn-primary btn-lg btn-block">Tecla 3<div class="ripple-container"></div></button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addCesta('Barra 1/4', 0.5);">
+										Barra 1/4
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addCesta('Pages 1kg', 1.5);">
+										Pages 1kg
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addCesta('Integral 1/4', 0.7);">
+										Integral 1/4
+										<div class="ripple-container"></div>
+									</button>
 								</div>
 								<div class="col-md-2">
-									<button class="btn btn-primary btn-lg btn-block">Tecla 4<div class="ripple-container"></div></button>
-									<button class="btn btn-primary btn-lg btn-block">Tecla 5<div class="ripple-container"></div></button>
-									<button class="btn btn-primary btn-lg btn-block">Tecla 6<div class="ripple-container"></div></button>
+									<button class="btn btn-primary btn-lg btn-block">
+										Tecla 4
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block">
+										Tecla 5
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block">
+										Tecla 6
+										<div class="ripple-container"></div>
+									</button>
 								</div>
 								<div class="col-md-2">
-									<button class="btn btn-primary btn-lg btn-block">Tecla 7<div class="ripple-container"></div></button>
-									<button class="btn btn-primary btn-lg btn-block">Tecla 8<div class="ripple-container"></div></button>
-									<button class="btn btn-primary btn-lg btn-block">Tecla 9<div class="ripple-container"></div></button>
+									<button class="btn btn-primary btn-lg btn-block">
+										Tecla 7
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block">
+										Tecla 8
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block">
+										Tecla 9
+										<div class="ripple-container"></div>
+									</button>
 								</div>
 								<div class="col-md-2">
-									<button class="btn btn-primary btn-lg btn-block">Tecla 10<div class="ripple-container"></div></button>
-									<button class="btn btn-primary btn-lg btn-block">Tecla 11<div class="ripple-container"></div></button>
-									<button class="btn btn-primary btn-lg btn-block">Tecla 12<div class="ripple-container"></div></button>
+									<button class="btn btn-primary btn-lg btn-block">
+										Tecla 10
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block">
+										Tecla 11
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block">
+										Tecla 12
+										<div class="ripple-container"></div>
+									</button>
 								</div>
 								<div class="col-md-2">
-									<button class="btn btn-primary btn-lg btn-block">Tecla 13<div class="ripple-container"></div></button>
-									<button class="btn btn-primary btn-lg btn-block">Tecla 14<div class="ripple-container"></div></button>
-									<button class="btn btn-primary btn-lg btn-block">Tecla 15<div class="ripple-container"></div></button>
+									<button class="btn btn-primary btn-lg btn-block">
+										Tecla 13
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block">
+										Tecla 14
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block">
+										Tecla 15
+										<div class="ripple-container"></div>
+									</button>
 								</div>
 								<div class="col-md-2">
-									<button class="btn btn-primary btn-lg btn-block">Tecla 16<div class="ripple-container"></div></button>
-									<button class="btn btn-primary btn-lg btn-block">Tecla 17<div class="ripple-container"></div></button>
-									<button class="btn btn-primary btn-lg btn-block">Tecla 18<div class="ripple-container"></div></button>
+									<button class="btn btn-primary btn-lg btn-block">
+										Tecla 16
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block">
+										Tecla 17
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block">
+										Tecla 18
+										<div class="ripple-container"></div>
+									</button>
 								</div>
 							</div>
-							  <div class="row">
+							<div class="row">
 								<div class="col-lg-6">
-								  <div class="card">
-									<div class="card-body">
-									  <div class="table-responsive">
-										<table class="table table-striped letraCesta">
-										  <thead>
-											<tr>
-											  <th>#</th>
-											  <th>Artículo</th>
-											  <th>Unidades</th>
-											  <th>Subtotal (€)</th>
-											</tr>
-										  </thead>
-										  <tbody id="listaCesta">
-											<tr>
-											  <th scope="row">1</th>
-											  <td>Pan integral</td>
-											  <td>2</td>
-											  <td>5</td>
-											</tr>
-											<tr>
-											  <th scope="row">2</th>
-											  <td>CocaCola</td>
-											  <td>1</td>
-											  <td>1,5</td>
-											</tr>
-											<tr>
-											  <th scope="row">3</th>
-											  <td>Plato comida</td>
-											  <td>1</td>
-											  <td>6</td>
-											</tr>
-										  </tbody>
-										</table>
-									  </div>
+									<div class="card">
+										<div class="card-body">
+											<div class="table-responsive">
+												<table class="table table-striped letraCesta header-fixed">
+													<thead>
+														<tr>
+															<th>Artículo</th>
+															<th>Unidades</th>
+															<th>Subtotal (€)</th>
+														</tr>
+													</thead>
+													<tbody id="listaCesta">														
+															<tr>
+															  <td>Pan integral</td>
+															  <td>2</td>
+															  <td>5</td>
+															</tr>
+															<tr>
+															  <td>CocaCola</td>
+															  <td>1</td>
+															  <td>1,5</td>
+															</tr>
+															<tr>
+															  <td>CocaCola</td>
+															  <td>1</td>
+															  <td>1,5</td>
+															</tr>
+															<tr>
+															  <td>CocaCola</td>
+															  <td>1</td>
+															  <td>1,5</td>
+															</tr>
+															<tr>
+															  <td>Plato comida</td>
+															  <td>1</td>
+															  <td>6</td>
+															</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
 									</div>
-								  </div>
 								</div>
-								<div class="col-lg-6">									
-									<button class="btn btn-default btn-block">PAGAR<div class="ripple-container"></div></button>
-									<button class="btn btn-default btn-block">CLIENTE<div class="ripple-container"></div></button>
-									<button class="btn btn-default btn-block">OPCIONES<div class="ripple-container"></div></button>
+								<div class="col-lg-2">
+									<div class="card">
+										<div class="card-body letraCesta" style="text-align: center;">
+											<span>TOTAL</span>
+											<h2><span id="totalCesta">0,00 </span>€</h2>
+										</div>
+									</div>
 								</div>
-							  </div>
+								<div class="col-lg-4">
+									<button class="btn btn-default btn-block">
+										PAGAR
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-default btn-block">
+										CLIENTE
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-default btn-block" onclick="vaciarCesta();">
+										CLEAR
+										<div class="ripple-container"></div>
+									</button>
+								</div>
+							</div>
 						</div>
 					</div>
 					<!-- ENDS $content -->
 				</div>
-
 			</section>
 			<aside id="app_sidebar-right">
 				<div class="sidebar-inner sidebar-overlay">
@@ -327,9 +423,9 @@
 											<div class="list-group-item-text">Palo Alto, Ca</div>
 										</div>
 									</li>
-								</ul>															
+								</ul>
 								<button class="btn btn-primary btn-fab btn-fab-sm animate-fab" data-chat="open" id="chat_fab_new">
-									<i class="zmdi zmdi-plus"></i>
+								<i class="zmdi zmdi-plus"></i>
 								</button>
 							</div>
 							<div class="tab-pane fade" id="sidebar_activity">
@@ -386,12 +482,12 @@
 					<ul class="card-actions icons  right-top">
 						<li>
 							<a href="javascript:void(0)">
-								<i class="zmdi zmdi-videocam"></i>
+							<i class="zmdi zmdi-videocam"></i>
 							</a>
 						</li>
 						<li class="dropdown">
 							<a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
-								<i class="zmdi zmdi-more-vert"></i>
+							<i class="zmdi zmdi-more-vert"></i>
 							</a>
 							<ul class="dropdown-menu btn-primary dropdown-menu-right">
 								<li>
@@ -407,7 +503,7 @@
 						</li>
 						<li>
 							<a href="javascript:void(0)" data-chat="close">
-								<i class="zmdi zmdi-close"></i>
+							<i class="zmdi zmdi-close"></i>
 							</a>
 						</li>
 					</ul>
@@ -465,12 +561,12 @@
 						<ul class="card-actions icons left-bottom">
 							<li>
 								<a href="javascript:void(0)">
-									<i class="zmdi zmdi-attachment-alt"></i>
+								<i class="zmdi zmdi-attachment-alt"></i>
 								</a>
 							</li>
 							<li>
 								<a href="javascript:void(0)">
-									<i class="zmdi zmdi-mood"></i>
+								<i class="zmdi zmdi-mood"></i>
 								</a>
 							</li>
 						</ul>
@@ -479,9 +575,9 @@
 								<label class="sr-only">Leave a comment...</label>
 								<input type="text" class="form-control form-rounded input-lightGray" placeholder="Leave a comment..">
 								<span class="input-group-btn">
-									<button type="button" class="btn btn-blue btn-fab  btn-fab-sm">
-										<i class="zmdi zmdi-mail-send"></i>
-									</button>
+								<button type="button" class="btn btn-blue btn-fab  btn-fab-sm">
+								<i class="zmdi zmdi-mail-send"></i>
+								</button>
 								</span>
 							</div>
 						</div>
@@ -490,244 +586,11 @@
 			</section>
 		</div>
 		<!-- MODALS =============================================-->
-		<div class="modal fade" id="contactEditUser" tabindex="-1" role="dialog" aria-labelledby="contactLabel">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<ul class="card-actions icons right-top">
-							<li>
-								<a href="javascript:void(0)" class="text-white" data-dismiss="modal" aria-label="Close">
-									<i class="zmdi zmdi-close"></i>
-								</a>
-							</li>
-						</ul>
-						<h4 class="modal-title">Edit Contact</h4>
-						<div class="user-avatar-wrapper">
-							<figure>
-								<div class="icon-upload">
-									<label for="file-input">
-										<span class="edit-avatar">
-											<img src="" alt="" class="avatar img-circle animated zoomIn"/>
-										</span>
-									</label>
-									<input id="file-input" type="file">
-								</div>
-								<figcaption>
-									<h5 class="name animated fadeInUp"></h5>
-									<ul class="card-actions icons">
-										<li>
-											<a href="javascript:void(0)"><i class="zmdi star zmdi-star-outline"></i></a>
-										</li>
-										<li class="dropdown">
-											<a href="javascript:void(0)" data-toggle="dropdown">
-												<i class="zmdi zmdi-more-vert"></i>
-											</a>
-											<ul class="dropdown-menu p-15">
-												<li>
-													<div class="checkbox">
-														<label class="checkbox-inline action">
-															<input type="checkbox" id="" value=""><span class="checkbox-material"></span>
-															Work
-														</label>
-													</div>
-												</li>
-												<li>
-													<div class="checkbox">
-														<label class="checkbox-inline action">
-															<input type="checkbox" checked="" id="" value=""><span class="checkbox-material"></span>
-															Family
-														</label>
-													</div>
-												</li>
-												<li>
-													<div class="checkbox">
-														<label class="checkbox-inline action">
-															<input type="checkbox" checked="" id="" value=""><span class="checkbox-material"></span>
-															Friends
-														</label>
-													</div>
-												</li>
-												<li>
-													<div class="checkbox">
-														<label class="checkbox-inline action">
-															<input type="checkbox" id="" value=""><span class="checkbox-material"></span>
-															Private
-														</label>
-													</div>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</figcaption>
-							</figure>
-						</div>
-					</div>
-					<div class="modal-body">
-						<div class="form-group label-floating">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
-								<label class="control-label">Full Name</label>
-								<input type="text" class="form-control" id="edit_name" value="name">
-							</div>
-						</div>
-						<div class="form-group label-floating">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
-								<label class="control-label">Email Address</label>
-								<input type="email" class="form-control" id="edit_email" value="email@materiallab.pro">
-							</div>
-						</div>
-						<div class="form-group label-floating">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="zmdi zmdi-phone"></i></span>
-								<label class="control-label">Phone Number</label>
-								<input type="text" class="form-control" id="edit_phone" value="phone">
-							</div>
-						</div>
-						<div class="form-group label-floating is-empty">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="zmdi zmdi-pin"></i></span>
-								<label class="control-label">Address</label>
-								<input type="text" class="form-control" id="edit_address">
-							</div>
-						</div>
-						<div class="form-group label-floating is-empty">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="mdi mdi-note-text"></i></span>
-								<label for="textArea" class="control-label">Notes</label>
-								<textarea class="form-control" rows="3" id="edit_notes"></textarea>
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button class="btn btn-default btn-flat pull-left">Delete</button>
-						<button class="btn btn-primary btn-flat" data-dismiss="modal" aria-label="Close">Cancel</button>
-						<button class="btn btn-primary">Save</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal fade" id="newContactModal" tabindex="-1" role="dialog" aria-labelledby="newContactModal">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<ul class="card-actions icons right-top">
-							<li>
-								<a href="javascript:void(0)" class="text-white" data-dismiss="modal" aria-label="Close">
-									<i class="zmdi zmdi-close"></i>
-								</a>
-							</li>
-						</ul>
-						<h4 class="modal-title">New Contact</h4>
-						<div class="user-avatar-wrapper">
-							<figure>
-								<div class="icon-upload">
-									<label for="file-input">
-										<span class="edit-avatar">
-											<div class="no-avatar app_primary_lighten_bg animated zoomIn"></div>
-										</span>
-									</label>
-									<input id="file-input" type="file">
-								</div>
-								<figcaption>
-									<h5 class="name"></h5>
-									<ul class="card-actions icons">
-										<li>
-											<a href="javascript:void(0)"><i class="zmdi star zmdi-star-outline"></i></a>
-										</li>
-										<li class="dropdown">
-											<a href="javascript:void(0)" data-toggle="dropdown">
-												<i class="zmdi zmdi-more-vert"></i>
-											</a>
-											<ul class="dropdown-menu p-15">
-												<li>
-													<div class="checkbox">
-														<label class="checkbox-inline action">
-															<input type="checkbox" id="" value=""><span class="checkbox-material"></span>
-															Work
-														</label>
-													</div>
-												</li>
-												<li>
-													<div class="checkbox">
-														<label class="checkbox-inline action">
-															<input type="checkbox" id="" value=""><span class="checkbox-material"></span>
-															Family
-														</label>
-													</div>
-												</li>
-												<li>
-													<div class="checkbox">
-														<label class="checkbox-inline action">
-															<input type="checkbox" id="" value=""><span class="checkbox-material"></span>
-															Friends
-														</label>
-													</div>
-												</li>
-												<li>
-													<div class="checkbox">
-														<label class="checkbox-inline action">
-															<input type="checkbox" id="" value=""><span class="checkbox-material"></span>
-															Private
-														</label>
-													</div>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</figcaption>
-							</figure>
-						</div>
-					</div>
-					<div class="modal-body">
-						<div class="form-group label-floating">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
-								<label class="control-label">Full Name</label>
-								<input type="text" class="form-control" id="add_name" value="">
-							</div>
-						</div>
-						<div class="form-group label-floating">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
-								<label class="control-label">Email Address</label>
-								<input type="email" class="form-control" id="add_email" value="">
-							</div>
-						</div>
-						<div class="form-group label-floating">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="zmdi zmdi-phone"></i></span>
-								<label class="control-label">Phone Number</label>
-								<input type="text" class="form-control" id="add_phone" value="">
-							</div>
-						</div>
-						<div class="form-group label-floating is-empty">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="zmdi zmdi-pin"></i></span>
-								<label class="control-label">Address</label>
-								<input type="text" class="form-control" id="add_address">
-							</div>
-						</div>
-						<div class="form-group label-floating is-empty">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="mdi mdi-note-text"></i></span>
-								<label for="textArea" class="control-label">Notes</label>
-								<textarea class="form-control" rows="3" id="textArea" id="add_notes"></textarea>
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button class="btn btn-default btn-flat pull-left">Delete</button>
-						<button class="btn btn-primary btn-flat" data-dismiss="modal" aria-label="Close">Cancel</button>
-						<button class="btn btn-primary">Save</button>
-					</div>
-				</div>
-			</div>
-		</div>
 		<!-- END MODALS =============================================-->
 		<script src="assets/js/vendor.bundle.js"></script>
 		<script src="assets/js/app.bundle.js"></script>
 		<script src="js/index.js"></script>
+		<script src="js/imprimirPantalla.js"></script>
+		<!--<script src="js/teclatsTpv.js"></script>-->
 	</body>
-	
-	</html>
+</html>

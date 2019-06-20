@@ -21,12 +21,12 @@ function startDB()
     }
 }
 
-function addCesta(idArticulo)
+function addCesta(nomArticulo, subto)
 {
     /* TEMPORALES HASTA QUE SE LEA DESDE LA BD */
-    let nomArticulo = 'art1';
+    //let nomArticulo = 'art1';
     let uds = 1;
-    let subto = 2.5;
+    //let subto = 2.5;
     /* FIN DE TEMPORALES */
     let active  = conexion.result;
     let data    = active.transaction(["cesta"], "readwrite");
@@ -50,8 +50,14 @@ function addCesta(idArticulo)
 
 function vaciarCesta()
 {
-    let active      = conexion.result;
-    active.deleteObjectStore('cesta');
+    let db 					= conexion.result;
+	let transaction			= db.transaction(["cesta"], "readwrite");	
+	let objectStore			= transaction.objectStore("cesta");
+	let objectStoreRequest	= objectStore.clear();
+	objectStoreRequest.onsuccess = function(event) 
+	{
+		actualizarCesta();
+	};
 }
 
 function actualizarCesta()
@@ -66,20 +72,25 @@ function actualizarCesta()
             return;
         }
         elements.push(result.value);
+        puto = elements;
         result.continue();
     };
 
     data.oncomplete = e =>{
-        let outHTML = '';
+        let outHTML     = '';
+        let sumaTotal   = 0.0; 
         for(var key in elements)
         {
-            outHTML += '<tr> <th scope="row">1</th> <td>'+ elements[key].nombreArticulo +'</td> <td>'+ elements[key].unidades +'</td> <td>'+ elements[key].subtotal +'</td> </tr>';
+            outHTML     += '<tr><td>'+ elements[key].nombreArticulo +'</td> <td>'+ elements[key].unidades +'</td> <td>'+ elements[key].subtotal +'</td> </tr>';
+            sumaTotal   += elements[key].unidades*elements[key].subtotal;
         }
 
         elements = [];
+        imprimirTotalCesta(sumaTotal);
         listaCesta.innerHTML = outHTML;
     }
 }
 
 window.onload = startDB;
 var conexion = null;
+var puto = null;
