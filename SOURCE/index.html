@@ -223,15 +223,15 @@
 							</div>
 							<div class="row">
 								<div class="col-md-2">
-									<button class="btn btn-primary btn-lg btn-block" onclick="addCesta('Barra 1/4', 0.5);">
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(1, 'Barra 1/4', 0.5);">
 										Barra 1/4
 										<div class="ripple-container"></div>
 									</button>
-									<button class="btn btn-primary btn-lg btn-block" onclick="addCesta('Pages 1kg', 1.5);">
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(2, 'Pages 1kg', 1.5);">
 										Pages 1kg
 										<div class="ripple-container"></div>
 									</button>
-									<button class="btn btn-primary btn-lg btn-block" onclick="addCesta('Integral 1/4', 0.7);">
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(3, 'Integral 1/4', 0.7);">
 										Integral 1/4
 										<div class="ripple-container"></div>
 									</button>
@@ -321,31 +321,7 @@
 														</tr>
 													</thead>
 													<tbody id="listaCesta">														
-															<tr>
-															  <td>Pan integral</td>
-															  <td>2</td>
-															  <td>5</td>
-															</tr>
-															<tr>
-															  <td>CocaCola</td>
-															  <td>1</td>
-															  <td>1,5</td>
-															</tr>
-															<tr>
-															  <td>CocaCola</td>
-															  <td>1</td>
-															  <td>1,5</td>
-															</tr>
-															<tr>
-															  <td>CocaCola</td>
-															  <td>1</td>
-															  <td>1,5</td>
-															</tr>
-															<tr>
-															  <td>Plato comida</td>
-															  <td>1</td>
-															  <td>6</td>
-															</tr>
+
 													</tbody>
 												</table>
 											</div>
@@ -591,6 +567,7 @@
 		<script src="assets/js/app.bundle.js"></script>
 		<script src="js/index.js"></script>
 		<script src="js/imprimirPantalla.js"></script>
+		<script src="js/dexie.min.js"></script>
 		<!--<script src="js/teclatsTpv.js"></script>-->
 	</body>
 </html>

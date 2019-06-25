@@ -2,12 +2,13 @@
 
 function startDB()
 {
+    /*
     conexion = indexedDB.open('toc', 5);
     conexion.onupgradeneeded = e =>{
         let active = conexion.result;
         let options = {
             keyPath: 'id',
-            autoIncrement: 'true'
+            autoIncrement: 'false'
         }
         active.createObjectStore('cesta', options);
     }
@@ -19,78 +20,85 @@ function startDB()
     conexion.onerror = e =>{
         alert("Error al abrir la BD");
     }
+    */
+   db = new Dexie('toc');
+   db.version(10).stores({
+       cesta: 'idArticulo, nombreArticulo, unidades, subtotal' //Luego faltan más tablas
+   });
 }
 
-function addCesta(nomArticulo, subto)
+function getItemCesta(indice)
 {
-    /* TEMPORALES HASTA QUE SE LEA DESDE LA BD */
-    //let nomArticulo = 'art1';
-    let uds = 1;
-    //let subto = 2.5;
-    /* FIN DE TEMPORALES */
-    let active  = conexion.result;
-    let data    = active.transaction(["cesta"], "readwrite");
-    let objeto  = data.objectStore("cesta");
-
-    var request = objeto.put({
-        nombreArticulo: nomArticulo,
-        unidades: uds,
-        subtotal:  subto
+    db.cesta.get(indice, item =>{
+        //return item;
+        aux = item;
     });
+}
 
-    request.onerror = e =>{
-        alert(request.error.name + '\n\n' + request.error.message);
-    };
-
-    data.oncomplete = e =>{
-        actualizarCesta();
-        alert("Objeto correctamente agregado!");
-    };
+function addItemCesta(idArticulo, nombreArticulo, precio)
+{
+    //primero comprobamos si el item ya existe en la lista con un get
+    db.cesta.get(idArticulo, res =>{
+        if(res)
+        {
+            let uds     = res.unidades + 1;
+            let subt    = res.subtotal + precio; 
+            db.cesta.update(idArticulo, {unidades: uds, subtotal: subt}).then(updated=>{
+                if(updated)
+                {
+                    actualizarCesta();
+                }
+                else
+                {
+                    alert("Error al actualizar cesta");
+                }
+            });
+            //Hay que sumar uno
+        }
+        else
+        {
+            db.cesta.put({idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio}).then(function(){
+                actualizarCesta();
+            });
+        }
+    });
 }
 
 function vaciarCesta()
 {
-    let db 					= conexion.result;
-	let transaction			= db.transaction(["cesta"], "readwrite");	
-	let objectStore			= transaction.objectStore("cesta");
-	let objectStoreRequest	= objectStore.clear();
-	objectStoreRequest.onsuccess = function(event) 
-	{
-		actualizarCesta();
-	};
+    db.cesta.clear().then(function(){
+        actualizarCesta();
+    });
 }
 
 function actualizarCesta()
 {
-    let active      = conexion.result;
-    let data        = active.transaction(['cesta'], 'readonly');
-    let objeto      = data.objectStore("cesta");
-    let elements    = [];
-    objeto.openCursor().onsuccess = e =>{
-        let result = e.target.result;
-        if(result === null){
-            return;
-        }
-        elements.push(result.value);
-        puto = elements;
-        result.continue();
-    };
-
-    data.oncomplete = e =>{
-        let outHTML     = '';
-        let sumaTotal   = 0.0; 
-        for(var key in elements)
+    db.cesta.toArray(lista =>{
+        console.log(lista);
+        puto = lista;
+        if(lista)
         {
-            outHTML     += '<tr><td>'+ elements[key].nombreArticulo +'</td> <td>'+ elements[key].unidades +'</td> <td>'+ elements[key].subtotal +'</td> </tr>';
-            sumaTotal   += elements[key].unidades*elements[key].subtotal;
+            let outHTML     = '';
+            let sumaTotal   = 0.0; 
+            for(var key in lista)
+            {
+                outHTML     += '<tr><td>'+ lista[key].nombreArticulo +'</td> <td>'+ lista[key].unidades +'</td> <td>'+ lista[key].subtotal.toFixed(2) +'</td> </tr>';
+                sumaTotal   += lista[key].subtotal;
+            }
+    
+            lista = [];
+            imprimirTotalCesta(sumaTotal);
+            listaCesta.innerHTML = outHTML;
         }
-
-        elements = [];
-        imprimirTotalCesta(sumaTotal);
-        listaCesta.innerHTML = outHTML;
-    }
+        else
+        {
+            alert("Error al imprimir la lista");
+        }
+    });
 }
 
 window.onload = startDB;
 var conexion = null;
+var db = null;
+var aux = null;
 var puto = null;
