@@ -2,29 +2,12 @@
 
 function startDB()
 {
-    /*
-    conexion = indexedDB.open('toc', 5);
-    conexion.onupgradeneeded = e =>{
-        let active = conexion.result;
-        let options = {
-            keyPath: 'id',
-            autoIncrement: 'false'
-        }
-        active.createObjectStore('cesta', options);
-    }
-
-    conexion.onsuccess = e =>{
-        alert("DB loaded OK");
-    }
-
-    conexion.onerror = e =>{
-        alert("Error al abrir la BD");
-    }
-    */
    db = new Dexie('toc');
    db.version(10).stores({
-       cesta: 'idArticulo, nombreArticulo, unidades, subtotal' //Luego faltan más tablas
+       cesta: 'idArticulo, nombreArticulo, unidades, subtotal',
+       caja: 'idTicket, timestamp, total, cesta, tarjeta' //Luego faltan más tablas
    });
+   actualizarCesta();
 }
 
 function getItemCesta(indice)
@@ -93,6 +76,63 @@ function actualizarCesta()
         else
         {
             alert("Error al imprimir la lista");
+        }
+    });
+}
+
+function pagarConVisa(idTicket)
+{
+    db.caja.update(idTicket, {tarjeta: true}).then(updated=>{
+        if(updated)
+        {
+            $('#modalPago').modal('hide')
+        }
+        else
+        {
+            alert("Error al intentar pagar con tarjeta");
+        }
+    });
+}
+
+function pagar()
+{
+    //Hay que crear el nuevo ticket con toda la info de compra (copia de una cesta), la hora y además generar un id de ticket
+    var idTicket    = generarIdTicket();
+    var time        = new Date();
+    var stringTime  = `${time.getDate()}/${time.getMonth()}/${time.getFullYear()} ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
+    db.cesta.toArray(lista =>{
+        if(lista)
+        {
+            db.caja.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: false}).then(function(){
+                console.log(`Ticket numero ${idTicket} creado`);
+                imagenIdTicket.setAttribute('onclick', 'pagarConVisa('+idTicket+')')
+                $('#modalPago').modal('show');
+                vaciarCesta();
+            });
+        }
+        else
+        {
+            alert("Error al cargar la cesta desde pagar()");
+        }
+    });
+}
+
+function generarIdTicket()
+{
+    return Math.round(Math.random()*100000);
+}
+
+function verCaja()
+{
+    db.caja.toArray(lista =>{
+        if(lista)
+        {
+            imprimirListaCaja(lista);
+            $("#modalCaja").modal();
+        }
+        else
+        {
+            alert("Error al cargar la caja desde verCaja()");
         }
     });
 }
