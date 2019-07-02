@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="assets/css/theme-a.css">
 		<link rel="stylesheet" href="assets/css/tablaScrolleable.css">
 	</head>
-	<body style="overflow-y:hidden;">
+	<body> <!--style="overflow-y:hidden;">-->
 		<div id="app_wrapper">
 			<header id="app_topnavbar-wrapper">
 				<nav role="navigation" class="navbar topnavbar">
@@ -168,7 +168,7 @@
 					<div id="content" class="container-fluid">
 						<div class="content-body">
 							<div class="row">
-								<div class="col-md-12">
+								<div class="col-md-12 m-0">
 									<div class="btn-group btn-group-justified" role="group">
 										<div class="btn-group" role="group">
 											<button class="btn btn-info btn-lg">
@@ -192,7 +192,7 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-md-12">
+								<div class="col-md-12 m-0">
 									<div class="btn-group btn-group-justified" role="group">
 										<div class="btn-group" role="group">
 											<button class="btn btn-danger btn-lg">
@@ -249,102 +249,154 @@
 									</button>
 								</div>
 								<div class="col-md-2">
-									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(7, 'Coca Cola', 1.5);">
-										Coca Cola
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(1, 'Estrella Dorada Lata', 1.5);">
+										Estrella Dorada Lata
 										<div class="ripple-container"></div>
 									</button>
-									<button class="btn btn-primary btn-lg btn-block">
-										Tecla 5
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(2, 'Cerveza DAMM sin alcohol lata', 1.5);">
+										<span>Cerveza DAMM sin <br>alcohol lata</span>
 										<div class="ripple-container"></div>
 									</button>
-									<button class="btn btn-primary btn-lg btn-block">
-										Tecla 6
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(3, 'Cava jaume serra', 4.6);">
+										Cava jaume serra
 										<div class="ripple-container"></div>
 									</button>
-								</div>
-								<div class="col-md-2">
-									<button class="btn btn-primary btn-lg btn-block">
-										Tecla 7
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(4, 'Cacaolat pequeño', 1.7);">
+										Cacaolat pequeño
 										<div class="ripple-container"></div>
 									</button>
-									<button class="btn btn-primary btn-lg btn-block">
-										Tecla 8
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(5, 'Agua Sant Aniol 1/2 litro', 0.9);">
+										Agua Sant Aniol 1/2 litro
 										<div class="ripple-container"></div>
 									</button>
-									<button class="btn btn-primary btn-lg btn-block">
-										Tecla 9
-										<div class="ripple-container"></div>
-									</button>
-								</div>
-								<div class="col-md-2">
-									<button class="btn btn-primary btn-lg btn-block">
-										Tecla 10
-										<div class="ripple-container"></div>
-									</button>
-									<button class="btn btn-primary btn-lg btn-block">
-										Tecla 11
-										<div class="ripple-container"></div>
-									</button>
-									<button class="btn btn-primary btn-lg btn-block">
-										Tecla 12
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(6, 'Aquarius Lata', 1.7);">
+										Aquarius Lata
 										<div class="ripple-container"></div>
 									</button>
 								</div>
 								<div class="col-md-2">
-									<button class="btn btn-primary btn-lg btn-block">
-										Tecla 13
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(1, 'Estrella Dorada Lata', 1.5);">
+										Estrella Dorada Lata
 										<div class="ripple-container"></div>
 									</button>
-									<button class="btn btn-primary btn-lg btn-block">
-										Tecla 14
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(2, 'Cerveza DAMM sin alcohol lata', 1.5);">
+										<span>Cerveza DAMM sin <br>alcohol lata</span>
 										<div class="ripple-container"></div>
 									</button>
-									<button class="btn btn-primary btn-lg btn-block">
-										Tecla 15
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(3, 'Cava jaume serra', 4.6);">
+										Cava jaume serra
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(4, 'Cacaolat pequeño', 1.7);">
+										Cacaolat pequeño
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(5, 'Agua Sant Aniol 1/2 litro', 0.9);">
+										Agua Sant Aniol 1/2 litro
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(6, 'Aquarius Lata', 1.7);">
+										Aquarius Lata
 										<div class="ripple-container"></div>
 									</button>
 								</div>
 								<div class="col-md-2">
-									<button class="btn btn-primary btn-lg btn-block">
-										Tecla 16
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(1, 'Estrella Dorada Lata', 1.5);">
+										Estrella Dorada Lata
 										<div class="ripple-container"></div>
 									</button>
-									<button class="btn btn-primary btn-lg btn-block">
-										Tecla 17
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(2, 'Cerveza DAMM sin alcohol lata', 1.5);">
+										<span>Cerveza DAMM sin <br>alcohol lata</span>
 										<div class="ripple-container"></div>
 									</button>
-									<button class="btn btn-primary btn-lg btn-block">
-										Tecla 18
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(3, 'Cava jaume serra', 4.6);">
+										Cava jaume serra
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(4, 'Cacaolat pequeño', 1.7);">
+										Cacaolat pequeño
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(5, 'Agua Sant Aniol 1/2 litro', 0.9);">
+										Agua Sant Aniol 1/2 litro
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(6, 'Aquarius Lata', 1.7);">
+										Aquarius Lata
+										<div class="ripple-container"></div>
+									</button>
+								</div>
+								<div class="col-md-2">
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(1, 'Estrella Dorada Lata', 1.5);">
+										Estrella Dorada Lata
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(2, 'Cerveza DAMM sin alcohol lata', 1.5);">
+										<span>Cerveza DAMM sin <br>alcohol lata</span>
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(3, 'Cava jaume serra', 4.6);">
+										Cava jaume serra
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(4, 'Cacaolat pequeño', 1.7);">
+										Cacaolat pequeño
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(5, 'Agua Sant Aniol 1/2 litro', 0.9);">
+										Agua Sant Aniol 1/2 litro
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(6, 'Aquarius Lata', 1.7);">
+										Aquarius Lata
+										<div class="ripple-container"></div>
+									</button>
+								</div>
+								<div class="col-md-2">
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(1, 'Estrella Dorada Lata', 1.5);">
+										Estrella Dorada Lata
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(2, 'Cerveza DAMM sin alcohol lata', 1.5);">
+										<span>Cerveza DAMM sin <br>alcohol lata</span>
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(3, 'Cava jaume serra', 4.6);">
+										Cava jaume serra
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(4, 'Cacaolat pequeño', 1.7);">
+										Cacaolat pequeño
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(5, 'Agua Sant Aniol 1/2 litro', 0.9);">
+										Agua Sant Aniol 1/2 litro
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(6, 'Aquarius Lata', 1.7);">
+										Aquarius Lata
 										<div class="ripple-container"></div>
 									</button>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-lg-6">
-									<div class="card">
-										<div class="card-body">
-											<div class="table-responsive">
-												<table class="table table-striped letraCesta header-fixed">
-													<thead>
-														<tr>
-															<th>Artículo</th>
-															<th>Unidades</th>
-															<th>Subtotal (€)</th>
-														</tr>
-													</thead>
-													<tbody id="listaCesta">														
+									<div>
+										<div class="table-responsive">
+											<table class="table table-striped letraCesta header-fixed">
+												<tbody id="listaCesta">														
 
-													</tbody>
-												</table>
-											</div>
+												</tbody>
+											</table>
 										</div>
 									</div>
+
 								</div>
 								<div class="col-lg-2">
 									<div class="card">
-										<div class="card-body letraCesta" style="text-align: center;">
+										<div class="card-body letraCesta" style="text-align: center; height: 200px;">
 											<span>TOTAL</span>
-											<h2><span id="totalCesta">0.00 </span>€</h2>
+											<h2><span id="totalCesta"> </span>€</h2>
 										</div>
 									</div>
 								</div>
