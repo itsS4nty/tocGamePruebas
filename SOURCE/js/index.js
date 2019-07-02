@@ -5,7 +5,8 @@ function startDB()
    db = new Dexie('toc');
    db.version(10).stores({
        cesta: 'idArticulo, nombreArticulo, unidades, subtotal',
-       caja: 'idTicket, timestamp, total, cesta, tarjeta' //Luego faltan más tablas
+       caja: 'idTicket, timestamp, total, cesta, tarjeta',
+       articulos: 'id, nombre, precio, iva' //Luego faltan más tablas
    });
    actualizarCesta();
 }
@@ -15,6 +16,47 @@ function getItemCesta(indice)
     db.cesta.get(indice, item =>{
         //return item;
         aux = item;
+    });
+}
+
+function ivaCorrecto(iva)
+{
+    let ivaOk = Number(iva);
+    switch(ivaOk)
+    {
+        case 4: return true; break;
+        case 10: return true; break;
+        case 21: return true; break;
+        default: return false; break;
+    }
+}
+
+function nuevoArticulo(idArticulo, nombreArticulo, precioArticulo, ivaArticulo)
+{
+    if(ivaCorrecto(ivaArticulo))
+    {
+        db.articulos.put({id: idArticulo, nombre: nombreArticulo, precio: Number(precioArticulo), iva: ivaArticulo}).then(function(){
+            console.log("Articulo agregado correctamente");
+        });
+    }
+    else
+    {
+        alert("Error");
+        console.log(`IVA incorrecto en id(${idArticulo}) nombre(${nombreArticulo})`);
+    }
+}
+
+function getArticulos()
+{
+    db.articulos.toArray(lista =>{
+        if(lista)
+        {
+            console.log(lista);
+        }
+        else
+        {
+            alert("Error al cargar los articulos");
+        }
     });
 }
 
