@@ -1,5 +1,3 @@
-'use strict'
-
 function imprimirTotalCesta(total)
 {
     totalCesta.innerHTML = total.toFixed(2) + ' ';
@@ -27,4 +25,57 @@ function imprimirListaCaja(lista)
         str += '</div></div><div class="list-group-separator"></div>';
     }
     listaCaja.innerHTML = str;
+}
+
+function imprimirTeclado(id)
+{
+    db.articulos.toArray(listaArticulos =>{
+        if(listaArticulos)
+        {
+            db.teclado.toArray(infoTeclado =>{
+                if(infoTeclado)
+                {
+                    console.log('info necesaria:');
+                    console.log(infoTeclado);
+                    let strPos = '';
+                    let strFun = '';
+                    let aux = null;
+                    for(let i = 0; i < infoTeclado[id].arrayTeclado.length; i++)
+                    {
+                        console.log("WTF");
+                        aux = getInfoArticulo(listaArticulos, infoTeclado[id].arrayTeclado[i].id);
+                        strPos = 'tecla' + infoTeclado[id].arrayTeclado[i].posicion;
+                        strFun = `addItemCesta(${infoTeclado[id].arrayTeclado[i].id}, '${aux.nombre}', ${aux.precio});`;
+                        document.getElementById(strPos).innerHTML = aux.nombre;
+                        document.getElementById(strPos).setAttribute('onclick', strFun);
+                        document.getElementById(strPos).setAttribute('style', 'visibility: visible;');
+                    }
+                    console.log("Teclado actualizado");
+                }
+                else
+                {
+                    console.log("Error al obtener la info de teclado");
+                }
+            });
+        }
+        else
+        {
+            console.log("Error al obtener la lista de artículos en imprimirTeclado()");
+        }
+    });
+}
+
+function verCaja()
+{
+    db.caja.toArray(lista =>{
+        if(lista)
+        {
+            imprimirListaCaja(lista);
+            $("#modalCaja").modal();
+        }
+        else
+        {
+            alert("Error al cargar la caja desde verCaja()");
+        }
+    });
 }
