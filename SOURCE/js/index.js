@@ -154,7 +154,7 @@ function addMenus()
     menuData.push({id: 3, nombre: 'Frutería', submenus: [6, 7, 8], teclados: null});
 
     db.menus.bulkPut(menuData).then(function(){
-        actualizarCesta();
+        console.log("Menús agregadosadd");
     });
 }
 
