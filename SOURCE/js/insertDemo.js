@@ -78,7 +78,7 @@ function crearTecladoAMano0()
     datos.push({id: 28, nombre: 'Vaso fruta pequeña sandia', precio: 2.85, iva: 10});
 
     db.articulos.bulkPut(datos).then(function(lastKey) {
-        console.log("Todo ok!");
+        
     }).catch(Dexie.BulkError, function (e) {
         // Explicitely catching the bulkAdd() operation makes those successful
         // additions commit despite that there were errors.
@@ -181,7 +181,7 @@ function crearTecladoAMano1()
     datos.push({id: 64, nombre: 'Bolsa de plastico', precio: 2.85, iva: 10});
 
     db.articulos.bulkPut(datos).then(function(lastKey) {
-        console.log("Todo ok!");
+        
     }).catch(Dexie.BulkError, function (e) {
         // Explicitely catching the bulkAdd() operation makes those successful
         // additions commit despite that there were errors.

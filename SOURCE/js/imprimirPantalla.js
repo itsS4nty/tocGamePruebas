@@ -43,8 +43,6 @@ function imprimirTeclado(id)
             db.teclado.toArray(infoTeclado =>{
                 if(infoTeclado)
                 {
-                    console.log('info necesaria:');
-                    console.log(infoTeclado);
                     let strPos = '';
                     let strFun = '';
                     let aux = null;
@@ -54,7 +52,6 @@ function imprimirTeclado(id)
                         if(infoTeclado[id] == null){
                             console.log('Indefinido id: ' + id);
                         }
-                        console.log("WTF");
                         aux = getInfoArticulo(listaArticulos, infoTeclado[id].arrayTeclado[i].id);
                         strPos = 'tecla' + infoTeclado[id].arrayTeclado[i].posicion;
                         strFun = `addItemCesta(${infoTeclado[id].arrayTeclado[i].id}, '${aux.nombre}', ${aux.precio});`;
@@ -90,4 +87,33 @@ function verCaja()
             alert("Error al cargar la caja desde verCaja()");
         }
     });
+}
+
+function notificacion(texto, tipo)
+{
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-bottom-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
+
+    switch(tipo)
+    {
+        case 'info': toastr["info"](texto); break;
+        case 'error': toastr["error"](texto); break;
+        case 'success': toastr["success"](texto); break;
+        case 'warning': toastr["warning"](texto); break;
+    }
 }

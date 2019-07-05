@@ -11,10 +11,7 @@ function startDB()
        menus: 'id, nombre, submenus, teclados'
    });
 
-   db.on("versionchange", function(event) {
-        crearDemoCompleta();
-  });
-
+   crearDemoCompleta();
    actualizarCesta();
    imprimirTeclado(0);
 }
@@ -114,6 +111,7 @@ function pagarConVisa(idTicket)
         if(updated)
         {
             $('#modalPago').modal('hide')
+            notificacion('El ticket se ha pagado con tarjeta ¡OK!', 'info');
         }
         else
         {
@@ -132,8 +130,8 @@ function pagar()
         if(lista)
         {
             db.caja.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: false}).then(function(){
-                console.log(`Ticket numero ${idTicket} creado`);
-                imagenIdTicket.setAttribute('onclick', 'pagarConVisa('+idTicket+')')
+                notificacion('¡Ticket creado!', 'success');
+                imagenIdTicket.setAttribute('onclick', 'pagarConVisa('+idTicket+')');
                 $('#modalPago').modal('show');
                 vaciarCesta();
             });
