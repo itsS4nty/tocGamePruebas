@@ -27,6 +27,14 @@ function imprimirListaCaja(lista)
     listaCaja.innerHTML = str;
 }
 
+function limpiarTeclado()
+{
+    for(let i = 1; i <= 36; i++)
+    {
+        document.getElementById('tecla'+i).setAttribute('style', 'visibility: hidden;');
+    }
+}
+
 function imprimirTeclado(id)
 {
     db.articulos.toArray(listaArticulos =>{
@@ -40,8 +48,12 @@ function imprimirTeclado(id)
                     let strPos = '';
                     let strFun = '';
                     let aux = null;
+                    limpiarTeclado();
                     for(let i = 0; i < infoTeclado[id].arrayTeclado.length; i++)
                     {
+                        if(infoTeclado[id] == null){
+                            console.log('Indefinido id: ' + id);
+                        }
                         console.log("WTF");
                         aux = getInfoArticulo(listaArticulos, infoTeclado[id].arrayTeclado[i].id);
                         strPos = 'tecla' + infoTeclado[id].arrayTeclado[i].posicion;

@@ -30,3 +30,17 @@ function getArticulos()
         }
     });
 }
+
+function getTeclados()
+{
+    db.teclado.toArray(lista =>{
+        if(lista)
+        {
+            console.log(lista);
+        }
+        else
+        {
+            alert("Error al cargar los teclados");
+        }
+    });
+}

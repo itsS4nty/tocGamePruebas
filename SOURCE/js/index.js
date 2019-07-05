@@ -2,14 +2,19 @@
 
 function startDB()
 {
-   db = new Dexie('toc');
-   db.version(10).stores({
+   db = new Dexie('tocGame');
+   db.version(1).stores({
        cesta: 'idArticulo, nombreArticulo, unidades, subtotal',
        caja: 'idTicket, timestamp, total, cesta, tarjeta',
        articulos: 'id, nombre, precio, iva',
        teclado: 'id, arrayTeclado',
        menus: 'id, nombre, submenus, teclados'
    });
+
+   db.on("versionchange", function(event) {
+        crearDemoCompleta();
+  });
+
    actualizarCesta();
    imprimirTeclado(0);
 }
@@ -85,7 +90,7 @@ function actualizarCesta()
         if(lista)
         {
             let outHTML     = '';
-            let sumaTotal   = 0.0; 
+            let sumaTotal   = 0.0;
             for(var key in lista)
             {
                 outHTML     += '<tr><td>'+ lista[key].nombreArticulo +'</td> <td>'+ lista[key].unidades +'</td> <td>'+ lista[key].subtotal.toFixed(2) +'</td> </tr>';
