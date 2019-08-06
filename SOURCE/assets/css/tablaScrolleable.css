@@ -29,3 +29,35 @@
   width: 33.33%;
   float: left;
 }
+
+.header-fixed-doble {
+  width: 100%;
+}
+
+.header-fixed-doble > thead,
+.header-fixed-doble > tbody,
+.header-fixed-doble > thead > tr,
+.header-fixed-doble > tbody > tr,
+.header-fixed-doble > thead > tr > th,
+.header-fixed-doble > tbody > tr > td {
+  display: block;
+}
+
+.header-fixed-doble > tbody > tr:after,
+.header-fixed-doble > thead > tr:after {
+  content: ' ';
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+
+.header-fixed-doble > tbody {
+  overflow-y: auto;
+  height: 200px;
+}
+
+.header-fixed-doble > tbody > tr > td,
+.header-fixed-doble > thead > tr > th {
+  width: 50%;
+  float: left;
+}

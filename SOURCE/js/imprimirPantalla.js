@@ -11,7 +11,7 @@ function imprimirListaCaja(lista)
     {
         str += '<div class="list-group-item">';
         str += '<div class="row-action-primary">';
-        str += '<i class="zmdi zmdi-shopping-cart circle mw-salmon"></i></div><div class="row-content">';
+        str += `<i class="zmdi zmdi-print circle mw-salmon" onclick="verDetalleFactura(${lista[key].idTicket})"></i></div><div class="row-content">`;
         str += '<div class="least-content"><i class="zmdi zmdi-info"></i></div>';
         str += `<h4 class="list-group-item-heading">Factura número ${lista[key].idTicket}</h4>`;
         if(lista[key].tarjeta)
@@ -27,6 +27,13 @@ function imprimirListaCaja(lista)
     listaCaja.innerHTML = str;
 }
 
+function verDetalleFactura(idTicket)
+{
+    if(confirm('¿Imprimir ticket?'))
+    {
+        imprimirTicketReal(idTicket);
+    }
+}
 function limpiarTeclado()
 {
     for(let i = 1; i <= 36; i++)
@@ -116,4 +123,23 @@ function notificacion(texto, tipo)
         case 'success': toastr["success"](texto); break;
         case 'warning': toastr["warning"](texto); break;
     }
+}
+
+function refreshFichajes()
+{
+    db.fichajes.toArray(lista=>{
+        htmlFichajes.innerHTML = '';
+        var htmlTexto = '';
+        for(let i = 0; i < lista.length; i++)
+        {
+            htmlTexto += `<li class="list-group-item">
+            <span class="pull-left"><img src="imagenes/default-avatar.png" alt="" class="img-circle max-w-40 m-r-10 "></span>
+            <i class="badge mini success status"></i>
+            <div class="list-group-item-body">
+                <div class="list-group-item-heading">${lista[i].nombre}</div>
+            </div>
+             </li>`;
+        }
+        htmlFichajes.innerHTML = htmlTexto;
+    });
 }

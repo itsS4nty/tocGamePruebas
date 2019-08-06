@@ -23,10 +23,58 @@ function getArticulos()
         if(lista)
         {
             console.log(lista);
+            return lista;
         }
         else
         {
             alert("Error al cargar los articulos");
+        }
+    });
+}
+
+function getHoraUnix()
+{
+    return Math.floor(+new Date()/1000);
+}
+
+function getTrabajadores()
+{
+    db.trabajadores.toArray(lista=>{
+        if(lista)
+        {
+            console.log(lista);
+        }
+        else
+        {
+            console.log("ERROR al cargar los trabajadores");
+        }
+    });
+}
+
+function getCurrentCaja()
+{
+    db.currentCaja.toArray(lista=>{
+        if(lista)
+        {
+            console.log(lista);
+        }
+        else
+        {
+            console.log("ERROR al cargar la caja actual");
+        }
+    });
+}
+
+function getFichajes()
+{
+    db.fichajes.toArray(lista=>{
+        if(lista)
+        {
+            console.log(lista);
+        }
+        else
+        {
+            console.log("ERROR al cargar los fichajes");
         }
     });
 }
