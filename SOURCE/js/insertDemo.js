@@ -354,17 +354,317 @@ function insertarTeclado3()
     });
 }
 
+function crearTecladoAMano4()
+{
+    var datos = [];
+    datos.push({id: 111, nombre: 'Chocolatina', precio: 0.7, iva: 10});
+    datos.push({id: 112, nombre: 'Coca surtidor entera', precio: 7, iva: 10});
+    datos.push({id: 113, nombre: 'Madalena', precio: 0.75, iva: 10});
+    datos.push({id: 114, nombre: 'Coca surtidor Media', precio: 3.50, iva: 10});
+    datos.push({id: 115, nombre: 'Mini Tulipa Red Veltet', precio: 1.25, iva: 10});
+    datos.push({id: 116, nombre: 'Mini Tulipa Chocolate', precio: 0.65, iva: 10});
+    datos.push({id: 117, nombre: 'Mini Berlina ', precio: 0.65, iva: 10});
+
+    datos.push({id: 118, nombre: 'Coca surtidor cuarto', precio: 2.0, iva: 10});
+    datos.push({id: 119, nombre: 'Caracola chocolate', precio: 0.7, iva: 10});
+    datos.push({id: 120, nombre: '06 Napolitana 2 chocos P', precio: 1.250, iva: 10});
+    datos.push({id: 121, nombre: 'Ensaimada mini', precio: 0.55, iva: 10});
+    datos.push({id: 122, nombre: 'Fartó', precio: 0.30, iva: 10});
+    datos.push({id: 123, nombre: 'Croissant BAR 5 uds.', precio: 3.20, iva: 10});
+
+    datos.push({id: 124, nombre: 'Cañita Crema H.', precio: 0.70, iva: 10});
+    datos.push({id: 125, nombre: 'Cañita Chocolate H.', precio: 0.70, iva: 10});
+    datos.push({id: 126, nombre: 'Cañita Cabello H.', precio: 0.70, iva: 10});
+    datos.push({id: 127, nombre: 'Berlina de sucre', precio: 0.75, iva: 10});
+    datos.push({id: 128, nombre: 'Microcroissant', precio: 0.30, iva: 10});
+    datos.push({id: 129, nombre: 'Croiss. Mini Bombon', precio: 0.35, iva: 10});
+    datos.push({id: 130, nombre: 'Croiss. Mini Mantequilla', precio: 0.30, iva: 10});
+    datos.push({id: 131, nombre: '095 Croissant Chocolate relleno', precio: 1.60, iva: 10});
+    datos.push({id: 132, nombre: 'Croissant mantequilla artesano @', precio: 0.85, iva: 10});
+    datos.push({id: 133, nombre: 'Croissant multicereales', precio: 0.95, iva: 10});
+
+    db.articulos.bulkPut(datos).then(function(lastKey) {
+        
+    }).catch(Dexie.BulkError, function (e) {
+        // Explicitely catching the bulkAdd() operation makes those successful
+        // additions commit despite that there were errors.
+        console.error("Error de crearTecladoAMano");
+    });
+}
+
+function insertarTeclado4()
+{
+    var teclas = [];
+    teclas.push({id: 111, posicion: 5});
+    teclas.push({id: 112, posicion: 6});
+
+    teclas.push({id: 113, posicion: 10});
+    teclas.push({id: 114, posicion: 12});
+    
+    teclas.push({id: 115, posicion: 13});
+    teclas.push({id: 116, posicion: 14});
+    teclas.push({id: 117, posicion: 16});
+    teclas.push({id: 118, posicion: 18});
+
+    teclas.push({id: 119, posicion: 19});
+    teclas.push({id: 120, posicion: 20});
+    teclas.push({id: 121, posicion: 21});
+    teclas.push({id: 122, posicion: 22});
+    teclas.push({id: 123, posicion: 24});
+
+    teclas.push({id: 124, posicion: 25});
+    teclas.push({id: 125, posicion: 26});
+    teclas.push({id: 126, posicion: 27});
+    teclas.push({id: 127, posicion: 28});
+
+    teclas.push({id: 128, posicion: 31});
+    teclas.push({id: 129, posicion: 32});
+    teclas.push({id: 130, posicion: 33});
+    teclas.push({id: 131, posicion: 34});
+    teclas.push({id: 132, posicion: 35});
+    teclas.push({id: 133, posicion: 36});
+
+    db.teclado.put({id: 4, arrayTeclado: teclas}).then(function(){
+        console.log("Teclado agregado correctamente");
+    });
+}
+
+function crearTecladoAMano5()
+{
+    var datos = [];
+    datos.push({id: 134, nombre: 'Duo Tostada Baguette/Molde', precio: 1.50, iva: 10});
+    datos.push({id: 135, nombre: 'Duo Tostada Cereales/Salvado/Aceite', precio: 2.30, iva: 10});
+    datos.push({id: 136, nombre: 'Tostada Baguette/Molde', precio: 0.80, iva: 10});
+    datos.push({id: 137, nombre: 'Tostada Cereales/Salvado/Aceite', precio: 1.20, iva: 10});
+    datos.push({id: 138, nombre: '( Tostada y Embutido', precio: 2.0, iva: 10});
+    datos.push({id: 139, nombre: 'Paninis', precio: 3.0, iva: 10});
+    datos.push({id: 140, nombre: 'Cromasier', precio: 2.2, iva: 10});
+
+    datos.push({id: 141, nombre: 'Biquini', precio: 2.2, iva: 10});
+    datos.push({id: 142, nombre: 'Hot dog', precio: 2.30, iva: 10});
+    datos.push({id: 143, nombre: '1/2 Focaccia verduras', precio: 2.30, iva: 10});
+    datos.push({id: 144, nombre: '1/2 Focaccia Jamon', precio: 2.30, iva: 10});
+    datos.push({id: 145, nombre: '1/2 Focaccia 4 quesos', precio: 2.30, iva: 10});
+    datos.push({id: 146, nombre: '1/4 Pizza Barbacoa rectangular', precio: 3.80, iva: 10});
+
+    datos.push({id: 147, nombre: '1/4 Pizza atun rectangular', precio: 3.80, iva: 10});
+    datos.push({id: 148, nombre: '1/4 Pizza Pepperoni rectangular', precio: 3.80, iva: 10});
+    datos.push({id: 149, nombre: '1/4 Pizza jamon y queso rectangular', precio: 3.80, iva: 10});
+    datos.push({id: 150, nombre: '1/4 Pizza Suprema rectangular', precio: 3.80, iva: 10});
+    datos.push({id: 151, nombre: 'Croissant Jamon', precio: 1.35, iva: 10});
+    datos.push({id: 152, nombre: 'Croissant Frankfurt', precio: 1.40, iva: 10});
+    datos.push({id: 153, nombre: 'Croissant Saludable', precio: 2.50, iva: 10});
+
+    db.articulos.bulkPut(datos).then(function(lastKey) {
+        
+    }).catch(Dexie.BulkError, function (e) {
+        // Explicitely catching the bulkAdd() operation makes those successful
+        // additions commit despite that there were errors.
+        console.error("Error de crearTecladoAMano");
+    });
+}
+
+function insertarTeclado5()
+{
+    var teclas = [];
+    teclas.push({id: 134, posicion: 1});
+    teclas.push({id: 135, posicion: 2});
+
+    teclas.push({id: 136, posicion: 7});
+    teclas.push({id: 137, posicion: 8});
+    teclas.push({id: 138, posicion: 10});
+
+    teclas.push({id: 139, posicion: 13});
+    teclas.push({id: 140, posicion: 15});
+    teclas.push({id: 141, posicion: 16});
+    teclas.push({id: 142, posicion: 17});
+
+    teclas.push({id: 143, posicion: 19});
+    teclas.push({id: 144, posicion: 20});
+    teclas.push({id: 145, posicion: 21});
+
+    teclas.push({id: 146, posicion: 25});
+    teclas.push({id: 147, posicion: 26});
+    teclas.push({id: 148, posicion: 27});
+    teclas.push({id: 149, posicion: 28});
+    teclas.push({id: 150, posicion: 29});
+
+    teclas.push({id: 151, posicion: 31});
+    teclas.push({id: 152, posicion: 32});
+    teclas.push({id: 153, posicion: 34});
+
+    db.teclado.put({id: 5, arrayTeclado: teclas}).then(function(){
+        console.log("Teclado agregado correctamente");
+    });
+}
+
+function crearTecladoAMano6()
+{
+    var datos = [];
+    datos.push({id: 154, nombre: '200 Banda de Fruta', precio: 6.10, iva: 10});
+    datos.push({id: 155, nombre: 'Banda de Fruta Grande', precio: 11.95, iva: 10});
+    datos.push({id: 156, nombre: '200 Banda Manzana', precio: 4.75, iva: 10});
+    datos.push({id: 157, nombre: 'Banda de Musico', precio: 6.10, iva: 10});
+    datos.push({id: 158, nombre: 'Brazo Grande Encargo', precio: 10.50, iva: 10});
+    datos.push({id: 159, nombre: 'Lionesas crema', precio: 0.95, iva: 10});
+    datos.push({id: 160, nombre: 'Lionesas nata', precio: 0.95, iva: 10});
+
+    datos.push({id: 161, nombre: 'Lionesas trufa', precio: 0.95, iva: 10});
+    datos.push({id: 162, nombre: 'croissant individual nata', precio: 2.30, iva: 10});
+    datos.push({id: 163, nombre: 'Lionesas Encargo', precio: 0.95, iva: 10});
+    datos.push({id: 164, nombre: 'Croissant Individual Encargo', precio: 2.30, iva: 10});
+    datos.push({id: 165, nombre: '14 Tortel Nata Trufa', precio: 11.0, iva: 10});
+    datos.push({id: 166, nombre: '13 Tortel Nata', precio: 11.0, iva: 10});
+
+    datos.push({id: 167, nombre: '12 Muss de Fresa pequeño', precio: 14.60, iva: 10});
+    datos.push({id: 168, nombre: '11 Muss de Limon pequeño', precio: 14.60, iva: 10});
+    datos.push({id: 169, nombre: '13 Muss de Trufa pequeño', precio: 14.60, iva: 10});
+    datos.push({id: 170, nombre: 'Muss Pequeño Encargo', precio: 14.60, iva: 10});
+    datos.push({id: 171, nombre: 'Pastel a peso con foto', precio: 24.0, iva: 10});
+    datos.push({id: 172, nombre: 'Pastel a peso', precio: 16.0, iva: 10});
+    datos.push({id: 173, nombre: '8 Pastel Nata pequeño', precio: 12.0, iva: 10});
+    datos.push({id: 174, nombre: '9 Pastel Trufa pequeño', precio: 12.0, iva: 10});
+    datos.push({id: 175, nombre: 'PASTEL PEQUEÑO ENCARGO', precio: 12.0, iva: 10});
+    datos.push({id: 176, nombre: 'Tortel Encargo', precio: 11.0, iva: 10});
+    datos.push({id: 177, nombre: 'Massini con foto', precio: 24.0, iva: 10});
+    datos.push({id: 178, nombre: '6 Massini Grande', precio: 18.0, iva: 10});
+    datos.push({id: 179, nombre: '7 Massini Pequeño', precio: 14.60, iva: 10});
+    datos.push({id: 180, nombre: 'Massini Individual', precio: 2.30, iva: 10});
+    datos.push({id: 181, nombre: 'Massini Grande Encargo', precio: 18.0, iva: 10});
+    datos.push({id: 182, nombre: 'Massini Pequeño Encargo', precio: 14.60, iva: 10});
+    datos.push({id: 183, nombre: '2 Brazo Nata Grande', precio: 10.50, iva: 10});
+    datos.push({id: 184, nombre: '4 Brazo Nata Individual', precio: 2.30, iva: 10});
+    datos.push({id: 185, nombre: '3 Brazo Trufa Grande', precio: 10.50, iva: 10});
+    datos.push({id: 186, nombre: '5 Brazo Trufa Individual', precio: 2.30, iva: 10});
+    datos.push({id: 187, nombre: '1 Brazo Limon Grande', precio: 10.50, iva: 10});
+    datos.push({id: 188, nombre: '6 Brazo Crema Individual', precio: 2.30, iva: 10});
+
+    db.articulos.bulkPut(datos).then(function(lastKey) {
+        
+    }).catch(Dexie.BulkError, function (e) {
+        // Explicitely catching the bulkAdd() operation makes those successful
+        // additions commit despite that there were errors.
+        console.error("Error de crearTecladoAMano");
+    });
+}
+
+function insertarTeclado6()
+{
+    var teclas = [];
+    teclas.push({id: 154, posicion: 1});
+    teclas.push({id: 155, posicion: 2});
+    teclas.push({id: 156, posicion: 3});
+    teclas.push({id: 157, posicion: 4});
+    teclas.push({id: 158, posicion: 6});
+    teclas.push({id: 159, posicion: 7});
+    teclas.push({id: 160, posicion: 8});
+    teclas.push({id: 161, posicion: 9});
+    teclas.push({id: 162, posicion: 10});
+    teclas.push({id: 163, posicion: 11});
+    teclas.push({id: 164, posicion: 12});
+    teclas.push({id: 165, posicion: 13});
+    teclas.push({id: 166, posicion: 14});
+    teclas.push({id: 167, posicion: 15});
+    teclas.push({id: 168, posicion: 16});
+    teclas.push({id: 169, posicion: 17});
+    teclas.push({id: 170, posicion: 18});
+    teclas.push({id: 171, posicion: 19});
+    teclas.push({id: 172, posicion: 20});
+    teclas.push({id: 173, posicion: 21});
+    teclas.push({id: 174, posicion: 22});
+    teclas.push({id: 175, posicion: 23});
+    teclas.push({id: 176, posicion: 24});
+    teclas.push({id: 177, posicion: 25});
+    teclas.push({id: 178, posicion: 26});
+    teclas.push({id: 179, posicion: 27});
+    teclas.push({id: 180, posicion: 28});
+    teclas.push({id: 181, posicion: 29});
+    teclas.push({id: 182, posicion: 30});
+    teclas.push({id: 183, posicion: 31});
+    teclas.push({id: 184, posicion: 32});
+    teclas.push({id: 185, posicion: 33});
+    teclas.push({id: 186, posicion: 34});
+    teclas.push({id: 187, posicion: 35});
+    teclas.push({id: 188, posicion: 36});
+
+    db.teclado.put({id: 6, arrayTeclado: teclas}).then(function(){
+        console.log("Teclado agregado correctamente");
+    });
+}
+
+function crearTecladoAMano7()
+{
+    var datos = [];
+    datos.push({id: 189, nombre: 'Pack Gratis', precio: 1.50, iva: 10});
+    datos.push({id: 190, nombre: 'Vaso Yogurt Danone', precio: 2.30, iva: 10});
+    datos.push({id: 191, nombre: '.1 Plato+Bebida+Cafe+MiniPasta', precio: 0.80, iva: 10});
+    datos.push({id: 192, nombre: 'Croquetas Abuela @', precio: 1.20, iva: 10});
+    datos.push({id: 193, nombre: '150 Pollo', precio: 2.0, iva: 10});
+    datos.push({id: 194, nombre: '.2 Plato+Bebida+Cafe+MiniPasta', precio: 3.0, iva: 10});
+    datos.push({id: 195, nombre: '250 Menu Muslitos de Pollo con Patatas', precio: 2.2, iva: 10});
+    datos.push({id: 196, nombre: '240 Menu Espaguetis Carbonara', precio: 2.2, iva: 10});
+    datos.push({id: 197, nombre: '230 Menu Albondigas Jardineras', precio: 2.30, iva: 10});
+    datos.push({id: 198, nombre: '225 Menu Fideua', precio: 2.30, iva: 10});
+    datos.push({id: 199, nombre: '.Menu Ensalada de atún', precio: 2.30, iva: 10});
+    datos.push({id: 200, nombre: '.Menu Ensalada de cesar', precio: 2.30, iva: 10});
+    datos.push({id: 201, nombre: '.Menu Ensalada de pasta', precio: 3.80, iva: 10});
+    datos.push({id: 202, nombre: '.Menu Ensalada de pollo', precio: 3.80, iva: 10});
+   
+    db.articulos.bulkPut(datos).then(function(lastKey) {
+        
+    }).catch(Dexie.BulkError, function (e) {
+        // Explicitely catching the bulkAdd() operation makes those successful
+        // additions commit despite that there were errors.
+        console.error("Error de crearTecladoAMano");
+    });
+}
+
+function insertarTeclado7()
+{
+    var teclas = [];
+    teclas.push({id: 189, posicion: 1});
+
+    teclas.push({id: 190, posicion: 7});
+
+    teclas.push({id: 191, posicion: 18});
+
+    teclas.push({id: 192, posicion: 20});
+    teclas.push({id: 193, posicion: 21});
+    teclas.push({id: 194, posicion: 24});
+
+    teclas.push({id: 195, posicion: 26});
+    teclas.push({id: 196, posicion: 27});
+    teclas.push({id: 197, posicion: 28});
+    teclas.push({id: 198, posicion: 30});
+
+    teclas.push({id: 199, posicion: 31});
+    teclas.push({id: 200, posicion: 32});
+    teclas.push({id: 201, posicion: 33});
+    teclas.push({id: 202, posicion: 34});
+
+    db.teclado.put({id: 7, arrayTeclado: teclas}).then(function(){
+        console.log("Teclado agregado correctamente");
+    });
+}
+
 function crearDemoCompleta()
 {
     crearTecladoAMano0();
     crearTecladoAMano1();
     crearTecladoAMano2();
     crearTecladoAMano3();
+    crearTecladoAMano4();
+    crearTecladoAMano5();
+    crearTecladoAMano6();
+    crearTecladoAMano7();
 
     insertarTeclado0();
     insertarTeclado1();
     insertarTeclado2();
     insertarTeclado3();
+    insertarTeclado5();
+    insertarTeclado6();
+    insertarTeclado7();
 }
 function imprimirTicketReal(idTicket)
 {

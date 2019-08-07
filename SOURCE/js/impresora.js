@@ -47,7 +47,6 @@ var imprimirPrueba = function(numFactura, arrayCompra, total, visa)
 	  .cut('PAPER_FULL_CUT')
 	  .close()
 	});
-
 }
  
 // Select the adapter based on your printer type
