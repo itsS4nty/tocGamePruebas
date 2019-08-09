@@ -11,7 +11,8 @@ function startDB()
        menus: 'id, nombre, submenus, teclados',
        trabajadores: 'idTrabajador, nombre',
        fichajes: 'idTrabajador, nombre, inicio, final',
-       currentCaja: '++idCaja, cajonApertura, cajonClausura'
+       currentCaja: '++idCaja, cajonApertura, cajonClausura',
+       ofertasUnidades: 'id, precioTotal, precioUnidad, unidadesNecesarias, idArticulo, nombreOferta'
    });
 
    crearDemoCompleta();
@@ -343,9 +344,8 @@ function vaciarCesta()
 
 function actualizarCesta()
 {
+    buscarOfertas();
     db.cesta.toArray(lista =>{
-        //console.log(lista);
-        puto = lista;
         if(lista)
         {
             let outHTML     = '';
@@ -382,6 +382,34 @@ function pagarConVisa(idTicket)
     });
 }
 
+function imprimirTicketReal(idTicket)
+{
+	//idTicket, timestamp, total, cesta, tarjeta
+	var enviarArray = [];
+	db.caja.where('idTicket').equals(idTicket).toArray(lista=>{
+		console.log(lista);
+		for(let i = 0; i < lista[0].cesta.length; i++)
+		{
+			enviarArray.push({cantidad: lista[0].cesta[i].unidades, articuloNombre: lista[0].cesta[i].nombreArticulo, importe: lista[0].cesta[i].subtotal});
+		}
+		console.log(enviarArray);
+		$.ajax({ 
+		   url: '/imprimirTicket',
+		   type: 'POST',
+		   cache: false, 
+	  	   data: JSON.stringify({ numFactura: lista[0].idTicket, arrayCompra: enviarArray, total: lista[0].total, visa: lista[0].tarjeta }),
+	 	   contentType: "application/json; charset=utf-8",
+	  	   dataType: "json",
+		   success: function(data){
+			  notificacion('Ticket OK!', 'success');
+		   }
+		   , error: function(jqXHR, textStatus, err){
+			   alert('text status '+textStatus+', err '+err)
+		   }
+		});
+	});
+}
+
 function pagar()
 {
     //Hay que crear el nuevo ticket con toda la info de compra (copia de una cesta), la hora y además generar un id de ticket
@@ -391,13 +419,20 @@ function pagar()
     db.cesta.toArray(lista =>{
         if(lista)
         {
-            db.caja.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: false}).then(function(){
-                notificacion('¡Ticket creado!', 'success');
-                imagenIdTicket.setAttribute('onclick', 'pagarConVisa('+idTicket+')');
-                imagenImprimir.setAttribute('onclick', 'imprimirTicketReal('+idTicket+')');
-                $('#modalPago').modal('show');
-                vaciarCesta();
-            });
+            if(lista.length > 0)
+            {
+                db.caja.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: false}).then(function(){
+                    notificacion('¡Ticket creado!', 'success');
+                    imagenIdTicket.setAttribute('onclick', 'pagarConVisa('+idTicket+')');
+                    imagenImprimir.setAttribute('onclick', 'imprimirTicketReal('+idTicket+')');
+                    $('#modalPago').modal('show');
+                    vaciarCesta();
+                });
+            }
+            else
+            {
+                notificacion('Cesta vacía', 'error');
+            }
         }
         else
         {
