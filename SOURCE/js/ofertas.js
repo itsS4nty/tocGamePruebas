@@ -6,52 +6,41 @@ function buscarOfertas() //CESTA: idArticulo, nombreArticulo, unidades, subtotal
         {
             if(lista.length > 0)
             {
-                db.ofertasUnidades.toArray(listaOfertasUnidades=>{ //HAY QUE CARGAR TODAS LAS OFERTAS ANTES DEL BUCLE FOR
-                    if(listaOfertasUnidades)
+                db.promociones.toArray(listaPromociones=>{ //HAY QUE CARGAR TODAS LAS OFERTAS ANTES DEL BUCLE FOR
+                    if(listaPromociones)
                     {
-                        for(let i = 0; i < lista.length; i++) //RECORRO CESTA ORIGINAL
+                        var promocionesValidas = [];
+                        for(let i = 0; i < listaPromociones.length; i++)
                         {
-                            for(let j = 0; j < listaOfertasUnidades.length; j++)
+                            if(hayPromo(listaPromociones[i].articulosNecesarios))
                             {
-                                if(lista[i].idArticulo == listaOfertasUnidades[j].idArticulo) //HAY OFERTA DE ESTE PRODUCTO
-                                {
-                                    if(lista[i].unidades == listaOfertasUnidades[j].unidadesNecesarias) //HAY UNIDADES PARA APLICAR LA OFERTA
-                                    {
-
-                                    }
-                                    else
-                                    {
-                                        if(lista[i].unidades > listaOfertasUnidades[j].unidadesNecesarias)
-                                        {
-                                            let sobran = lista[i].unidades - listaOfertasUnidades[j].unidadesNecesarias;
-                                        }
-                                    }
-                                }
+                                promocionesValidas.push(listaPromociones[i]);
                             }
+                        }
+                        if(promocionesValidas.length > 0)
+                        {
+                            aplicarPromo(promocionesValidas);
                         }
                     }
                     else
                     {
-                        console.log("Error al cargar ofertasUnidades");
+                        console.log("Error al cargar las promociones");
                     }
                 });
             }
         }
         else
         {
-            alert("Error al imprimir la lista");
+            alert("Error al cargar la cesta");
         }
     });
 }
 
-function aplicarOfertaUnidades(listaCesta, ofertaUnidades, posI, sobran)
+function hayPromo(articulosNecesariosEncoded)
 {
-    var idArticulo  = listaCesta[posI].idArticulo;
-    var nombre      = listaCesta[posI].nombreArticulo;
-
-    listaCesta[posI] = {idArticulo: -1, nombreArticulo: ofertaUnidades.nombreOferta, unidades: ofertaUnidades.unidadesNecesarias, subtotal: ofertaUnidades.precioTotal};
-    if(sobran > 0)
-    {
-        listaCesta.push({idArticulo: idArticulo, nombreArticulo: nombre, unidades: sobran, subtotal});
-    }
+    //HAY QUE DECODIFICAR EL JSON, Y COMPROBAR SI COINCIDEN TODOS.
+}
+function aplicarPromo()
+{
+    //HAY QUE MODIFICAR EL PRECIO FINAL Y LA CESTA VISIBLE (CREAR DOS CESTAS, LA ORIGINAL Y LA VISIBLE)
 }
