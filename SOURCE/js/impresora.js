@@ -51,12 +51,10 @@ var imprimirPrueba = function(numFactura, arrayCompra, total, visa)
  
 // Select the adapter based on your printer type
 
-	//var device = new escpos.Serial('COM7'); //TEMPORAL, BORRAR, ESTE ES EL MALO!
+	/*
 	var device = new escpos.USB('0x4B8', '0x202'); //ESTE ES EL BUENO
-	//let devices = escpos.USB.findPrinter();
-	//console.log(devices);
-	var options = { encoding: "GB18030" /* default */ }
-	var printer = new escpos.Printer(device, options);
-
+	var options = { encoding: "GB18030" }
+	var printer = new escpos.Printer(device, options); 
+	*/
 
 module.exports = imprimirPrueba;

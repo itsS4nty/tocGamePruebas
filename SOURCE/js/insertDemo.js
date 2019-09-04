@@ -14,6 +14,14 @@ function insertarTrabajadores()
         console.error("Error de insertar trabajadores");
     });
 }
+
+function insertarPromociones()
+{
+    var promo1 = '[{"idArticulo":1,"unidadesNecesarias":5},{"idArticulo":2,"unidadesNecesarias":1}]';
+    db.promociones.put({id: "promo0", nombre: "Promoción de prueba", precioFinal: 69, articulosNecesarios: promo1}).then(function(){
+        console.log("Promoción agregada correctamente");
+    });
+}
 function insertarTeclado0()
 {
     var teclas = [];
@@ -721,6 +729,7 @@ function insertarTeclado8()
 
 function crearDemoCompleta()
 {
+    insertarPromociones();
     crearTecladoAMano0();
     crearTecladoAMano1();
     crearTecladoAMano2();

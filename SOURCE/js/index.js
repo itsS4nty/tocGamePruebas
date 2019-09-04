@@ -5,6 +5,7 @@ function startDB()
    db = new Dexie('tocGame');
    db.version(1).stores({
        cesta: 'idArticulo, nombreArticulo, unidades, subtotal',
+       cestaVisible: 'idArticulo, nombreArticulo, unidades, subtotal',
        caja: 'idTicket, timestamp, total, cesta, tarjeta',
        articulos: 'id, nombre, precio, iva',
        teclado: 'id, arrayTeclado',
@@ -13,7 +14,7 @@ function startDB()
        fichajes: 'idTrabajador, nombre, inicio, final',
        currentCaja: '++idCaja, cajonApertura, cajonClausura',
        ofertasUnidades: 'id, precioTotal, precioUnidad, unidadesNecesarias, idArticulo, nombreOferta', //ESTA SE BORRARÁ Y SE DEJARÁ UNA ÚNICA
-       promociones: 'id, precioFinal, articulosNecesarios'
+       promociones: 'id, nombre, precioFinal, articulosNecesarios'
    });
 
    crearDemoCompleta();
