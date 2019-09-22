@@ -4,8 +4,7 @@ function startDB()
 {
    db = new Dexie('tocGame');
    db.version(1).stores({
-       cesta: 'idArticulo, nombreArticulo, unidades, subtotal',
-       cestaVisible: 'idArticulo, nombreArticulo, unidades, subtotal',
+       cesta: 'idArticulo, nombreArticulo, unidades, subtotal, promocion',
        caja: 'idTicket, timestamp, total, cesta, tarjeta',
        articulos: 'id, nombre, precio, iva',
        teclado: 'id, arrayTeclado',
@@ -330,7 +329,7 @@ function addItemCesta(idArticulo, nombreArticulo, precio)
         }
         else
         {
-            db.cesta.put({idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio}).then(function(){
+            db.cesta.put({idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio, promocion: -1}).then(function(){
                 actualizarCesta();
             });
         }
