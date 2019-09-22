@@ -133,6 +133,7 @@ function pagar()
                 notificacion('¡Ticket creado!', 'success');
                 imagenIdTicket.setAttribute('onclick', 'pagarConVisa('+idTicket+')');
                 $('#modalPago').modal('show');
+				console.log(lista);
                 vaciarCesta();
             });
         }
@@ -141,6 +142,20 @@ function pagar()
             alert("Error al cargar la cesta desde pagar()");
         }
     });
+}
+
+function getInfoTicket(idTicket)
+{
+	//idTicket, timestamp, total, cesta, tarjeta
+	var enviarArray = [];
+	db.caja.where('idTicket').equals(4750).toArray(lista=>{
+		
+		for(let i = 0; i < lista[0].cesta.length; i++)
+		{
+			enviarArray.push({cantidad: lista[0].cesta.unidades, articuloNombre: lista[0].cesta.nombreArticulo, importe: lista[0].cesta.subtotal});
+		}
+		console.log(enviarArray);
+	});
 }
 
 function generarIdTicket()
