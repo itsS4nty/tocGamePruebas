@@ -15,6 +15,14 @@ function insertarTrabajadores()
     });
 }
 
+function insertarPromociones()
+{
+    var promo1 = '[{"idArticulo":122,"unidadesNecesarias":5}]';
+    //var promo2 = '[{"idArticulo":122,"unidadesNecesarias":5},{"idArticulo":2,"unidadesNecesarias":1}]';
+    db.promociones.put({id: "promo0", nombre: "Promoción de prueba", precioFinal: 69, articulosNecesarios: promo1}).then(function(){
+        console.log("Promoción agregada correctamente");
+    });
+}
 function insertarTeclado0()
 {
     var teclas = [];
