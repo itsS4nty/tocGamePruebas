@@ -16,7 +16,7 @@ function buscarOfertas() //CESTA: idArticulo, nombreArticulo, unidades, subtotal
                             {
                                 if(hayPromo(listaPromociones[i].articulosNecesarios, lista))
                                 {
-                                    notificacion('¡Promoción OK!', 'info');
+                                    notificacion(`${listaPromociones[i].nombre} a ${listaPromociones[i].precioFinal} €`, 'info');
                                     promocionesValidas.push(listaPromociones[i]);
                                 }
                             }

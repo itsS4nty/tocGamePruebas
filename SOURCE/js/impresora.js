@@ -51,10 +51,10 @@ var imprimirPrueba = function(numFactura, arrayCompra, total, visa)
  
 // Select the adapter based on your printer type
 
-	/*
+	
 	var device = new escpos.USB('0x4B8', '0x202'); //ESTE ES EL BUENO
 	var options = { encoding: "GB18030" }
 	var printer = new escpos.Printer(device, options); 
-	*/
+	
 
 module.exports = imprimirPrueba;
