@@ -1,7 +1,8 @@
 function buscarOfertas() //CESTA: idArticulo, nombreArticulo, unidades, subtotal
 {
-    var cestaOriginal       = await db.cesta.toArray();
     var listaPromociones    = await db.promociones.toArray();
+    deshacerPromos(listaPromociones);
+    var cestaOriginal       = await db.cesta.toArray();
     var listaArticulos      = await db.articulos.toArray();
     var promocionesValidas  = [];
 
@@ -83,20 +84,36 @@ function hayPromo(articulosNecesariosEncoded, cesta)
     return true;
 }
 
-function deshacerPromos(cesta, listaPromociones) /* FUNCIÓN QUE DESHACE LAS PROMOCIONES APLICADAS EN LA CESTA */
+function deshacerPromos(listaPromociones) /* FUNCIÓN QUE DESHACE LAS PROMOCIONES APLICADAS EN LA CESTA */
 {
+    var cesta   = await db.cesta.toArray();
+    var aux     = false;
     for(let i = 0; i < cesta.length; i++)
     {
         if(cesta[i].promocion != -1) //ELIMINAR POSICION i de la cesta.
         {
             let auxIdPromo = cesta[i].promocion;
-            cesta.splice(i, 1);
+            //BORRAR cesta.splice(i, 1);
+            await db.cesta.where("idArticulo").equals(cesta[i].idArticulo).delete(); //RECUERDA QUE LAS PROMOS TIENEN UN ID ESPECIAL PARA PODER MEZCLAR
+
             var articulosParaAgregar = JSON.parse(listaPromociones[auxIdPromo].articulosNecesarios);
             for(let j = 0; j < articulosParaAgregar.length; j++)
             {
-                cesta.push({id: articulosParaAgregar, arrayTeclado: teclas})
+                aux = false;
+                for(let k = 0; k < cesta.length; k++)
+                {
+                    if(articulosParaAgregar[j].idArticulo == cesta[k].idArticulo)
+                    {
+                        aux = true;
+                        await db.cesta.put({id: cesta[k].idArticulo, nombreArticulo: cesta[k].nombreArticulo, unidades: cesta[k].unidades+articulosParaAgregar[j].unidades, subtotal:, promocion: -1})
+                        break;
+                    }
+                }
+                if(!aux)
+                {
+                    await db.cesta.put({id: cesta[k].idArticulo, nombreArticulo: cesta[k].nombreArticulo, unidades: articulosParaAgregar[j].unidades, subtotal:, promocion: -1})
+                }                
             }
-            
         }
     }
 }
