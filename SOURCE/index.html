@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<title>TocGame - Panel de venta</title>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Poppins:300,400,500,600" rel="stylesheet">
+		<link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="assets/css/vendor.bundle.css">
+		<link rel="stylesheet" href="assets/css/app.bundle.css">
+		<link rel="stylesheet" href="assets/css/theme-a.css">
+		<link rel="stylesheet" href="assets/css/tablaScrolleable.css">
+		<link rel="stylesheet" href="assets/css/toastr.min.css">
+		<link rel="stylesheet" href="node_modules/jq-keyboard/jqkeyboard.css" />
+	</head>
+	<body style="overflow-y:hidden;">
+		<div id="app_wrapper">
+			<header id="app_topnavbar-wrapper">
+				<nav role="navigation" class="navbar topnavbar">
+					<div class="nav-wrapper">
+						<div id="logo_wrapper" class="nav navbar-nav">
+							<ul>
+								<li class="logo-icon">
+									<a href="index.html">
+										<div class="logo">
+											<img src="assets/img/logo/logo-icon.png" alt="Logo">
+										</div>
+										<h1 class="brand-text">365 Café</h1>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<ul class="nav navbar-nav left-menu">
+							<li class="dropdown dropdown-lg app_menu_launcher">
+								<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown" aria-expanded="false">
+								<i class="zmdi zmdi-apps"></i>
+								</a>
+								<ul class="dropdown-menu dropdown-lg-menu dropdown-menu-left btn-primary p-15 text-center">
+									<li>
+										<ul>
+											<li><a href=""><i class="zmdi zmdi-email"></i><span>Mensajes</span></a></li>
+											<li><a href=""><i class="zmdi zmdi-accounts-list"></i><span>Emplead@</span></a></li>
+											<li onclick="verCaja();"><a href="javascript:void(0)"><i class="zmdi zmdi-comment-text"></i><span>Caja</span></a></li>
+										</ul>
+									</li>
+									<li>
+										<ul>
+											<li><a href=""><i class="mdi mdi-lightbulb"></i><span>Config.</span></a></li>
+											<li><a href=""><i class="zmdi zmdi-view-column"></i><span>Asistentes</span></a></li>
+											<li onclick="modalCerrarCaja()"><a href="javascript:void(0)"><i class="zmdi zmdi-calendar-note"></i><span>Cierre Caja</span></a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<ul class="nav navbar-nav pull-right">
+							<li><button id="botonFichar" class="hide btn btn-default" style="top:5px;" onclick="ficharTrabajador(campoNombreTeclado.value)">OK</button></li>
+							<li><input id="campoNombreTeclado" type="text" class="form-control"></li>
+							<li class="select-menu hidden-xs hidden-sm">
+								<select class="select form-control country" style="display:none">
+									<option option="ES">Español</option>
+									<option option="EN">English</option>
+									<option option="FN"> Français</option>
+									<option option="IT">Italiano</option>
+								</select>
+							</li>
+							<li class="dropdown hidden-xs hidden-sm">
+								<a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
+								<span class="badge mini status danger"></span>
+								<i class="zmdi zmdi-notifications"></i>
+								</a>
+								<ul class="dropdown-menu dropdown-lg-menu dropdown-menu-right dropdown-alt">
+									<li class="dropdown-menu-header">
+										<ul class="card-actions icons  left-top">
+											<li class="withoutripple">
+												<a href="javascript:void(0)" class="withoutripple">
+												<i class="zmdi zmdi-settings"></i>
+												</a>
+											</li>
+										</ul>
+										<h5>NOTIFICACIONES</h5>
+										<ul class="card-actions icons right-top">
+											<li>
+												<a href="javascript:void(0)">
+												<i class="zmdi zmdi-check-all"></i>
+												</a>
+											</li>
+										</ul>
+									</li>
+									<!--
+										<li>
+											<div class="card">
+												<a href="javascript:void(0)" class="pull-right dismiss" data-dismiss="close">
+													<i class="zmdi zmdi-close"></i>
+												</a>
+												<div class="card-body">
+													<ul class="list-group ">
+														<li class="list-group-item ">
+															<span class="pull-left"><img src="assets/img/profiles/11.jpg" alt="" class="img-circle max-w-40 m-r-10 "></span>
+															<div class="list-group-item-body">
+																<div class="list-group-item-heading">Dakota Johnson</div>
+																<div class="list-group-item-text">Do you want to grab some sushi for lunch?</div>
+															</div>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="card">
+												<a href="javascript:void(0)" class="pull-right dismiss" data-dismiss="close">
+													<i class="zmdi zmdi-close"></i>
+												</a>
+												<div class="card-body">
+													<ul class="list-group ">
+														<li class="list-group-item ">
+															<span class="pull-left"><img src="assets/img/profiles/07.jpg" alt="" class="img-circle max-w-40 m-r-10 "></span>
+															<div class="list-group-item-body">
+																<div class="list-group-item-heading">Todd Cook</div>
+																<div class="list-group-item-text">Let"s schedule a meeting with our design team at 10am.</div>
+															</div>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="card">
+												<a href="javascript:void(0)" class="pull-right dismiss" data-dismiss="close">
+													<i class="zmdi zmdi-close"></i>
+												</a>
+												<div class="card-body">
+													<ul class="list-group ">
+														<li class="list-group-item ">
+															<span class="pull-left"><img src="assets/img/profiles/05.jpg" alt="" class="img-circle max-w-40 m-r-10 "></span>
+															<div class="list-group-item-body">
+																<div class="list-group-item-heading">Jennifer Ross</div>
+																<div class="list-group-item-text">We"re looking to hire two more protypers to our team.</div>
+															</div>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</li>-->
+									<li class="dropdown-menu-footer">
+										<a href="javascript:void(0)">
+										Ver todo
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="last">
+								<a href="javascript:void(0)" data-toggle-state="sidebar-overlay-open" data-key="rightSideBar">
+								<i class="mdi mdi-playlist-plus"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<form role="search" action="" class="navbar-form" id="navbar_form">
+						<div class="form-group">
+							<input type="text" placeholder="Search and press enter..." class="form-control" id="navbar_search" autocomplete="off">
+							<i data-navsearch-close class="zmdi zmdi-close close-search"></i>
+						</div>
+						<button type="submit" class="hidden btn btn-default">Submit</button>
+					</form>
+				</nav>
+			</header>
+			<section id="content_outer_wrapper">
+				<div id="content_wrapper">
+					<div id="content" class="container-fluid">
+						<div class="content-body">
+							<div class="row">
+								<div class="col-md-12 m-0">
+									<div class="btn-group btn-group-justified" role="group">
+										<div class="btn-group" role="group">
+											<button class="btn btn-info btn-lg" onclick="imprimirTeclado(0)">
+												101 Bebidas
+												<div class="ripple-container"></div>
+											</button>
+										</div>
+										<div class="btn-group" style="left: 3px;" role="group">
+											<button class="btn btn-info btn-lg" onclick="imprimirTeclado(1)">
+												102 Cafetería
+												<div class="ripple-container"></div>
+											</button>
+										</div>
+										<div class="btn-group" style="left: 6px;" role="group">
+											<button class="btn btn-info btn-lg" onclick="imprimirTeclado(2)">
+												103 Bocadillos
+												<div class="ripple-container"></div>
+											</button>
+										</div>
+										<div class="btn-group" style="left: 9px;" role="group">
+											<button class="btn btn-info btn-lg" onclick="imprimirTeclado(3)">
+												104 Pan
+												<div class="ripple-container"></div>
+											</button>
+										</div>
+										<div class="btn-group" style="left: 12px;" role="group">
+											<button class="btn btn-info btn-lg" onclick="imprimirTeclado(4)">
+												105 Bolleria
+												<div class="ripple-container"></div>
+											</button>
+										</div>
+										<div class="btn-group" style="left: 15px;" role="group">
+											<button class="btn btn-info btn-lg" onclick="imprimirTeclado(5)">
+												106 Salado
+												<div class="ripple-container"></div>
+											</button>
+										</div>
+										<div class="btn-group" style="left: 18px;" role="group">
+											<button class="btn btn-info btn-lg" onclick="imprimirTeclado(6)">
+												107 Pasteleria
+												<div class="ripple-container"></div>
+											</button>
+										</div>
+										<div class="btn-group" style="left: 21px;" role="group">
+											<button class="btn btn-info btn-lg" onclick="imprimirTeclado(7)">
+												108 Menú
+												<div class="ripple-container"></div>
+											</button>
+										</div>
+										<div class="btn-group" style="left: 24px;" role="group">
+											<button class="btn btn-info btn-lg" onclick="imprimirTeclado(8)">
+												109 Diada / Reventa
+												<div class="ripple-container"></div>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row hide">
+								<div class="col-md-12 m-0">
+									<div class="btn-group btn-group-justified" role="group">
+										<div class="btn-group" role="group">
+											<button class="btn btn-danger btn-lg">
+												Submenú 1
+												<div class="ripple-container"></div>
+											</button>
+										</div>
+										<div class="btn-group" style="left: 4px;" role="group">
+											<button class="btn btn-danger btn-lg">
+												Submenú 2
+												<div class="ripple-container"></div>
+											</button>
+										</div>
+										<div class="btn-group" style="left: 8px;" role="group">
+											<button class="btn btn-danger btn-lg">
+												Submenú 3
+												<div class="ripple-container"></div>
+											</button>
+										</div>
+										<div class="btn-group" style="left: 12px;" role="group">
+											<button class="btn btn-danger btn-lg">
+												Submenú 4
+												<div class="ripple-container"></div>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">
+									<button style="visibility: hidden;" id="tecla1" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(1, 'Estrella Dorada Lata', 1.5);">
+										Estrella Dorada Lata
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla2" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(2, 'Cerveza DAMM sin alcohol lata', 1.5);">
+										<span>Cerveza DAMM sin <br>alcohol lata</span>
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla3" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(3, 'Cava jaume serra', 4.6);">
+										Cava jaume serra
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla4" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(4, 'Cacaolat pequeño', 1.7);">
+										Cacaolat pequeño
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla5" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(5, 'Agua Sant Aniol 1/2 litro', 0.9);">
+										Agua Sant Aniol 1/2 litro
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla6" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(6, 'Aquarius Lata', 1.7);">
+										Aquarius Lata
+										<div class="ripple-container"></div>
+									</button>
+								</div>
+								<div class="col-md-2">
+									<button style="visibility: hidden;" id="tecla7" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(1, 'Estrella Dorada Lata', 1.5);">
+										Estrella Dorada Lata
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla8" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(2, 'Cerveza DAMM sin alcohol lata', 1.5);">
+										<span>Cerveza DAMM sin <br>alcohol lata</span>
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla9" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(3, 'Cava jaume serra', 4.6);">
+										Cava jaume serra
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla10" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(4, 'Cacaolat pequeño', 1.7);">
+										Cacaolat pequeño
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla11" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(5, 'Agua Sant Aniol 1/2 litro', 0.9);">
+										Agua Sant Aniol 1/2 litro
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla12" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(6, 'Aquarius Lata', 1.7);">
+										Aquarius Lata
+										<div class="ripple-container"></div>
+									</button>
+								</div>
+								<div class="col-md-2">
+									<button style="visibility: hidden;" id="tecla13" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(1, 'Estrella Dorada Lata', 1.5);">
+										Estrella Dorada Lata
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla14" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(2, 'Cerveza DAMM sin alcohol lata', 1.5);">
+										<span>Cerveza DAMM sin <br>alcohol lata</span>
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla15" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(3, 'Cava jaume serra', 4.6);">
+										Cava jaume serra
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla16" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(4, 'Cacaolat pequeño', 1.7);">
+										Cacaolat pequeño
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla17" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(5, 'Agua Sant Aniol 1/2 litro', 0.9);">
+										Agua Sant Aniol 1/2 litro
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla18" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(6, 'Aquarius Lata', 1.7);">
+										Aquarius Lata
+										<div class="ripple-container"></div>
+									</button>
+								</div>
+								<div class="col-md-2">
+									<button style="visibility: hidden;" id="tecla19" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(1, 'Estrella Dorada Lata', 1.5);">
+										Estrella Dorada Lata
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla20" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(2, 'Cerveza DAMM sin alcohol lata', 1.5);">
+										<span>Cerveza DAMM sin <br>alcohol lata</span>
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla21" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(3, 'Cava jaume serra', 4.6);">
+										Cava jaume serra
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla22" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(4, 'Cacaolat pequeño', 1.7);">
+										Cacaolat pequeño
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla23" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(5, 'Agua Sant Aniol 1/2 litro', 0.9);">
+										Agua Sant Aniol 1/2 litro
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla24" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(6, 'Aquarius Lata', 1.7);">
+										Aquarius Lata
+										<div class="ripple-container"></div>
+									</button>
+								</div>
+								<div class="col-md-2">
+									<button style="visibility: hidden;" id="tecla25" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(1, 'Estrella Dorada Lata', 1.5);">
+										Estrella Dorada Lata
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla26" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(2, 'Cerveza DAMM sin alcohol lata', 1.5);">
+										<span>Cerveza DAMM sin <br>alcohol lata</span>
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla27" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(3, 'Cava jaume serra', 4.6);">
+										Cava jaume serra
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla28" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(4, 'Cacaolat pequeño', 1.7);">
+										Cacaolat pequeño
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla29" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(5, 'Agua Sant Aniol 1/2 litro', 0.9);">
+										Agua Sant Aniol 1/2 litro
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla30" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(6, 'Aquarius Lata', 1.7);">
+										Aquarius Lata
+										<div class="ripple-container"></div>
+									</button>
+								</div>
+								<div class="col-md-2">
+									<button style="visibility: hidden;" id="tecla31" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(1, 'Estrella Dorada Lata', 1.5);">
+										Estrella Dorada Lata
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla32" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(2, 'Cerveza DAMM sin alcohol lata', 1.5);">
+										<span>Cerveza DAMM sin <br>alcohol lata</span>
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla33" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(3, 'Cava jaume serra', 4.6);">
+										Cava jaume serra
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla34" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(4, 'Cacaolat pequeño', 1.7);">
+										Cacaolat pequeño
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla35" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(5, 'Agua Sant Aniol 1/2 litro', 0.9);">
+										Agua Sant Aniol 1/2 litro
+										<div class="ripple-container"></div>
+									</button>
+									<button style="visibility: hidden;" id="tecla36" class="btn btn-primary btn-lg btn-block" onclick="addItemCesta(6, 'Aquarius Lata', 1.7);">
+										Aquarius Lata
+										<div class="ripple-container"></div>
+									</button>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div>
+										<div class="table-responsive">
+											<table class="table table-striped letraCesta header-fixed">
+												<tbody id="listaCesta">														
+
+												</tbody>
+											</table>
+										</div>
+									</div>
+
+								</div>
+								<div class="col-md-2">
+									<div class="card">
+										<div class="card-body letraCesta" style="text-align: center; height: 200px;">
+											<span>TOTAL</span>
+											<h2><span id="totalCesta"> </span>€</h2>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<button class="btn btn-default btn-block" onclick="pagar();">
+										PAGAR
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-default btn-block">
+										CLIENTE
+										<div class="ripple-container"></div>
+									</button>
+									<button class="btn btn-default btn-block" onclick="vaciarCesta();">
+										CLEAR
+										<div class="ripple-container"></div>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- ENDS $content -->
+				</div>
+			</section>
+			<aside id="app_sidebar-right">
+				<div class="sidebar-inner sidebar-overlay">
+					<div class="tabpanel">
+						<div class="tab-content">
+							<div class="tab-pane fade active in" id="sidebar_chat">
+								<ul class="description">
+									<li class="title">
+										Dependientas
+									</li>
+								</ul>
+								<ul class="list-group p-0" id="htmlFichajes">
+									
+								</ul>
+								<button class="btn btn-primary btn-fab btn-fab-sm animate-fab" onclick="abrirModalTeclado();" id="chat_fab_new">
+								<i class="zmdi zmdi-plus"></i>
+								</button>
+							</div>
+							<div class="tab-pane fade" id="sidebar_activity">
+								<div class="sidebar-timeline">
+									<div class="time-item">
+										<div class="item-info">
+											<small class="text-muted">15 minutes ago</small>
+											<p><a href="#" class="accent">Mike Jones</a> fixed z-index conflict sidebar.scss</p>
+										</div>
+									</div>
+									<div class="time-item">
+										<div class="item-info">
+											<small class="text-muted">30 minutes ago</small>
+											<p><a href="javascript:void(0)" class="accent">Hazel	Dean</a> left a comment on product page designs.</p>
+											<p><em>"Yuccie shoreditch trust fund, artisan tumblr sustainable cronut unicorn blog seitan. "</em></p>
+										</div>
+									</div>
+									<div class="time-item">
+										<div class="item-info">
+											<small class="text-muted">45 minutes ago</small>
+											<p><a href="javascript:void(0)" class="accent">Molly</a> requested time off for training.</p>
+											<p><em>"Snackwave church-key cardigan you probably haven"t heard of them, asymmetrical microdosing cronut "</em></p>
+										</div>
+									</div>
+									<div class="time-item">
+										<div class="item-info">
+											<small class="text-muted">3 hours ago</small>
+											<p><a href="javascript:void(0)" class="accent">Frederick	Roy</a> commented your post.</p>
+											<p><em>"Skateboard dreamcatcher la croix, edison bulb sustainable sriracha vexillologist kombucha master cleanse."</em></p>
+										</div>
+									</div>
+									<div class="time-item">
+										<div class="item-info">
+											<small class="text-muted">1 hour ago</small>
+											<p><a href="javascript:void(0)" class="accent">Holly Cobb</a> Uploaded 6 new photos.</p>
+										</div>
+									</div>
+									<div class="time-item">
+										<div class="item-info">
+											<small class="text-muted">5 hours ago</small>
+											<p><a href="javascript:void(0)" class="accent">Neal Stephens</a> setup a meeting with<a href="#" class="text-success"> Jason Kendall</a>.</p>
+											<p><em>"Authentic aesthetic tattooed, PBR&B squid tote bag schlitz vaporware glossier yr man braid direct trade disrupt poke.  "</em></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</aside>
+			<section id="chat_compose_wrapper">
+				<div class="tippy-top">
+					<div class="recipient">Allison Grayce</div>
+					<ul class="card-actions icons  right-top">
+						<li>
+							<a href="javascript:void(0)">
+							<i class="zmdi zmdi-videocam"></i>
+							</a>
+						</li>
+						<li class="dropdown">
+							<a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
+							<i class="zmdi zmdi-more-vert"></i>
+							</a>
+							<ul class="dropdown-menu btn-primary dropdown-menu-right">
+								<li>
+									<a href="javascript:void(0)">Option One</a>
+								</li>
+								<li>
+									<a href="javascript:void(0)">Option Two</a>
+								</li>
+								<li>
+									<a href="javascript:void(0)">Option Three</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="javascript:void(0)" data-chat="close">
+							<i class="zmdi zmdi-close"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="chat-wrapper scrollbar">
+					<div class="chat-message scrollbar">
+						<div class="chat-message chat-message-recipient">
+							<img class="chat-image chat-image-default" src="assets/img/profiles/05.jpg" />
+							<div class="chat-message-wrapper">
+								<div class="chat-message-content">
+									<p>Hey Mike, we have funding for our new project!</p>
+								</div>
+								<div class="chat-details">
+									<span class="today small"></span>
+								</div>
+							</div>
+						</div>
+						<div class="chat-message chat-message-sender">
+							<img class="chat-image chat-image-default" src="assets/img/profiles/02.jpg" />
+							<div class="chat-message-wrapper ">
+								<div class="chat-message-content">
+									<p>Awesome! Photo booth banh mi pitchfork kickstarter whatever, prism godard ethical 90"s cray selvage.</p>
+								</div>
+								<div class="chat-details">
+									<span class="today small"></span>
+								</div>
+							</div>
+						</div>
+						<div class="chat-message chat-message-recipient">
+							<img class="chat-image chat-image-default" src="assets/img/profiles/05.jpg" />
+							<div class="chat-message-wrapper">
+								<div class="chat-message-content">
+									<p> Artisan glossier vaporware meditation paleo humblebrag forage small batch.</p>
+								</div>
+								<div class="chat-details">
+									<span class="today small"></span>
+								</div>
+							</div>
+						</div>
+						<div class="chat-message chat-message-sender">
+							<img class="chat-image chat-image-default" src="assets/img/profiles/02.jpg" />
+							<div class="chat-message-wrapper">
+								<div class="chat-message-content">
+									<p>Bushwick letterpress vegan craft beer dreamcatcher kickstarter.</p>
+								</div>
+								<div class="chat-details">
+									<span class="today small"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<footer id="compose-footer">
+					<form class="form-horizontal compose-form">
+						<ul class="card-actions icons left-bottom">
+							<li>
+								<a href="javascript:void(0)">
+								<i class="zmdi zmdi-attachment-alt"></i>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)">
+								<i class="zmdi zmdi-mood"></i>
+								</a>
+							</li>
+						</ul>
+						<div class="form-group m-10 p-l-75 is-empty">
+							<div class="input-group">
+								<label class="sr-only">Leave a comment...</label>
+								<input type="text" class="form-control form-rounded input-lightGray" placeholder="Leave a comment..">
+								<span class="input-group-btn">
+								<button type="button" class="btn btn-blue btn-fab  btn-fab-sm">
+								<i class="zmdi zmdi-mail-send"></i>
+								</button>
+								</span>
+							</div>
+						</div>
+					</form>
+				</footer>
+			</section>
+		</div>
+		<!-- MODALS =============================================-->
+			<div class="modal fade" id="modalPago" tabindex="-1" role="dialog" aria-labelledby="modalPago">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							
+							<h4 class="modal-title" id="myModalLabel-2">¿Pago con tarjeta?</h4>
+
+							<ul class="card-actions icons right-top">
+								
+								<a href="javascript:void(0)" data-dismiss="modal" class="text-white" aria-label="Close">
+									<i class="zmdi zmdi-close"></i>
+								</a>
+							</li>
+						</ul>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-6">
+									<img id="imagenIdTicket" src="imagenes/img-tarjetas.png" width="250px" alt="Imagen de tarjetas" onclick="pagarConVisa();">
+								</div>
+								<div class="col-md-6">
+									<img id="imagenImprimir" src="imagenes/imprimir.png" width="250px" alt="Imagen de tarjetas" onclick="imprimirTicketReal();">
+								</div>
+							</div>							
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+						</div>
+					</div>
+					<!-- modal-content -->
+				</div>
+				<!-- modal-dialog -->
+			</div>
+			<div class="modal fade bottom-sheet" id="modalCaja" tabindex="-1" role="dialog" aria-labelledby="modalCaja">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							
+							<h4 class="modal-title" id="myModalLabel-2">Listado de tickets</h4>
+							<ul class="card-actions icons right-top">
+								
+								<a href="javascript:void(0)" data-dismiss="modal" class="text-white" aria-label="Close">
+									<i class="zmdi zmdi-close"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="modal-body scrollbar">
+						<div id="listaCaja" class="list-group">
+							
+						</div>
+					</div>
+					<!-- modal-content -->
+				</div>
+				<!-- modal-dialog -->
+			</div>
+		</div>
+		<div class="modal fade" id="modalFactura" tabindex="-1" role="dialog" aria-labelledby="basic_modal">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel-2">Title goes here</h4>
+						<ul class="card-actions icons right-top">
+							<a href="javascript:void(0)" data-dismiss="modal" class="text-white" aria-label="Close">
+							<i class="zmdi zmdi-close"></i>
+							</a>
+							</li>
+						</ul>
+					</div>
+					<div class="modal-body">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in ligula id sem tristique ultrices eget id neque. Duis enim turpis, tempus at accumsan vitae, lobortis id sapien. Pellentesque nec orci mi, in pharetra ligula. Nulla facilisi. Nulla
+							facilisi. Mauris convallis venenatis massa, quis consectetur felis ornare quis. Sed aliquet nunc ac ante molestie ultricies. Nam pulvinar ultricies bibendum.
+						</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-primary">Ok</button>
+					</div>
+				</div>
+				<!-- modal-content -->
+			</div>
+			<!-- modal-dialog -->
+		</div>
+
+		<div class="modal fade" id="modalFichajes" tabindex="-1" role="dialog" aria-labelledby="basic_modal">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						
+						<h4 class="modal-title">Estas son las coincidencias</h4>
+						<ul class="card-actions icons right-top">
+							
+							<a href="javascript:void(0)" data-dismiss="modal" class="text-white" aria-label="Close">
+								<i class="zmdi zmdi-close"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="modal-body">
+					<div class="col-md-12">
+						<div>
+							<div class="table-responsive">
+								<table class="table table-striped letraCesta header-fixed-doble">
+									<tbody id="listaResultadosFichajes">														
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+					</div>
+				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Cancelar</button>
+					</div>
+				</div>
+				<!-- modal-content -->
+			</div>
+			<!-- modal-dialog -->
+		</div>
+		<div class="modal fade" id="modalAperturaCaja" tabindex="-1" role="dialog" aria-labelledby="basic_modal" data-backdrop="false">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							
+							<h4 class="modal-title">Inicio de caja</h4>
+							<ul class="card-actions icons right-top">
+								
+								<a href="javascript:void(0)" data-dismiss="modal" class="text-white" aria-label="Close">
+									<i class="zmdi zmdi-close"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="modal-body">
+						<div class="col-md-12">
+							<div>
+								<div class="table-responsive">
+									<table class="table table-striped letraCesta header-fixed">
+										<tbody id="listaMonedasHtml">														
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+	
+						</div>
+					</div>
+						<div class="modal-footer">
+							<button onclick="crearCajaNueva();" type="button" class="btn btn-primary">ABRIR CAJA</button>
+						</div>
+					</div>
+					<!-- modal-content -->
+				</div>
+				<!-- modal-dialog -->
+			</div>
+
+			<div class="modal fade" id="modalCierreCaja" tabindex="-1" role="dialog" aria-labelledby="basic_modal" data-backdrop="false">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								
+								<h4 class="modal-title">Cierre de caja</h4>
+								<ul class="card-actions icons right-top">
+									
+									<a href="javascript:void(0)" data-dismiss="modal" class="text-white" aria-label="Close">
+										<i class="zmdi zmdi-close"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="modal-body">
+							<div class="col-md-12">
+								<div>
+									<div class="table-responsive">
+										<table class="table table-striped letraCesta header-fixed">
+											<tbody id="listaMonedasHtmlCierre">									
+													<tr><td>TIPO</td><td></td><td>UNIDADES</td></tr>
+													<tr><td>0,01</td><td><button onclick="sumarUnidadCierre(0);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(0);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesUnCentimoCierre">0</td></tr>
+													<tr><td>0,02</td><td><button onclick="sumarUnidadCierre(1);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(1);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesDosCentimosCierre">0</td></tr>
+													<tr><td>0,05</td><td><button onclick="sumarUnidadCierre(2);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(2);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesCincoCentimosCierre">0</td></tr>
+													<tr><td>0,10</td><td><button onclick="sumarUnidadCierre(3);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(3);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesDiezCentimosCierre">0</td></tr>
+													<tr><td>0,20</td><td><button onclick="sumarUnidadCierre(4);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(4);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesVeinteCentimosCierre">0</td></tr>
+													<tr><td>0,50</td><td><button onclick="sumarUnidadCierre(5);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(5);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesCincuentaCentimosCierre">0</td></tr>
+													<tr><td>1,00</td><td><button onclick="sumarUnidadCierre(6);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(6);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesUnEuroCierre">0</td></tr>
+													<tr><td>2,00</td><td><button onclick="sumarUnidadCierre(7);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(7);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesDosEurosCierre">0</td></tr>
+													<tr><td>5,00</td><td><button onclick="sumarUnidadCierre(8);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(8);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesCincoEurosCierre">0</td></tr>
+													<tr><td>10,00</td><td><button onclick="sumarUnidadCierre(9);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(9);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesDiezEurosCierre">0</td></tr>
+													<tr><td>20,00</td><td><button onclick="sumarUnidadCierre(10);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(10);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesVeinteEurosCierre">0</td></tr>
+													<tr><td>50,00</td><td><button onclick="sumarUnidadCierre(11);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(11);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesCincuentaEurosCierre">0</td></tr>
+													<tr><td>100,00</td><td><button onclick="sumarUnidadCierre(12);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(12);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesCienEurosCierre">0</td></tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+		
+							</div>
+						</div>
+							<div class="modal-footer">
+								<button onclick="cerrarCaja();" type="button" class="btn btn-primary">CERRAR CAJA</button>
+							</div>
+						</div>
+						<!-- modal-content -->
+					</div>
+					<!-- modal-dialog -->
+				</div>
+		<!-- END MODALS =============================================-->
+		<script src="assets/js/vendor.bundle.js"></script>
+		<script src="assets/js/app.bundle.js"></script>
+		<script src="js/index.js"></script>
+		<script src="js/imprimirPantalla.js"></script>
+		<script src="js/dexie.min.js"></script>
+		<script src="js/insertDemo.js"></script>
+		<script src="js/getters.js"></script>
+		<script src="js/toastr.min.js"></script>
+		<script src="js/ofertas.js"></script>
+		<script src="node_modules/jq-keyboard/jqkeyboard.min.js"></script>
+		<script src="node_modules/jq-keyboard/jqk.layout.en.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	</body>
+</html>
