@@ -19,7 +19,11 @@ function insertarPromociones()
 {
     var promo1 = '[{"idArticulo":122,"unidadesNecesarias":5}]';
     //var promo2 = '[{"idArticulo":122,"unidadesNecesarias":5},{"idArticulo":2,"unidadesNecesarias":1}]';
+<<<<<<< HEAD
     db.promociones.put({id: "promo0", nombre: "Promoción de prueba", precioFinal: 69, articulosNecesarios: promo1}).then(function(){
+=======
+    db.promociones.put({id: 9999, nombre: "Promoción de prueba", precioFinal: 69, articulosNecesarios: promo1}).then(function(){
+>>>>>>> 4c3d2a0010135ffd28563b349ce37a3287be4289
         console.log("Promoción agregada correctamente");
     });
 }
