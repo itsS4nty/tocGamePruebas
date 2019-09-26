@@ -143,34 +143,29 @@ async function buscarOfertas()
 {
         deshacerPromos();
         var listaPromociones    = await db.promociones.toArray();
-        var cestaOriginal       = await db.cesta.toArray();
         var listaArticulos      = await db.articulos.toArray();
         var promocionesValidas  = [];
-        var sigoBuscando        = false;
+        var salida = 0;
         do 
         {
             promocionesValidas  = [];
-            if(sigoBuscando)
-            {
-                cestaOriginal = await db.cesta.toArray();
-            }
-    
+            cestaOriginal = await db.cesta.toArray();
+
             for(let i = 0; i < listaPromociones.length; i++)
             {
                 if(hayPromo(listaPromociones[i].articulosNecesarios, cestaOriginal))
                 {
                     promocionesValidas.push(listaPromociones[i]);
+                    salida++;
                 }
             }
             if(promocionesValidas.length > 0)
             {
                 aplicarPromo(promocionesValidas);
                 notificacion('¡Promoción OK!', 'info');
-                sigoBuscando = true;
+                actualizarCesta().then(function(){
+                    salida--;
+                });
             }
-            else
-            {
-                sigoBuscando = false;
-            }
-        } while(sigoBuscando);
+        } while(salida > 0);
 }

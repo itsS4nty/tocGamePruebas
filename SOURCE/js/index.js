@@ -318,7 +318,9 @@ function addItemCesta(idArticulo, nombreArticulo, precio)
             db.cesta.update(idArticulo, {unidades: uds, subtotal: subt}).then(updated=>{
                 if(updated)
                 {
-                    actualizarCesta();
+                    buscarOfertas().then(function(){
+                        actualizarCesta();
+                    });
                 }
                 else
                 {
@@ -330,7 +332,9 @@ function addItemCesta(idArticulo, nombreArticulo, precio)
         else
         {
             db.cesta.put({idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio, promocion: -1}).then(function(){
-                actualizarCesta();
+                buscarOfertas().then(function(){
+                    actualizarCesta();
+                });
             });
         }
     });
@@ -343,30 +347,20 @@ function vaciarCesta()
     });
 }
 
-function actualizarCesta()
+async function actualizarCesta()
 {
-    buscarOfertas().then(function(){
-        db.cesta.toArray(lista =>{
-            if(lista)
-            {
-                let outHTML     = '';
-                let sumaTotal   = 0.0;
-                for(var key in lista)
-                {
-                    outHTML     += '<tr><td>'+ lista[key].nombreArticulo +'</td> <td>'+ lista[key].unidades +'</td> <td>'+ lista[key].subtotal.toFixed(2) +'</td> </tr>';
-                    sumaTotal   += lista[key].subtotal;
-                }
-        
-                lista = [];
-                imprimirTotalCesta(sumaTotal);
-                listaCesta.innerHTML = outHTML;
-            }
-            else
-            {
-                alert("Error al imprimir la lista");
-            }
-        });
-    });
+    var lista = await db.cesta.toArray();
+    let outHTML     = '';
+    let sumaTotal   = 0.0;
+    for(var key in lista)
+    {
+        outHTML     += '<tr><td>'+ lista[key].nombreArticulo +'</td> <td>'+ lista[key].unidades +'</td> <td>'+ lista[key].subtotal.toFixed(2) +'</td> </tr>';
+        sumaTotal   += lista[key].subtotal;
+    }
+
+    lista = [];
+    imprimirTotalCesta(sumaTotal);
+    listaCesta.innerHTML = outHTML;
 }
 
 function pagarConVisa(idTicket)
