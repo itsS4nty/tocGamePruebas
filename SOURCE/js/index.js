@@ -12,7 +12,6 @@ function startDB()
        trabajadores: 'idTrabajador, nombre',
        fichajes: 'idTrabajador, nombre, inicio, final',
        currentCaja: '++idCaja, cajonApertura, cajonClausura',
-       ofertasUnidades: 'id, precioTotal, precioUnidad, unidadesNecesarias, idArticulo, nombreOferta', //ESTA SE BORRARÁ Y SE DEJARÁ UNA ÚNICA
        promociones: 'id, nombre, precioFinal, articulosNecesarios'
    });
 

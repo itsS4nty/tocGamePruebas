@@ -18,47 +18,65 @@ function insertarTrabajadores()
 function insertarPromociones()
 {
     var articulosNecesarios = [];
-    var promociones = [];
-    articulosNecesarios.push('[{"idArticulo":122,"unidadesNecesarias":5}]');
-    promociones.push([{id: "promo0", nombre: "Oferta 5 fartons", precioFinal: 1, articulosNecesarios: articulosNecesarios[0]}]);
-    promociones.push([{id: "promo1", nombre: "Oferta ", precioFinal: 1, articulosNecesarios: articulosNecesarios[0]}]);
-    articulosNecesarios.push('[{"idArticulo":122,"unidadesNecesarias":5}, {"idArticulo":2,"unidadesNecesarias":1}]');
 
+    articulosNecesarios.push('[{"idArticulo": 122,"unidadesNecesarias":3}]');
+    articulosNecesarios.push('[{"idArticulo":21,"unidadesNecesarias":1}, {"idArticulo":122,"unidadesNecesarias":3}]');
+    articulosNecesarios.push('[{"idArticulo":113,"unidadesNecesarias":1}, {"idArticulo":117,"unidadesNecesarias":1}]');
+  
+    db.promociones.put({id: "promo0", nombre: "Oferta 3 fartons", precioFinal: 0.2666, articulosNecesarios: articulosNecesarios[0]}).then(function(){
+        console.log("Promoción agregada correctamente");
+    });
+    db.promociones.put({id: "promo1", nombre: "Horchata + Fartó", precioFinal: 2.7, articulosNecesarios: articulosNecesarios[1]}).then(function(){
+        console.log("Promoción agregada correctamente");
+    });
 
-
-    db.promociones.put({id: "promo0", nombre: "Promoción de prueba", precioFinal: 1, articulosNecesarios: promo1}).then(function(){
+    db.promociones.put({id: "promo2", nombre: "Oferta Madalena + Mini berlina", precioFinal: 2, articulosNecesarios: articulosNecesarios[2]}).then(function(){
         console.log("Promoción agregada correctamente");
     });
 }
+
 function insertarTeclado0()
 {
     var teclas = [];
-    teclas.push({id: 1, posicion: 1});
-    teclas.push({id: 2, posicion: 2});
-    teclas.push({id: 3, posicion: 7});
-    teclas.push({id: 4, posicion: 11});
-    teclas.push({id: 5, posicion: 12});
-    teclas.push({id: 6, posicion: 13});
-    teclas.push({id: 7, posicion: 14});
-    teclas.push({id: 8, posicion: 15});
-    teclas.push({id: 9, posicion: 16});
-    teclas.push({id: 10, posicion: 19});
-    teclas.push({id: 11, posicion: 23});
-    teclas.push({id: 12, posicion: 25});
-    teclas.push({id: 13, posicion: 26});
-    teclas.push({id: 14, posicion: 27});
-    teclas.push({id: 15, posicion: 28});
-    teclas.push({id: 16, posicion: 29});
-    teclas.push({id: 17, posicion: 30});
-    teclas.push({id: 18, posicion: 31});
-    teclas.push({id: 19, posicion: 32});
-    teclas.push({id: 20, posicion: 33});
+    teclas.push({id: 4881, posicion: 1});
+    teclas.push({id: 5435, posicion: 2});
+    teclas.push({id: 4753, posicion: 3});
+    teclas.push({id: 9675, posicion: 4});
+    teclas.push({id: 14880, posicion: 5});
+    teclas.push({id: 5096, posicion: 6});
+    teclas.push({id: 4880, posicion: 7});
+    teclas.push({id: 15729, posicion: 8});
+    teclas.push({id: 5906, posicion: 9});
+    teclas.push({id: 5871, posicion: 10});
+    teclas.push({id: 7975, posicion: 11});
+    teclas.push({id: 4879, posicion: 13});
+    teclas.push({id: 5427, posicion: 14});
+    teclas.push({id: 7951, posicion: 15});
+    teclas.push({id: 5730, posicion: 16});
+    teclas.push({id: 5835, posicion: 18});
+    teclas.push({id: 4896, posicion: 19});
+    teclas.push({id: 5175, posicion: 20});
+    teclas.push({id: 5728, posicion: 22});
+    teclas.push({id: 4890, posicion: 23});
+    teclas.push({id: 5210, posicion: 24});
+    teclas.push({id: 4883, posicion: 25});
+    teclas.push({id: 15697, posicion: 26});
+    teclas.push({id: 5336, posicion: 27});
+    teclas.push({id: 5727, posicion: 28});
+    teclas.push({id: 7979, posicion: 29});
+    teclas.push({id: 7977, posicion: 30});
+    teclas.push({id: 7046, posicion: 31});
+    teclas.push({id: 6023, posicion: 32});
+    teclas.push({id: 15505, posicion: 33});
+    teclas.push({id: 4950, posicion: 34});
+    teclas.push({id: 5583, posicion: 35});
+    teclas.push({id: 7969, posicion: 36});
 
     db.teclado.put({id: 0, arrayTeclado: teclas}).then(function(){
         console.log("Teclado agregado correctamente");
     });
 }
-
+/*
 function crearTecladoAMano0()
 {
     var datos = [];
@@ -734,10 +752,13 @@ function insertarTeclado8()
         console.log("Teclado agregado correctamente");
     });
 }
+*/
 
 function crearDemoCompleta()
 {
     insertarPromociones();
+    insertarArticulosPaNatural();
+    /*
     crearTecladoAMano0();
     crearTecladoAMano1();
     crearTecladoAMano2();
@@ -747,9 +768,9 @@ function crearDemoCompleta()
     crearTecladoAMano6();
     crearTecladoAMano7();
     crearTecladoAMano8();
-
+*/
     insertarTeclado0();
-    insertarTeclado1();
+   /* insertarTeclado1();
     insertarTeclado2();
     insertarTeclado3();
     insertarTeclado4();
@@ -757,19 +778,5 @@ function crearDemoCompleta()
     insertarTeclado6();
     insertarTeclado7();
     insertarTeclado8();
-}
-
-function crearOfertasUnidades()
-{
-    var datos = [];
-    datos.push({id: 1, precioTotal: null, precioUnidad: 0.266, idArticulo: 122});
-
-
-    db.ofertasUnidades.bulkPut(datos).then(function(lastKey) {
-        
-    }).catch(Dexie.BulkError, function (e) {
-        // Explicitely catching the bulkAdd() operation makes those successful
-        // additions commit despite that there were errors.
-        console.error("Error de crearOfertasUnidades");
-    });
+    */
 }

@@ -57,6 +57,7 @@ function hayPromo(articulosNecesariosEncoded, cesta)
 {
     //HAY QUE DECODIFICAR EL JSON, Y COMPROBAR SI COINCIDEN TODOS.
     var articulosNecesarios = JSON.parse(articulosNecesariosEncoded);
+    console.log(articulosNecesarios);
     var encuentra = false;
     for(let i = 0; i < articulosNecesarios.length; i++)
     {
