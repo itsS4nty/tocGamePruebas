@@ -17,9 +17,16 @@ function insertarTrabajadores()
 
 function insertarPromociones()
 {
-    var promo1 = '[{"idArticulo":122,"unidadesNecesarias":5}]';
-    //var promo2 = '[{"idArticulo":122,"unidadesNecesarias":5},{"idArticulo":2,"unidadesNecesarias":1}]';
-    db.promociones.put({id: 9999, nombre: "Promoción de prueba", precioFinal: 69, articulosNecesarios: promo1}).then(function(){
+    var articulosNecesarios = [];
+    var promociones = [];
+    articulosNecesarios.push('[{"idArticulo":122,"unidadesNecesarias":5}]');
+    promociones.push([{id: "promo0", nombre: "Oferta 5 fartons", precioFinal: 1, articulosNecesarios: articulosNecesarios[0]}]);
+    promociones.push([{id: "promo1", nombre: "Oferta ", precioFinal: 1, articulosNecesarios: articulosNecesarios[0]}]);
+    articulosNecesarios.push('[{"idArticulo":122,"unidadesNecesarias":5}, {"idArticulo":2,"unidadesNecesarias":1}]');
+
+
+
+    db.promociones.put({id: "promo0", nombre: "Promoción de prueba", precioFinal: 1, articulosNecesarios: promo1}).then(function(){
         console.log("Promoción agregada correctamente");
     });
 }

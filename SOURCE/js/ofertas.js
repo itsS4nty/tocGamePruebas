@@ -50,6 +50,7 @@ async function deshacerPromos()
             }
         }
     }
+    actualizarCesta();
 }
 
 function hayPromo(articulosNecesariosEncoded, cesta)
@@ -141,31 +142,35 @@ async function aplicarPromo(promocionesValidas)
 
 async function buscarOfertas()
 {
-        deshacerPromos();
         var listaPromociones    = await db.promociones.toArray();
         var listaArticulos      = await db.articulos.toArray();
         var promocionesValidas  = [];
         var salida = 0;
-        do 
-        {
-            promocionesValidas  = [];
-            cestaOriginal = await db.cesta.toArray();
 
-            for(let i = 0; i < listaPromociones.length; i++)
+        deshacerPromos().then(function(){
+            do
             {
-                if(hayPromo(listaPromociones[i].articulosNecesarios, cestaOriginal))
-                {
-                    promocionesValidas.push(listaPromociones[i]);
-                    salida++;
-                }
-            }
-            if(promocionesValidas.length > 0)
-            {
-                aplicarPromo(promocionesValidas);
-                notificacion('¡Promoción OK!', 'info');
-                actualizarCesta().then(function(){
-                    salida--;
+                db.cesta.toArray().then(cestaOriginal=>{
+                    promocionesValidas  = [];
+
+                    for(let i = 0; i < listaPromociones.length; i++)
+                    {
+                        if(hayPromo(listaPromociones[i].articulosNecesarios, cestaOriginal))
+                        {
+                            promocionesValidas.push(listaPromociones[i]);
+                            salida++;
+                        }
+                    }
+                    if(promocionesValidas.length > 0)
+                    {
+                        aplicarPromo(promocionesValidas).then(function(){
+                            notificacion('¡Promoción OK!', 'info');
+                            actualizarCesta().then(function(){
+                                salida--;
+                            });
+                        });
+                    }
                 });
-            }
-        } while(salida > 0);
+            } while(salida > 0);
+        });
 }
