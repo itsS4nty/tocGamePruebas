@@ -18,12 +18,12 @@ var imprimirPrueba = function(numFactura, arrayCompra, total, visa)
 	  printer
 	  .encode('EUC-KR')
 	  .size(2, 2)
-	  .text('365')
+	  .text('PA NATURAL')
 	  .size(1, 1)
-	  .text('PLAZA CATALUNYA, 6')
-	  .text('BARCELONA - 08208')
-	  .text('NIF: B61957189')
-	  .text('Tel. 647 798 051')
+	  .text('C Antoni Forrellat 116, 6')
+	  .text('Sabadell - 08207')
+
+	  .text('Tel. 937175121')
 	  .text('Data: ' + fecha.getDate() + '-' + fecha.getMonth() + '-' + fecha.getFullYear() + ' ' + fecha.getHours() + ':' + fecha.getMinutes())
 	  .text('Factura simplificada N: ' + numFactura)
 	  .control('LF')
@@ -38,9 +38,7 @@ var imprimirPrueba = function(numFactura, arrayCompra, total, visa)
 	  .text('TOTAL: '  + total + ' euros')
 	  .size(1, 1)
 	  .text('IVA 10% : '+ (total/1.1).toFixed(2) + ' euros')
-	  .text('          GRACIAS POR SU VISITA')
-	  .text('          WIFI: 365cafe')
-	  .text('          PSW: 365sabadell')
+	  .text('          GRACIES PER LA SEVA VISITA')
 	  .control('LF')
 	  .control('LF')
 	  .control('LF')
@@ -51,10 +49,10 @@ var imprimirPrueba = function(numFactura, arrayCompra, total, visa)
  
 // Select the adapter based on your printer type
 
-	/*
+	
 	var device = new escpos.USB('0x4B8', '0x202'); //ESTE ES EL BUENO
 	var options = { encoding: "GB18030" }
 	var printer = new escpos.Printer(device, options); 
-	*/
+	
 
 module.exports = imprimirPrueba;
