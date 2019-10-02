@@ -12,7 +12,9 @@ function startDB()
        trabajadores: 'idTrabajador, nombre',
        fichajes: 'idTrabajador, nombre, inicio, final',
        currentCaja: '++idCaja, cajonApertura, cajonClausura',
-       promociones: 'id, nombre, precioFinal, articulosNecesarios'
+       promociones: 'id, nombre, precioFinal, articulosNecesarios',
+       menus: 'id, nombre, color',
+       submenus: 'id, idPadre, nombre, idTeclado, color'
    });
 
    crearDemoCompleta();
@@ -456,8 +458,9 @@ function addMenus()
     });
 }
 
-window.onload = startDB;
-var conexion = null;
-var db = null;
-var aux = null;
-var puto = null;
+window.onload   = startDB;
+var conexion    = null;
+var db          = null;
+var aux         = null;
+var puto        = null;
+var inicio      = 0;

@@ -64,7 +64,7 @@ function imprimirTeclado(id)
                         strFun = `addItemCesta(${infoTeclado[id].arrayTeclado[i].id}, '${aux.nombre}', ${aux.precio});`;
                         document.getElementById(strPos).innerHTML = aux.nombre;
                         document.getElementById(strPos).setAttribute('onclick', strFun);
-                        document.getElementById(strPos).setAttribute('style', 'visibility: visible;');
+                        document.getElementById(strPos).setAttribute('style', 'visibility: visible;font-family: \'Anton\', sans-serif; font-size: 30px; letter-spacing:3px; line-height:15px;');
                     }
                     console.log("Teclado actualizado");
                 }

@@ -596,3 +596,11 @@ function crearDemoCompleta()
     insertarTeclado8();
     */
 }
+
+function crearDemoTeclado()
+{
+    db.menus.put({id: 0, nombre: "Menu Primero", color: "FFFFF"});
+    db.submenus.put({id: 0, idPadre: 0, nombre: "Submenú Primero", idTeclado: 0, color: "FFFFF"});
+    db.submenus.put({id: 1, idPadre: 0, nombre: "Submenú Segundo", idTeclado: 1, color: "FFFFF"});
+    db.submenus.put({id: 2, idPadre: 0, nombre: "Submenú Tercero", idTeclado: 2, color: "FFFFF"});
+}
