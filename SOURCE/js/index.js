@@ -463,4 +463,5 @@ var conexion    = null;
 var db          = null;
 var aux         = null;
 var puto        = null;
-var inicio      = 1;
+var inicio      = 0;
+var currentMenu = 0;

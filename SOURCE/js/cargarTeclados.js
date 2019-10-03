@@ -7,13 +7,15 @@ function clickSubmenu(id)
 
 function clickMenu(id)
 {
+    currentMenu = id;
     db.submenus.where("idPadre").equals(id).toArray().then(listaSubmenus=>{
         //inicio = 0;
         if(listaSubmenus.length > 0)
         {
-            imprimirSubmenus(listaSubmenus);
-            console.log(`IMPRIMO LISTA SUBMENUS`);
-            clickSubmenu(listaSubmenus[0].id); //Carga el submenu de la primera posición de la lista.
+            imprimirSubmenus(listaSubmenus).then(function(){
+                console.log(`IMPRIMO LISTA SUBMENUS`);
+                clickSubmenu(listaSubmenus[0].id); //Carga el submenu de la primera posición de la lista.
+            });
         }
         else
         {
@@ -26,22 +28,28 @@ function clickIzquierda()
     if(inicio > 0)
     {
         inicio--;
-        clickMenu(0);
+        imprimirSubmenus();
     }
 }
-function clickDerecha()
+function clickDerecha(numeroSubmenus)
 {
-    if(0 == 1)
+    if(inicio+4 < numeroSubmenus)
     {
-
+        inicio++;
+        imprimirSubmenus();
     }
 }
-function imprimirSubmenus(listaSubmenus)
+async function imprimirSubmenus(listaSubmenus = null)
 {
-    var numeroSubmenus      = listaSubmenus.length;
     var buttonSize          = null;
     var strAux              = '';
     
+    if(listaSubmenus == null)
+    {
+        listaSubmenus = await db.submenus.where("idPadre").equals(currentMenu).toArray();
+    }
+    var numeroSubmenus      = listaSubmenus.length;
+
     if(numeroSubmenus > 4)
     {
         /* SE MUESTRAN LAS FLECHAS Y SE IMPRIME DESDE EL var = INICIO */
@@ -62,7 +70,7 @@ function imprimirSubmenus(listaSubmenus)
                             </div>`;
                 if(i == inicio+3)
                 {
-                    strAux += '<div class="col-md-2" onclick="clickDerecha();"><span class="pull-left"><img src="imagenes/flecha_derecha.png"></span></div>';
+                    strAux += `<div class="col-md-2" onclick="clickDerecha(${numeroSubmenus});"><span class="pull-left"><img src="imagenes/flecha_derecha.png"></span></div>`;
                 }
             }
 
@@ -73,7 +81,7 @@ function imprimirSubmenus(listaSubmenus)
             {
                 if(i == numeroSubmenus-4)
                 {
-                    strAux = '<div class="col-md-2"><span class="pull-right"><img src="imagenes/flecha_izquierda.png"></span></div>';
+                    strAux = '<div class="col-md-2" onclick="clickIzquierda();"><span class="pull-right"><img src="imagenes/flecha_izquierda.png"></span></div>';
                 }
                 strAux += `<div class="col-md-2">
                                 <button class="btn btn-danger btn-lg btn-block" style="font-family: 'Anton', sans-serif; font-size: 20px; font-style: normal;">
@@ -83,7 +91,7 @@ function imprimirSubmenus(listaSubmenus)
                             </div>`;
                 if(i == numeroSubmenus-1)
                 {
-                    strAux += '<div class="col-md-2"><span class="pull-left"><img src="imagenes/flecha_derecha.png"></span></div>';
+                    strAux += `<div class="col-md-2" onclick="clickDerecha(${numeroSubmenus});"><span class="pull-left"><img src="imagenes/flecha_derecha.png"></span></div>`;
                 }
             }
         }
