@@ -603,4 +603,7 @@ function crearDemoTeclado()
     db.submenus.put({id: 0, idPadre: 0, nombre: "Submenú Primero", idTeclado: 0, color: "FFFFF"});
     db.submenus.put({id: 1, idPadre: 0, nombre: "Submenú Segundo", idTeclado: 1, color: "FFFFF"});
     db.submenus.put({id: 2, idPadre: 0, nombre: "Submenú Tercero", idTeclado: 2, color: "FFFFF"});
+    db.submenus.put({id: 3, idPadre: 0, nombre: "Submenú Cuarto", idTeclado: 2, color: "FFFFF"});
+    db.submenus.put({id: 4, idPadre: 0, nombre: "Submenú Quinto", idTeclado: 2, color: "FFFFF"});
+    db.submenus.put({id: 5, idPadre: 0, nombre: "Submenú Sexto", idTeclado: 2, color: "FFFFF"});
 }
