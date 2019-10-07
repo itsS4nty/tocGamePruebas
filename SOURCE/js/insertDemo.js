@@ -35,47 +35,7 @@ function insertarPromociones()
     });
 }
 
-function insertarTeclado0()
-{
-    var teclas = [];
-    teclas.push({id: 4881, posicion: 1});
-    teclas.push({id: 5435, posicion: 2});
-    teclas.push({id: 4753, posicion: 3});
-    teclas.push({id: 9675, posicion: 4});
-    teclas.push({id: 14880, posicion: 5});
-    teclas.push({id: 5096, posicion: 6});
-    teclas.push({id: 4880, posicion: 7});
-    teclas.push({id: 15729, posicion: 8});
-    teclas.push({id: 5906, posicion: 9});
-    teclas.push({id: 5871, posicion: 10});
-    teclas.push({id: 7975, posicion: 11});
-    teclas.push({id: 4879, posicion: 13});
-    teclas.push({id: 5427, posicion: 14});
-    teclas.push({id: 7951, posicion: 15});
-    teclas.push({id: 5730, posicion: 16});
-    teclas.push({id: 5835, posicion: 18});
-    teclas.push({id: 4896, posicion: 19});
-    teclas.push({id: 5175, posicion: 20});
-    teclas.push({id: 5728, posicion: 22});
-    teclas.push({id: 4890, posicion: 23});
-    teclas.push({id: 5210, posicion: 24});
-    teclas.push({id: 4883, posicion: 25});
-    teclas.push({id: 15697, posicion: 26});
-    teclas.push({id: 5336, posicion: 27});
-    teclas.push({id: 5727, posicion: 28});
-    teclas.push({id: 7979, posicion: 29});
-    teclas.push({id: 7977, posicion: 30});
-    teclas.push({id: 7046, posicion: 31});
-    teclas.push({id: 6023, posicion: 32});
-    teclas.push({id: 15505, posicion: 33});
-    teclas.push({id: 4950, posicion: 34});
-    teclas.push({id: 5583, posicion: 35});
-    teclas.push({id: 7969, posicion: 36});
 
-    db.teclado.put({id: 0, arrayTeclado: teclas}).then(function(){
-        console.log("Teclado agregado correctamente");
-    });
-}
 function insertarTeclado0()
 {
     var teclas = [];
@@ -559,6 +519,464 @@ function insertarTeclado12()
         console.log("Teclado agregado correctamente");
     });
 }
+function insertarTeclado13()
+{
+    var teclas = [];
+
+    teclas.push({id: 282, posicion: 1});
+    teclas.push({id: 418, posicion: 2});
+    teclas.push({id: 6195, posicion: 3});
+    teclas.push({id: 6482, posicion: 4});
+    teclas.push({id: 10164, posicion: 5});
+    teclas.push({id: 453, posicion: 6});
+    teclas.push({id: 285, posicion: 7});
+    teclas.push({id: 421, posicion: 8});
+    teclas.push({id: 13235, posicion: 9});
+    teclas.push({id: 1307, posicion: 10});
+    teclas.push({id: 9226, posicion: 11});
+    teclas.push({id: 457, posicion: 12});
+    teclas.push({id: 281, posicion: 13});
+    teclas.push({id: 404, posicion: 14});
+    teclas.push({id: 1300, posicion: 16});
+    teclas.push({id: 401, posicion: 19});
+    teclas.push({id: 412, posicion: 31});
+
+    db.teclado.put({id: 13, arrayTeclado: teclas}).then(function(){
+        console.log("Teclado agregado correctamente");
+    });
+}
+
+function insertarTeclado14()
+{
+    var teclas = [];
+
+    teclas.push({id: 112, posicion: 1});
+    teclas.push({id: 100, posicion: 2});
+    teclas.push({id: 110, posicion: 7});
+    teclas.push({id: 101, posicion: 8});
+    teclas.push({id: 102, posicion: 14});
+
+    db.teclado.put({id: 14, arrayTeclado: teclas}).then(function(){
+        console.log("Teclado agregado correctamente");
+    });
+}
+
+function insertarTeclado15()
+{
+    var teclas = [];
+    teclas.push({id: 8485, posicion: 1});
+    teclas.push({id: 8484, posicion: 2});
+    teclas.push({id: 8500, posicion: 3});
+    teclas.push({id: 8517, posicion: 4});
+    teclas.push({id: 8515, posicion: 5});
+    teclas.push({id: 6145, posicion: 6});
+    teclas.push({id: 8490, posicion: 7});
+    teclas.push({id: 8473, posicion: 8});
+    teclas.push({id: 6277, posicion: 9});
+    teclas.push({id: 8525, posicion: 10});
+    teclas.push({id: 8538, posicion: 11});
+    teclas.push({id: 1420, posicion: 12});
+    teclas.push({id: 8501, posicion: 13});
+    teclas.push({id: 8496, posicion: 15});
+    teclas.push({id: 2014, posicion: 16});
+    teclas.push({id: 8514, posicion: 17});
+    teclas.push({id: 5761, posicion: 18});
+    teclas.push({id: 8486, posicion: 19});
+    teclas.push({id: 8525, posicion: 20});
+    teclas.push({id: 8487, posicion: 21});
+    teclas.push({id: 8513, posicion: 23});
+    teclas.push({id: 5945, posicion: 24});
+    teclas.push({id: 8475, posicion: 26});
+    teclas.push({id: 8522, posicion: 29});
+    teclas.push({id: 8492, posicion: 31});
+    teclas.push({id: 8471, posicion: 33});
+    teclas.push({id: 8523, posicion: 35});
+
+
+    db.teclado.put({id: 15, arrayTeclado: teclas}).then(function(){
+        console.log("Teclado agregado correctamente");
+    });
+}
+
+function insertarTeclado16()
+{
+    var teclas = [];
+    teclas.push({id: 5545, posicion: 1});
+    teclas.push({id: 3820, posicion: 2});
+    teclas.push({id: 3350, posicion: 3});
+    teclas.push({id: 1314, posicion: 4});
+    teclas.push({id: 5807, posicion: 6});
+    teclas.push({id: 13078, posicion: 7});
+    teclas.push({id: 10946, posicion: 8});
+    teclas.push({id: 5194, posicion: 9});
+    teclas.push({id: 6126, posicion: 10});
+    teclas.push({id: 6329, posicion: 11});
+    teclas.push({id: 3320, posicion: 12});
+    teclas.push({id: 3330, posicion: 13});
+    teclas.push({id: 3423, posicion: 14});
+    teclas.push({id: 6822, posicion: 15});
+    teclas.push({id: 3421, posicion: 17});
+    teclas.push({id: 3907, posicion: 18});
+    teclas.push({id: 14905, posicion: 19});
+    teclas.push({id: 3861, posicion: 20});
+    teclas.push({id: 7143, posicion: 21});
+    teclas.push({id: 5677, posicion: 22});
+    teclas.push({id: 6915, posicion: 23});
+    teclas.push({id: 7440, posicion: 24});
+    teclas.push({id: 11595, posicion: 25});
+    teclas.push({id: 9036, posicion: 26});
+    teclas.push({id: 5677, posicion: 27});
+    teclas.push({id: 6491, posicion: 28});
+    teclas.push({id: 8713, posicion: 29});
+    teclas.push({id: 4769, posicion: 30});
+    teclas.push({id: 8174, posicion: 31});
+    teclas.push({id: 3861, posicion: 33});
+    teclas.push({id: 7143, posicion: 34});
+    teclas.push({id: 5025, posicion: 36});
+
+
+    db.teclado.put({id: 16, arrayTeclado: teclas}).then(function(){
+        console.log("Teclado agregado correctamente");
+    });
+}
+
+function insertarTeclado17()
+{
+    var teclas = [];
+
+    teclas.push({id: 3624, posicion: 1});
+    teclas.push({id: 7232, posicion: 2});
+    teclas.push({id: 3658, posicion: 3});
+    teclas.push({id: 3636, posicion: 4});
+    teclas.push({id: 10084, posicion: 5});
+    teclas.push({id: 8055, posicion: 8});
+    teclas.push({id: 5297, posicion: 9});
+    teclas.push({id: 3637, posicion: 10});
+    teclas.push({id: 10083, posicion: 11});
+    teclas.push({id: 3621, posicion: 13});
+    teclas.push({id: 3651, posicion: 14});
+    teclas.push({id: 9190, posicion: 15});
+    teclas.push({id: 9189, posicion: 16});
+    teclas.push({id: 3620, posicion: 17});
+    teclas.push({id: 10091, posicion: 18});
+    teclas.push({id: 3625, posicion: 19});
+    teclas.push({id: 3666, posicion: 21});
+    teclas.push({id: 10080, posicion: 22});
+    teclas.push({id: 10079, posicion: 23});
+    teclas.push({id: 5413, posicion: 25});
+    teclas.push({id: 3650, posicion: 26});
+    teclas.push({id: 5845, posicion: 27});
+    teclas.push({id: 10085, posicion: 28});
+    teclas.push({id: 10086, posicion: 29});
+    teclas.push({id: 13188, posicion: 31});
+    teclas.push({id: 13190, posicion: 32});
+    teclas.push({id: 13194, posicion: 33});
+    teclas.push({id: 13189, posicion: 34});
+    teclas.push({id: 9190, posicion: 35});
+    teclas.push({id: 10092, posicion: 36});
+
+    db.teclado.put({id: 17, arrayTeclado: teclas}).then(function(){
+        console.log("Teclado agregado correctamente");
+    });
+}
+
+function insertarTeclado18()
+{
+    var teclas = [];
+    teclas.push({id: 9852, posicion: 1});
+    teclas.push({id: 5743, posicion: 2});
+    teclas.push({id: 9801, posicion: 3});
+    teclas.push({id: 10946, posicion: 4});
+    teclas.push({id: 8825, posicion: 5});
+    teclas.push({id: 3520, posicion: 13});
+    teclas.push({id: 3523, posicion: 14});
+    teclas.push({id: 3500, posicion: 15});
+    teclas.push({id: 3501, posicion: 16});
+    teclas.push({id: 3511, posicion: 17});
+    teclas.push({id: 3513, posicion: 25});
+    teclas.push({id: 9875, posicion: 26});
+    teclas.push({id: 8514, posicion: 31});
+    teclas.push({id: 8522, posicion: 33});
+    teclas.push({id: 1681, posicion: 34});
+    teclas.push({id: 2014, posicion: 35});
+
+
+    db.teclado.put({id: 18, arrayTeclado: teclas}).then(function(){
+        console.log("Teclado agregado correctamente");
+    });
+}
+
+function insertarTeclado19()
+{
+    var teclas = [];
+    teclas.push({id: 15549, posicion: 1});
+    teclas.push({id: 15548, posicion: 2});
+    teclas.push({id: 15526, posicion: 3});
+    teclas.push({id: 15554, posicion: 4});
+    teclas.push({id: 15539, posicion: 5});
+    teclas.push({id: 15546, posicion: 7});
+    teclas.push({id: 15547, posicion: 8});
+    teclas.push({id: 15557, posicion: 10});
+    teclas.push({id: 15536, posicion: 11});
+    teclas.push({id: 15551, posicion: 13});
+    teclas.push({id: 15550, posicion: 14});
+    teclas.push({id: 15556, posicion: 16});
+    teclas.push({id: 15527, posicion: 17});
+    teclas.push({id: 15534, posicion: 18});
+    teclas.push({id: 15545, posicion: 19});
+    teclas.push({id: 15544, posicion: 20});
+    teclas.push({id: 15555, posicion: 21});
+    teclas.push({id: 15524, posicion: 22});
+    teclas.push({id: 15537, posicion: 23});
+    teclas.push({id: 15538, posicion: 24});
+    teclas.push({id: 15542, posicion: 25});
+    teclas.push({id: 15540, posicion: 26});
+    teclas.push({id: 15553, posicion: 27});
+    teclas.push({id: 15525, posicion: 28});
+    teclas.push({id: 15529, posicion: 29});
+    teclas.push({id: 15532, posicion: 30});
+    teclas.push({id: 15543, posicion: 31});
+    teclas.push({id: 15541, posicion: 32});
+    teclas.push({id: 15552, posicion: 33});
+    teclas.push({id: 15530, posicion: 34});
+    teclas.push({id: 15535, posicion: 35});
+    teclas.push({id: 15533, posicion: 36});
+
+
+    db.teclado.put({id: 19, arrayTeclado: teclas}).then(function(){
+        console.log("Teclado agregado correctamente");
+    });
+}
+
+function insertarTeclado20()
+{
+    var teclas = [];
+    teclas.push({id: 3002, posicion: 1});
+    teclas.push({id: 3005, posicion: 2});
+    teclas.push({id: 11069, posicion: 3});
+    teclas.push({id: 11061, posicion: 6});
+    teclas.push({id: 3000, posicion: 7});
+    teclas.push({id: 3003, posicion: 8});
+    teclas.push({id: 4993, posicion: 9});
+    teclas.push({id: 11059, posicion: 10});
+    teclas.push({id: 11075, posicion: 11});
+    teclas.push({id: 11032, posicion: 12});
+    teclas.push({id: 3001, posicion: 13});
+    teclas.push({id: 3004, posicion: 14});
+    teclas.push({id: 4992, posicion: 15});
+    teclas.push({id: 11060, posicion: 16});
+    teclas.push({id: 11062, posicion: 18});
+    teclas.push({id: 7095, posicion: 19});
+    teclas.push({id: 11067, posicion: 21});
+    teclas.push({id: 6412, posicion: 23});
+    teclas.push({id: 11063, posicion: 24});
+    teclas.push({id: 11071, posicion: 25});
+    teclas.push({id: 1275, posicion: 26});
+    teclas.push({id: 1276, posicion: 27});
+    teclas.push({id: 11072, posicion: 28});
+    teclas.push({id: 6822, posicion: 29});
+    teclas.push({id: 11082, posicion: 31});
+    teclas.push({id: 9877, posicion: 34});
+    teclas.push({id: 7861, posicion: 35});
+
+
+    db.teclado.put({id: 20, arrayTeclado: teclas}).then(function(){
+        console.log("Teclado agregado correctamente");
+    });
+}
+
+function insertarTeclado21()
+{
+    var teclas = [];
+    teclas.push({id: 1042, posicion: 1});
+    teclas.push({id: 1015, posicion: 2});
+    teclas.push({id: 1049, posicion: 7});
+    teclas.push({id: 1012, posicion: 8});
+    teclas.push({id: 8961, posicion: 13});
+    teclas.push({id: 1016, posicion: 14});
+    teclas.push({id: 7438, posicion: 19});
+    teclas.push({id: 9695, posicion: 20});
+    teclas.push({id: 5864, posicion: 25});
+    teclas.push({id: 6277, posicion: 26});
+    teclas.push({id: 5134, posicion: 31});
+    teclas.push({id: 8763, posicion: 32});
+
+
+    db.teclado.put({id: 21, arrayTeclado: teclas}).then(function(){
+        console.log("Teclado agregado correctamente");
+    });
+}
+
+function insertarTeclado22()
+{
+    var teclas = [];
+    teclas.push({id: 10084, posicion: 1});
+    teclas.push({id: 10079, posicion: 2});
+    teclas.push({id: 10086, posicion: 3});
+    teclas.push({id: 3625, posicion: 4});
+    teclas.push({id: 9189, posicion: 5});
+    teclas.push({id: 3650, posicion: 6});
+    teclas.push({id: 10083, posicion: 7});
+    teclas.push({id: 10080, posicion: 8});
+    teclas.push({id: 10085, posicion: 9});
+    teclas.push({id: 5413, posicion: 10});
+    teclas.push({id: 8055, posicion: 11});
+    teclas.push({id: 3651, posicion: 12});
+    teclas.push({id: 3620, posicion: 13});
+    teclas.push({id: 5845, posicion: 15});
+    teclas.push({id: 5297, posicion: 17});
+    teclas.push({id: 13190, posicion: 18});
+    teclas.push({id: 13189, posicion: 24});
+    teclas.push({id: 14907, posicion: 25});
+    teclas.push({id: 14906, posicion: 26});
+    teclas.push({id: 3637, posicion: 27});
+    teclas.push({id: 3658, posicion: 28});
+    teclas.push({id: 7232, posicion: 29});
+    teclas.push({id: 13194, posicion: 30});
+    teclas.push({id: 3624, posicion: 31});
+    teclas.push({id: 10091, posicion: 32});
+    teclas.push({id: 3636, posicion: 33});
+    teclas.push({id: 3666, posicion: 34});
+    teclas.push({id: 3655, posicion: 35});
+    teclas.push({id: 8242, posicion: 36});
+
+
+    db.teclado.put({id: 22, arrayTeclado: teclas}).then(function(){
+        console.log("Teclado agregado correctamente");
+    });
+}
+function insertarTeclado23()
+{
+    var teclas = [];
+    teclas.push({id: 3666, posicion: 1});
+    teclas.push({id: 5297, posicion: 2});
+    teclas.push({id: 13193, posicion: 3});
+    teclas.push({id: 10083, posicion: 4});
+    teclas.push({id: 10079, posicion: 5});
+    teclas.push({id: 13188, posicion: 6});
+    teclas.push({id: 3658, posicion: 7});
+    teclas.push({id: 8055, posicion: 8});
+    teclas.push({id: 10092, posicion: 9});
+    teclas.push({id: 10084, posicion: 10});
+    teclas.push({id: 10080, posicion: 11});
+    teclas.push({id: 13192, posicion: 12});
+    teclas.push({id: 9190, posicion: 13});
+    teclas.push({id: 9189, posicion: 14});
+    teclas.push({id: 9217, posicion: 15});
+    teclas.push({id: 10085, posicion: 16});
+    teclas.push({id: 13194, posicion: 18});
+    teclas.push({id: 3655, posicion: 19});
+    teclas.push({id: 7232, posicion: 20});
+    teclas.push({id: 10086, posicion: 22});
+    teclas.push({id: 10091, posicion: 23});
+    teclas.push({id: 13190, posicion: 24});
+    teclas.push({id: 3650, posicion: 25});
+    teclas.push({id: 3636, posicion: 26});
+    teclas.push({id: 5413, posicion: 27});
+    teclas.push({id: 11461, posicion: 29});
+    teclas.push({id: 13189, posicion: 30});
+    teclas.push({id: 3651, posicion: 31});
+    teclas.push({id: 3637, posicion: 32});
+    teclas.push({id: 3625, posicion: 33});
+    teclas.push({id: 10094, posicion: 35});
+    teclas.push({id: 6087, posicion: 36});
+
+
+    db.teclado.put({id: 23, arrayTeclado: teclas}).then(function(){
+        console.log("Teclado agregado correctamente");
+    });
+}
+function insertarTeclado24()
+{
+    var teclas = [];
+    teclas.push({id: 1005, posicion: 1});
+    teclas.push({id: 1003, posicion: 2});
+    teclas.push({id: 3913, posicion: 3});
+    teclas.push({id: 3910, posicion: 4});
+    teclas.push({id: 4893, posicion: 5});
+    teclas.push({id: 3912, posicion: 6});
+    teclas.push({id: 1060, posicion: 7});
+    teclas.push({id: 7442, posicion: 8});
+    teclas.push({id: 3914, posicion: 9});
+    teclas.push({id: 9328, posicion: 11});
+    teclas.push({id: 3922, posicion: 12});
+    teclas.push({id: 7441, posicion: 13});
+    teclas.push({id: 3924, posicion: 14});
+    teclas.push({id: 9346, posicion: 15});
+    teclas.push({id: 11766, posicion: 16});
+    teclas.push({id: 11765, posicion: 17});
+    teclas.push({id: 3926, posicion: 18});
+    teclas.push({id: 9329, posicion: 19});
+    teclas.push({id: 5807, posicion: 20});
+    teclas.push({id: 5153, posicion: 21});
+    teclas.push({id: 3907, posicion: 22});
+    teclas.push({id: 3925, posicion: 25});
+    teclas.push({id: 9075, posicion: 26});
+    teclas.push({id: 3927, posicion: 27});
+    teclas.push({id: 9976, posicion: 28});
+    teclas.push({id: 11764, posicion: 29});
+    teclas.push({id: 3928, posicion: 31});
+    teclas.push({id: 12982, posicion: 32});
+    teclas.push({id: 7431, posicion: 33});
+    teclas.push({id: 7974, posicion: 34});
+    teclas.push({id: 1018, posicion: 35});
+    teclas.push({id: 10325, posicion: 36});
+
+
+    db.teclado.put({id: 24, arrayTeclado: teclas}).then(function(){
+        console.log("Teclado agregado correctamente");
+    });
+}
+function insertarTeclado25()
+{
+    var teclas = [];
+    teclas.push({id: 1005, posicion: 1});
+    teclas.push({id: 1060, posicion: 2});
+    teclas.push({id: 1003, posicion: 3});
+    teclas.push({id: 3910, posicion: 4});
+    teclas.push({id: 4893, posicion: 5});
+    teclas.push({id: 7441, posicion: 7});
+    teclas.push({id: 9329, posicion: 8});
+    teclas.push({id: 7442, posicion: 9});
+    teclas.push({id: 9310, posicion: 10});
+    teclas.push({id: 9328, posicion: 11});
+    teclas.push({id: 10325, posicion: 12});
+    teclas.push({id: 3928, posicion: 13});
+    teclas.push({id: 3925, posicion: 14});
+    teclas.push({id: 3924, posicion: 15});
+    teclas.push({id: 11766, posicion: 16});
+    teclas.push({id: 11765, posicion: 17});
+    teclas.push({id: 11764, posicion: 18});
+    teclas.push({id: 3914, posicion: 20});
+    teclas.push({id: 3927, posicion: 21});
+    teclas.push({id: 1018, posicion: 22});
+    teclas.push({id: 3912, posicion: 23});
+    teclas.push({id: 3913, posicion: 26});
+    teclas.push({id: 5153, posicion: 27});
+    teclas.push({id: 3922, posicion: 29});
+    teclas.push({id: 9346, posicion: 32});
+    teclas.push({id: 7431, posicion: 33});
+    teclas.push({id: 3926, posicion: 35});
+
+
+    db.teclado.put({id: 25, arrayTeclado: teclas}).then(function(){
+        console.log("Teclado agregado correctamente");
+    });
+}
+function insertarTeclado26()
+{
+    var teclas = [];
+    teclas.push({id: 11723, posicion: 1});
+    teclas.push({id: 11722, posicion: 2});
+    teclas.push({id: 11724, posicion: 7});
+    teclas.push({id: 11725, posicion: 13});
+    teclas.push({id: 11999, posicion: 15});
+
+
+    db.teclado.put({id: 26, arrayTeclado: teclas}).then(function(){
+        console.log("Teclado agregado correctamente");
+    });
+}
 function crearDemoCompleta()
 {
     insertarPromociones();
@@ -586,6 +1004,23 @@ function crearDemoCompleta()
     insertarTeclado9();
     insertarTeclado10();
     insertarTeclado11();
+    insertarTeclado12();
+    insertarTeclado13();
+    insertarTeclado14();
+    insertarTeclado15();
+    insertarTeclado16();
+    insertarTeclado17();
+    insertarTeclado18();
+    insertarTeclado19();
+    insertarTeclado20();
+    insertarTeclado21();
+    insertarTeclado22();
+    insertarTeclado23();
+    insertarTeclado24();
+    insertarTeclado25();
+    insertarTeclado26();
+
+    crearDemoTeclado();
    /* insertarTeclado1();
     insertarTeclado2();
     insertarTeclado3();
@@ -600,10 +1035,31 @@ function crearDemoCompleta()
 function crearDemoTeclado()
 {
     db.menus.put({id: 0, nombre: "Menu Primero", color: "FFFFF"});
-    db.submenus.put({id: 0, idPadre: 0, nombre: "Submenú Primero", idTeclado: 0, color: "FFFFF"});
-    db.submenus.put({id: 1, idPadre: 0, nombre: "Submenú Segundo", idTeclado: 1, color: "FFFFF"});
-    db.submenus.put({id: 2, idPadre: 0, nombre: "Submenú Tercero", idTeclado: 2, color: "FFFFF"});
-    db.submenus.put({id: 3, idPadre: 0, nombre: "Submenú Cuarto", idTeclado: 2, color: "FFFFF"});
-    db.submenus.put({id: 4, idPadre: 0, nombre: "Submenú Quinto", idTeclado: 2, color: "FFFFF"});
-    db.submenus.put({id: 5, idPadre: 0, nombre: "Submenú Sexto", idTeclado: 2, color: "FFFFF"});
+    db.submenus.put({id: 0, idPadre: 0, nombre: "0 Cafeteria", idTeclado: 0, color: "FFFFF"});
+    db.submenus.put({id: 1, idPadre: 0, nombre: "0 ENTREPA PROMOCIO", idTeclado: 1, color: "FFFFF"});
+    db.submenus.put({id: 2, idPadre: 0, nombre: "0 ENTREPANS", idTeclado: 2, color: "FFFFF"});
+    db.submenus.put({id: 3, idPadre: 0, nombre: "1 Coques", idTeclado: 3, color: "FFFFF"});
+    db.submenus.put({id: 4, idPadre: 0, nombre: "1 Cuina", idTeclado: 4, color: "FFFFF"});
+    db.submenus.put({id: 5, idPadre: 0, nombre: "1 Nata Petita", idTeclado: 5, color: "FFFFF"});
+    db.submenus.put({id: 6, idPadre: 0, nombre: "1 Pastes", idTeclado: 6, color: "FFFFF"});
+    db.submenus.put({id: 7, idPadre: 0, nombre: "1 Pastissos", idTeclado: 7, color: "FFFFF"});
+    db.submenus.put({id: 8, idPadre: 0, nombre: "1 Salat", idTeclado: 8, color: "FFFFF"});
+    db.submenus.put({id: 9, idPadre: 0, nombre: "1Sant Joan", idTeclado: 9, color: "FFFFF"});
+    db.submenus.put({id: 10, idPadre: 0, nombre: "2 Pa", idTeclado: 10, color: "FFFFF"});
+    db.submenus.put({id: 11, idPadre: 0, nombre: "2 Pa Artesa", idTeclado: 11, color: "FFFFF"});
+    db.submenus.put({id: 12, idPadre: 0, nombre: "2 Pa No Blanc", idTeclado: 12, color: "FFFFF"});
+    db.submenus.put({id: 13, idPadre: 0, nombre: "2 Peça Petita", idTeclado: 13, color: "FFFFF"});
+    db.submenus.put({id: 14, idPadre: 0, nombre: "2 Sobat", idTeclado: 14, color: "FFFFF"});
+    db.submenus.put({id: 15, idPadre: 0, nombre: "3 Catering", idTeclado: 15, color: "FFFFF"});
+    db.submenus.put({id: 16, idPadre: 0, nombre: "3 Diades", idTeclado: 16, color: "FFFFF"});
+    db.submenus.put({id: 17, idPadre: 0, nombre: "3 Mones", idTeclado: 17, color: "FFFFF"});
+    db.submenus.put({id: 18, idPadre: 0, nombre: "3 Nadal", idTeclado: 18, color: "FFFFF"});
+    db.submenus.put({id: 19, idPadre: 0, nombre: "3 Ofertas", idTeclado: 19, color: "FFFFF"});
+    db.submenus.put({id: 20, idPadre: 0, nombre: "3 Reis", idTeclado: 20, color: "FFFFF"});
+    db.submenus.put({id: 21, idPadre: 0, nombre: "Cocas", idTeclado: 21, color: "FFFFF"});
+    db.submenus.put({id: 22, idPadre: 0, nombre: "MONA", idTeclado: 22, color: "FFFFF"});
+    db.submenus.put({id: 23, idPadre: 0, nombre: "Mones", idTeclado: 23, color: "FFFFF"});
+    db.submenus.put({id: 24, idPadre: 0, nombre: "SAN JUAN", idTeclado: 24, color: "FFFFF"});
+    db.submenus.put({id: 25, idPadre: 0, nombre: "Sant Joan", idTeclado: 25, color: "FFFFF"});
+    db.submenus.put({id: 26, idPadre: 0, nombre: "Verano", idTeclado: 26, color: "FFFFF"});
 }

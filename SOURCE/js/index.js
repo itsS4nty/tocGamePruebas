@@ -22,6 +22,7 @@ function startDB()
    imprimirTeclado(0);
    refreshFichajes();
    setCaja();
+   clickMenu(0);
 }
 $(function () {
     "use strict";
