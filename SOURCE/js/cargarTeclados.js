@@ -84,7 +84,7 @@ async function imprimirSubmenus(listaSubmenus = null)
                     strAux = '<div class="col-md-2" onclick="clickIzquierda();"><span class="pull-right"><img src="imagenes/flecha_izquierda.png"></span></div>';
                 }
                 strAux += `<div class="col-md-2">
-                                <button class="btn btn-danger btn-lg btn-block" style="font-family: 'Anton', sans-serif; font-size: 20px; font-style: normal;">
+                                <button onclick="clickSubmenu(${listaSubmenus[i].idTeclado})" class="btn btn-danger btn-lg btn-block" style="font-family: 'Anton', sans-serif; font-size: 20px; font-style: normal;">
                                     ${listaSubmenus[i].nombre}
                                     <div class="ripple-container"></div>
                                 </button>

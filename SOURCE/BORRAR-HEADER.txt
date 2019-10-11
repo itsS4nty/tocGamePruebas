@@ -1,0 +1,150 @@
+			<header id="app_topnavbar-wrapper hide">
+				<nav role="navigation" class="navbar topnavbar">
+					<div class="nav-wrapper">
+						<div id="logo_wrapper" class="nav navbar-nav">
+							<ul>
+								<li class="logo-icon">
+									<a href="index.html">
+										<div class="logo">
+											<img src="assets/img/logo/logo-icon.png" alt="Logo">
+										</div>
+										<h1 class="brand-text">365 Café</h1>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<ul class="nav navbar-nav left-menu">
+							<li class="dropdown dropdown-lg app_menu_launcher">
+								<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown" aria-expanded="false">
+								<i class="zmdi zmdi-apps"></i>
+								</a>
+								<ul class="dropdown-menu dropdown-lg-menu dropdown-menu-left btn-primary p-15 text-center">
+									<li>
+										<ul>
+											<li><a href=""><i class="zmdi zmdi-email"></i><span>Mensajes</span></a></li>
+											<li><a href=""><i class="zmdi zmdi-accounts-list"></i><span>Emplead@</span></a></li>
+											<li onclick="verCaja();"><a href="javascript:void(0)"><i class="zmdi zmdi-comment-text"></i><span>Caja</span></a></li>
+										</ul>
+									</li>
+									<li>
+										<ul>
+											<li><a href=""><i class="mdi mdi-lightbulb"></i><span>Config.</span></a></li>
+											<li><a href=""><i class="zmdi zmdi-view-column"></i><span>Asistentes</span></a></li>
+											<li onclick="modalCerrarCaja()"><a href="javascript:void(0)"><i class="zmdi zmdi-calendar-note"></i><span>Cierre Caja</span></a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<ul class="nav navbar-nav pull-right">
+							<li><button id="botonFichar" class="hide btn btn-default" style="top:5px;" onclick="ficharTrabajador(campoNombreTeclado.value)">OK</button></li>
+							<li><input id="campoNombreTeclado" type="text" class="form-control"></li>
+							<li class="select-menu hidden-xs hidden-sm">
+								<select class="select form-control country" style="display:none">
+									<option option="ES">Español</option>
+									<option option="EN">English</option>
+									<option option="FN"> Français</option>
+									<option option="IT">Italiano</option>
+								</select>
+							</li>
+							<li class="dropdown hidden-xs hidden-sm">
+								<a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
+								<span class="badge mini status danger"></span>
+								<i class="zmdi zmdi-notifications"></i>
+								</a>
+								<ul class="dropdown-menu dropdown-lg-menu dropdown-menu-right dropdown-alt">
+									<li class="dropdown-menu-header">
+										<ul class="card-actions icons  left-top">
+											<li class="withoutripple">
+												<a href="javascript:void(0)" class="withoutripple">
+												<i class="zmdi zmdi-settings"></i>
+												</a>
+											</li>
+										</ul>
+										<h5>NOTIFICACIONES</h5>
+										<ul class="card-actions icons right-top">
+											<li>
+												<a href="javascript:void(0)">
+												<i class="zmdi zmdi-check-all"></i>
+												</a>
+											</li>
+										</ul>
+									</li>
+									<!--
+										<li>
+											<div class="card">
+												<a href="javascript:void(0)" class="pull-right dismiss" data-dismiss="close">
+													<i class="zmdi zmdi-close"></i>
+												</a>
+												<div class="card-body">
+													<ul class="list-group ">
+														<li class="list-group-item ">
+															<span class="pull-left"><img src="assets/img/profiles/11.jpg" alt="" class="img-circle max-w-40 m-r-10 "></span>
+															<div class="list-group-item-body">
+																<div class="list-group-item-heading">Dakota Johnson</div>
+																<div class="list-group-item-text">Do you want to grab some sushi for lunch?</div>
+															</div>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="card">
+												<a href="javascript:void(0)" class="pull-right dismiss" data-dismiss="close">
+													<i class="zmdi zmdi-close"></i>
+												</a>
+												<div class="card-body">
+													<ul class="list-group ">
+														<li class="list-group-item ">
+															<span class="pull-left"><img src="assets/img/profiles/07.jpg" alt="" class="img-circle max-w-40 m-r-10 "></span>
+															<div class="list-group-item-body">
+																<div class="list-group-item-heading">Todd Cook</div>
+																<div class="list-group-item-text">Let"s schedule a meeting with our design team at 10am.</div>
+															</div>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="card">
+												<a href="javascript:void(0)" class="pull-right dismiss" data-dismiss="close">
+													<i class="zmdi zmdi-close"></i>
+												</a>
+												<div class="card-body">
+													<ul class="list-group ">
+														<li class="list-group-item ">
+															<span class="pull-left"><img src="assets/img/profiles/05.jpg" alt="" class="img-circle max-w-40 m-r-10 "></span>
+															<div class="list-group-item-body">
+																<div class="list-group-item-heading">Jennifer Ross</div>
+																<div class="list-group-item-text">We"re looking to hire two more protypers to our team.</div>
+															</div>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</li>-->
+									<li class="dropdown-menu-footer">
+										<a href="javascript:void(0)">
+										Ver todo
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="last">
+								<a href="javascript:void(0)" data-toggle-state="sidebar-overlay-open" data-key="rightSideBar">
+								<i class="mdi mdi-playlist-plus"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<form role="search" action="" class="navbar-form" id="navbar_form">
+						<div class="form-group">
+							<input type="text" placeholder="Search and press enter..." class="form-control" id="navbar_search" autocomplete="off">
+							<i data-navsearch-close class="zmdi zmdi-close close-search"></i>
+						</div>
+						<button type="submit" class="hidden btn btn-default">Submit</button>
+					</form>
+				</nav>
+			</header>

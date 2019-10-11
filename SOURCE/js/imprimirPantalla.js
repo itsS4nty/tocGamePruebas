@@ -6,26 +6,28 @@ function imprimirTotalCesta(total)
 function imprimirListaCaja(lista)
 {
     var str = '';
-
+    var i   = 1;
+    var aux = "";
+    var aux2 = null;
     for(var key in lista)
     {
-        str += '<div class="list-group-item">';
-        str += '<div class="row-action-primary">';
-        str += `<i class="zmdi zmdi-print circle mw-salmon" onclick="verDetalleFactura(${lista[key].idTicket})"></i></div><div class="row-content">`;
-        str += '<div class="least-content"><i class="zmdi zmdi-info"></i></div>';
-        str += `<h4 class="list-group-item-heading">Factura número ${lista[key].idTicket}</h4>`;
+        aux2 = lista.length-i+1;
         if(lista[key].tarjeta)
         {
-            str += `<p class="list-group-item-text">TOTAL: ${lista[key].total} € - Pagado con TARJETA - ${lista[key].timestamp}</p>`;
+            aux = '<span style="color:red;font-weight: bold;">CON TARJETA</span>';
         }
         else
         {
-            str += `<p class="list-group-item-text">TOTAL: ${lista[key].total} € - Pagado en efectivo - ${lista[key].timestamp}</p>`;
+            aux = 'EN EFECTIVO';
         }
-        str += '</div></div><div class="list-group-separator"></div>';
+        str += `<tr onclick="verDetalleTicket(${lista[key].idTicket});"><th scope="row">${aux2}</th><td>${lista[key].idTicket}</td><td>${lista[key].timestamp}</td><td>${aux}</td><td>${lista[key].total} €</td></tr>`;
+
+        i++;
     }
-    listaCaja.innerHTML = str;
+    tablaCaja.innerHTML = str;
 }
+
+
 
 function verDetalleFactura(idTicket)
 {
@@ -83,11 +85,11 @@ function imprimirTeclado(id)
 
 function verCaja()
 {
-    db.caja.toArray(lista =>{
+    db.caja.orderBy("idTicket").desc().toArray(lista =>{
         if(lista)
         {
             imprimirListaCaja(lista);
-            $("#modalCaja").modal();
+            $("#cajaFull").modal();
         }
         else
         {
