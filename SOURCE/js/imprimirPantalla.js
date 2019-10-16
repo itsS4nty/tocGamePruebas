@@ -89,6 +89,7 @@ function verCaja()
         if(lista)
         {
             imprimirListaCaja(lista);
+            document.getElementById('colDetalle').setAttribute("class", "col-md-4 hide");
             $("#cajaFull").modal();
         }
         else

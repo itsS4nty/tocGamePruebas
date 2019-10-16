@@ -703,22 +703,24 @@
 					</div>
 					<div class="modal-body scrollbar">
 						<div class="col-md-8">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>#</th>
-										<th>Número factura</th>
-										<th>Hora</th>
-										<th>Efectivo/Tarjeta</th>
-										<th>Total</th>
-									</tr>
-								</thead>
-									<tbody id="tablaCaja">
-												
-									</tbody>
-							</table>
+							<div class="header-fixed-caja">
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Número factura</th>
+											<th>Hora</th>
+											<th>Efectivo/Tarjeta</th>
+											<th>Total</th>
+										</tr>
+									</thead>
+										<tbody id="tablaCaja">
+													
+										</tbody>
+								</table>
+							</div>
 						</div>
-						<div class="col-md-4">
+						<div id="colDetalle" class="col-md-4 hide">
 							<p style="text-align: center; font-size: 30px;" id="tituloDetalle">Factura Nº xxxxx</p>
 							<table class="table">
 								<thead>
@@ -730,31 +732,14 @@
 									</tr>
 								</thead>
 								<tbody id="detalleBody">
-									<tr>
-										<th scope="row">1</th>
-										<td>Mark</td>
-										<td>Otto</td>
-										<td>@mdo</td>
-									</tr>
-									<tr>
-										<th scope="row">2</th>
-										<td>Jacob</td>
-										<td>Thornton</td>
-										<td>@fat</td>
-									</tr>
-									<tr>
-										<th scope="row">3</th>
-										<td>Larry</td>
-										<td>the Bird</td>
-										<td>@twitter</td>
-									</tr>
+
 								</tbody>
 								<tfoot>
 									<tr>
 										<th id="detalleMetodo"></th>
 										<th></th>
 										<th>TOTAL</th>
-										<th id="detalleTotal">15.43€</th>
+										<th id="detalleTotal"></th>
 									</tr>
 								</tfoot>
 							</table>
@@ -785,5 +770,11 @@
 		<script src="node_modules/jq-keyboard/jqkeyboard.min.js"></script>
 		<script src="node_modules/jq-keyboard/jqk.layout.en.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+		<script>
+			var $th = $('.header-fixed-caja').find('thead th')
+				$('.header-fixed-caja').on('scroll', function() {
+				$th.css('transform', 'translateY('+ this.scrollTop +'px)');
+				});
+		</script>
 	</body>
 </html>

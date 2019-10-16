@@ -10,7 +10,7 @@ function verDetalleTicket(idTicket)
             let strMetodo   = "";
             for(let i = 0; i < ticket.cesta.length; i++)
             {
-                strBody += `<tr><th scope="row">${i+1}</th><td>${ticket.cesta[i].nombreArticulo}</td><td>${ticket.cesta[i].unidades}</td><td>${ticket.cesta[i].subtotal}</td></tr>`;
+                strBody += `<tr style="height: 55px;"><th scope="row">${i+1}</th><td>${ticket.cesta[i].nombreArticulo}</td><td>${ticket.cesta[i].unidades}</td><td>${ticket.cesta[i].subtotal}</td></tr>`;
             }
 
             if(ticket.tarjeta)
@@ -26,6 +26,7 @@ function verDetalleTicket(idTicket)
             detalleBody.innerHTML       = strBody;
             detalleTotal.innerHTML      = `${ticket.total} €`;
             detalleMetodo.innerHTML     = strMetodo;
+            document.getElementById('colDetalle').setAttribute("class", "col-md-4");
         }
         else
         {

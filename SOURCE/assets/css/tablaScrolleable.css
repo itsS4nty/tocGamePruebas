@@ -61,3 +61,12 @@
   width: 50%;
   float: left;
 }
+
+.header-fixed-caja {
+  overflow-y:auto !important;
+  height: 600px !important;
+  
+}
+.header-fixed-caja thead th{
+	background-color: white;
+}
