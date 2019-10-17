@@ -20,7 +20,7 @@ function imprimirListaCaja(lista)
         {
             aux = 'EN EFECTIVO';
         }
-        str += `<tr onclick="verDetalleTicket(${lista[key].idTicket});"><th scope="row">${aux2}</th><td>${lista[key].idTicket}</td><td>${lista[key].timestamp}</td><td>${aux}</td><td>${lista[key].total} €</td></tr>`;
+        str += `<tr style="height:60px;font-size:20px;" onclick="verDetalleTicket(${lista[key].idTicket});"><th scope="row">${aux2}</th><td>${lista[key].idTicket}</td><td>${lista[key].timestamp}</td><td>${aux}</td><td>${lista[key].total} €</td></tr>`;
 
         i++;
     }

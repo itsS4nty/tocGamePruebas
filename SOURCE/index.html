@@ -689,7 +689,7 @@
 					<!-- modal-dialog -->
 				</div>
 		<!-- MODAL DE LA CAJA FULLSCREEN-->
-		<div class="modal fullscreen fade" id="cajaFull" tabindex="-1" role="dialog" aria-labelledby="fullscreen_modal">
+		<div class="modal fullscreen fade" id="cajaFull" tabindex="-1" role="dialog" aria-labelledby="fullscreen_modal" style="font-family: 'Anton', sans-serif; font-size: 25px;">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -720,7 +720,7 @@
 								</table>
 							</div>
 						</div>
-						<div id="colDetalle" class="col-md-4 hide">
+						<div id="colDetalle" class="col-md-4 hide" style="font-family: monospace;">
 							<p style="text-align: center; font-size: 30px;" id="tituloDetalle">Factura Nº xxxxx</p>
 							<table class="table">
 								<thead>
@@ -775,6 +775,8 @@
 				$('.header-fixed-caja').on('scroll', function() {
 				$th.css('transform', 'translateY('+ this.scrollTop +'px)');
 				});
+				document.oncontextmenu = function(){return false};
+				document.onmousedown=function(){return false};
 		</script>
 	</body>
 </html>
