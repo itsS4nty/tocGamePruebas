@@ -1,9 +1,14 @@
 var express = require('express');
 var routes	= require('./routes');
 var path = require('path');
+var socketIO = require('socket.io');
+
 var app = express();
 var router = express.Router();
 var bodyParser = require('body-parser');
+
+
+app.set('port', process.env.PORT || 8080);
 app.use(bodyParser.json());
 
 app.use('/assets', express.static('assets'));
@@ -18,4 +23,5 @@ app.get("/", function(req, res){
 
 app.post("/imprimirTicket", routes.imprimirTicket);
 
-app.listen(8080);
+const server = app.listen(app.get('port'));
+const io = socketIO(server);

@@ -19,3 +19,15 @@ function installWizard()
 {
     document.onmousedown=function(){return true};
 }
+
+function checkLicencia()
+{
+    var numLicencia = document.getElementById('numLicenciaInstallWizard').value;
+    var password    = document.getElementById('passwordInstallWizard').value;
+
+    numLicencia = parseInt(numLicencia);
+    if(numLicencia > 0 && numLicencia < 1000)
+    {
+        socket.emit('install-licencia', {numLicencia: numLicencia, password: password});
+    }
+}
