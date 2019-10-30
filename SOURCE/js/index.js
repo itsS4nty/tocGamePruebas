@@ -14,15 +14,24 @@ function startDB()
        currentCaja: '++idCaja, cajonApertura, cajonClausura',
        promociones: 'id, nombre, precioFinal, articulosNecesarios',
        menus: 'id, nombre, color',
-       submenus: 'id, idPadre, nombre, idTeclado, color'
+       submenus: 'id, idPadre, nombre, idTeclado, color',
+       parametros: 'licencia, nombreEmpresa, database'
    });
 
-   crearDemoCompleta();
-   actualizarCesta();
-   imprimirTeclado(0);
-   refreshFichajes();
-   setCaja();
-   clickMenu(0);
+   if(comprobarConfiguracion() === true)
+   {
+       console.log('q guay');
+        crearDemoCompleta();
+        actualizarCesta();
+        imprimirTeclado(0);
+        refreshFichajes();
+        setCaja();
+        clickMenu(0);
+   }
+   else
+   {
+       installWizard();
+   }
 }
 $(function () {
     "use strict";
