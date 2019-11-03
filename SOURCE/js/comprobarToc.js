@@ -5,6 +5,7 @@ async function comprobarConfiguracion()
     console.log("accede a comprobarConfiguracion()");
     if(arrayParametros.length == 0)
     {
+        console.log(9999);
         return false;
     }
     else
@@ -18,6 +19,7 @@ async function comprobarConfiguracion()
 function installWizard()
 {
     document.onmousedown=function(){return true};
+    $("#installWizard").modal();
 }
 
 function checkLicencia()

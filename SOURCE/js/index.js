@@ -18,20 +18,22 @@ function startDB()
        parametros: 'licencia, nombreEmpresa, database'
    });
 
-   if(comprobarConfiguracion() === true)
-   {
-       console.log('q guay');
-        crearDemoCompleta();
-        actualizarCesta();
-        imprimirTeclado(0);
-        refreshFichajes();
-        setCaja();
-        clickMenu(0);
-   }
-   else
-   {
-       installWizard();
-   }
+   comprobarConfiguracion().then((res)=>{
+       if(res)
+       {
+            console.log('q guay');
+             crearDemoCompleta();
+             actualizarCesta();
+             imprimirTeclado(0);
+             refreshFichajes();
+             setCaja();
+             clickMenu(0);
+       }
+        else
+        {
+            installWizard();
+        }
+   });
 }
 $(function () {
     "use strict";
