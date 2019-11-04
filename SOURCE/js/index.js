@@ -8,7 +8,7 @@ function startDB()
        caja: 'idTicket, timestamp, total, cesta, tarjeta',
        articulos: 'id, nombre, precio, iva',
        teclado: 'id, arrayTeclado',
-       menus: 'id, nombre, submenus, teclados',
+     //  menus: 'id, nombre, submenus, teclados',
        trabajadores: 'idTrabajador, nombre',
        fichajes: 'idTrabajador, nombre, inicio, final',
        currentCaja: '++idCaja, cajonApertura, cajonClausura',
