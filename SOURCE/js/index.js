@@ -8,7 +8,6 @@ function startDB()
        caja: 'idTicket, timestamp, total, cesta, tarjeta',
        articulos: 'id, nombre, precio, iva',
        teclado: 'id, arrayTeclado',
-     //  menus: 'id, nombre, submenus, teclados',
        trabajadores: 'idTrabajador, nombre',
        fichajes: 'idTrabajador, nombre, inicio, final',
        currentCaja: '++idCaja, cajonApertura, cajonClausura',
@@ -21,13 +20,13 @@ function startDB()
    comprobarConfiguracion().then((res)=>{
        if(res)
        {
-            console.log('q guay');
-             crearDemoCompleta();
-             actualizarCesta();
-             imprimirTeclado(0);
-             refreshFichajes();
-             setCaja();
-             clickMenu(0);
+            //console.log('q guay');
+            //crearDemoCompleta();
+            actualizarCesta();
+            imprimirTeclado(0);
+            refreshFichajes();
+            setCaja();
+            clickMenu(0);
        }
         else
         {
@@ -245,6 +244,17 @@ function ivaCorrecto(iva)
         case 10: return true; break;
         case 21: return true; break;
         default: return false; break;
+    }
+}
+function conversorIva(iva)
+{
+    let ivaOk = Number(iva);
+    switch(ivaOk)
+    {
+        case 1: return 4; break;
+        case 2: return 10; break;
+        case 3: return 21; break;
+        default: return 0; break;
     }
 }
 

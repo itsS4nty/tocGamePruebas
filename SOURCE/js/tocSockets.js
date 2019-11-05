@@ -20,7 +20,22 @@ socket.on('install-licencia', (data)=>
 });
 
 socket.on('cargar-ultimo-teclado', (data)=>{
-    console.log(data);
+    try
+    {
+        if(!data.error)
+        {
+            console.log(data);
+            cargarTecladoSockets(data.menus, data.teclas, data.articulos);
+        }
+        else
+        {
+            console.log(data.infoError);
+        }
+    }
+    catch(err)
+    {
+        console.log(err);
+    }
 });
 
 function borrarTest()
@@ -38,5 +53,8 @@ function borrarTest()
         {
             console.log("Error en borrar test 456");
         }
+    }).catch(error=>{
+        console.log("Error " + error);
+        notificacion('Error, contacte con un técnico', 'error');
     });
 }
