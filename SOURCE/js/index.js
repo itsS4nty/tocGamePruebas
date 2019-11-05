@@ -22,11 +22,7 @@ function startDB()
        {
             //console.log('q guay');
             //crearDemoCompleta();
-            actualizarCesta();
-            imprimirTeclado(0);
-            refreshFichajes();
-            setCaja();
-            clickMenu(0);
+           iniciarToc();
        }
         else
         {
@@ -54,7 +50,14 @@ function abrirModalTeclado()
     botonFichar.setAttribute('class', 'btn btn-default');
     campoNombreTeclado.focus();
 }
-
+function iniciarToc()
+{
+    actualizarCesta();
+    imprimirTeclado(0);
+    refreshFichajes();
+    setCaja();
+    clickMenu(0);
+}
 function sumarUnidad(x)
 {
     switch(x)

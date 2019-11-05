@@ -12,6 +12,7 @@ socket.on('install-licencia', (data)=>
         document.onmousedown=function(){return true};
         $("#installWizard").modal('hide');
         notificacion('Licencia OK!', 'success');
+        iniciarTocSockets();
     }
     else
     {
@@ -38,7 +39,7 @@ socket.on('cargar-ultimo-teclado', (data)=>{
     }
 });
 
-function borrarTest()
+function iniciarTocSockets()
 {
     db.parametros.toArray().then(info=>{
         if(info)
