@@ -389,7 +389,7 @@ async function actualizarCesta()
     listaCesta.innerHTML = outHTML;
 }
 
-function pagarConVisa(idTicket)
+function pagarConVisa(idTicket) //No está en uso
 {
     db.caja.update(idTicket, {tarjeta: true}).then(updated=>{
         if(updated)
@@ -432,7 +432,7 @@ function imprimirTicketReal(idTicket)
 	});
 }
 
-function pagar()
+function pagar() //SERÁ EL PAGAR CON EFECTIVO NO ESTÁ EN USO
 {
     //Hay que crear el nuevo ticket con toda la info de compra (copia de una cesta), la hora y además generar un id de ticket
     var idTicket    = generarIdTicket();
@@ -461,6 +461,51 @@ function pagar()
             alert("Error al cargar la cesta desde pagar()");
         }
     });
+}
+
+function pagarConTarjeta()
+{
+    var idTicket    = generarIdTicket();
+    var time        = new Date();
+    var stringTime  = `${time.getDate()}/${time.getMonth()}/${time.getFullYear()} ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
+
+    db.cesta.toArray(lista=>{
+        if(lista)
+        {
+            if(lista.length > 0)
+            {
+                if(1 == 1) //emitirPagoDatafono()) //Se envía la señal al datáfono, si todo es correcto, devuelve true. ESTO DEBERÁ SER UNA PROMESA, POR LO QUE MÁS ADELANTE HABRÁ QUE CAMBIAR LA ESTRUCTURA DE ACCESO A ESTA FUNCIÓN
+                {
+                    db.caja.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: true}).then(function(){
+                        imagenImprimir.setAttribute('onclick', 'imprimirTicketReal('+idTicket+')');
+                        rowEfectivoTarjeta.setAttribute('class', 'row hide');
+                        rowImprimirTicket.setAttribute('class', 'row');
+                        vaciarCesta();
+                        notificacion('¡Ticket creado!', 'success');
+                    });
+                }
+                else
+                {
+                    notificacion('Error al pagar con datáfono', 'error');
+                }
+            }
+            else
+            {
+                notificacion('Error. ¡No hay nada en la cesta!', 'error');    
+            }
+        }
+        else
+        {
+            notificacion('Error al cargar la cesta desde pagar()', 'error');
+        }
+    });
+}
+
+function abrirPago()
+{
+    rowImprimirTicket.setAttribute('class', 'row hide');
+    rowEfectivoTarjeta.setAttribute('class', 'row');
+    $('#modalPago').modal();
 }
 
 function generarIdTicket()

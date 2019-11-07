@@ -272,7 +272,7 @@
 									</div>
 								</div>-->
 								<div class="col-md-4">
-									<button class="btn btn-info btn-block" style="font-family: 'Anton', sans-serif; font-size: 30px; font-style: normal; color: white; -webkit-text-stroke: 1px black;" onclick="pagar();">
+									<button class="btn btn-info btn-block" style="font-family: 'Anton', sans-serif; font-size: 30px; font-style: normal; color: white; -webkit-text-stroke: 1px black;" onclick="abrirPago();">
 										TOTAL <span id="totalCesta"></span> €  <span class="pull-right"><img src="imagenes/iconoPagar.png"></span>
 										<div class="ripple-container"></div>
 									</button>
@@ -498,10 +498,15 @@
 						</ul>
 						</div>
 						<div class="modal-body">
-							<div class="row">
+							<div class="row" id="rowEfectivoTarjeta">
 								<div class="col-md-6">
-									<img id="imagenIdTicket" src="imagenes/img-tarjetas.png" width="250px" alt="Imagen de tarjetas" onclick="pagarConVisa();">
+									<img id="imagenIdTicket" src="imagenes/img-tarjetas.png" width="250px" alt="Imagen de tarjetas" onclick="pagarConTarjeta();">
 								</div>
+								<div class="col-md-6">
+									<img id="imagenPagoEfectivo" src="imagenes/img-efectivo.png" width="250px" alt="Imagen de tarjetas" onclick="alert('HAY QUE CONFIGURARLO');">
+								</div>
+							</div>
+							<div class="row hide" id="rowImprimirTicket">
 								<div class="col-md-6">
 									<img id="imagenImprimir" src="imagenes/imprimir.png" width="250px" alt="Imagen de tarjetas" onclick="imprimirTicketReal();">
 								</div>
