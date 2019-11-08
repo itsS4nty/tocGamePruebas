@@ -7,7 +7,7 @@
 		<meta name="keywords" content="">
 		<title>TocGame - Panel de venta</title>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Poppins:300,400,500,600" rel="stylesheet">
-		<link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="imagenes/favicon.png" type="image/x-icon">
 		<link rel="stylesheet" href="assets/css/vendor.bundle.css">
 		<link rel="stylesheet" href="assets/css/app.bundle.css">
 		<link rel="stylesheet" href="assets/css/theme-a.css">
@@ -297,7 +297,7 @@
 										<div class="ripple-container"></div>
 									</button>
 									<button class="btn btn-warning btn-block" style="font-family: 'Anton', sans-serif; font-size: 25px; font-style: normal; color: black;" onclick="vaciarCesta();">
-										BORRAR
+										BORRAR CESTA
 										<div class="ripple-container"></div>
 									</button>
 								</div>
@@ -503,14 +503,14 @@
 									<img id="imagenIdTicket" src="imagenes/img-tarjetas.png" width="250px" alt="Imagen de tarjetas" onclick="pagarConTarjeta();">
 								</div>
 								<div class="col-md-6">
-									<img id="imagenPagoEfectivo" src="imagenes/img-efectivo.png" width="250px" alt="Imagen de tarjetas" onclick="alert('HAY QUE CONFIGURARLO');">
+									<img id="imagenPagoEfectivo" src="imagenes/img-efectivo.png" width="250px" alt="Imagen de tarjetas" onclick="pagarConEfectivo();">
 								</div>
 							</div>
-							<div class="row hide" id="rowImprimirTicket">
-								<div class="col-md-6">
+							<div class="row hide" id="rowImprimirTicket" style="text-align: center;">
+								<div class="col-md-12">
 									<img id="imagenImprimir" src="imagenes/imprimir.png" width="250px" alt="Imagen de tarjetas" onclick="imprimirTicketReal();">
 								</div>
-							</div>							
+							</div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
@@ -751,7 +751,9 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal" style="font-family: 'Anton', sans-serif; font-size: 25px; font-style: normal; color: black;">CERRAR CAJA</button>
+						<button type="button" class="btn btn-danger" onclick="alert('llamar a cerrar caja')" style="font-family: 'Anton', sans-serif; font-size: 25px; font-style: normal; color: black;">ENTRADA DINERO</button>
+						<button type="button" class="btn btn-warning" onclick="alert('llamar a cerrar caja')" style="font-family: 'Anton', sans-serif; font-size: 25px; font-style: normal; color: black;">SALIDA DINERO</button>
+						<button type="button" class="btn btn-success" onclick="alert('llamar a cerrar caja')" style="font-family: 'Anton', sans-serif; font-size: 25px; font-style: normal; color: black;">CERRAR CAJA</button>
 						<button type="button" class="btn btn-primary" data-dismiss="modal" style="font-family: 'Anton', sans-serif; font-size: 25px; font-style: normal; color: black;">SALIR</button>
 					</div>
 				</div>

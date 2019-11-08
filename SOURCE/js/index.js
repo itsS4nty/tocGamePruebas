@@ -501,11 +501,58 @@ function pagarConTarjeta()
     });
 }
 
+function pagarConEfectivo()
+{
+    var idTicket        = generarIdTicket();
+    var time            = new Date();
+    var stringTime  = `${time.getDate()}/${time.getMonth()}/${time.getFullYear()} ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
+
+    db.cesta.toArray(lista=>{
+        if(lista)
+        {
+            if(lista.length > 0)
+            {
+                db.caja.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: false}).then(function(){
+                    imagenImprimir.setAttribute('onclick', 'imprimirTicketReal('+idTicket+')');
+                    rowEfectivoTarjeta.setAttribute('class', 'row hide');
+                    rowImprimirTicket.setAttribute('class', 'row');
+                    vaciarCesta();
+                    notificacion('¡Ticket creado!', 'success');
+                });
+            }
+            else
+            {
+                notificacion('Error. ¡No hay nada en la cesta!', 'error');    
+            }
+        }
+        else
+        {
+            notificacion('Error al cargar la cesta desde pagar()', 'error');
+        }
+    });   
+}
+
 function abrirPago()
 {
-    rowImprimirTicket.setAttribute('class', 'row hide');
-    rowEfectivoTarjeta.setAttribute('class', 'row');
-    $('#modalPago').modal();
+    db.cesta.toArray(lista=>{
+        if(lista)
+        {
+            if(lista.length > 0)
+            {
+                rowImprimirTicket.setAttribute('class', 'row hide');
+                rowEfectivoTarjeta.setAttribute('class', 'row');
+                $('#modalPago').modal();
+            }
+            else
+            {
+                notificacion('Error. ¡No hay nada en la cesta!', 'error');
+            }
+        }
+        else
+        {
+            notificacion('Error al acceder a la cesta desde abrirPago()', 'error');
+        }
+    });
 }
 
 function generarIdTicket()
