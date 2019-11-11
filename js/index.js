@@ -45,6 +45,7 @@ $(function () {
     });
     jqKeyboard.init();
   });
+
 function abrirModalTeclado()
 {
     botonFichar.setAttribute('class', 'btn btn-default');
