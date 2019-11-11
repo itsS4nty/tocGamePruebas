@@ -1,2 +1,0 @@
-virtual keyboard detect
-	http://stackoverflow.com/questions/8556933/screen-styling-when-virtual-keyboard-is-active

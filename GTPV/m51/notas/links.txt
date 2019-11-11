@@ -1,4 +1,0 @@
-touchEvents:
-http://www.the-xavi.com/articles/trouble-with-touch-events-jquery
-
-

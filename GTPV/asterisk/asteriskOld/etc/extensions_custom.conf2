@@ -1,7 +1,0 @@
-[from-internal]
-exten => 121,1,Answer
-exten => 121,2,Playback(/var/lib/asterisk/sounds)
-#exten => 121,3,Hangup
-#exten => h,1,Hangup
-
-

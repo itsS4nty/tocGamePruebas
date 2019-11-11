@@ -1,8 +1,0 @@
-*fResize
-guardar scroll
-*ordenar nivells
-*window resize scroll
-keyboard position absolute
-*dialog por alertDialog
-margin ui-widget-content
-ambient minuscula mayuscula crear

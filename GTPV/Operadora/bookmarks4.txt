@@ -1,8 +1,0 @@
-Runtime Languages 
-http://www.microsoft.com/en-us/download/details.aspx?id=27224
-
-Microsoft Speech Platform SDK 11 Documentation
-http://msdn.microsoft.com/en-us/library/dd266409
-
-Language Support
-http://msdn.microsoft.com/en-us/library/hh378476

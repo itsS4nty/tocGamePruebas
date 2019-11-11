@@ -1,4 +1,0 @@
-<Response>
-	<Processor name="http" type="http" url="http://192.168.2.50/recognizer/carn1.php"/>
-</Response>
-
