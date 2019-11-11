@@ -19,7 +19,7 @@ function cargarTecladoSockets(arraySubmenus, arrayTeclas, arrayArticulos)
                 {
                     if(submenus[i].nombre == arrayTeclas[j].nomMenu)
                     {
-                        arrayTeclado.push({id: arrayTeclas[j].idArticle, posicion: (arrayTeclas[j].pos+1)});
+                        arrayTeclado.push({id: arrayTeclas[j].idArticle, posicion: (arrayTeclas[j].pos+1), color: traductorColor(arrayTeclas[j].color)});
                     }
                 }
                 tablaTeclado.push({id: i, arrayTeclado: arrayTeclado});
@@ -69,4 +69,26 @@ function clearKeyboard()
         });
     });
     return devolver;
+}
+function traductorColor(data)
+{
+    var colorAntiguo = parseInt(data);
+    switch(colorAntiguo)
+    {
+        case 1245152: return '12E0E0'; break;
+        case 1215231: return '128AFF'; break;
+        case 9079520: return '8A8AE0'; break;
+        case 16776978: return 'FFFF12'; break;
+        case 16747232: return 'FF8AE0'; break;
+        case 16777184: return 'FFFFE0'; break;
+        case -2147483633: return 'BDC6DA'; break;
+        case 1244946: return '12FF12'; break;
+        case 16769279: return 'FFE0FF'; break;
+        case 16769248: return 'FFE0E0'; break;
+        case 16716543: return 'FF12FF'; break;
+        case 16777098: return 'FFFF8A'; break;
+        case 9109386: return '8AFF8A'; break;
+        case 14684690: return 'E01212'; break;
+        case 14715410: return 'E08A12'; break;
+    }
 }

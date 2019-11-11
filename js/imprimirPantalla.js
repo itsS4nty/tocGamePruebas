@@ -82,7 +82,7 @@ function imprimirTeclado(id)
                         }
                         
                         document.getElementById(strPos).setAttribute('onclick', strFun);
-                        document.getElementById(strPos).setAttribute('style', 'visibility: visible;font-family: \'Anton\', sans-serif; font-size: 20px; letter-spacing:2px; line-height:18px;white-space:normal;color: black;');
+                        document.getElementById(strPos).setAttribute('style', 'background-color:#'+infoTeclado[id].arrayTeclado[i].color+'; visibility: visible;font-family: \'Anton\', sans-serif; font-size: 20px; letter-spacing:2px; line-height:18px;white-space:normal;color: black;');
                     }
                     console.log("Teclado actualizado");
                 }
