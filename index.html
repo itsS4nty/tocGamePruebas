@@ -821,12 +821,14 @@
 		<script src="node_modules/jq-keyboard/jqk.layout.en.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 		<script>
+			var modoDesarrollador = true;
+
 			var $th = $('.header-fixed-caja').find('thead th')
 				$('.header-fixed-caja').on('scroll', function() {
 				$th.css('transform', 'translateY('+ this.scrollTop +'px)');
 				});
-				document.oncontextmenu = function(){return false};
-				document.onmousedown=function(){return false};
+				document.oncontextmenu = function(){if(modoDesarrollador){return true;}else{return false}};
+				document.onmousedown=function(){if(modoDesarrollador){return true;}else{return false}};
 
 				const socket = io('http://52.213.244.62:8080');
 				socket.on('escucho', (data)=>
