@@ -658,26 +658,23 @@
 								</li>
 							</ul>
 						</div>
-						<div class="modal-body">
+						<div class="modal-body" id="abrirCaja">
 							<div class="col-md-12">
 								<div>
 									<div class="table-responsive">
 										<table class="table table-striped letraCesta header-fixed">
-											<tbody id="listaMonedasHtmlCierre">									
-													<tr><td>TIPO</td><td></td><td>UNIDADES</td></tr>
-													<tr><td>0,01</td><td><button onclick="sumarUnidadCierre(0);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(0);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesUnCentimoCierre">0</td></tr>
-													<tr><td>0,02</td><td><button onclick="sumarUnidadCierre(1);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(1);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesDosCentimosCierre">0</td></tr>
-													<tr><td>0,05</td><td><button onclick="sumarUnidadCierre(2);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(2);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesCincoCentimosCierre">0</td></tr>
-													<tr><td>0,10</td><td><button onclick="sumarUnidadCierre(3);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(3);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesDiezCentimosCierre">0</td></tr>
-													<tr><td>0,20</td><td><button onclick="sumarUnidadCierre(4);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(4);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesVeinteCentimosCierre">0</td></tr>
-													<tr><td>0,50</td><td><button onclick="sumarUnidadCierre(5);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(5);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesCincuentaCentimosCierre">0</td></tr>
-													<tr><td>1,00</td><td><button onclick="sumarUnidadCierre(6);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(6);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesUnEuroCierre">0</td></tr>
-													<tr><td>2,00</td><td><button onclick="sumarUnidadCierre(7);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(7);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesDosEurosCierre">0</td></tr>
-													<tr><td>5,00</td><td><button onclick="sumarUnidadCierre(8);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(8);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesCincoEurosCierre">0</td></tr>
-													<tr><td>10,00</td><td><button onclick="sumarUnidadCierre(9);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(9);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesDiezEurosCierre">0</td></tr>
-													<tr><td>20,00</td><td><button onclick="sumarUnidadCierre(10);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(10);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesVeinteEurosCierre">0</td></tr>
-													<tr><td>50,00</td><td><button onclick="sumarUnidadCierre(11);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(11);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesCincuentaEurosCierre">0</td></tr>
-													<tr><td>100,00</td><td><button onclick="sumarUnidadCierre(12);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidadCierre(12);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesCienEurosCierre">0</td></tr>
+											<thead>
+												<tr><td>TIPO</td><td></td><td>UNIDADES</td></tr>
+											</thead>
+											<tbody id="listaMonedasHtmlCierre" v-for="(info, index) in valores">
+												<tr>
+													<td></td>
+													<td>
+														<button :onclick="sumarUnidadCierre();" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> 
+														<button :onclick="restarUnidadCierre();" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button>
+													</td>
+													<td></td>
+												</tr>													
 											</tbody>
 										</table>
 									</div>
@@ -802,6 +799,8 @@
 		</div>
 		<!-- FIN MODAL DE LA CAJA FULLSCREEN 22222-->
 		<!-- END MODALS =============================================-->
+		<script src="js/vue.js"></script>
+		<script src="js/vueApp.js"></script>
 		<script src="assets/js/vendor.bundle.js"></script>
 		<script src="assets/js/app.bundle.js"></script>
 		<script src="js/index.js"></script>

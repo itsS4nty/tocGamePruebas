@@ -5,16 +5,17 @@ function startDB()
    db = new Dexie('tocGame');
    db.version(1).stores({
        cesta: 'idArticulo, nombreArticulo, unidades, subtotal, promocion',
-       caja: 'idTicket, timestamp, total, cesta, tarjeta',
+       tickets: 'idTicket, timestamp, total, cesta, tarjeta, idCaja', //se debería llamar tickets
        articulos: 'id, nombre, precio, iva',
        teclado: 'id, arrayTeclado',
        trabajadores: 'idTrabajador, nombre',
        fichajes: 'idTrabajador, nombre, inicio, final',
-       currentCaja: '++idCaja, cajonApertura, cajonClausura',
+       currentCaja: '++idCaja, cajonApertura, cajonClausura', //SE TIENE QUE BORRAR Y USAR LA TABLA 'CAJAS'
        promociones: 'id, nombre, precioFinal, articulosNecesarios',
        menus: 'id, nombre, color',
        submenus: 'id, idPadre, nombre, idTeclado, color',
-       parametros: 'licencia, nombreEmpresa, database'
+       parametros: 'licencia, nombreEmpresa, database',
+       cajas: '++id, inicioTime, finalTime, inicioDependenta, finalDependenta, totalApertura, totalCierre, descuadre, recaudado'
    });
 
    comprobarConfiguracion().then((res)=>{
@@ -79,23 +80,28 @@ function sumarUnidad(x)
     }
 }
 
-function modalAbrirCaja()
+function modalAbrirCaja() /* CREA LA NUEVA CAJA: TIPO CUENTA -> POR UNIDADES */
 {
     var monedas = [];
-    monedas.push({unidades: parseInt(document.getElementById('unidadesUnCentimo').innerHTML)});
-    monedas.push({unidades: parseInt(document.getElementById('unidadesDosCentimos').innerHTML)});
-    monedas.push({unidades: parseInt(document.getElementById('unidadesCincoCentimos').innerHTML)});
-    monedas.push({unidades: parseInt(document.getElementById('unidadesDiezCentimos').innerHTML)});
-    monedas.push({unidades: parseInt(document.getElementById('unidadesVeinteCentimos').innerHTML)});
-    monedas.push({unidades: parseInt(document.getElementById('unidadesCincuentaCentimos').innerHTML)});
-    monedas.push({unidades: parseInt(document.getElementById('unidadesUnEuro').innerHTML)});
-    monedas.push({unidades: parseInt(document.getElementById('unidadesDosEuros').innerHTML)});
-    monedas.push({unidades: parseInt(document.getElementById('unidadesCincoEuros').innerHTML)});
-    monedas.push({unidades: parseInt(document.getElementById('unidadesDiezEuros').innerHTML)});
-    monedas.push({unidades: parseInt(document.getElementById('unidadesVeinteEuros').innerHTML)});
-    monedas.push({unidades: parseInt(document.getElementById('unidadesCincuentaEuros').innerHTML)});
-    monedas.push({unidades: parseInt(document.getElementById('unidadesCienEuros').innerHTML)});
-    console.log(monedas);
+    var suma    = 0;
+    monedas.push({valor: 0.01, unidades: parseInt(document.getElementById('unidadesUnCentimo').innerHTML)});
+    monedas.push({valor: 0.02, unidades: parseInt(document.getElementById('unidadesDosCentimos').innerHTML)});
+    monedas.push({valor: 0.05, unidades: parseInt(document.getElementById('unidadesCincoCentimos').innerHTML)});
+    monedas.push({valor: 0.10, unidades: parseInt(document.getElementById('unidadesDiezCentimos').innerHTML)});
+    monedas.push({valor: 0.20, unidades: parseInt(document.getElementById('unidadesVeinteCentimos').innerHTML)});
+    monedas.push({valor: 0.50, unidades: parseInt(document.getElementById('unidadesCincuentaCentimos').innerHTML)});
+    monedas.push({valor: 1, unidades: parseInt(document.getElementById('unidadesUnEuro').innerHTML)});
+    monedas.push({valor: 2, unidades: parseInt(document.getElementById('unidadesDosEuros').innerHTML)});
+    monedas.push({valor: 5, unidades: parseInt(document.getElementById('unidadesCincoEuros').innerHTML)});
+    monedas.push({valor: 10, unidades: parseInt(document.getElementById('unidadesDiezEuros').innerHTML)});
+    monedas.push({valor: 20, unidades: parseInt(document.getElementById('unidadesVeinteEuros').innerHTML)});
+    monedas.push({valor: 50, unidades: parseInt(document.getElementById('unidadesCincuentaEuros').innerHTML)});
+    monedas.push({valor: 100, unidades: parseInt(document.getElementById('unidadesCienEuros').innerHTML)});
+    for(let i = 0; i < monedas.length; i++)
+    {
+        suma += monedas[i].valor*monedas[i].unidades;
+    }
+    console.log(suma);
     db.currentCaja.put({cajonApertura: monedas, cajonCierre: null});
 }
 
@@ -392,7 +398,7 @@ async function actualizarCesta()
 
 function pagarConVisa(idTicket) //No está en uso
 {
-    db.caja.update(idTicket, {tarjeta: true}).then(updated=>{
+    db.tickets.update(idTicket, {tarjeta: true}).then(updated=>{
         if(updated)
         {
             $('#modalPago').modal('hide')
@@ -409,7 +415,7 @@ function imprimirTicketReal(idTicket)
 {
 	//idTicket, timestamp, total, cesta, tarjeta
 	var enviarArray = [];
-	db.caja.where('idTicket').equals(idTicket).toArray(lista=>{
+	db.tickets.where('idTicket').equals(idTicket).toArray(lista=>{
 		console.log(lista);
 		for(let i = 0; i < lista[0].cesta.length; i++)
 		{
@@ -444,7 +450,7 @@ function pagar() //SERÁ EL PAGAR CON EFECTIVO NO ESTÁ EN USO
         {
             if(lista.length > 0)
             {
-                db.caja.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: false}).then(function(){
+                db.tickets.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: false}).then(function(){
                     notificacion('¡Ticket creado!', 'success');
                     imagenIdTicket.setAttribute('onclick', 'pagarConVisa('+idTicket+')');
                     imagenImprimir.setAttribute('onclick', 'imprimirTicketReal('+idTicket+')');
@@ -477,7 +483,7 @@ function pagarConTarjeta()
             {
                 if(1 == 1) //emitirPagoDatafono()) //Se envía la señal al datáfono, si todo es correcto, devuelve true. ESTO DEBERÁ SER UNA PROMESA, POR LO QUE MÁS ADELANTE HABRÁ QUE CAMBIAR LA ESTRUCTURA DE ACCESO A ESTA FUNCIÓN
                 {
-                    db.caja.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: true}).then(function(){
+                    db.tickets.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: true}).then(function(){
                         imagenImprimir.setAttribute('onclick', 'imprimirTicketReal('+idTicket+')');
                         rowEfectivoTarjeta.setAttribute('class', 'row hide');
                         rowImprimirTicket.setAttribute('class', 'row');
@@ -513,7 +519,7 @@ function pagarConEfectivo()
         {
             if(lista.length > 0)
             {
-                db.caja.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: false}).then(function(){
+                db.tickets.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: false}).then(function(){
                     imagenImprimir.setAttribute('onclick', 'imprimirTicketReal('+idTicket+')');
                     rowEfectivoTarjeta.setAttribute('class', 'row hide');
                     rowImprimirTicket.setAttribute('class', 'row');
@@ -583,3 +589,4 @@ var aux         = null;
 var puto        = null;
 var inicio      = 0;
 var currentMenu = 0;
+var currentCaja = null;

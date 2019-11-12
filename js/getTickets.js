@@ -1,6 +1,6 @@
 function verDetalleTicket(idTicket)
 {
-    db.caja.where('idTicket').equals(idTicket).toArray(res=>{
+    db.tickets.where('idTicket').equals(idTicket).toArray(res=>{
         if(res)
         {
             let ticket      = res[0];

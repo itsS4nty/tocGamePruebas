@@ -101,7 +101,7 @@ function imprimirTeclado(id)
 
 function verCaja()
 {
-    db.caja.orderBy("idTicket").desc().toArray(lista =>{
+    db.tickets.orderBy("idTicket").desc().toArray(lista =>{
         if(lista)
         {
             imprimirListaCaja(lista);
