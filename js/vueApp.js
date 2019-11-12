@@ -1,5 +1,5 @@
-const app = new Vue({
-    el: '#abrirCaja',
+const vueAbrirCaja = new Vue({
+    el: '#tablaAperturaCaja',
     data: {
         valores: [
             {nombre: '0,01', valor: 0.01, unidades: 0},
@@ -16,5 +16,24 @@ const app = new Vue({
             {nombre: '50', valor: 50, unidades: 0},
             {nombre: '100', valor: 100, unidades: 0}
         ]
+    },
+    methods: {
+        sumaApertura: function(index){
+            this.valores[index].unidades++;
+        },
+        restaApertura: function(index){
+            if(this.valores[index].unidades > 0)
+            {
+                this.valores[index].unidades--;
+            }
+        },
+        contarTodo: function(){
+            var suma = 0;
+            for(let i = 0; i < this.valores.length; i++)
+            {
+                suma += this.valores[i].valor*this.valores[i].unidades;
+            }
+            return suma;
+        }
     }
 });

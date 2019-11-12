@@ -80,29 +80,26 @@ function sumarUnidad(x)
     }
 }
 
-function modalAbrirCaja() /* CREA LA NUEVA CAJA: TIPO CUENTA -> POR UNIDADES */
+function contarYCrearCaja() /* CREA LA NUEVA CAJA: TIPO CUENTA -> POR UNIDADES */
 {
-    var monedas = [];
-    var suma    = 0;
-    monedas.push({valor: 0.01, unidades: parseInt(document.getElementById('unidadesUnCentimo').innerHTML)});
-    monedas.push({valor: 0.02, unidades: parseInt(document.getElementById('unidadesDosCentimos').innerHTML)});
-    monedas.push({valor: 0.05, unidades: parseInt(document.getElementById('unidadesCincoCentimos').innerHTML)});
-    monedas.push({valor: 0.10, unidades: parseInt(document.getElementById('unidadesDiezCentimos').innerHTML)});
-    monedas.push({valor: 0.20, unidades: parseInt(document.getElementById('unidadesVeinteCentimos').innerHTML)});
-    monedas.push({valor: 0.50, unidades: parseInt(document.getElementById('unidadesCincuentaCentimos').innerHTML)});
-    monedas.push({valor: 1, unidades: parseInt(document.getElementById('unidadesUnEuro').innerHTML)});
-    monedas.push({valor: 2, unidades: parseInt(document.getElementById('unidadesDosEuros').innerHTML)});
-    monedas.push({valor: 5, unidades: parseInt(document.getElementById('unidadesCincoEuros').innerHTML)});
-    monedas.push({valor: 10, unidades: parseInt(document.getElementById('unidadesDiezEuros').innerHTML)});
-    monedas.push({valor: 20, unidades: parseInt(document.getElementById('unidadesVeinteEuros').innerHTML)});
-    monedas.push({valor: 50, unidades: parseInt(document.getElementById('unidadesCincuentaEuros').innerHTML)});
-    monedas.push({valor: 100, unidades: parseInt(document.getElementById('unidadesCienEuros').innerHTML)});
-    for(let i = 0; i < monedas.length; i++)
-    {
-        suma += monedas[i].valor*monedas[i].unidades;
-    }
-    console.log(suma);
-    db.currentCaja.put({cajonApertura: monedas, cajonCierre: null});
+    db.cajas.put({
+            inicioTime: new Date(), 
+            finalTime: null, 
+            inicioDependenta: null,
+            finalDependenta: null,
+            totalApertura: vueAbrirCaja.contarTodo(),
+            totalCierre: null,
+            descuadre: null,
+            recaudado: null
+        }).then(function(){
+            db.cajas.orderBy('id').last().then(data=>{
+                currentCaja = data.id;
+                notificacion('¡INICIO CAJA OK!');
+            }).catch(err=>{
+                console.log(err);
+                notificacion('Error. No se puede establecer el ID de la caja actual');
+            });
+    });
 }
 
 function modalCerrarCaja2()
@@ -126,7 +123,7 @@ function modalCerrarCaja2()
 
 function crearCajaNueva()
 {
-    modalAbrirCaja();
+    contarYCrearCaja();
     notificacion('¡Caja abierta!', 'success');
     $('#modalAperturaCaja').modal('hide');
 }
@@ -238,7 +235,7 @@ function setCaja()
             <tr><td>20,00</td><td><button onclick="sumarUnidad(10);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidad(10);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesVeinteEuros">0</td></tr>
             <tr><td>50,00</td><td><button onclick="sumarUnidad(11);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidad(11);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesCincuentaEuros">0</td></tr>
             <tr><td>100,00</td><td><button onclick="sumarUnidad(12);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> <button onclick="restarUnidad(12);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button></td><td id="unidadesCienEuros">0</td></tr>`;
-            listaMonedasHtml.innerHTML = htmlMonedas;
+            //listaMonedasHtml.innerHTML = htmlMonedas;
             $('#modalAperturaCaja').modal('show');
         }
     });
@@ -396,7 +393,7 @@ async function actualizarCesta()
     listaCesta.innerHTML = outHTML;
 }
 
-function pagarConVisa(idTicket) //No está en uso
+/*function pagarConVisa(idTicket) //No está en uso
 {
     db.tickets.update(idTicket, {tarjeta: true}).then(updated=>{
         if(updated)
@@ -409,7 +406,7 @@ function pagarConVisa(idTicket) //No está en uso
             alert("Error al intentar pagar con tarjeta");
         }
     });
-}
+}*/
 
 function imprimirTicketReal(idTicket)
 {
@@ -439,7 +436,7 @@ function imprimirTicketReal(idTicket)
 	});
 }
 
-function pagar() //SERÁ EL PAGAR CON EFECTIVO NO ESTÁ EN USO
+/*function pagar() //SERÁ EL PAGAR CON EFECTIVO NO ESTÁ EN USO
 {
     //Hay que crear el nuevo ticket con toda la info de compra (copia de una cesta), la hora y además generar un id de ticket
     var idTicket    = generarIdTicket();
@@ -450,7 +447,7 @@ function pagar() //SERÁ EL PAGAR CON EFECTIVO NO ESTÁ EN USO
         {
             if(lista.length > 0)
             {
-                db.tickets.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: false}).then(function(){
+                db.tickets.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: false, idCaja: currentCaja}).then(function(){
                     notificacion('¡Ticket creado!', 'success');
                     imagenIdTicket.setAttribute('onclick', 'pagarConVisa('+idTicket+')');
                     imagenImprimir.setAttribute('onclick', 'imprimirTicketReal('+idTicket+')');
@@ -468,7 +465,7 @@ function pagar() //SERÁ EL PAGAR CON EFECTIVO NO ESTÁ EN USO
             alert("Error al cargar la cesta desde pagar()");
         }
     });
-}
+}*/
 
 function pagarConTarjeta()
 {
@@ -483,7 +480,7 @@ function pagarConTarjeta()
             {
                 if(1 == 1) //emitirPagoDatafono()) //Se envía la señal al datáfono, si todo es correcto, devuelve true. ESTO DEBERÁ SER UNA PROMESA, POR LO QUE MÁS ADELANTE HABRÁ QUE CAMBIAR LA ESTRUCTURA DE ACCESO A ESTA FUNCIÓN
                 {
-                    db.tickets.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: true}).then(function(){
+                    db.tickets.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: true, idCaja: currentCaja}).then(function(){
                         imagenImprimir.setAttribute('onclick', 'imprimirTicketReal('+idTicket+')');
                         rowEfectivoTarjeta.setAttribute('class', 'row hide');
                         rowImprimirTicket.setAttribute('class', 'row');
@@ -519,7 +516,7 @@ function pagarConEfectivo()
         {
             if(lista.length > 0)
             {
-                db.tickets.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: false}).then(function(){
+                db.tickets.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: false, idCaja: currentCaja}).then(function(){
                     imagenImprimir.setAttribute('onclick', 'imprimirTicketReal('+idTicket+')');
                     rowEfectivoTarjeta.setAttribute('class', 'row hide');
                     rowImprimirTicket.setAttribute('class', 'row');

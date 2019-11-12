@@ -625,9 +625,16 @@
 						<div class="col-md-12">
 							<div>
 								<div class="table-responsive">
-									<table class="table table-striped letraCesta"><!-- header-fixed">-->
-										<tbody id="listaMonedasHtml">														
-											
+									<table class="table table-striped letraCesta" id="tablaAperturaCaja"><!-- header-fixed">-->
+										<tbody id="listaMonedasHtml" v-for="(info, index) in valores">													
+											<tr>
+												<td>{{info.nombre}}</td>
+												<td>
+													<button @click="sumaApertura(index)" class="btn btn-danger btn-fab"><i class="zmdi zmdi-plus"></i><div class="ripple-container"></div></button> 
+													<button @click="restaApertura(index);" class="btn btn-danger btn-fab"><i class="zmdi zmdi-minus"></i><div class="ripple-container"></div></button>
+												</td>
+												<td id="unidadesUnCentimo">{{info.unidades}}</td>
+											</tr>
 										</tbody>
 									</table>
 								</div>
@@ -803,7 +810,7 @@
 		<!-- FIN MODAL DE LA CAJA FULLSCREEN 22222-->
 		<!-- END MODALS =============================================-->
 		<script src="js/vue.js"></script>
-		<script src="vueApp.js"></script>
+		<script src="js/vueApp.js"></script>
 		<script src="assets/js/vendor.bundle.js"></script>
 		<script src="assets/js/app.bundle.js"></script>
 		<script src="js/index.js"></script>
