@@ -144,7 +144,7 @@ function notificacion(texto, tipo)
     }
 }
 
-function refreshFichajes()
+function refreshFichajes() //NO SE UTILIZA, BORRAR
 {
     db.fichajes.toArray(lista=>{
         htmlFichajes.innerHTML = '';

@@ -2,15 +2,12 @@ async function comprobarConfiguracion()
 {
     var arrayParametros = await db.parametros.toArray();
     console.log(arrayParametros);
-    console.log("accede a comprobarConfiguracion()");
     if(arrayParametros.length == 0)
     {
-        console.log(9999);
         return false;
     }
     else
     {
-        console.log(69999);
         //comprobaciones faltan, todo okey devuelve true;
         return true;
     }
