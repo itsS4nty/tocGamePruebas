@@ -20,13 +20,13 @@ socket.on('install-licencia', (data)=>
     }
 });
 
-socket.on('cargar-ultimo-teclado', (data)=>{
+socket.on('cargar-todo', (data)=>{
     try
     {
         if(!data.error)
         {
             console.log(data);
-            cargarTecladoSockets(data.menus, data.teclas, data.articulos);
+            cargarTecladoSockets(data.menus, data.teclas, data.articulos, data.dependentes);
         }
         else
         {
@@ -45,7 +45,7 @@ function iniciarTocSockets()
         if(info)
         {
             console.log(info);
-            socket.emit('cargar-ultimo-teclado', {
+            socket.emit('cargar-todo', {
                 licencia: info[0].licencia,
                 database: info[0].database
             });

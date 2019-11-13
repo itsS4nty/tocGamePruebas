@@ -8,7 +8,7 @@ function startDB()
        tickets: 'idTicket, timestamp, total, cesta, tarjeta, idCaja', //se debería llamar tickets
        articulos: 'id, nombre, precio, iva',
        teclado: 'id, arrayTeclado',
-       trabajadores: 'idTrabajador, nombre',
+       trabajadores: 'idTrabajador, nombre, nombreCorto',
        fichajes: 'idTrabajador, nombre, inicio, final',
        currentCaja: '++idCaja, cajonApertura, cajonClausura', //SE TIENE QUE BORRAR Y USAR LA TABLA 'CAJAS'
        promociones: 'id, nombre, precioFinal, articulosNecesarios',

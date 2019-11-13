@@ -1,4 +1,4 @@
-function cargarTecladoSockets(arraySubmenus, arrayTeclas, arrayArticulos)
+function cargarTecladoSockets(arraySubmenus, arrayTeclas, arrayArticulos, arrayTrabajadores)
 {
     //1 - Limpiar teclado.
     clearKeyboard().then(function(res){
@@ -30,8 +30,13 @@ function cargarTecladoSockets(arraySubmenus, arrayTeclas, arrayArticulos)
                     articulos.push({id: arrayArticulos[i].id, nombre: arrayArticulos[i].nombre, precio: arrayArticulos[i].precioConIva, iva: conversorIva(arrayArticulos[i].tipoIva)});
                 }
                 db.articulos.bulkPut(articulos).then(function(lastKey) {
-                    console.log("Teclado finalizado!");
-                    iniciarToc();
+                    db.trabajadores.bulkPut(arrayTrabajadores).then(function(x){
+                        console.log(arrayTrabajadores);
+                        console.log("¡OK!");
+                        iniciarToc();
+                    }).catch(Dexie.BulkError, function (e) {
+                        console.log("Error al insertar trabajadores");
+                    });
                 }).catch(Dexie.BulkError, function (e) {
                     // Explicitely catching the bulkAdd() operation makes those successful
                     // additions commit despite that there were errors.
