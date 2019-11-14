@@ -29,7 +29,10 @@ function startDB()
         }
    });
 }
-
+function abrirMenuPrincipal()
+{
+    $('#modalFichajes').modal('show');
+}
 function abrirModalTeclado()
 {
     botonFichar.setAttribute('class', 'btn btn-default');
