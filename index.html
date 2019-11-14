@@ -748,24 +748,23 @@
 						</ul>
 					</div>
 					<div class="modal-body scrollbar">
-						<div class="col-md-12">
+							<div class="col-sm-5 m-b-20">
 								<div class="form-group is-empty">
-									<label style="font-size: 30px;" for="name" class="col-md-2 control-label">Número de licencia</label>
-									<div class="col-md-10">
-										<input type="text" class="form-control" id="numLicenciaInstallWizard" autocomplete="off" placeholder="000" style="font-size: 30px;">
-									</div>
+									<label>Licencia</label>
+									<input type="text" class="form-control input-mask"placeholder="ej. 123" autocomplete="off" maxlength="4" id="numLicenciaInstallWizard" autocomplete="off" style="font-size: 30px;">
 								</div>
+							</div>
+							<div class="col-sm-5 m-b-20">
 								<div class="form-group is-empty">
-									<label style="font-size: 30px;" for="inputPassword" class="col-md-2 control-label">Clave</label>
-									<div class="col-md-10">
-										<input type="password" class="form-control" id="passwordInstallWizard" autocomplete="off" placeholder="Password" style="font-size: 30px;">
-									</div>
+									<label>Clave</label>
+									<input type="password" class="form-control input-mask" id="passwordInstallWizard" autocomplete="off" placeholder="Password" style="font-size: 30px;">
 								</div>
-								<div class="form-group">
+							</div>
+							<div class="col-sm-2 m-b-20">
+								<div class="form-group is-empty">
 									<button onclick="checkLicencia();" type="button" class="btn btn-primary" style="font-family: 'Anton', sans-serif; font-size: 20px; font-style: normal; color: black;">ACEPTAR</button>
 								</div>
-						</div>
-
+							</div>
 					</div>
 				</div>
 				<!-- modal-content -->
