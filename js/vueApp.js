@@ -39,9 +39,10 @@ const vueAbrirCaja = new Vue({
 });
 
 const vueFichajes = new Vue({
-    el: '#tablaTrabajadoresSinFichar',
+    el: '#vueTablaTrabajadores',
     data: {
-        trabajadores: []
+        trabajadores: [],
+        fichados: []
     },
     methods: {
         getTrabajadores: function(){
@@ -50,6 +51,55 @@ const vueFichajes = new Vue({
             }).catch(err=>{
                 console.log(err);
                 notificacion('Error en getTrabajadores VUE()', 'error');
+            });
+        },
+        ficharTrabajador: function(x){
+            var idTrabajador = Number(x);
+            ficharTrabajador(idTrabajador).then(res=>{
+                if(res)
+                {
+                    this.verFichados();
+                    console.log('Trabajador fichado');
+                    notificacion('Trabajador fichado', 'success');
+                }
+                else
+                {
+                    console.log('Error al fichar ID: ' + idTrabajador);
+                    notificacion('Error al fichar', 'error');
+                }
+            });
+        },
+        finTurno: function(x){
+            var idTrabajador = Number(x);
+            desfichar(idTrabajador).then(res=>{
+                if(res)
+                {
+                    this.verFichados();
+                }
+                else
+                {
+                    console.log("Error fin turno()");
+                    notificacion('Error al plegar', 'error');
+                }
+            });
+        },
+        verFichados: function(){
+            getFichados().then(res=>{
+                if(res.todoOK)
+                {
+                    if(res.data.length > 0)
+                    {
+                        this.fichados = res.data;
+                    }
+                    else
+                    {
+                        this.fichados = [];
+                    }
+                }
+                else
+                {
+                    console.log("Error en getFichados/verFichados");
+                }
             });
         }
     }

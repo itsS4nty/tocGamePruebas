@@ -32,6 +32,7 @@ function startDB()
 function abrirMenuPrincipal()
 {
     vueFichajes.getTrabajadores();
+    vueFichajes.verFichados();
     $('#modalFichajes').modal('show');
 }
 function abrirModalTeclado()
@@ -75,6 +76,20 @@ function iniciarToc()
         }
    });
 }
+
+function desfichar(idTrabajador)
+{
+    var devolver = new Promise((dev,rev)=>{
+        db.fichajes.update(idTrabajador, {activo: 0, fichado: 0, final: new Date()}).then(function(res){
+            dev(true);
+        }).catch(err=>{
+            console.log(err);
+            dev(false);
+        });
+    });
+    return devolver;
+}
+
 function comprobarCaja()
 {
     var devolver = new Promise((dev, rej)=>{
@@ -104,27 +119,7 @@ function comprobarCaja()
     });
     return devolver;
 }
-/*
-function sumarUnidad(x)
-{
-    switch(x)
-    {
-        case 0: document.getElementById('unidadesUnCentimo').innerHTML = parseInt(document.getElementById('unidadesUnCentimo').innerHTML)+1; break;
-        case 1: document.getElementById('unidadesDosCentimos').innerHTML = parseInt(document.getElementById('unidadesDosCentimos').innerHTML)+1; break;
-        case 2: document.getElementById('unidadesCincoCentimos').innerHTML = parseInt(document.getElementById('unidadesCincoCentimos').innerHTML)+1; break;
-        case 3: document.getElementById('unidadesDiezCentimos').innerHTML = parseInt(document.getElementById('unidadesDiezCentimos').innerHTML)+1; break;
-        case 4: document.getElementById('unidadesVeinteCentimos').innerHTML = parseInt(document.getElementById('unidadesVeinteCentimos').innerHTML)+1; break;
-        case 5: document.getElementById('unidadesCincuentaCentimos').innerHTML = parseInt(document.getElementById('unidadesCincuentaCentimos').innerHTML)+1; break;
-        case 6: document.getElementById('unidadesUnEuro').innerHTML = parseInt(document.getElementById('unidadesUnEuro').innerHTML)+1; break;
-        case 7: document.getElementById('unidadesDosEuros').innerHTML = parseInt(document.getElementById('unidadesDosEuros').innerHTML)+1; break;
-        case 8: document.getElementById('unidadesCincoEuros').innerHTML = parseInt(document.getElementById('unidadesCincoEuros').innerHTML)+1; break;
-        case 9: document.getElementById('unidadesDiezEuros').innerHTML = parseInt(document.getElementById('unidadesDiezEuros').innerHTML)+1; break;
-        case 10: document.getElementById('unidadesVeinteEuros').innerHTML = parseInt(document.getElementById('unidadesVeinteEuros').innerHTML)+1; break;
-        case 11: document.getElementById('unidadesCincuentaEuros').innerHTML = parseInt(document.getElementById('unidadesCincuentaEuros').innerHTML)+1; break;
-        case 12: document.getElementById('unidadesCienEuros').innerHTML = parseInt(document.getElementById('unidadesCienEuros').innerHTML)+1; break;
-    }
-}
-*/
+
 function fichados() /* DEVUELVE null si no hay nadie, DEVUELVE array de fichados si hay alguien  'idTrabajador, nombre, inicio, final, activo, fichado'*/
 {
     var devolver = new Promise(function(dev, rej){
@@ -321,61 +316,39 @@ function conversorIva(iva)
     }
 }
 
-function ficharTrabajadorDirecto(idTrabajador)
+function ficharTrabajador(idTrabajador)
 {
-    db.trabajadores.where('idTrabajador').equals(idTrabajador).toArray(lista=>{
-		db.fichajes.put({idTrabajador: lista[0].idTrabajador, nombre: lista[0].nombre, inicio: getHoraUnix(), final: false}).then(function(){
-            notificacion('¡Fichar OK!', 'success');
-            refreshFichajes();
-            botonFichar.setAttribute('class', 'hide btn btn-default');
-        });
-    });
-}
-function ficharTrabajador(buscoNombre)
-{
-    var filtro = [];
-    db.trabajadores.toArray(lista=>{
-        if(lista)
-        {
-            for(let i = 0; i < lista.length; i++)
+    var devolver = new Promise((dev, rej)=>{
+        db.trabajadores.where('idTrabajador').equals(idTrabajador).toArray().then(data=>{
+            if(data.length === 1)
             {
-                if(lista[i].nombre.toUpperCase().indexOf(buscoNombre.toUpperCase()) !== -1)
-                {
-                    filtro.push({idTrabajador: lista[i].idTrabajador, nombre: lista[i].nombre});
-                }
-            }
-            if(filtro.length === 1)
-            {
-                db.fichajes.put({idTrabajador: filtro[0].idTrabajador, nombre: filtro[0].nombre, inicio: getHoraUnix(), final: false}).then(function(){
-                    notificacion('¡Fichar OK!', 'success');
-                    refreshFichajes();
-                    botonFichar.setAttribute('class', 'hide btn btn-default');
+                db.fichajes.put({
+                    idTrabajador: data[0].idTrabajador, 
+                    nombre:  data[0].nombre,
+                    inicio: new Date(),
+                    final: null,
+                    activo: 1,
+                    fichado: 1
+                }).then(function(){
+                    dev(true);
+                }).catch(err=>{
+                    console.log(err);
+                    notificacion('Error en ficharTrabajador() JS', 'error');
+                    dev(false);
                 });
             }
             else
             {
-                if(filtro.length > 1)
-                {
-                    var textoHTML = '';
-                    for(let i = 0; i < filtro.length; i++)
-                    {
-                        textoHTML += `<tr><td>${filtro[i].nombre}</td><td><button type="button" class="btn btn-primary" onclick="ficharTrabajadorDirecto(${filtro[i].idTrabajador})">Fichar</button></td></tr>`;
-                    }
-                    listaResultadosFichajes.innerHTML = textoHTML;
-                    $("#modalFichajes").modal();
-                }
-                else
-                {
-                    notificacion('Ningún resultado con este nombre', 'error');
-                }
+                console.log('Error, no existe este ID');
+                dev(false);
             }
-        }
-        else
-        {
-            console.log("ERROR en ficharTrabajador");
-            notificacion('ERROR en ficharTrabajador', 'error');
-        }
+        }).catch(err=>{
+            console.log(err);
+            notificacion('Error en Where trabajadores', 'error');
+            dev(false);
+        });
     });
+    return devolver;
 }
 
 function nuevoArticulo(idArticulo, nombreArticulo, precioArticulo, ivaArticulo)

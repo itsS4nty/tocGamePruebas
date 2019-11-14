@@ -51,6 +51,18 @@ function getTrabajadores()
     });
 }
 
+function getFichados()
+{
+    var devolver = new Promise((dev, rej)=>{
+        db.fichajes.where('fichado').equals(1).toArray().then(data=>{
+            dev({todoOK: true, data: data});
+        }).catch(err=>{
+            console.log(err);
+            dev({todoOK: false});
+        });
+    });
+    return devolver;
+}
 function getCurrentCaja()
 {
     db.currentCaja.toArray(lista=>{

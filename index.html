@@ -787,14 +787,14 @@
 						</ul>
 					</div>
 					<div class="modal-body scrollbar">
-						<div class="row">
+						<div class="row" id="vueTablaTrabajadores">
 							<div class="col-md-6" style="height: 500px;">
 								<div class="input-group">
 										<span class="input-group-addon" style="font-family: 'Anton', sans-serif; font-size: 25px;">Buscar</span>
 										<input id="filtrar" class="form-control" type="text" placeholder="Escribe el nombre aquí">
 								</div>
 								<div class="table-responsive">
-									<table class="table table-hover header-fixed" id="tablaTrabajadoresSinFichar">
+									<table class="table table-hover header-fixed">
 										<thead>
 											<tr>
 												<th>Nombre largo</th>
@@ -813,7 +813,24 @@
 								</div>												
 							</div>
 							<div class="col-md-6">
-
+									<div class="table-responsive">
+											<table class="table table-hover header-fixed">
+												<thead>
+													<tr>
+														<th>Nombre</th>
+														<th>Hora</th>
+														<th>-</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr v-for="persona of fichados">
+														<td>{{persona.nombre}}</td>
+														<td>{{persona.inicio.getHours()}}:{{persona.inicio.getMinutes()}}:{{persona.inicio.getSeconds()}} {{persona.inicio.getDate()}}/{{persona.inicio.getMonth()}}/{{persona.inicio.getFullYear()}}</td>
+														<td><button @click="finTurno(persona.idTrabajador)" class="btn btn-primary">FIN DE TURNO</button></td>
+													</tr>
+												</tbody>
+											</table>	
+										</div>	
 							</div>
 						</div>
 					</div>
