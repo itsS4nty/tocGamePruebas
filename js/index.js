@@ -29,21 +29,6 @@ function startDB()
         }
    });
 }
-$(function () {
-    "use strict";
-    var $balloon = $("#balloon"),
-      $infoTxt = $("#info-txt");
-    setTimeout(function () {
-      $balloon.addClass("shrink");
-    }, 500);
-    $infoTxt.delay(1000).fadeIn();
-    $(this).click(function () {
-      $("#button-hint").fadeOut();
-      $balloon.fadeOut();
-      $infoTxt.fadeOut();
-    });
-    jqKeyboard.init();
-  });
 
 function abrirModalTeclado()
 {
@@ -636,3 +621,25 @@ var currentMenu         = 0;
 var currentCaja         = null;
 var currentTrabajadores = null;
 var currentIdTrabajador = null;
+
+$(document).ready(function () {
+ 
+    (function ($) {
+ 
+        $('#filtrar').keyup(function () {
+ 
+             var rex = new RegExp($(this).val(), 'i');
+ 
+             $('.buscar tr').hide();
+ 
+             $('.buscar tr').filter(function () {
+               return rex.test($(this).text());
+             }).show();
+ 
+        })
+ 
+    }(jQuery));
+    $('#keyboard').jkeyboard({
+        input: $('#filtrar')
+    });
+});
