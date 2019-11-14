@@ -37,3 +37,20 @@ const vueAbrirCaja = new Vue({
         }
     }
 });
+
+const vueFichajes = new Vue({
+    el: '#tablaTrabajadoresSinFichar',
+    data: {
+        trabajadores: []
+    },
+    methods: {
+        getTrabajadores: function(){
+            db.trabajadores.toArray().then(data=>{
+                this.trabajadores = data;
+            }).catch(err=>{
+                console.log(err);
+                notificacion('Error en getTrabajadores VUE()', 'error');
+            });
+        }
+    }
+});

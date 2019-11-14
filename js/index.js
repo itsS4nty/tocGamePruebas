@@ -31,6 +31,7 @@ function startDB()
 }
 function abrirMenuPrincipal()
 {
+    vueFichajes.getTrabajadores();
     $('#modalFichajes').modal('show');
 }
 function abrirModalTeclado()
