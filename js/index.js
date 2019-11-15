@@ -15,8 +15,31 @@ function startDB()
        menus: 'id, nombre, color',
        submenus: 'id, idPadre, nombre, idTeclado, color',
        parametros: 'licencia, nombreEmpresa, database',
-       cajas: '++id, inicioTime, finalTime, inicioDependenta, finalDependenta, totalApertura, totalCierre, descuadre, recaudado, abierta'
+       cajas: '++id, inicioTime, finalTime, inicioDependenta, finalDependenta, totalApertura, totalCierre, descuadre, recaudado, abierta',
+       activo: 'idTrabajador'
    });
+
+   var aux = initVueTocGame();
+   (function ($) {
+ 
+    $('#filtrar').keyup(function () {
+
+         var rex = new RegExp($(this).val(), 'i');
+
+         $('.buscar tr').hide();
+
+         $('.buscar tr').filter(function () {
+           return rex.test($(this).text());
+         }).show();
+
+    })
+
+}(jQuery));
+$('#keyboard').jkeyboard({
+    input: $('#filtrar')
+});
+   vueAbrirCaja = aux.caja;
+   vueFichajes  = aux.fichajes;
 
    comprobarConfiguracion().then((res)=>{
        if(res)
@@ -189,7 +212,7 @@ function crearCajaNueva() //EL nombre es raro. SOLO SE ACCEDE DESDE EL  MODAL
     notificacion('¡Caja abierta!', 'success');
     $('#modalAperturaCaja').modal('hide');
 
-    fichados().then(data=>{
+    /*fichados().then(data=>{
         if(data !== null)
         {
             for(let i = 0; i < data.length; i++)
@@ -207,7 +230,7 @@ function crearCajaNueva() //EL nombre es raro. SOLO SE ACCEDE DESDE EL  MODAL
             notificacion('No se encuentran trabajador@s fichad@s', 'warning');
             $('#modalFichar').modal();
         }
-    });
+    });*/
 }
 
 function restarUnidad(x)
@@ -452,14 +475,23 @@ function imprimirTicketReal(idTicket)
 
 function fichadoYActivo()
 {
-    if(currentTrabajadores !== null && currentTrabajadores.length > 0 && currentIdTrabajador !== null)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    var devolver = new Promise((dev, rej)=>{
+        db.activo.toArray().then(res=>{
+            if(res.length === 1 && vueFichajes.fichados.length > 0)
+            {
+                dev(true);
+            }
+            else
+            {
+                dev(false);
+            }
+        }).catch(err=>{
+            console.log(err);
+            notificacion('Error en fichadoYActivo catch', 'error');
+            dev(false);
+        });
+    });
+    return devolver;
 }
 
 function pagarConTarjeta()
@@ -468,43 +500,57 @@ function pagarConTarjeta()
     var time        = new Date();
     var stringTime  = `${time.getDate()}/${time.getMonth()}/${time.getFullYear()} ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
 
-    if(fichadoYActivo())
-    {
-        db.cesta.toArray(lista=>{
-            if(lista)
-            {
-                if(lista.length > 0)
+    fichadoYActivo().then(res22=>{
+        if(res22)
+        {
+            db.cesta.toArray(lista=>{
+                if(lista)
                 {
-                    if(1 == 1) //emitirPagoDatafono()) //Se envía la señal al datáfono, si todo es correcto, devuelve true. ESTO DEBERÁ SER UNA PROMESA, POR LO QUE MÁS ADELANTE HABRÁ QUE CAMBIAR LA ESTRUCTURA DE ACCESO A ESTA FUNCIÓN
+                    if(lista.length > 0)
                     {
-                        db.tickets.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: true, idCaja: currentCaja}).then(function(){
-                            imagenImprimir.setAttribute('onclick', 'imprimirTicketReal('+idTicket+')');
-                            rowEfectivoTarjeta.setAttribute('class', 'row hide');
-                            rowImprimirTicket.setAttribute('class', 'row');
-                            vaciarCesta();
-                            notificacion('¡Ticket creado!', 'success');
-                        });
+                        if(1 == 1) //emitirPagoDatafono()) //Se envía la señal al datáfono, si todo es correcto, devuelve true. ESTO DEBERÁ SER UNA PROMESA, POR LO QUE MÁS ADELANTE HABRÁ QUE CAMBIAR LA ESTRUCTURA DE ACCESO A ESTA FUNCIÓN
+                        {
+                            db.activo.toArray().then(res=>{
+                                if(res.length === 1)
+                                {
+                                    db.tickets.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: true, idCaja: currentCaja, idTrabajador: res[0].idTrabajador}).then(function(){
+                                        imagenImprimir.setAttribute('onclick', 'imprimirTicketReal('+idTicket+')');
+                                        rowEfectivoTarjeta.setAttribute('class', 'row hide');
+                                        rowImprimirTicket.setAttribute('class', 'row');
+                                        vaciarCesta();
+                                        notificacion('¡Ticket creado!', 'success');
+                                    });
+                                }
+                                else
+                                {
+                                    console.log('Error #66');
+                                }
+                            }).catch(err=>{
+                                console.log(err);
+                                notificacion('Error #55');
+                            });
+                        }
+                        else
+                        {
+                            notificacion('Error al pagar con datáfono', 'error');
+                        }
                     }
                     else
                     {
-                        notificacion('Error al pagar con datáfono', 'error');
+                        notificacion('Error. ¡No hay nada en la cesta!', 'error');    
                     }
                 }
                 else
                 {
-                    notificacion('Error. ¡No hay nada en la cesta!', 'error');    
+                    notificacion('Error al cargar la cesta desde pagar()', 'error');
                 }
-            }
-            else
-            {
-                notificacion('Error al cargar la cesta desde pagar()', 'error');
-            }
-        });
-    }
-    else
-    {
-        alert("Hay que fichar y activar!");
-    }
+            });
+        }
+        else
+        {
+            notificacion('¡Es necesario fichar antes cobrar!', 'warning');
+        }
+    });
 }
 
 function pagarConEfectivo()
@@ -513,36 +559,50 @@ function pagarConEfectivo()
     var time            = new Date();
     var stringTime  = `${time.getDate()}/${time.getMonth()}/${time.getFullYear()} ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
 
-    if(fichadoYActivo())
-    {
-        db.cesta.toArray(lista=>{
-            if(lista)
-            {
-                if(lista.length > 0)
+    fichadoYActivo().then(res22=>{
+        if(res22)
+        {
+            db.cesta.toArray(lista=>{
+                if(lista)
                 {
-                    db.tickets.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: false, idCaja: currentCaja}).then(function(){
-                        imagenImprimir.setAttribute('onclick', 'imprimirTicketReal('+idTicket+')');
-                        rowEfectivoTarjeta.setAttribute('class', 'row hide');
-                        rowImprimirTicket.setAttribute('class', 'row');
-                        vaciarCesta();
-                        notificacion('¡Ticket creado!', 'success');
-                    });
+                    if(lista.length > 0)
+                    {
+                        db.activo.toArray().then(res=>{
+                            if(res.length === 1)
+                            {
+                                db.tickets.put({idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: false, idCaja: currentCaja, idTrabajador: res[0].idTrabajador}).then(function(){
+                                    imagenImprimir.setAttribute('onclick', 'imprimirTicketReal('+idTicket+')');
+                                    rowEfectivoTarjeta.setAttribute('class', 'row hide');
+                                    rowImprimirTicket.setAttribute('class', 'row');
+                                    vaciarCesta();
+                                    notificacion('¡Ticket creado!', 'success');
+                                });
+                            }
+                            else
+                            {
+                                console.log('Error #6');
+                            }
+                        }).catch(err=>{
+                            console.log(err);
+                            notificacion('Error #5');
+                        });
+                    }
+                    else
+                    {
+                        notificacion('Error. ¡No hay nada en la cesta!', 'error');    
+                    }
                 }
                 else
                 {
-                    notificacion('Error. ¡No hay nada en la cesta!', 'error');    
+                    notificacion('Error al cargar la cesta desde pagar()', 'error');
                 }
-            }
-            else
-            {
-                notificacion('Error al cargar la cesta desde pagar()', 'error');
-            }
-        });   
-    }
-    else
-    {
-        alert("Lo mismo!");
-    }
+            });
+        }
+        else
+        {
+            notificacion('¡Es necesario fichar antes cobrar!', 'warning');
+        }
+    });    
 }
 
 function abrirPago()
@@ -587,7 +647,8 @@ function addMenus()
         console.log("Menús agregadosadd");
     });
 }
-
+var vueAbrirCaja        = null;
+var vueFichajes         = null;
 window.onload           = startDB;
 var conexion            = null;
 var db                  = null;
@@ -596,9 +657,9 @@ var puto                = null;
 var inicio              = 0;
 var currentMenu         = 0;
 var currentCaja         = null;
-var currentTrabajadores = null;
-var currentIdTrabajador = null;
 
+var currentIdTrabajador = null; 
+/*
 $(document).ready(function () {
  
     (function ($) {
@@ -620,3 +681,4 @@ $(document).ready(function () {
         input: $('#filtrar')
     });
 });
+*/

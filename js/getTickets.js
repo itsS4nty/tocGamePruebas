@@ -27,6 +27,7 @@ function verDetalleTicket(idTicket)
             detalleTotal.innerHTML      = `${ticket.total} €`;
             detalleMetodo.innerHTML     = strMetodo;
             document.getElementById('colDetalle').setAttribute("class", "col-md-4");
+            document.getElementById('botonCajaImprimir').setAttribute("onclick", "imprimirTicketReal("+idTicket+")");
         }
         else
         {

@@ -726,6 +726,7 @@
 						<button type="button" class="btn btn-danger" onclick="alert('llamar a cerrar caja')" style="font-family: 'Anton', sans-serif; font-size: 25px; font-style: normal; color: black;">ENTRADA DINERO</button>
 						<button type="button" class="btn btn-warning" onclick="alert('llamar a cerrar caja')" style="font-family: 'Anton', sans-serif; font-size: 25px; font-style: normal; color: black;">SALIDA DINERO</button>
 						<button type="button" class="btn btn-success" onclick="alert('llamar a cerrar caja')" style="font-family: 'Anton', sans-serif; font-size: 25px; font-style: normal; color: black;">CERRAR CAJA</button>
+						<button type="button" class="btn btn-info" id="botonCajaImprimir" onclick="notificacion('Selecciona un ticket', 'warning')" style="font-family: 'Anton', sans-serif; font-size: 25px; font-style: normal; color: black;">IMPRIMIR TICKET</button>
 						<button type="button" class="btn btn-primary" data-dismiss="modal" style="font-family: 'Anton', sans-serif; font-size: 25px; font-style: normal; color: black;">SALIR</button>
 					</div>
 				</div>
@@ -825,7 +826,10 @@
 													<tr v-for="persona of fichados">
 														<td>{{persona.nombre}}</td>
 														<td>{{persona.inicio.getHours()}}:{{persona.inicio.getMinutes()}}:{{persona.inicio.getSeconds()}} {{persona.inicio.getDate()}}/{{persona.inicio.getMonth()}}/{{persona.inicio.getFullYear()}}</td>
-														<td><button @click="finTurno(persona.idTrabajador)" class="btn btn-primary">FIN DE TURNO</button></td>
+														<td>
+															<button @click="finTurno(persona.idTrabajador)" class="btn btn-primary">FIN DE TURNO</button>
+															<button @click="toActivo(persona.idTrabajador)" class="btn btn-primary" style="background-color: red;">SELECCIONAR ACTIVO</button>
+														</td>
 													</tr>
 												</tbody>
 											</table>	
@@ -834,7 +838,6 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" onclick="alert('llamar a cerrar caja')" style="font-family: 'Anton', sans-serif; font-size: 25px; font-style: normal; color: black;">PLEGAR</button>
 						<button type="button" class="btn btn-primary" data-dismiss="modal" style="font-family: 'Anton', sans-serif; font-size: 25px; font-style: normal; color: black;">SALIR</button>
 					</div>
 				</div>
