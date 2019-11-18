@@ -44,7 +44,7 @@ function limpiarTeclado()
     }
 }
 
-function imprimirTeclado(id)
+function imprimirTeclado(id) //Hay que mejorarla y mucho
 {
     db.articulos.toArray(listaArticulos =>{
         if(listaArticulos)
@@ -65,7 +65,7 @@ function imprimirTeclado(id)
                         strPos = 'tecla' + infoTeclado[id].arrayTeclado[i].posicion;
                         if(typeof aux.nombre !== "undefined")
                         {
-                            strFun = `addItemCesta(${infoTeclado[id].arrayTeclado[i].id}, '${aux.nombre}', ${aux.precio});`;
+                            strFun = `addItemCesta(${infoTeclado[id].arrayTeclado[i].id}, '${aux.nombre}', ${aux.precio}, ${aux.sumable});`;
                         }
                         else
                         {

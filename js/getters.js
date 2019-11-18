@@ -11,7 +11,7 @@ function getInfoArticulo(arrayArticulos, idToSearch)
     {
         if(arrayArticulos[i].id == idToSearch)
         {
-            return {nombre: arrayArticulos[i].nombre, precio: arrayArticulos[i].precio};
+            return {nombre: arrayArticulos[i].nombre, precio: arrayArticulos[i].precio, sumable: arrayArticulos[i].aPeso};
         }
     }
     return false;

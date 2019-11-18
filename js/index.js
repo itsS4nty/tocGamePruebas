@@ -6,7 +6,7 @@ function startDB()
    db.version(1).stores({
        cesta: 'idArticulo, nombreArticulo, unidades, subtotal, promocion',
        tickets: 'idTicket, timestamp, total, cesta, tarjeta, idCaja, idTrabajador',
-       articulos: 'id, nombre, precio, iva',
+       articulos: 'id, nombre, precio, iva, aPeso',
        teclado: 'id, arrayTeclado',
        trabajadores: 'idTrabajador, nombre, nombreCorto',
        fichajes: 'idTrabajador, nombre, inicio, final, activo, fichado',
@@ -40,6 +40,7 @@ $('#keyboard').jkeyboard({
 });
    vueAbrirCaja = aux.caja;
    vueFichajes  = aux.fichajes;
+   vuePeso      = aux.peso;
 
    comprobarConfiguracion().then((res)=>{
        if(res)
@@ -389,37 +390,73 @@ function nuevoArticulo(idArticulo, nombreArticulo, precioArticulo, ivaArticulo)
     }
 }
 
-function addItemCesta(idArticulo, nombreArticulo, precio)
+function addItemCesta(idArticulo, nombreArticulo, precio, sumable, gramos = false) //id, nombre, precio, iva, aPeso
 {
-    //primero comprobamos si el item ya existe en la lista con un get
-    db.cesta.get(idArticulo, res =>{
-        if(res)
-        {
-            let uds     = res.unidades + 1;
-            let subt    = res.subtotal + precio; 
-            db.cesta.update(idArticulo, {unidades: uds, subtotal: subt}).then(updated=>{
-                if(updated)
+    if(sumable === 1 || gramos !== false)
+    {
+        //primero comprobamos si el item ya existe en la lista con un get
+        db.cesta.get(idArticulo, res =>{
+            if(res)
+            {
+                let uds     = res.unidades + 1;
+                let subt    = res.subtotal + precio; 
+                if(!gramos)
                 {
-                    buscarOfertas().then(function(){
-                        actualizarCesta();
+                    db.cesta.update(idArticulo, {unidades: uds, subtotal: subt}).then(updated=>{
+                        if(updated)
+                        {
+                            buscarOfertas().then(function(){
+                                actualizarCesta();
+                            });
+                        }
+                        else
+                        {
+                            alert("Error al actualizar cesta");
+                        }
                     });
                 }
                 else
                 {
-                    alert("Error al actualizar cesta");
+                    db.cesta.put({idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio*(gramos/1000), promocion: -1}).then(function(){
+                        actualizarCesta();
+                    }).catch(err=>{
+                        console.log(err);
+                        notificacion('Error 456', 'error');
+                    });
                 }
-            });
-            //Hay que sumar uno
-        }
-        else
-        {
-            db.cesta.put({idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio, promocion: -1}).then(function(){
-                buscarOfertas().then(function(){
-                    actualizarCesta();
-                });
-            });
-        }
-    });
+            }
+            else
+            {
+                if(!gramos)
+                {
+                    db.cesta.put({idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio, promocion: -1}).then(function(){
+                        buscarOfertas().then(function(){
+                            actualizarCesta();
+                        });
+                    });
+                }
+                else
+                {
+                    db.cesta.put({idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio*(gramos/1000), promocion: -1}).then(function(){
+                        actualizarCesta();
+                    }).catch(err=>{
+                        console.log(err);
+                        notificacion('Error 4566', 'error');
+                    });
+                }
+            }
+        });
+    }
+    else //Va por peso
+    {
+        cosaParaPeso = {idArticulo: idArticulo, nombreArticulo: nombreArticulo, precio: precio, sumable: sumable};
+        $('#modalAPeso').modal('show');
+    }
+}
+
+function borrarItemCesta(idArticulo)
+{
+    
 }
 
 function vaciarCesta()
@@ -649,6 +686,7 @@ function addMenus()
 }
 var vueAbrirCaja        = null;
 var vueFichajes         = null;
+var vuePeso             = null;
 window.onload           = startDB;
 var conexion            = null;
 var db                  = null;
@@ -657,7 +695,7 @@ var puto                = null;
 var inicio              = 0;
 var currentMenu         = 0;
 var currentCaja         = null;
-
+var cosaParaPeso        = null;
 var currentIdTrabajador = null; 
 /*
 $(document).ready(function () {

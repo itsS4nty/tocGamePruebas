@@ -38,6 +38,19 @@ function initVueTocGame(){
             }
         }
     });
+
+    var vueConPeso = new Vue({
+        el: '#conPeso',
+        data: {
+            gramos: 0
+        },
+        methods: {
+            addItemPeso: function(){
+                addItemCesta(cosaParaPeso.idArticulo, cosaParaPeso.nombreArticulo, cosaParaPeso.precio, cosaParaPeso.sumable, this.gramos);
+                $('#modalAPeso').modal('hide');
+            }
+        }
+    });
     
     var vueFichajes = new Vue({
         el: '#vueTablaTrabajadores',
@@ -119,5 +132,5 @@ function initVueTocGame(){
             }
         }
     });
-    return {caja: vueAbrirCaja, fichajes: vueFichajes};
+    return {caja: vueAbrirCaja, fichajes: vueFichajes, peso: vueConPeso};
 }
