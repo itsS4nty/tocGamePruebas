@@ -951,7 +951,7 @@
         <!-- MODAL APERTURA CAJA NUEVO  -->
         <div class="modal fade" id="modalCajaNuevo" tabindex="-1" role="dialog" aria-labelledby="tab_modal">
             <div class="modal-dialog" role="document" style="width: 1000px;">
-                <div class="modal-content">
+                <div class="modal-content" id="vueAbrirCajaNueva">
                    <!-- <div class="modal-header">
                         <h4 class="modal-title" id="myModalLabel-2">Title goes here</h4>
                         <ul class="card-actions icons right-top">
@@ -972,37 +972,37 @@
                             <div class="tab-content  p-20">
                                 <div class="tab-pane fadeIn active" id="tab-1">
                                     <div class="col-md-6" style="text-align: center;">
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" @click="setActivo(0)">
                                             <img src="imagenes/1cts.png" width="84px" height="84px" alt="1 CTS.">
                                             <span>0 uds.</span>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" @click="setActivo(1)">
                                             <img src="imagenes/2cts.png" width="84px" height="84px" alt="1 CTS.">
                                             <span>0 uds.</span>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" @click="setActivo(2)">
                                             <img src="imagenes/5cts.png" width="84px" height="84px" alt="1 CTS.">
                                             <span>0 uds.</span>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" @click="setActivo(3)">
                                             <img src="imagenes/10cts.png" width="84px" height="84px" alt="1 CTS.">
                                             <span>0 uds.</span>
                                         </div>
                                     </div>                            
                                     <div class="col-md-6" style="text-align: center;">
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" @click="setActivo(4)">
                                             <img src="imagenes/20cts.png" width="84px" height="84px" alt="1 CTS.">
                                             <span>0 uds.</span>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" @click="setActivo(5)">
                                             <img src="imagenes/50cts.png" width="84px" height="84px" alt="1 CTS.">
                                             <span>0 uds.</span>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" @click="setActivo(6)">
                                             <img src="imagenes/uneuro.png" width="84px" height="84px" alt="1 CTS.">
                                             <span>0 uds.</span>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" @click="setActivo(7)">
                                             <img src="imagenes/doseuros.png" width="84px" height="84px" alt="1 CTS.">
                                             <span>0 uds.</span>
                                         </div>
@@ -1010,31 +1010,31 @@
                                 </div>
                                 <div class="tab-pane fadeIn" id="tab-2">
                                     <div class="row seven-cols">
-                                        <div class="col-md-1" style="text-align: center;">
+                                        <div class="col-md-1" style="text-align: center;" @click="setActivo(8)">
                                             <img src="imagenes/5euros.png" width="135px" height="68px">
                                             <span>0 uds.</span>
                                         </div>
-                                        <div class="col-md-1" style="text-align: center;">
+                                        <div class="col-md-1" style="text-align: center;" @click="setActivo(9)">
                                             <img src="imagenes/10euros.png" width="135px" height="68px">
                                             <span>0 uds.</span>
                                         </div>
-                                        <div class="col-md-1" style="text-align: center;">
+                                        <div class="col-md-1" style="text-align: center;" @click="setActivo(10)">
                                             <img src="imagenes/20euros.png" width="135px" height="68px">
                                             <span>0 uds.</span>
                                         </div>
-                                        <div class="col-md-1" style="text-align: center;">
+                                        <div class="col-md-1" style="text-align: center;" @click="setActivo(11)">
                                             <img src="imagenes/50euros.png" width="135px" height="68px">
                                             <span>0 uds.</span>
                                         </div>
-                                        <div class="col-md-1" style="text-align: center;">
+                                        <div class="col-md-1" style="text-align: center;" @click="setActivo(12)">
                                             <img src="imagenes/100euros.png" width="135px" height="68px">
                                             <span>0 uds.</span>
                                         </div>
-                                        <div class="col-md-1" style="text-align: center;">
+                                        <div class="col-md-1" style="text-align: center;" @click="setActivo(13)">
                                             <img src="imagenes/200euros.png" width="135px" height="68px">
                                             <span>0 uds.</span>
                                         </div>
-                                        <div class="col-md-1" style="text-align: center;">
+                                        <div class="col-md-1" style="text-align: center;" @click="setActivo(14)">
                                             <img src="imagenes/500euros.png" width="135px" height="68px">
                                             <span>0 uds.</span>
                                         </div>

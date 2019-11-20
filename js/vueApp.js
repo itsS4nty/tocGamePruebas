@@ -136,5 +136,32 @@ function initVueTocGame() {
             }
         }
     });
+
+    var vueAbrirCajaNueva = new Vue({
+        el: '#vueAbrirCajaNueva',
+        data: {
+            unCts: 0,
+            dosCts: 0,
+            cincoCts: 0,
+            diezCts: 0,
+            veinteCts: 0,
+            cincuentaCts: 0,
+            unEuro: 0,
+            dosEuros: 0,
+            cincoEuros: 0,
+            diezEuros: 0,
+            veinteEuros: 0,
+            cincuentaEuros: 0,
+            cienEuros: 0,
+            doscientosEuros: 0,
+            quinientosEuros: 0,
+            activo: null
+        },
+        methods: {
+            setActivo(x){
+                this.activo = x;
+            }
+        }
+    });
     return { caja: vueAbrirCaja, fichajes: vueFichajes, peso: vueConPeso };
 }
