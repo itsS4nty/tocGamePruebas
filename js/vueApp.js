@@ -45,9 +45,19 @@ function initVueTocGame() {
             precioTiempoReal: 0
         },
         methods: {
-            addItemPeso: function() {
+            addItemPeso(){
                 addItemCesta(cosaParaPeso.idArticulo, cosaParaPeso.nombreArticulo, cosaParaPeso.precio, cosaParaPeso.sumable, this.gramos);
+                this.gramos = 0;
                 $('#modalAPeso').modal('hide');
+            },
+            addNumero(x){
+                this.gramos = Number((this.gramos.toString()) + x);
+                if(this.gramos > 10000){
+                    this.gramos = 10000;
+                }
+            },
+            borrarNumero(){
+                this.gramos = Number(this.gramos.toString().slice(0, -1));
             }
         },
         computed: {

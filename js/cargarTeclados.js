@@ -13,7 +13,6 @@ function clickMenu(id)
         if(listaSubmenus.length > 0)
         {
             imprimirSubmenus(listaSubmenus).then(function(){
-                console.log(`IMPRIMO LISTA SUBMENUS`);
                 clickSubmenu(listaSubmenus[0].id); //Carga el submenu de la primera posición de la lista.
             });
         }
@@ -57,7 +56,6 @@ async function imprimirSubmenus(listaSubmenus = null)
         {
             for(let i = inicio; i < (inicio+4); i++)
             {
-                console.log('i = '+ i);
                 if(i == inicio)
                 {
                     strAux = '<div class="col-md-2" onclick="clickIzquierda();"><span class="pull-right"><img src="imagenes/flecha_izquierda.png"></span></div>';
