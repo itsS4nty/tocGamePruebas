@@ -9,7 +9,6 @@ function startDB() {
         teclado: 'id, arrayTeclado',
         trabajadores: 'idTrabajador, nombre, nombreCorto',
         fichajes: 'idTrabajador, nombre, inicio, final, activo, fichado',
-        currentCaja: '++idCaja, cajonApertura, cajonClausura', //SE TIENE QUE BORRAR Y USAR LA TABLA 'CAJAS'
         promociones: 'id, nombre, precioFinal, articulosNecesarios',
         menus: 'id, nombre, color',
         submenus: 'id, idPadre, nombre, idTeclado, color',
@@ -19,15 +18,15 @@ function startDB() {
     });
 
     var aux = initVueTocGame();
-    (function($) {
+    (function ($) {
 
-        $('#filtrar').keyup(function() {
+        $('#filtrar').keyup(function () {
 
             var rex = new RegExp($(this).val(), 'i');
 
             $('.buscar tr').hide();
 
-            $('.buscar tr').filter(function() {
+            $('.buscar tr').filter(function () {
                 return rex.test($(this).text());
             }).show();
 
@@ -37,7 +36,7 @@ function startDB() {
     $('#keyboard').jkeyboard({
         input: $('#filtrar')
     });
-    vueAbrirCaja = aux.caja;
+    vueSetCaja = aux.caja;
     vueFichajes = aux.fichajes;
     vuePeso = aux.peso;
 
@@ -80,7 +79,7 @@ function iniciarToc() {
             loadingToc();
         } else {
             if (res === 'CERRADA') {
-                $('#modalAperturaCaja').modal('show');
+                $('#modalSetCaja').modal('show');
             } else {
                 if (res === 'ERROR') {
                     /* CONTACTAR CON UN TÉCNICO */
@@ -92,7 +91,7 @@ function iniciarToc() {
 
 function desfichar(idTrabajador) {
     var devolver = new Promise((dev, rev) => {
-        db.fichajes.update(idTrabajador, { activo: 0, fichado: 0, final: new Date() }).then(function(res) {
+        db.fichajes.update(idTrabajador, { activo: 0, fichado: 0, final: new Date() }).then(function (res) {
             dev(true);
         }).catch(err => {
             console.log(err);
@@ -126,7 +125,7 @@ function comprobarCaja() {
 }
 
 function fichados() /* DEVUELVE null si no hay nadie, DEVUELVE array de fichados si hay alguien  'idTrabajador, nombre, inicio, final, activo, fichado'*/ {
-    var devolver = new Promise(function(dev, rej) {
+    var devolver = new Promise(function (dev, rej) {
         db.fichajes.toArray().then(data => {
             if (data.length > 0) {
                 dev(data);
@@ -141,72 +140,55 @@ function fichados() /* DEVUELVE null si no hay nadie, DEVUELVE array de fichados
     return devolver;
 }
 
-function contarYCrearCaja() /* CREA LA NUEVA CAJA: TIPO CUENTA -> POR UNIDADES */ {
+function getTipoSetCaja() { //Tipo 1 = Abrir, Tipo 2 = Cerrar
+    if (currentCaja === null) {
+        return 1;
+    }
+    else {
+        return 2;
+    }
+}
+function setCaja() { //Tipo 1 = Abrir, Tipo 2 = Cerrar
+    var tipo = getTipoSetCaja();
+    if (tipo === 1) {
+        setAbrirCaja();
+    }
+    else {
+        if (tipo === 2) {
+            setCerrarCaja();
+        }
+    }
+}
+
+function setAbrirCaja() {
     db.cajas.put({
         inicioTime: new Date(),
         finalTime: null,
         inicioDependenta: null,
         finalDependenta: null,
-        totalApertura: vueAbrirCaja.contarTodo(),
+        totalApertura: vueSetCaja.getTotal,
         totalCierre: null,
         descuadre: null,
         recaudado: null,
         abierta: 1 //1 ABIERTA, 0 CERRADA
-    }).then(function() {
+    }).then(function () {
         db.cajas.orderBy('id').last().then(data => {
             currentCaja = data.id;
             loadingToc();
             notificacion('¡INICIO CAJA OK!');
+            $('#modalSetCaja').modal('hide');
         }).catch(err => {
             console.log(err);
             notificacion('Error. No se puede establecer el ID de la caja actual');
         });
+    }).catch(err => {
+        console.log(err);
+        notificacion('Error 154', 'error');
     });
 }
 
-function modalCerrarCaja2() {
-    var monedas = [];
-    monedas.push({ unidades: parseInt(document.getElementById('unidadesUnCentimoCierre').innerHTML) });
-    monedas.push({ unidades: parseInt(document.getElementById('unidadesDosCentimosCierre').innerHTML) });
-    monedas.push({ unidades: parseInt(document.getElementById('unidadesCincoCentimosCierre').innerHTML) });
-    monedas.push({ unidades: parseInt(document.getElementById('unidadesDiezCentimosCierre').innerHTML) });
-    monedas.push({ unidades: parseInt(document.getElementById('unidadesVeinteCentimosCierre').innerHTML) });
-    monedas.push({ unidades: parseInt(document.getElementById('unidadesCincuentaCentimosCierre').innerHTML) });
-    monedas.push({ unidades: parseInt(document.getElementById('unidadesUnEuroCierre').innerHTML) });
-    monedas.push({ unidades: parseInt(document.getElementById('unidadesDosEurosCierre').innerHTML) });
-    monedas.push({ unidades: parseInt(document.getElementById('unidadesCincoEurosCierre').innerHTML) });
-    monedas.push({ unidades: parseInt(document.getElementById('unidadesDiezEurosCierre').innerHTML) });
-    monedas.push({ unidades: parseInt(document.getElementById('unidadesVeinteEurosCierre').innerHTML) });
-    monedas.push({ unidades: parseInt(document.getElementById('unidadesCincuentaEurosCierre').innerHTML) });
-    monedas.push({ unidades: parseInt(document.getElementById('unidadesCienEurosCierre').innerHTML) });
-    return monedas;
-}
-
-function crearCajaNueva() //EL nombre es raro. SOLO SE ACCEDE DESDE EL  MODAL
-{
-    contarYCrearCaja();
-    notificacion('¡Caja abierta!', 'success');
-    $('#modalAperturaCaja').modal('hide');
-
-    /*fichados().then(data=>{
-        if(data !== null)
-        {
-            for(let i = 0; i < data.length; i++)
-            {
-                if(data[i].activo)
-                {
-                    currentIdTrabajador = data[i].idTrabajador;
-                    break;
-                }
-            }
-            currentTrabajadores = data;
-        }
-        else
-        {
-            notificacion('No se encuentran trabajador@s fichad@s', 'warning');
-            $('#modalFichar').modal();
-        }
-    });*/
+function setCerrarCaja() { //Al cerrar, establecer currentCaja = null
+    //db.cajas.get()
 }
 
 function restarUnidad(x) {
@@ -341,26 +323,10 @@ function sumarUnidadCierre(x) {
     }
 }
 
-function modalCerrarCaja() {
+function modalCerrarCaja() { //CREO QUE HAY QUE BORRAR
     $('#modalCierreCaja').modal('show');
 }
 
-function cerrarCaja() {
-    db.currentCaja.toArray(listaCajas => {
-        var max = 0;
-        for (let i = 0; i < listaCajas.length; i++) {
-            if (listaCajas.idCaja > max) {
-                max = listaCajas.idCaja;
-            }
-        }
-        var datosCierre = modalCerrarCaja2();
-        console.log(max);
-        db.currentCaja.put({ idCaja: max, cajonClausura: datosCierre }).then(function() {
-            notificacion('Caja cerrada correctamente', 'success');
-            $('#modalCierreCaja').modal('hide');
-        });
-    });
-}
 
 function ivaCorrecto(iva) {
     let ivaOk = Number(iva);
@@ -409,7 +375,7 @@ function ficharTrabajador(idTrabajador) {
                     final: null,
                     activo: 1,
                     fichado: 1
-                }).then(function() {
+                }).then(function () {
                     dev(true);
                 }).catch(err => {
                     console.log(err);
@@ -431,7 +397,7 @@ function ficharTrabajador(idTrabajador) {
 
 function nuevoArticulo(idArticulo, nombreArticulo, precioArticulo, ivaArticulo) {
     if (ivaCorrecto(ivaArticulo)) {
-        db.articulos.put({ id: idArticulo, nombre: nombreArticulo, precio: Number(precioArticulo), iva: ivaArticulo }).then(function() {
+        db.articulos.put({ id: idArticulo, nombre: nombreArticulo, precio: Number(precioArticulo), iva: ivaArticulo }).then(function () {
             console.log("Articulo agregado correctamente");
         });
     } else {
@@ -451,7 +417,7 @@ function addItemCesta(idArticulo, nombreArticulo, precio, sumable, gramos = fals
                 if (!gramos) {
                     db.cesta.update(idArticulo, { unidades: uds, subtotal: subt }).then(updated => {
                         if (updated) {
-                            buscarOfertas().then(function() {
+                            buscarOfertas().then(function () {
                                 actualizarCesta();
                             });
                         } else {
@@ -459,7 +425,7 @@ function addItemCesta(idArticulo, nombreArticulo, precio, sumable, gramos = fals
                         }
                     });
                 } else {
-                    db.cesta.put({ idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio * (gramos / 1000), promocion: -1 }).then(function() {
+                    db.cesta.put({ idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio * (gramos / 1000), promocion: -1 }).then(function () {
                         actualizarCesta();
                     }).catch(err => {
                         console.log(err);
@@ -468,13 +434,13 @@ function addItemCesta(idArticulo, nombreArticulo, precio, sumable, gramos = fals
                 }
             } else {
                 if (!gramos) {
-                    db.cesta.put({ idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio, promocion: -1 }).then(function() {
-                        buscarOfertas().then(function() {
+                    db.cesta.put({ idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio, promocion: -1 }).then(function () {
+                        buscarOfertas().then(function () {
                             actualizarCesta();
                         });
                     });
                 } else {
-                    db.cesta.put({ idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio * (gramos / 1000), promocion: -1 }).then(function() {
+                    db.cesta.put({ idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio * (gramos / 1000), promocion: -1 }).then(function () {
                         actualizarCesta();
                     }).catch(err => {
                         console.log(err);
@@ -497,7 +463,7 @@ function borrarItemCesta(idArticulo) {
 }
 
 function vaciarCesta() {
-    db.cesta.clear().then(function() {
+    db.cesta.clear().then(function () {
         actualizarCesta();
     });
 }
@@ -529,13 +495,13 @@ function imprimirTicketReal(idTicket) {
             url: '/imprimirTicket',
             type: 'POST',
             cache: false,
-              data: JSON.stringify({ numFactura: lista[0].idTicket, arrayCompra: enviarArray, total: lista[0].total, visa: lista[0].tarjeta }),
-              contentType: "application/json; charset=utf-8",
-              dataType: "json",
-            success: function(data) {
+            data: JSON.stringify({ numFactura: lista[0].idTicket, arrayCompra: enviarArray, total: lista[0].total, visa: lista[0].tarjeta }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
                 notificacion('Ticket OK!', 'success');
             },
-            error: function(jqXHR, textStatus, err) {
+            error: function (jqXHR, textStatus, err) {
                 alert('text status ' + textStatus + ', err ' + err)
             }
         });
@@ -573,7 +539,7 @@ function pagarConTarjeta() {
                         {
                             db.activo.toArray().then(res => {
                                 if (res.length === 1) {
-                                    db.tickets.put({ idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: true, idCaja: currentCaja, idTrabajador: res[0].idTrabajador }).then(function() {
+                                    db.tickets.put({ idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: true, idCaja: currentCaja, idTrabajador: res[0].idTrabajador }).then(function () {
                                         imagenImprimir.setAttribute('onclick', 'imprimirTicketReal(' + idTicket + ')');
                                         rowEfectivoTarjeta.setAttribute('class', 'row hide');
                                         rowImprimirTicket.setAttribute('class', 'row');
@@ -615,7 +581,7 @@ function pagarConEfectivo() {
                     if (lista.length > 0) {
                         db.activo.toArray().then(res => {
                             if (res.length === 1) {
-                                db.tickets.put({ idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: false, idCaja: currentCaja, idTrabajador: res[0].idTrabajador }).then(function() {
+                                db.tickets.put({ idTicket: idTicket, timestamp: stringTime, total: Number(totalCesta.innerHTML), cesta: lista, tarjeta: false, idCaja: currentCaja, idTrabajador: res[0].idTrabajador }).then(function () {
                                     imagenImprimir.setAttribute('onclick', 'imprimirTicketReal(' + idTicket + ')');
                                     rowEfectivoTarjeta.setAttribute('class', 'row hide');
                                     rowImprimirTicket.setAttribute('class', 'row');
@@ -671,13 +637,14 @@ function addMenus() {
     menuData.push({ id: 1, nombre: 'Panadería', submenus: [3, 4, 5], teclados: null });
     menuData.push({ id: 3, nombre: 'Frutería', submenus: [6, 7, 8], teclados: null });
 
-    db.menus.bulkPut(menuData).then(function() {
+    db.menus.bulkPut(menuData).then(function () {
         console.log("Menús agregadosadd");
     });
 }
-var vueAbrirCaja = null;
+var vueSetCaja = null;
 var vueFichajes = null;
 var vuePeso = null;
+
 window.onload = startDB;
 var conexion = null;
 var db = null;
@@ -690,21 +657,21 @@ var cosaParaPeso = null;
 var currentIdTrabajador = null;
 /*
 $(document).ready(function () {
- 
+
     (function ($) {
- 
+
         $('#filtrar').keyup(function () {
- 
+
              var rex = new RegExp($(this).val(), 'i');
- 
+
              $('.buscar tr').hide();
- 
+
              $('.buscar tr').filter(function () {
                return rex.test($(this).text());
              }).show();
- 
+
         })
- 
+
     }(jQuery));
     $('#keyboard').jkeyboard({
         input: $('#filtrar')
