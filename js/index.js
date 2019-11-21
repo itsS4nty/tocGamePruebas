@@ -14,11 +14,16 @@ function startDB() {
         submenus: 'id, idPadre, nombre, idTeclado, color',
         parametros: 'licencia, nombreEmpresa, database',
         cajas: '++id, inicioTime, finalTime, inicioDependenta, finalDependenta, totalApertura, totalCierre, descuadre, recaudado, abierta',
-        activo: 'idTrabajador'
+        movimientos: '++id, timestamp, tipo, valor, idCaja',
+        activo: 'idTrabajador',
+        currentCaja: 'idCaja'
     });
 
     var aux = initVueTocGame();
     (function ($) {
+        $("#modalFichajes").on('hidden.bs.modal', function () {
+            location.reload();
+        });
 
         $('#filtrar').keyup(function () {
 
@@ -61,30 +66,33 @@ function abrirModalTeclado() {
 }
 
 function loadingToc() {
-    actualizarCesta();
-    imprimirTeclado(0); //Faltan comprobaciones de existencia de teclados y cargar automáticamente el primero.
-    clickMenu(0);
+    getCurrentCaja().then(idCaja => {
+        currentCaja = idCaja;
+        actualizarCesta();
+        imprimirTeclado(0); //Faltan comprobaciones de existencia de teclados y cargar automáticamente el primero.
+        clickMenu(0);
+    });
 }
 
 function iniciarToc() {
-    /* ORDEN ANTIGUO
-    actualizarCesta();
-    imprimirTeclado(0);
-    refreshFichajes();
-    setCaja();
-    clickMenu(0);
-    */
-    comprobarCaja().then(res => {
-        if (res === 'ABIERTA') {
-            loadingToc();
-        } else {
-            if (res === 'CERRADA') {
-                $('#modalSetCaja').modal('show');
-            } else {
-                if (res === 'ERROR') {
-                    /* CONTACTAR CON UN TÉCNICO */
+    fichados().then(infoFichados => {
+        if (infoFichados !== null) {
+            comprobarCaja().then(res => {
+                if (res === 'ABIERTA') {
+                    loadingToc();
+                } else {
+                    if (res === 'CERRADA') {
+                        $('#modalSetCaja').modal('show');
+                    } else {
+                        if (res === 'ERROR') {
+                            /* CONTACTAR CON UN TÉCNICO */
+                        }
+                    }
                 }
-            }
+            });
+        }
+        else {
+            $('#modalFichajes').modal('show');
         }
     });
 }
@@ -128,13 +136,21 @@ function fichados() /* DEVUELVE null si no hay nadie, DEVUELVE array de fichados
     var devolver = new Promise(function (dev, rej) {
         db.fichajes.toArray().then(data => {
             if (data.length > 0) {
-                dev(data);
+                var aux = null;
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].fichado === 1) {
+                        aux = data;
+                        break;
+                    }
+                }
+                dev(aux);
             } else {
                 dev(null);
             }
         }).catch(err => {
             console.log(err);
             notificacion('Error en fichados()');
+            dev(null);
         });
     });
     return devolver;
@@ -173,10 +189,21 @@ function setAbrirCaja() {
         abierta: 1 //1 ABIERTA, 0 CERRADA
     }).then(function () {
         db.cajas.orderBy('id').last().then(data => {
-            currentCaja = data.id;
-            loadingToc();
-            notificacion('¡INICIO CAJA OK!');
-            $('#modalSetCaja').modal('hide');
+            setCurrentCaja(data.id).then(res => {
+                if (res) {
+                    loadingToc();
+                    notificacion('¡INICIO CAJA OK!');
+                    $('#modalSetCaja').modal('hide');
+                }
+                else {
+                    try {
+                        throw "Error en setCurrentCaja";
+                    } catch (err) {
+                        console.log(err)
+                        notificacion(err, 'error');
+                    }
+                }
+            });
         }).catch(err => {
             console.log(err);
             notificacion('Error. No se puede establecer el ID de la caja actual');
@@ -188,7 +215,52 @@ function setAbrirCaja() {
 }
 
 function setCerrarCaja() { //Al cerrar, establecer currentCaja = null
-    //db.cajas.get()
+    recuentoCajaCierre(currentCaja)
+}
+
+function recuentoCajaCierre(idCaja) { //idTicket, timestamp, total, cesta, tarjeta, idCaja, idTrabajador
+    var devolver = new Promise((dev, rej) => {
+        db.tickets.where('idCaja').equals(idCaja).toArray().then(arrayTickets => {
+            if (arrayTickets.length > 0) {
+
+                var totalVendido = 0;
+                var totalEfectivo = 0;
+                var totalTarjeta = 0;
+                var numeroClientes = arrayTickets.length;
+
+                for (let i = 0; i < arrayTickets.length; i++) {
+                    if (arrayTickets[i].tarjeta) {
+                        totalVendido += arrayTickets[i].total;
+                        totalTarjeta += arrayTickets[i].total;
+                    }
+                    else {
+                        if (!arrayTickets[i].tarjeta) {
+                            totalVendido += arrayTickets[i].total;
+                            totalEfectivo += arrayTickets[i].total;
+                        }
+                    }
+                }
+                dev({
+                    totalVendido: totalVendido,
+                    totalEfectivo: totalEfectivo,
+                    totalTarjeta: totalTarjeta,
+                    numeroClientes: numeroClientes
+                });
+            }
+            else {
+                dev({
+                    totalVendido: 0,
+                    totalEfectivo: 0,
+                    totalTarjeta: 0,
+                    numeroClientes: 0
+                });
+            }
+        }).catch(err => {
+            console.log(err);
+            notificacion('Error 147', 'error');
+        });
+    });
+    return devolver;
 }
 
 function restarUnidad(x) {

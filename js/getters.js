@@ -1,106 +1,59 @@
-function getItemCesta(indice)
-{
-    db.cesta.get(indice, item =>{
-        //return item;
-        aux = item;
+function getCurrentCaja() {
+    var devolver = new Promise((dev, rej) => {
+        db.currentCaja.toArray().then(info => {
+            dev(info[0].idCaja);
+        }).catch(err => {
+            console.log(err);
+            dev(null);
+        });
     });
+    return devolver;
 }
-function getInfoArticulo(arrayArticulos, idToSearch)
-{
-    for(let i = 0; i < arrayArticulos.length; i++)
-    {
-        if(arrayArticulos[i].id == idToSearch)
-        {
-            return {nombre: arrayArticulos[i].nombre, precio: arrayArticulos[i].precio, sumable: arrayArticulos[i].aPeso};
+
+function getInfoArticulo(arrayArticulos, idToSearch) {
+    for (let i = 0; i < arrayArticulos.length; i++) {
+        if (arrayArticulos[i].id == idToSearch) {
+            return { nombre: arrayArticulos[i].nombre, precio: arrayArticulos[i].precio, sumable: arrayArticulos[i].aPeso };
         }
     }
     return false;
 }
 
-function getArticulos()
-{
-    db.articulos.toArray(lista =>{
-        if(lista)
-        {
-            console.log(lista);
-            return lista;
-        }
-        else
-        {
-            alert("Error al cargar los articulos");
-        }
-    });
+function getHoraUnix() {
+    return Math.floor(+new Date() / 1000);
 }
 
-function getHoraUnix()
-{
-    return Math.floor(+new Date()/1000);
-}
-
-function getTrabajadores()
-{
-    db.trabajadores.toArray(lista=>{
-        if(lista)
-        {
-            console.log(lista);
-        }
-        else
-        {
-            console.log("ERROR al cargar los trabajadores");
-        }
-    });
-}
-
-function getFichados()
-{
-    var devolver = new Promise((dev, rej)=>{
-        db.fichajes.where('fichado').equals(1).toArray().then(data=>{
-            dev({todoOK: true, data: data});
-        }).catch(err=>{
+function getTrabajadorActivo() {
+    var devolver = new Promise((dev, rej) => {
+        db.activo.toArray().then(info => {
+            if (info.length === 1) {
+                db.trabajadores.get(info[0].idTrabajador, res => {
+                    return res;
+                }).then(infoTrabajador => {
+                    dev(infoTrabajador);
+                }).catch(err => {
+                    console.log(err);
+                    dev(false);
+                });
+            } else {
+                dev(false);
+            }
+        }).catch(err => {
             console.log(err);
-            dev({todoOK: false});
+            dev(false);
         });
     });
     return devolver;
 }
-function getCurrentCaja()
-{
-    db.currentCaja.toArray(lista=>{
-        if(lista)
-        {
-            console.log(lista);
-        }
-        else
-        {
-            console.log("ERROR al cargar la caja actual");
-        }
-    });
-}
 
-function getFichajes()
-{
-    db.fichajes.toArray(lista=>{
-        if(lista)
-        {
-            console.log(lista);
-        }
-        else
-        {
-            console.log("ERROR al cargar los fichajes");
-        }
+function getFichados() {
+    var devolver = new Promise((dev, rej) => {
+        db.fichajes.where('fichado').equals(1).toArray().then(data => {
+            dev({ todoOK: true, data: data });
+        }).catch(err => {
+            console.log(err);
+            dev({ todoOK: false });
+        });
     });
-}
-
-function getTeclados()
-{
-    db.teclado.toArray(lista =>{
-        if(lista)
-        {
-            console.log(lista);
-        }
-        else
-        {
-            alert("Error al cargar los teclados");
-        }
-    });
+    return devolver;
 }
