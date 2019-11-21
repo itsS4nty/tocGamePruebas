@@ -51,16 +51,21 @@ function initVueTocGame() {
             },
             ficharTrabajador: function (x) {
                 var idTrabajador = Number(x);
-                ficharTrabajador(idTrabajador).then(res => {
+                setTodosInactivos().then(res => {
                     if (res) {
-                        //currentIdTrabajador = idTrabajador;
-                        db.activo.put({ idTrabajador: idTrabajador });
-                        this.verFichados();
-                        console.log('Trabajador fichado');
-                        notificacion('Trabajador fichado', 'success');
+                        ficharTrabajador(idTrabajador).then(res => {
+                            if (res) {
+                                //FALTA ESTABLECER EL currentIdTrabajador en variable y en bbdd
+                                db.activo.put({ idTrabajador: idTrabajador });
+                                this.verFichados();
+                                notificacion('Trabajador fichado', 'success');
+                            } else {
+                                console.log('Error al fichar ID: ' + idTrabajador);
+                                notificacion('Error al fichar', 'error');
+                            }
+                        });
                     } else {
-                        console.log('Error al fichar ID: ' + idTrabajador);
-                        notificacion('Error al fichar', 'error');
+                        notificacion('Error: No se ha podido eliminar activos', 'error');
                     }
                 });
             },
