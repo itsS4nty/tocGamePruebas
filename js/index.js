@@ -171,7 +171,9 @@ function setCaja() { //Tipo 1 = Abrir, Tipo 2 = Cerrar
     }
     else {
         if (tipo === 2) {
-            setCerrarCaja();
+            vueSetCaja.tipo = 2;
+            $('#modalSetCaja').modal('show');
+            //setCerrarCaja();
         }
     }
 }
@@ -213,9 +215,53 @@ function setAbrirCaja() {
         notificacion('Error 154', 'error');
     });
 }
-
-function setCerrarCaja() { //Al cerrar, establecer currentCaja = null
-    recuentoCajaCierre(currentCaja)
+function confirmarCierre() {
+    confirm("¿Estás segur@ de cerrar la caja?")
+    {
+        setCerrarCaja();
+    }
+}
+function setCerrarCaja() { //Al cerrar, establecer currentCaja = null y vueSetCaja.tipo = 1
+    getCurrentCaja().then(idCaja => {
+        if (idCaja !== null) {
+            recuentoCajaCierre(idCaja).then(infoCierre => {
+                getTrabajadorActivo().then(infoTrabajadorActivo => {
+                    let auxVueSetCaja = vueSetCaja;
+                    if (infoTrabajadorActivo !== false) {
+                        db.cajas.where('id').equals(idCaja).modify(function (caja) {
+                            caja.abierta = 0;
+                            caja.finalDependenta = infoTrabajadorActivo.idTrabajador;
+                            caja.finalTime = new Date();
+                            caja.descuadre = (caja.totalApertura + 0 + auxVueSetCaja.getTotal) - (infoCierre.totalEfectivo);
+                            caja.recaudado = infoCierre.totalEfectivo - caja.descuadre - caja.totalApertura; //En efectivo real nuevo, es decir, sin contar inicio apertura
+                            caja.totalCierre = infoCierre.totalVendido - caja.descuadre;
+                        }).then(function () {
+                            setCurrentCaja(null).then(res => {
+                                if (res) {
+                                    auxVueSetCaja.tipo = 1;
+                                    notificacion('Caja cerrada', 'success');
+                                }
+                                else {
+                                    console.log('Error en setCurrentCaja() 4567');
+                                    notificacion('Error en setCurrentCaja()', 'error');
+                                }
+                            });
+                        }).catch(err => {
+                            console.log(err);
+                            notificacion('Error en setCerrarCaja modify cajas', 'error');
+                        });
+                    } else {
+                        console.log('Error 7618167');
+                        console.log(infoTrabajadorActivo);
+                    }
+                });
+            });
+        }
+        else {
+            console.log('No hay caja para cerrar');
+            notificacion('No hay caja abierta para poder cerrar', 'error');
+        }
+    });
 }
 
 function recuentoCajaCierre(idCaja) { //idTicket, timestamp, total, cesta, tarjeta, idCaja, idTrabajador
@@ -726,7 +772,6 @@ var inicio = 0;
 var currentMenu = 0;
 var currentCaja = null;
 var cosaParaPeso = null;
-var currentIdTrabajador = null;
 /*
 $(document).ready(function () {
 

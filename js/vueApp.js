@@ -41,6 +41,17 @@ function initVueTocGame() {
             this.verFichados();
         },
         methods: {
+            setActivo: function (id) {
+                setActivo(id).then(res => {
+                    if (res) {
+                        notificacion('¡OK!', 'success');
+                    }
+                    else {
+                        console.log('Error 78913');
+                        notificacion('Error, no se ha podido establecer activo', 'error');
+                    }
+                });
+            },
             getTrabajadores: function () {
                 db.trabajadores.toArray().then(data => {
                     this.trabajadores = data;
@@ -56,9 +67,15 @@ function initVueTocGame() {
                         ficharTrabajador(idTrabajador).then(res => {
                             if (res) {
                                 //FALTA ESTABLECER EL currentIdTrabajador en variable y en bbdd
-                                db.activo.put({ idTrabajador: idTrabajador });
-                                this.verFichados();
-                                notificacion('Trabajador fichado', 'success');
+                                let aux = this.verFichados;
+                                db.activo.clear().then(function () {
+                                    db.activo.put({ idTrabajador: idTrabajador });
+                                    aux();
+                                    notificacion('Trabajador fichado', 'success');
+                                }).catch(err => {
+                                    console.log(err);
+                                    notificacion('Error en clear() activo', 'error');
+                                });
                             } else {
                                 console.log('Error al fichar ID: ' + idTrabajador);
                                 notificacion('Error al fichar', 'error');
@@ -108,6 +125,7 @@ function initVueTocGame() {
         el: '#vueSetCaja',
         data: {
             activo: 0,
+            tipo: null,
             infoDinero: [
                 { valor: 0, style: '' },
                 { valor: 0, style: '' },
@@ -137,6 +155,14 @@ function initVueTocGame() {
             },
             borrarNumero() {
                 this.infoDinero[this.activo].valor = Number(this.infoDinero[this.activo].valor.toString().slice(0, -1));
+            },
+            getAction() {
+                if (this.tipo === 2) {
+                    return 'confirmarCierre()';
+                }
+                else {
+                    return 'setCaja()';
+                }
             }
         },
         computed: {

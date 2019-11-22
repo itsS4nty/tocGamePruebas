@@ -731,7 +731,7 @@
                     <button type="button" class="btn btn-warning" onclick="alert('llamar a cerrar caja')"
                         style="font-family: 'Anton', sans-serif; font-size: 25px; font-style: normal; color: black;">SALIDA
                         DINERO</button>
-                    <button type="button" class="btn btn-success" onclick="alert('llamar a cerrar caja')"
+                    <button type="button" class="btn btn-success" onclick="setCaja()"
                         style="font-family: 'Anton', sans-serif; font-size: 25px; font-style: normal; color: black;">CERRAR
                         CAJA</button>
                     <button type="button" class="btn btn-info" id="botonCajaImprimir"
@@ -851,7 +851,7 @@
                                             <td>
                                                 <button @click="finTurno(persona.idTrabajador)"
                                                     class="btn btn-primary">FIN DE TURNO</button>
-                                                <button @click="toActivo(persona.idTrabajador)" class="btn btn-primary"
+                                                <button @click="setActivo(persona.idTrabajador)" class="btn btn-primary"
                                                     style="background-color: red;">SELECCIONAR ACTIVO</button>
                                             </td>
                                         </tr>
@@ -1055,7 +1055,7 @@
                 <div class="modal-footer">
                     <span style="font-size: 24px;font-weight: bold;">TOTAL: {{getTotal}} €</span>
                     <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Cancel</button>
-                    <button onclick="setCaja()" type="button" class="btn btn-primary">Ok</button>
+                    <button :onclick="getAction()" type="button" class="btn btn-primary">Ok</button>
                 </div>
             </div>
             <!-- modal-content -->
