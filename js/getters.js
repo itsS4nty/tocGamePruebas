@@ -1,7 +1,11 @@
 function getCurrentCaja() {
     var devolver = new Promise((dev, rej) => {
         db.currentCaja.toArray().then(info => {
-            dev(info[0].idCaja);
+            if (info[0].idCaja !== -1) {
+                dev(info[0].idCaja);
+            } else {
+                dev(null);
+            }
         }).catch(err => {
             console.log(err);
             dev(null);

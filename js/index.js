@@ -240,6 +240,7 @@ function setCerrarCaja() { //Al cerrar, establecer currentCaja = null y vueSetCa
                                 if (res) {
                                     auxVueSetCaja.tipo = 1;
                                     notificacion('Caja cerrada', 'success');
+                                    location.reload();
                                 }
                                 else {
                                     console.log('Error en setCurrentCaja() 4567');

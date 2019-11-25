@@ -1,7 +1,12 @@
 function setCurrentCaja(id) { //NO LE GUSTA EL NULL, SOLUCIONAR
     var devolver = new Promise((dev, rej) => {
         db.currentCaja.clear().then(function () {
-            let id2 = id;
+            if (id === null) {
+                var id2 = -1;
+            }
+            else {
+                var id2 = id;
+            }
             currentCaja = id;
             db.currentCaja.put({ idCaja: id2 }).then(function () {
                 console.log('ID CAJA ACTUAL: ' + id2);
