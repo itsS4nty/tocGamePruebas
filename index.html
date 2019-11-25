@@ -312,32 +312,33 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" id="panelInferior">
                             <div class="col-md-6">
                                 <div>
                                     <div class="table-responsive">
                                         <table class="table table-striped letraCesta header-fixed">
                                             <tbody id="listaCesta">
-
+                                                <template v-for="item in cesta">
+                                                    <tr v-if="item.idArticulo == activo"
+                                                        @click="setActivo(item.idArticulo)"
+                                                        style="background-color: #d6cdcd;">
+                                                        <td>{{item.nombreArticulo}}</td>
+                                                        <td>{{item.unidades}}</td>
+                                                        <td>{{item.subtotal}}</td>
+                                                    </tr>
+                                                    <tr v-else @click="setActivo(item.idArticulo)">
+                                                        <td>{{item.nombreArticulo}}</td>
+                                                        <td>{{item.unidades}}</td>
+                                                        <td>{{item.subtotal}}</td>
+                                                    </tr>
+                                                </template>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
 
                             </div>
-                            <!--<div class="col-md-2">
-									<div class="card">
-										<div class="row">
-											<div class="card-body letraCesta" style="text-align: center;">
-												<span>TOTAL</span>
-												<h2><span id="totalCesta"> </span>€</h2>
-											</div>
-										</div>
-										<div class="row card-body" style="text-align: center;">
-											<img src="imagenes/botonPagar.png" onclick="pagar();">
-										</div>
-									</div>
-								</div>-->
+
                             <div class="col-md-4">
                                 <button class="btn btn-info btn-block"
                                     style="font-family: 'Anton', sans-serif; font-size: 30px; font-style: normal; color: white; -webkit-text-stroke: 1px black;"
@@ -372,8 +373,9 @@
                                 </button>
                                 <button class="btn btn-warning btn-block"
                                     style="font-family: 'Anton', sans-serif; font-size: 25px; font-style: normal; color: black;"
-                                    onclick="vaciarCesta();">
-                                    BORRAR CESTA
+                                    @click="borrar();">
+                                    <span v-if="activo == null">BORRAR CESTA</span>
+                                    <span v-else>BORRAR ARTÍCULO</span>
                                     <div class="ripple-container"></div>
                                 </button>
                             </div>
@@ -382,192 +384,6 @@
                 </div>
                 <!-- ENDS $content -->
             </div>
-        </section>
-        <aside id="app_sidebar-right">
-            <div class="sidebar-inner sidebar-overlay">
-                <div class="tabpanel">
-                    <div class="tab-content">
-                        <div class="tab-pane fade active in" id="sidebar_chat">
-                            <ul class="description">
-                                <li class="title">
-                                    Dependientas
-                                </li>
-                            </ul>
-                            <ul class="list-group p-0" id="htmlFichajes">
-
-                            </ul>
-                            <button class="btn btn-primary btn-fab btn-fab-sm animate-fab"
-                                onclick="abrirModalTeclado();" id="chat_fab_new">
-                                <i class="zmdi zmdi-plus"></i>
-                            </button>
-                        </div>
-                        <div class="tab-pane fade" id="sidebar_activity">
-                            <div class="sidebar-timeline">
-                                <div class="time-item">
-                                    <div class="item-info">
-                                        <small class="text-muted">15 minutes ago</small>
-                                        <p><a href="#" class="accent">Mike Jones</a> fixed z-index conflict sidebar.scss
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="time-item">
-                                    <div class="item-info">
-                                        <small class="text-muted">30 minutes ago</small>
-                                        <p><a href="javascript:void(0)" class="accent">Hazel Dean</a> left a comment on
-                                            product page designs.</p>
-                                        <p><em>"Yuccie shoreditch trust fund, artisan tumblr sustainable cronut unicorn
-                                                blog seitan. "</em></p>
-                                    </div>
-                                </div>
-                                <div class="time-item">
-                                    <div class="item-info">
-                                        <small class="text-muted">45 minutes ago</small>
-                                        <p><a href="javascript:void(0)" class="accent">Molly</a> requested time off for
-                                            training.</p>
-                                        <p><em>"Snackwave church-key cardigan you probably haven"t heard of them,
-                                                asymmetrical microdosing cronut "</em></p>
-                                    </div>
-                                </div>
-                                <div class="time-item">
-                                    <div class="item-info">
-                                        <small class="text-muted">3 hours ago</small>
-                                        <p><a href="javascript:void(0)" class="accent">Frederick Roy</a> commented your
-                                            post.</p>
-                                        <p><em>"Skateboard dreamcatcher la croix, edison bulb sustainable sriracha
-                                                vexillologist kombucha master cleanse."</em></p>
-                                    </div>
-                                </div>
-                                <div class="time-item">
-                                    <div class="item-info">
-                                        <small class="text-muted">1 hour ago</small>
-                                        <p><a href="javascript:void(0)" class="accent">Holly Cobb</a> Uploaded 6 new
-                                            photos.</p>
-                                    </div>
-                                </div>
-                                <div class="time-item">
-                                    <div class="item-info">
-                                        <small class="text-muted">5 hours ago</small>
-                                        <p><a href="javascript:void(0)" class="accent">Neal Stephens</a> setup a meeting
-                                            with<a href="#" class="text-success"> Jason Kendall</a>.</p>
-                                        <p><em>"Authentic aesthetic tattooed, PBR&B squid tote bag schlitz vaporware
-                                                glossier yr man braid direct trade disrupt poke. "</em></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </aside>
-        <section id="chat_compose_wrapper">
-            <div class="tippy-top">
-                <div class="recipient">Allison Grayce</div>
-                <ul class="card-actions icons  right-top">
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="zmdi zmdi-videocam"></i>
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
-                            <i class="zmdi zmdi-more-vert"></i>
-                        </a>
-                        <ul class="dropdown-menu btn-primary dropdown-menu-right">
-                            <li>
-                                <a href="javascript:void(0)">Option One</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">Option Two</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">Option Three</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)" data-chat="close">
-                            <i class="zmdi zmdi-close"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="chat-wrapper scrollbar">
-                <div class="chat-message scrollbar">
-                    <div class="chat-message chat-message-recipient">
-                        <img class="chat-image chat-image-default" src="assets/img/profiles/05.jpg" />
-                        <div class="chat-message-wrapper">
-                            <div class="chat-message-content">
-                                <p>Hey Mike, we have funding for our new project!</p>
-                            </div>
-                            <div class="chat-details">
-                                <span class="today small"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat-message chat-message-sender">
-                        <img class="chat-image chat-image-default" src="assets/img/profiles/02.jpg" />
-                        <div class="chat-message-wrapper ">
-                            <div class="chat-message-content">
-                                <p>Awesome! Photo booth banh mi pitchfork kickstarter whatever, prism godard ethical
-                                    90"s cray selvage.</p>
-                            </div>
-                            <div class="chat-details">
-                                <span class="today small"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat-message chat-message-recipient">
-                        <img class="chat-image chat-image-default" src="assets/img/profiles/05.jpg" />
-                        <div class="chat-message-wrapper">
-                            <div class="chat-message-content">
-                                <p> Artisan glossier vaporware meditation paleo humblebrag forage small batch.</p>
-                            </div>
-                            <div class="chat-details">
-                                <span class="today small"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat-message chat-message-sender">
-                        <img class="chat-image chat-image-default" src="assets/img/profiles/02.jpg" />
-                        <div class="chat-message-wrapper">
-                            <div class="chat-message-content">
-                                <p>Bushwick letterpress vegan craft beer dreamcatcher kickstarter.</p>
-                            </div>
-                            <div class="chat-details">
-                                <span class="today small"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <footer id="compose-footer">
-                <form class="form-horizontal compose-form">
-                    <ul class="card-actions icons left-bottom">
-                        <li>
-                            <a href="javascript:void(0)">
-                                <i class="zmdi zmdi-attachment-alt"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <i class="zmdi zmdi-mood"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="form-group m-10 p-l-75 is-empty">
-                        <div class="input-group">
-                            <label class="sr-only">Leave a comment...</label>
-                            <input type="text" class="form-control form-rounded input-lightGray"
-                                placeholder="Leave a comment..">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-blue btn-fab  btn-fab-sm">
-                                    <i class="zmdi zmdi-mail-send"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-                </form>
-            </footer>
         </section>
     </div>
     <!-- MODALS =============================================-->

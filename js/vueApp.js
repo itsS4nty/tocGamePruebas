@@ -188,9 +188,63 @@ function initVueTocGame() {
             }
         }
     });
+
+    var vuePanelInferior = new Vue({
+        el: '#panelInferior',
+        data: {
+            activo: null,
+            cesta: []
+        },
+        methods: {
+            actualizarCesta() {
+                db.cesta.toArray().then(info => {
+                    this.cesta = info;
+                }).catch(err => {
+                    console.log(err);
+                    notificacion('Error actualizar cesta', 'error');
+                });
+            },
+            setActivo(idArticulo) {
+                if (idArticulo === this.activo) {
+                    this.activo = null;
+                }
+                else {
+                    this.activo = idArticulo;
+                }
+            },
+            calcularTotal() {
+
+            },
+            borrar() {
+                if (this.activo === null) {
+                    db.cesta.clear().then(function () {
+                        this.activo = null;
+                        actualizarCesta();
+                    }).catch(err => {
+                        console.log(err);
+                        notificacion('Error al borrar cesta', 'error');
+                    });
+                }
+                else {
+                    db.cesta.where('idArticulo').equals(this.activo).delete().then(function () {
+                        this.activo = null;
+                        actualizarCesta();
+                    }).catch(err => {
+                        console.log(err);
+                        notificacion('Error al borrar item', 'error');
+                    });
+                }
+            }
+
+        },
+        computed: {
+
+        }
+    });
     return {
         caja: vueSetCaja,
         fichajes: vueFichajes,
-        peso: vueConPeso
+        peso: vueConPeso,
+        panelInferior: vuePanelInferior
     };
 }

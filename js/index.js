@@ -3,7 +3,7 @@
 function startDB() {
     db = new Dexie('tocGame');
     db.version(1).stores({
-        cesta: 'idArticulo, nombreArticulo, unidades, subtotal, promocion',
+        cesta: 'idArticulo, nombreArticulo, unidades, subtotal, promocion, activo',
         tickets: 'idTicket, timestamp, total, cesta, tarjeta, idCaja, idTrabajador',
         articulos: 'id, nombre, precio, iva, aPeso',
         teclado: 'id, arrayTeclado',
@@ -44,6 +44,7 @@ function startDB() {
     vueSetCaja = aux.caja;
     vueFichajes = aux.fichajes;
     vuePeso = aux.peso;
+    vuePanelInferior = aux.panelInferior;
 
     comprobarConfiguracion().then((res) => {
         if (res) {
@@ -534,7 +535,7 @@ function addItemCesta(idArticulo, nombreArticulo, precio, sumable, gramos = fals
                 let uds = res.unidades + 1;
                 let subt = res.subtotal + precio;
                 if (!gramos) {
-                    db.cesta.update(idArticulo, { unidades: uds, subtotal: subt }).then(updated => {
+                    db.cesta.update(idArticulo, { unidades: uds, subtotal: subt, activo: false }).then(updated => {
                         if (updated) {
                             buscarOfertas().then(function () {
                                 actualizarCesta();
@@ -544,7 +545,7 @@ function addItemCesta(idArticulo, nombreArticulo, precio, sumable, gramos = fals
                         }
                     });
                 } else {
-                    db.cesta.put({ idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio * (gramos / 1000), promocion: -1 }).then(function () {
+                    db.cesta.put({ idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio * (gramos / 1000), promocion: -1, activo: false }).then(function () {
                         actualizarCesta();
                     }).catch(err => {
                         console.log(err);
@@ -553,13 +554,13 @@ function addItemCesta(idArticulo, nombreArticulo, precio, sumable, gramos = fals
                 }
             } else {
                 if (!gramos) {
-                    db.cesta.put({ idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio, promocion: -1 }).then(function () {
+                    db.cesta.put({ idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio, promocion: -1, activo: false }).then(function () {
                         buscarOfertas().then(function () {
                             actualizarCesta();
                         });
                     });
                 } else {
-                    db.cesta.put({ idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio * (gramos / 1000), promocion: -1 }).then(function () {
+                    db.cesta.put({ idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio * (gramos / 1000), promocion: -1, activo: false }).then(function () {
                         actualizarCesta();
                     }).catch(err => {
                         console.log(err);
@@ -598,7 +599,8 @@ async function actualizarCesta() {
 
     lista = [];
     imprimirTotalCesta(sumaTotal);
-    listaCesta.innerHTML = outHTML;
+    //listaCesta.innerHTML = outHTML;
+    vuePanelInferior.actualizarCesta();
 }
 
 function imprimirTicketReal(idTicket) {
@@ -763,6 +765,7 @@ function addMenus() {
 var vueSetCaja = null;
 var vueFichajes = null;
 var vuePeso = null;
+var vuePanelInferior = null;
 
 window.onload = startDB;
 var conexion = null;
