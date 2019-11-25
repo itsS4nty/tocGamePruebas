@@ -198,6 +198,7 @@ function initVueTocGame() {
         methods: {
             actualizarCesta() {
                 db.cesta.toArray().then(info => {
+                    this.activo = null;
                     this.cesta = info;
                 }).catch(err => {
                     console.log(err);
@@ -218,7 +219,6 @@ function initVueTocGame() {
             borrar() {
                 if (this.activo === null) {
                     db.cesta.clear().then(function () {
-                        this.activo = null;
                         actualizarCesta();
                     }).catch(err => {
                         console.log(err);
@@ -227,7 +227,6 @@ function initVueTocGame() {
                 }
                 else {
                     db.cesta.where('idArticulo').equals(this.activo).delete().then(function () {
-                        this.activo = null;
                         actualizarCesta();
                     }).catch(err => {
                         console.log(err);
