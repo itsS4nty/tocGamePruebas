@@ -5,7 +5,7 @@ function startDB() {
     db.version(1).stores({
         cesta: 'idArticulo, nombreArticulo, unidades, subtotal, promocion, activo',
         tickets: 'idTicket, timestamp, total, cesta, tarjeta, idCaja, idTrabajador',
-        articulos: 'id, nombre, precio, iva, aPeso',
+        articulos: 'id, nombre, precio, iva, aPeso, familia',
         teclado: 'id, arrayTeclado',
         trabajadores: 'idTrabajador, nombre, nombreCorto',
         fichajes: 'idTrabajador, nombre, inicio, final, activo, fichado',
@@ -15,6 +15,7 @@ function startDB() {
         parametros: 'licencia, nombreEmpresa, database',
         cajas: '++id, inicioTime, finalTime, inicioDependenta, finalDependenta, totalApertura, totalCierre, descuadre, recaudado, abierta',
         movimientos: '++id, timestamp, tipo, valor, idCaja',
+        familias: 'nombre, padre',
         activo: 'idTrabajador',
         currentCaja: 'idCaja'
     });

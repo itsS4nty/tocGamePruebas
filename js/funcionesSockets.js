@@ -1,4 +1,4 @@
-function cargarTecladoSockets(arraySubmenus, arrayTeclas, arrayArticulos, arrayTrabajadores) {
+function cargarTecladoSockets(arraySubmenus, arrayTeclas, arrayArticulos, arrayTrabajadores, arrayFamilias) {
     //1 - Limpiar teclado.
     clearKeyboard().then(function (res) {
         var submenus = [];
@@ -25,9 +25,14 @@ function cargarTecladoSockets(arraySubmenus, arrayTeclas, arrayArticulos, arrayT
                 }
                 db.articulos.bulkPut(articulos).then(function (lastKey) {
                     db.trabajadores.bulkPut(arrayTrabajadores).then(function (x) {
-                        console.log(arrayTrabajadores);
-                        console.log("¡OK!");
-                        iniciarToc();
+                        db.familias.bulkPut(arrayFamilias).then(function () {
+                            console.log("¡CARGA COMPLETA 100% OK!");
+                            iniciarToc();
+                        }).catch(err => {
+                            console.log("Error al insertar familias");
+                            console.log(err);
+                            notificacion('Error al insertar familias', 'error');
+                        });
                     }).catch(Dexie.BulkError, function (e) {
                         console.log("Error al insertar trabajadores");
                     });
@@ -88,4 +93,8 @@ function traductorColor(data) {
         case 14715410: return 'E08A12'; break;
         default: return 'f9d8d8';
     }
+}
+
+function insertarPromociones() {
+
 }
