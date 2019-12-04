@@ -26,9 +26,13 @@ function cargarTecladoSockets(arraySubmenus, arrayTeclas, arrayArticulos, arrayT
                 db.articulos.bulkPut(articulos).then(function (lastKey) {
                     db.trabajadores.bulkPut(arrayTrabajadores).then(function (x) {
                         db.familias.bulkPut(arrayFamilias).then(function () {
-                            insertarPromociones(arrayPromociones);
-                            //console.log("¡CARGA COMPLETA 100% OK!");
-                            //iniciarToc();
+                            db.promociones.bulkPut(arrayPromociones).then(x => {
+                                console.log("¡CARGA COMPLETA 100% OK!");
+                                //iniciarToc();
+                            }).catch(err => {
+                                console.log(err);
+                                notificacion('Error al insertar promociones', 'error');
+                            });
                         }).catch(err => {
                             console.log("Error al insertar familias");
                             console.log(err);
