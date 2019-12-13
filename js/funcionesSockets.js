@@ -21,7 +21,7 @@ function cargarTecladoSockets(arraySubmenus, arrayTeclas, arrayArticulos, arrayT
             }
             db.teclado.bulkPut(tablaTeclado).then(jeje => {
                 for (let i = 0; i < arrayArticulos.length; i++) {
-                    articulos.push({ id: arrayArticulos[i].id, nombre: arrayArticulos[i].nombre, precio: arrayArticulos[i].precioConIva, iva: conversorIva(arrayArticulos[i].tipoIva), aPeso: Number(arrayArticulos[i].aPeso) });
+                    articulos.push({ id: arrayArticulos[i].id, nombre: arrayArticulos[i].nombre, precio: arrayArticulos[i].precioConIva, iva: conversorIva(arrayArticulos[i].tipoIva), aPeso: Number(arrayArticulos[i].aPeso), familia: arrayArticulos[i].familia });
                 }
                 db.articulos.bulkPut(articulos).then(function (lastKey) {
                     db.trabajadores.bulkPut(arrayTrabajadores).then(function (x) {

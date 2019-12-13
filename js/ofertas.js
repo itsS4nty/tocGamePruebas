@@ -216,3 +216,15 @@ function intentoAplicarPromo(articulosPrincipales, articulosSecundarios, cesta) 
         }
     }
 }
+
+async function getArticulosFamilia(familia) /* ESTA FUNCIÓN DEBE DEVOLVER UN ARRAY DE ARTICULOS QUE TIENEN ESTA FAMILIA O SON HIJAS, PERO COMO PROMESA!!! OK */ {
+    var info = await db.familias.where("nombre").equals(familia).or("padre").equals(familia).toArray();
+    let articulos = [];
+    let aux = [];
+    for (let i = 0; i < info.length; i++) {
+        aux = [];
+        aux = await db.articulos.where("familia").equals(info[i].nombre).toArray();
+        articulos = _.union(articulos, aux);
+    }
+    return articulos;
+}
