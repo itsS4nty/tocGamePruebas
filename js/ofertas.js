@@ -181,16 +181,16 @@ async function buscarOfertas() {
 
             }
             else {
-                principales.push({ idArticulo: Number(promociones[i].principal), unidadesNecesarias: promociones[i].cantidadPrincipal });
+                principales = await db.articulos.where('id').equals(Number(promociones[i].principal)).toArray();
             }
 
             if (promociones[i].secundario.substring(0, 2) === "F_") {
                 secundarios = await getArticulosFamilia(promociones[i].secundario.substring(2));
             }
             else {
-                secundarios.push({ idArticulo: Number(promociones[i].secundario), unidadesNecesarias: promociones[i].cantidadSecundario });
+                secundarios = await db.articulos.where('id').equals(Number(promociones[i].secundario)).toArray();
             }
-            intentoAplicarPromo(principales, secundarios, cestaOriginal);
+            intentoAplicarPromo(principales, secundarios, cestaOriginal, promociones[i].cantidadPrincipal, promociones[i].cantidadSecundario);
 
         }
         // if(promocionesValidas.length > 0)
@@ -205,13 +205,37 @@ async function buscarOfertas() {
     } while (salida > 0);
 }
 
-function intentoAplicarPromo(articulosPrincipales, articulosSecundarios, cesta) {
+function intentoAplicarPromo(articulosPrincipales, articulosSecundarios, cesta, cantidadPrincipal, cantidadSecundario) {
     for (let i = 0; i < cesta.length; i++) {
-        for (let j = 0; j < articulosPrincipales.length; j++) {
-            if (articulosPrincipales[j].idArticulo === cesta[i].idArticulo) { //El articulo existe dentro de la cesta
-                if (cesta[i].unidades >= articulosPrincipales[j].unidadesNecesarias) { //Parte de la promoción correcta.
+        iPrincipal = 0;
+        iSecundaria = 0;
+        principalAux = true;
+        secundariaAux = true;
+        while (principalAux || secundariaAux) {
+            if (articulosPrincipales[iPrincipal].id === cesta[i].idArticulo) //El artículo existe dentro de la cesta.
+            {
+                if (cesta[i].unidades >= cantidadPrincipal) {
 
                 }
+            }
+
+            if (articulosSecundarios[iSecundaria].id === cesta[i].idArticulo) {
+                if (cesta[i].unidades >= cantidadSecundario) {
+
+                }
+            }
+
+        }
+        for (let j = 0; j < articulosPrincipales.length; j++) {
+            if (articulosPrincipales[j].id === cesta[i].idArticulo) //El articulo existe dentro de la cesta
+            {
+                if (cesta[i].unidades >= articulosPrincipales[j].unidadesNecesarias) //Parte de la promoción correcta.
+                {
+
+                }
+            }
+            if (articulosSecundarios[j].id === cesta[i].idArticulo) {
+
             }
         }
     }
