@@ -211,10 +211,12 @@ function intentoAplicarPromo(articulosPrincipales, articulosSecundarios, cesta, 
         iSecundaria = 0;
         principalAux = true;
         secundariaAux = true;
-        while (principalAux || secundariaAux) {
+        while ((principalAux || secundariaAux) && iPrincipal < articulosPrincipales.length && princpal) {
             if (articulosPrincipales[iPrincipal].id === cesta[i].idArticulo) //El artículo existe dentro de la cesta.
             {
                 if (cesta[i].unidades >= cantidadPrincipal) {
+
+                    principalAux = false;
 
                 }
             }
@@ -222,10 +224,13 @@ function intentoAplicarPromo(articulosPrincipales, articulosSecundarios, cesta, 
             if (articulosSecundarios[iSecundaria].id === cesta[i].idArticulo) {
                 if (cesta[i].unidades >= cantidadSecundario) {
 
+                    secundariaAux = false;
                 }
             }
-
+            iPrincipal++;
+            iSecundaria++;
         }
+
         for (let j = 0; j < articulosPrincipales.length; j++) {
             if (articulosPrincipales[j].id === cesta[i].idArticulo) //El articulo existe dentro de la cesta
             {
