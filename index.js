@@ -1,7 +1,8 @@
 var express = require('express');
-var routes	= require('./routes');
+var routes = require('./routes');
 var path = require('path');
 var socketIO = require('socket.io');
+var net = require('net');
 
 var app = express();
 var router = express.Router();
@@ -16,7 +17,7 @@ app.use('/imagenes', express.static('imagenes'));
 app.use('/js', express.static('js'));
 app.use('/node_modules', express.static('node_modules'));
 
-app.get("/", function(req, res){
+app.get("/", function (req, res) {
     //imprimirPrueba();
     res.sendFile(__dirname + '/index.html');
 });
