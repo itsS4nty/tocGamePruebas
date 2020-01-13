@@ -1,6 +1,8 @@
 const path = require('path');
 const { app, BrowserWindow, ipcMain } = require('electron');
 var net = require('net');
+//var impresora = require('./componentes/impresoras');
+var escpos = require('escpos');
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 app.on('ready', () => {
     var ventanaPrincipal = new BrowserWindow({

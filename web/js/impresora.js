@@ -1,6 +1,6 @@
 var escpos = require('escpos');
 
-var imprimirPrueba = function(numFactura, arrayCompra, total, visa) {
+var imprimirPrueba = function (numFactura, arrayCompra, total, visa) {
     var detalles = '';
     var pagoTarjeta = '';
     for (let i = 0; i < arrayCompra.length; i++) {
@@ -11,7 +11,7 @@ var imprimirPrueba = function(numFactura, arrayCompra, total, visa) {
         pagoTarjeta = '----------- PAGADO CON TARJETA ---------\n';
     }
 
-    device.open(function() {
+    device.open(function () {
         printer
             .encode('EUC-KR')
             .size(2, 2)
@@ -20,7 +20,7 @@ var imprimirPrueba = function(numFactura, arrayCompra, total, visa) {
             .text('C Antoni Forrellat 116, 6')
             .text('Sabadell - 08207')
 
-        .text('Tel. 937175121')
+            .text('Tel. 937175121')
             .text('Data: ' + fecha.getDate() + '-' + fecha.getMonth() + '-' + fecha.getFullYear() + ' ' + fecha.getHours() + ':' + fecha.getMinutes())
             .text('Factura simplificada N: ' + numFactura)
             .control('LF')

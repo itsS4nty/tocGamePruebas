@@ -10,16 +10,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "browserify": "^16.3.0",
-    "escpos": "^2.5.1",
-    "express": "^4.17.1",
+    "escpos": "^2.5.2",
     "jq-keyboard": "^1.0.2",
     "jquery": "^3.4.1",
-    "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0"
   },
   "devDependencies": {
-    "electron": "^7.1.8"
+    "electron": "^7.1.8",
+    "electron-rebuild": "^1.8.8"
   }
 }
