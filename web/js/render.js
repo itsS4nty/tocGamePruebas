@@ -24,3 +24,6 @@ ipcRenderer.on('imprimir', (ev, args) => {
 function imprimirEscpos(data) {
     ipcRenderer.send('imprimir', data);
 }
+function nodeVenta() {
+    ipcRenderer.send('venta', '');
+}
