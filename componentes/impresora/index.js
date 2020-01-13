@@ -55,8 +55,9 @@ try {
     console.log(err);
 }
 
-exports.imprimirTicket = function (req, res) {
-    imprimir(req.body.numFactura, req.body.arrayCompra, req.body.total, req.body.visa);
+exports.imprimirTicket = function (req) {
+    console.log(req);
+    imprimirPrueba(req.numFactura, req.arrayCompra, req.total, req.visa);
 
-    res.json({ status: 'ok' }).end();
+    //res.json({ status: 'ok' }).end();
 }

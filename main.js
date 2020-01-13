@@ -1,7 +1,7 @@
 const path = require('path');
 const { app, BrowserWindow, ipcMain } = require('electron');
 var net = require('net');
-//var impresora = require('./componentes/impresoras');
+var impresora = require('./componentes/impresora');
 var escpos = require('escpos');
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 app.on('ready', () => {
@@ -18,8 +18,22 @@ app.on('ready', () => {
 });
 /* ACCIONES IPC-MAIN */
 ipcMain.on('venta', (event, args) => {
-
-    event.sender.send('canal1', 'PUTO');
+    var client = new net.Socket();
+    client.connect(8890, '127.0.0.1', function () {
+        console.log('Conectado al CoLinux | Venta');
+        //var venta_t = `\x02${data.cliente};${data.tienda};${data.tpv};gleidy;${data.ticket};1;${data.importe};;;;;;;\x03`;
+        var venta_t = `\x02252;1;1;gleidy;356;1;1050;;;;;;;\x03`;
+        client.write(venta_t);
+    });
+    client.on('data', function (data) {
+        console.log('Recibido: ' + data);
+        client.write('\x02ACK\x03');
+        client.destroy();
+    });
+    client.on('close', function () {
+        console.log('Conexión cerrada');
+    });
+    //event.sender.send('canal1', 'PUTO');
 });
 
 ipcMain.on('devolucion', (event, args) => {
@@ -33,29 +47,5 @@ ipcMain.on('consulta', (event, args) => {
 });
 ipcMain.on('imprimir', (event, args) => {
 
+    impresora.imprimirTicket(args);
 });
-    /* FINAL ACCIONES IPC-MAIN */
-/*
-var app = express();
-var router = express.Router();
-var bodyParser = require('body-parser');
-
-
-app.set('port', process.env.PORT || 8080);
-app.use(bodyParser.json());
-
-app.use('/assets', express.static('assets'));
-app.use('/imagenes', express.static('imagenes'));
-app.use('/js', express.static('js'));
-app.use('/node_modules', express.static('node_modules'));
-
-app.get("/", function (req, res) {
-    //imprimirPrueba();
-    res.sendFile(__dirname + '/index.html');
-});
-
-app.post("/imprimirTicket", routes.imprimirTicket);
-
-const server = app.listen(app.get('port'));
-const io = socketIO(server);
-*/

@@ -614,20 +614,22 @@ function imprimirTicketReal(idTicket) {
             enviarArray.push({ cantidad: lista[0].cesta[i].unidades, articuloNombre: lista[0].cesta[i].nombreArticulo, importe: lista[0].cesta[i].subtotal });
         }
         console.log(enviarArray);
-        $.ajax({
-            url: '/imprimirTicket',
-            type: 'POST',
-            cache: false,
-            data: JSON.stringify({ numFactura: lista[0].idTicket, arrayCompra: enviarArray, total: lista[0].total, visa: lista[0].tarjeta }),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (data) {
-                notificacion('Ticket OK!', 'success');
-            },
-            error: function (jqXHR, textStatus, err) {
-                alert('text status ' + textStatus + ', err ' + err)
-            }
-        });
+        imprimirEscpos({ numFactura: lista[0].idTicket, arrayCompra: enviarArray, total: lista[0].total, visa: lista[0].tarjeta });
+        console.log('Se envía prueba impresión');
+        // $.ajax({
+        //     url: '/imprimirTicket',
+        //     type: 'POST',
+        //     cache: false,
+        //     data: JSON.stringify({ numFactura: lista[0].idTicket, arrayCompra: enviarArray, total: lista[0].total, visa: lista[0].tarjeta }),
+        //     contentType: "application/json; charset=utf-8",
+        //     dataType: "json",
+        //     success: function (data) {
+        //         notificacion('Ticket OK!', 'success');
+        //     },
+        //     error: function (jqXHR, textStatus, err) {
+        //         alert('text status ' + textStatus + ', err ' + err)
+        //     }
+        // });
     });
 }
 

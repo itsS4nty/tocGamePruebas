@@ -20,3 +20,7 @@ ipcRenderer.on('imprimir', (ev, args) => {
 
 });
 /* FIN RESPUESTAS ACCIONES IPC-MAIN */
+
+function imprimirEscpos(data) {
+    ipcRenderer.send('imprimir', data);
+}
