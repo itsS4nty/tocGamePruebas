@@ -539,9 +539,9 @@ function addItemCesta(idArticulo, nombreArticulo, precio, sumable, gramos = fals
                 if (!gramos) {
                     db.cesta.update(idArticulo, { unidades: uds, subtotal: subt, activo: false }).then(updated => {
                         if (updated) {
-                            buscarOfertas().then(function () {
+                            /*buscarOfertas().then(function () {
                                 actualizarCesta();
-                            });
+                            });*/
                         } else {
                             alert("Error al actualizar cesta");
                         }

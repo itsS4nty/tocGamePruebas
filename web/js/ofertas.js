@@ -206,44 +206,44 @@ async function buscarOfertas() {
 }
 
 function intentoAplicarPromo(articulosPrincipales, articulosSecundarios, cesta, cantidadPrincipal, cantidadSecundario) {
-    for (let i = 0; i < cesta.length; i++) {
-        iPrincipal = 0;
-        iSecundaria = 0;
-        principalAux = false;
-        secundariaAux = false;
-        while ((!principalAux || !secundariaAux) && iPrincipal < articulosPrincipales.length && princpal) {
-            if (articulosPrincipales[iPrincipal].id === cesta[i].idArticulo) //El artículo existe dentro de la cesta.
-            {
-                if (cesta[i].unidades >= cantidadPrincipal) {
+    // for (let i = 0; i < cesta.length; i++) {
+    //     iPrincipal = 0;
+    //     iSecundaria = 0;
+    //     principalAux = false;
+    //     secundariaAux = false;
+    //     while ((!principalAux || !secundariaAux) && iPrincipal < articulosPrincipales.length && princpal) {
+    //         if (articulosPrincipales[iPrincipal].id === cesta[i].idArticulo) //El artículo existe dentro de la cesta.
+    //         {
+    //             if (cesta[i].unidades >= cantidadPrincipal) {
 
-                    principalAux = true;
+    //                 principalAux = true;
 
-                }
-            }
+    //             }
+    //         }
 
-            if (articulosSecundarios[iSecundaria].id === cesta[i].idArticulo) {
-                if (cesta[i].unidades >= cantidadSecundario) {
+    //         if (articulosSecundarios[iSecundaria].id === cesta[i].idArticulo) {
+    //             if (cesta[i].unidades >= cantidadSecundario) {
 
-                    secundariaAux = true;
-                }
-            }
-            iPrincipal++;
-            iSecundaria++;
-        }
+    //                 secundariaAux = true;
+    //             }
+    //         }
+    //         iPrincipal++;
+    //         iSecundaria++;
+    //     }
 
-        for (let j = 0; j < articulosPrincipales.length; j++) {
-            if (articulosPrincipales[j].id === cesta[i].idArticulo) //El articulo existe dentro de la cesta
-            {
-                if (cesta[i].unidades >= articulosPrincipales[j].unidadesNecesarias) //Parte de la promoción correcta.
-                {
+    //     for (let j = 0; j < articulosPrincipales.length; j++) {
+    //         if (articulosPrincipales[j].id === cesta[i].idArticulo) //El articulo existe dentro de la cesta
+    //         {
+    //             if (cesta[i].unidades >= articulosPrincipales[j].unidadesNecesarias) //Parte de la promoción correcta.
+    //             {
 
-                }
-            }
-            if (articulosSecundarios[j].id === cesta[i].idArticulo) {
+    //             }
+    //         }
+    //         if (articulosSecundarios[j].id === cesta[i].idArticulo) {
 
-            }
-        }
-    }
+    //         }
+    //     }
+    // }
 }
 
 async function getArticulosFamilia(familia) /* ESTA FUNCIÓN DEBE DEVOLVER UN ARRAY DE ARTICULOS QUE TIENEN ESTA FAMILIA O SON HIJAS, PERO COMO PROMESA!!! OK */ {
