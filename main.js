@@ -6,8 +6,8 @@ var escpos = require('escpos');
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 app.on('ready', () => {
     var ventanaPrincipal = new BrowserWindow({
-        kiosk: true,
-        frame: false,
+        kiosk: false, //cambiar a false
+        frame: true, //cambiar a false
         webPreferences: {
             nodeIntegration: true
         }
