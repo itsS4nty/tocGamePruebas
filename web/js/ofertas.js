@@ -1,162 +1,55 @@
-async function deshacerPromos() {
-    var cesta = await db.cesta.toArray();
-    var aux = false;
-    var aux2 = -1;
-    var idsPromocionesToAdd = [];
+const OFERTA_INDIVIDUAL = 1;
+const OFERTA_COMBO = 2;
+const ACCION_NADA = 0;
+const ACCION_RESTAR = 1;
+const ACCION_ELIMINAR = 2;
 
-    for (let i = 0; i < cesta.length; i++) {
-        if (cesta[i].promocion != -1) //ELIMINAR POSICIÓN i DE LA CESTA
-        {
-            idsPromocionesToAdd.push(cesta[i].promocion);
-            await db.cesta.where("idArticulo").equals(cesta[i].idArticulo).delete();
-        }
-    }
+// async function deshacerPromos() {
+//     var cesta = await db.cesta.toArray();
+//     var aux = false;
+//     var aux2 = -1;
+//     var idsPromocionesToAdd = [];
 
-    /* A estas alturas tengo todas las promociones deshechas y solo falta añadir los artículos */
-    var listaArticulos = await db.articulos.toArray();
-    var listaPromociones = await db.promociones.toArray();
-    var listaCesta = await db.cesta.toArray();
-
-    for (let i = 0; i < idsPromocionesToAdd.length; i++) {
-        for (let j = 0; j < listaPromociones.length; j++) {
-            if (listaPromociones[j].id == idsPromocionesToAdd[i]) {
-                articulosParaAgregar = JSON.parse(listaPromociones[j].articulosNecesarios);
-
-                for (let h = 0; h < articulosParaAgregar.length; h++) {
-                    yaExiste = false;
-
-                    for (let k = 0; k < listaCesta.length; k++) {
-                        if (listaCesta[k].idArticulo == articulosParaAgregar[h].idArticulo) {
-                            yaExiste = true;
-                            arrayPrecio = await db.articulos.where("id").equals(listaCesta[k].idArticulo).toArray();
-                            await db.cesta.put({ idArticulo: listaCesta[k].idArticulo, nombreArticulo: listaCesta[k].nombreArticulo, unidades: listaCesta[k].unidades + articulosParaAgregar[h].unidadesNecesarias, subtotal: (listaCesta[k].unidades + articulosParaAgregar[h].unidadesNecesarias) * arrayPrecio[0], promocion: -1 });
-                            break;
-                        }
-                    }
-                    if (!yaExiste) {
-                        arrayPrecio = await db.articulos.where("id").equals(articulosParaAgregar[h].idArticulo).toArray();
-                        await db.cesta.put({ idArticulo: articulosParaAgregar[h].idArticulo, nombreArticulo: arrayPrecio[0].nombre, unidades: articulosParaAgregar[h].unidadesNecesarias, subtotal: articulosParaAgregar[h].unidadesNecesarias * arrayPrecio[0].precio, promocion: -1 });
-                    }
-                }
-            }
-        }
-    }
-    actualizarCesta();
-}
-
-// function hayPromo(articulosNecesariosEncoded, cesta)
-// {
-//     //HAY QUE DECODIFICAR EL JSON, Y COMPROBAR SI COINCIDEN TODOS.
-//     var articulosNecesarios = JSON.parse(articulosNecesariosEncoded);
-//     console.log(articulosNecesarios);
-//     var encuentra = false;
-//     for(let i = 0; i < articulosNecesarios.length; i++)
-//     {
-//         encuentra = false;
-//         for(let j = 0; j < cesta.length; j++)
+//     for (let i = 0; i < cesta.length; i++) {
+//         if (cesta[i].promocion != -1) //ELIMINAR POSICIÓN i DE LA CESTA
 //         {
-//             if(cesta[j].idArticulo == articulosNecesarios[i].idArticulo)
-//             {
-//                 if(cesta[j].unidades >= articulosNecesarios[i].unidadesNecesarias)
-//                 {
-//                     encuentra = true;
+//             idsPromocionesToAdd.push(cesta[i].promocion);
+//             await db.cesta.where("idArticulo").equals(cesta[i].idArticulo).delete();
+//         }
+//     }
+
+//     /* A estas alturas tengo todas las promociones deshechas y solo falta añadir los artículos */
+//     var listaArticulos = await db.articulos.toArray();
+//     var listaPromociones = await db.promociones.toArray();
+//     var listaCesta = await db.cesta.toArray();
+
+//     for (let i = 0; i < idsPromocionesToAdd.length; i++) {
+//         for (let j = 0; j < listaPromociones.length; j++) {
+//             if (listaPromociones[j].id == idsPromocionesToAdd[i]) {
+//                 articulosParaAgregar = JSON.parse(listaPromociones[j].articulosNecesarios);
+
+//                 for (let h = 0; h < articulosParaAgregar.length; h++) {
+//                     yaExiste = false;
+
+//                     for (let k = 0; k < listaCesta.length; k++) {
+//                         if (listaCesta[k].idArticulo == articulosParaAgregar[h].idArticulo) {
+//                             yaExiste = true;
+//                             arrayPrecio = await db.articulos.where("id").equals(listaCesta[k].idArticulo).toArray();
+//                             await db.cesta.put({ idArticulo: listaCesta[k].idArticulo, nombreArticulo: listaCesta[k].nombreArticulo, unidades: listaCesta[k].unidades + articulosParaAgregar[h].unidadesNecesarias, subtotal: (listaCesta[k].unidades + articulosParaAgregar[h].unidadesNecesarias) * arrayPrecio[0], promocion: -1 });
+//                             break;
+//                         }
+//                     }
+//                     if (!yaExiste) {
+//                         arrayPrecio = await db.articulos.where("id").equals(articulosParaAgregar[h].idArticulo).toArray();
+//                         await db.cesta.put({ idArticulo: articulosParaAgregar[h].idArticulo, nombreArticulo: arrayPrecio[0].nombre, unidades: articulosParaAgregar[h].unidadesNecesarias, subtotal: articulosParaAgregar[h].unidadesNecesarias * arrayPrecio[0].precio, promocion: -1 });
+//                     }
 //                 }
 //             }
 //         }
-//         if(!encuentra)
-//         {
-//             return false;
-//         }
 //     }
-//     return true;
+//     actualizarCesta();
 // }
 
-async function aplicarPromo(promocionesValidas) {
-    var cesta = await db.cesta.toArray();
-    var min, pos;
-    if (promocionesValidas.length > 0) {
-        min = promocionesValidas[0].precioFinal;
-    }
-
-    for (let i = 0; i < promocionesValidas.length; i++) {
-
-        /*BUSCAR MÍNIMO*/
-        if (min >= promocionesValidas[i].precioFinal) {
-            min = promocionesValidas[i].precioFinal;
-            pos = i;
-        }
-        /*FIN BUSCAR MÍNIMO*/
-    }
-
-    /*OBTENER UNIDADES EN LA CESTA Y  UNIDADES EN LA PROMOCIÓN*/
-    var listaArticulos = JSON.parse(promocionesValidas[pos].articulosNecesarios);
-    for (let i = 0; i < listaArticulos.length; i++) {
-        for (let j = 0; j < cesta.length; j++) {
-            if (listaArticulos[i].idArticulo == cesta[j].idArticulo) {
-                if (cesta[j].unidades > listaArticulos[i].unidadesNecesarias) {
-                    //PUT CON UNIDADES = UdsCesta-UdsPromocion;
-                    articuloAux = await db.articulos.where("id").equals(cesta[j].idArticulo).toArray();
-                    await db.cesta.put({
-                        idArticulo: cesta[j].idArticulo,
-                        nombreArticulo: cesta[j].nombreArticulo,
-                        unidades: cesta[j].unidades - listaArticulos[i].unidadesNecesarias,
-                        subtotal: (cesta[j].unidades - listaArticulos[i].unidadesNecesarias) * articuloAux[0].precio,
-                        promocion: -1
-                    });
-                }
-                else {
-                    //DELETE ID EN LA CESTA.
-                    await db.cesta.where("idArticulo").equals(cesta[j].idArticulo).delete();
-                }
-            }
-        }
-    }
-
-    await db.cesta.put({
-        idArticulo: promocionesValidas[pos].id,
-        nombreArticulo: promocionesValidas[pos].nombre,
-        unidades: 1,
-        subtotal: 1 * promocionesValidas[pos].precioFinal,
-        promocion: promocionesValidas[pos].id
-    });
-
-
-}
-
-// async function buscarOfertas()
-// {
-//         var listaPromociones    = await db.promociones.toArray();
-//         var listaArticulos      = await db.articulos.toArray();
-//         var promocionesValidas  = [];
-//         var salida = 0;
-
-//         deshacerPromos().then(function(){
-//             do
-//             {
-//                 db.cesta.toArray().then(cestaOriginal=>{
-//                     promocionesValidas  = [];
-
-//                     for(let i = 0; i < listaPromociones.length; i++)
-//                     {
-//                         if(hayPromo(listaPromociones[i].articulosNecesarios, cestaOriginal))
-//                         {
-//                             promocionesValidas.push(listaPromociones[i]);
-//                             salida++;
-//                         }
-//                     }
-//                     if(promocionesValidas.length > 0)
-//                     {
-//                         aplicarPromo(promocionesValidas).then(function(){
-//                             notificacion('¡Promoción OK!', 'info');
-//                             actualizarCesta().then(function(){
-//                                 salida--;
-//                             });
-//                         });
-//                     }
-//                 });
-//             } while(salida > 0);
-//         });
-// }
 async function buscarOfertas() {
     var promociones = await db.promociones.toArray();
     var listaArticulos = await db.articulos.toArray();
@@ -166,84 +59,190 @@ async function buscarOfertas() {
     var principales = []; //array de articulos principales donde hay que buscar promos.
     var secundarios = []; //array de articulos secundarios donde hay que buscar promos.
 
-    await deshacerPromos(); //MODIFICAR DESHACERPROMOS PARA QUE DEVUELVA UNA PROMESA. AHORA NO LO HACE.
+    //await deshacerPromos(); //MODIFICAR DESHACERPROMOS PARA QUE DEVUELVA UNA PROMESA. AHORA NO LO HACE.
 
-    do {
+    for (let i = 0; i < promociones.length; i++) {
         cestaOriginal = await db.cesta.toArray();
+        principales = [];
+        secundarios = [];
+        if (promociones[i].secundario === "-1") {
+            tipoOferta = OFERTA_INDIVIDUAL
+        }
+        else {
+            tipoOferta = OFERTA_COMBO;
+        }
 
-        for (let i = 0; i < promociones.length; i++) {
-            principales = [];
-            secundarios = [];
-
-            if (promociones[i].principal.substring(0, 2) === "F_") {
-                /* BUSCO Y CREO ARRAY CON TODOS ESTOS PRODUCTOS DE LA FAMILIA */
-                principales = await getArticulosFamilia(promociones[i].principal.substring(2));
-
-            }
-            else {
-                principales = await db.articulos.where('id').equals(Number(promociones[i].principal)).toArray();
-            }
-
-            if (promociones[i].secundario.substring(0, 2) === "F_") {
-                secundarios = await getArticulosFamilia(promociones[i].secundario.substring(2));
-            }
-            else {
-                secundarios = await db.articulos.where('id').equals(Number(promociones[i].secundario)).toArray();
-            }
-            intentoAplicarPromo(principales, secundarios, cestaOriginal, promociones[i].cantidadPrincipal, promociones[i].cantidadSecundario);
+        if (promociones[i].principal.substring(0, 2) === "F_") {
+            /* BUSCO Y CREO ARRAY CON TODOS ESTOS PRODUCTOS DE LA FAMILIA */
+            principales = await getArticulosFamilia(promociones[i].principal.substring(2));
 
         }
-        // if(promocionesValidas.length > 0)
-        // {
-        //     aplicarPromo(promocionesValidas).then(function(){
-        //         notificacion('¡Promoción OK!', 'info');
-        //         actualizarCesta().then(function(){
-        //             salida--;
-        //         });
-        //     });
-        // }
-    } while (salida > 0);
+        else {
+            principales = await db.articulos.where('id').equals(Number(promociones[i].principal)).toArray();
+        }
+
+        if (promociones[i].secundario.substring(0, 2) === "F_") {
+            secundarios = await getArticulosFamilia(promociones[i].secundario.substring(2));
+        }
+        else {
+            secundarios = await db.articulos.where('id').equals(Number(promociones[i].secundario)).toArray();
+        }
+        intentoAplicarPromo(promociones[i], principales, secundarios, cestaOriginal, promociones[i].cantidadPrincipal, promociones[i].cantidadSecundario, tipoOferta);
+
+    }
 }
 
-function intentoAplicarPromo(articulosPrincipales, articulosSecundarios, cesta, cantidadPrincipal, cantidadSecundario) {
-    // for (let i = 0; i < cesta.length; i++) {
-    //     iPrincipal = 0;
-    //     iSecundaria = 0;
-    //     principalAux = false;
-    //     secundariaAux = false;
-    //     while ((!principalAux || !secundariaAux) && iPrincipal < articulosPrincipales.length && princpal) {
-    //         if (articulosPrincipales[iPrincipal].id === cesta[i].idArticulo) //El artículo existe dentro de la cesta.
-    //         {
-    //             if (cesta[i].unidades >= cantidadPrincipal) {
+function intentoAplicarPromo(infoPromo, articulosPrincipales, articulosSecundarios, cesta, cantidadPrincipal, cantidadSecundario, tipoOferta) {
+    for (let i = 0; i < cesta.length; i++) {
+        iPrincipal = 0;
+        iSecundaria = 0;
+        principalAux = false;
+        secundariaAux = false;
 
-    //                 principalAux = true;
+        if (tipoOferta === OFERTA_COMBO) {
+            posEnCestaPrincipal = 0;
+            posEnCestaSecundaria = 0;
 
-    //             }
-    //         }
+            while ((!principalAux || !secundariaAux) && (iPrincipal < articulosPrincipales.length || iSecundaria < articulosSecundarios.length)) {
+                if (iPrincipal < articulosPrincipales.length) {
+                    if (articulosPrincipales[iPrincipal].id === cesta[i].idArticulo) //El artículo existe dentro de la cesta.
+                    {
+                        if (cesta[i].unidades >= cantidadPrincipal) { //El artículo contiene la cantidad necesaria para la promo
+                            posEnCestaPrincipal = i;
+                            principalAux = true;
+                        }
+                    }
+                }
+                if (iSecundaria < articulosSecundarios.length) {
+                    if (articulosSecundarios[iSecundaria].id === cesta[i].idArticulo) { //El artículo existe dentro de la cesta.
+                        if (cesta[i].unidades >= cantidadSecundario) { //El artículo contiene la cantidad necesaria para la promo
+                            posEnCestaSecundaria = i;
+                            secundariaAux = true;
+                        }
+                    }
+                }
+                iPrincipal++;
+                iSecundaria++;
+            }
+            if (principalAux && secundariaAux) // Si hay de los dos
+            {
+                if (cesta[posEnCestaPrincipal].unidades / cantidadPrincipal >= 2) {
+                    unidadesOfertaPrincipal = parseInt(cesta[posEnCestaPrincipal].unidades / cantidadPrincipal);
+                }
+                else {
+                    unidadesOfertaPrincipal = 1;
+                }
 
-    //         if (articulosSecundarios[iSecundaria].id === cesta[i].idArticulo) {
-    //             if (cesta[i].unidades >= cantidadSecundario) {
+                if (cesta[posEnCestaSecundaria].unidades / cantidadSecundario >= 2) {
+                    unidadesOfertaSecundario = parseInt(cesta[posEnCestaSecundaria].unidades / cantidadSecundario);
+                }
+                else {
+                    unidadesOfertaSecundario = 1;
+                }
 
-    //                 secundariaAux = true;
-    //             }
-    //         }
-    //         iPrincipal++;
-    //         iSecundaria++;
-    //     }
+                unidadesOferta = Math.min(unidadesOfertaPrincipal, unidadesOfertaSecundario);
+                if (cesta[posEnCestaPrincipal].unidades === cantidadPrincipal * unidadesOferta) {
+                    cesta.splice(posEnCestaPrincipal, 1);
+                }
+                else {
+                    if (cesta[posEnCestaPrincipal].unidades > cantidadPrincipal * unidadesOferta) {
+                        cesta[posEnCestaPrincipal].unidades -= (cantidadPrincipal * unidadesOferta);
+                    }
+                }
+                //---
+                if (cesta[posEnCestaSecundaria].unidades === cantidadSecundario * unidadesOferta) {
+                    cesta.splice(posEnCestaPrincipal, 1);
+                }
+                else {
+                    if (cesta[posEnCestaSecundaria].unidades > cantidadSecundario * unidadesOferta) {
+                        cesta[posEnCestaSecundaria].unidades -= (cantidadSecundario * unidadesOferta);
+                    }
+                }
+                cesta = insertarOferta(cesta, infoPromo, unidadesOferta, tipoOferta);
+                insertarCestaCompleta(cesta);
+                break;
+            }
+        }
+        else {
+            if (tipoOferta === OFERTA_INDIVIDUAL) {
+                cumpleOferta = false;
 
-    //     for (let j = 0; j < articulosPrincipales.length; j++) {
-    //         if (articulosPrincipales[j].id === cesta[i].idArticulo) //El articulo existe dentro de la cesta
-    //         {
-    //             if (cesta[i].unidades >= articulosPrincipales[j].unidadesNecesarias) //Parte de la promoción correcta.
-    //             {
+                for (let j = 0; j < articulosPrincipales.length; j++) {
+                    console.log("TAMBIEN DEBERIA ENTRAR");
+                    if (cesta[i].idArticulo === articulosPrincipales[j].id) //El artículo existe dentro de la cesta.
+                    {
+                        if (cesta[i].unidades >= cantidadPrincipal) // Se puede aplicar la oferta.
+                        {
+                            cumpleOferta = true;
+                            unidadesOferta = parseInt(cesta[i].unidades / cantidadPrincipal);
+                            cesta[i].unidades -= unidadesOferta * cantidadPrincipal;
+                            if (cesta[i].unidades <= 0) {
+                                cesta.splice(i, 1);
+                            }
+                            break;
+                        }
+                    }
+                }
+                if (cumpleOferta) {
+                    cesta = insertarOferta(cesta, infoPromo, unidadesOferta, tipoOferta);
+                    insertarCestaCompleta(cesta);
+                    break;
+                }
+            }
+        }
+    }
+}
 
-    //             }
-    //         }
-    //         if (articulosSecundarios[j].id === cesta[i].idArticulo) {
+function insertarOferta(cesta, promocion, unidades, tipoOferta) {
+    var nombre = '';
+    var posExiste = yaExiste(cesta, promocion.id);
 
-    //         }
-    //     }
-    // }
+    if (tipoOferta === OFERTA_COMBO) {
+        nombre = 'Oferta Combo';
+    }
+    else {
+        if (tipoOferta === OFERTA_INDIVIDUAL) {
+            nombre = 'Oferta individual';
+        }
+    }
+    if (posExiste !== -1) {
+        cesta[posExiste].unidades += unidades;
+
+    }
+    else {
+        datos = {
+            idArticulo: promocion.id,
+            nombreArticulo: nombre,
+            unidades: unidades,
+            subtotal: promocion.precioFinal * unidades,
+            promocion: 1,
+            activo: 0
+        };
+        cesta.push(datos);
+    }
+
+    return cesta;
+}
+function yaExiste(cesta, id) {
+    for (let i = 0; i < cesta.length; i++) {
+        if (cesta[i].idArticulo === id) {
+            return i;
+        }
+    }
+    return -1;
+}
+function insertarCestaCompleta(cesta) {
+    db.cesta.clear().then(function () {
+        db.cesta.bulkPut(cesta).then(function (lastKey) {
+
+        }).catch(Dexie.BulkError, function (e) {
+            console.error("Error al insertarCestaCompleta");
+            notificacion('Error al insertarCestaCompleta()', 'error');
+        });
+    }).catch(err => {
+        console.log(err);
+        notificacion('Error al borrar cesta', 'error');
+    });
 }
 
 async function getArticulosFamilia(familia) /* ESTA FUNCIÓN DEBE DEVOLVER UN ARRAY DE ARTICULOS QUE TIENEN ESTA FAMILIA O SON HIJAS, PERO COMO PROMESA!!! OK */ {
