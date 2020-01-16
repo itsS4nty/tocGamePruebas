@@ -57,6 +57,10 @@ function startDB() {
     });
 }
 
+function redondearPrecio(precio) /* REDONDEA AL SEGUNDO DECIMAL */ {
+    return Math.round(precio * 100) / 100;
+}
+
 function abrirMenuPrincipal() {
     vueFichajes.getTrabajadores();
     vueFichajes.verFichados();

@@ -93,11 +93,16 @@ async function buscarOfertas() {
 }
 
 function intentoAplicarPromo(infoPromo, articulosPrincipales, articulosSecundarios, cesta, cantidadPrincipal, cantidadSecundario, tipoOferta) {
+    // if (infoPromo.id == '4ACC0886-FCE3-4462-80B1-8D4CEF46F03B') {
+    //     console.log(articulosPrincipales);
+    //     console.log(articulosSecundarios);
+    // }
+    principalAux = false;
+    secundariaAux = false;
+
     for (let i = 0; i < cesta.length; i++) {
         iPrincipal = 0;
         iSecundaria = 0;
-        principalAux = false;
-        secundariaAux = false;
 
         if (tipoOferta === OFERTA_COMBO) {
             posEnCestaPrincipal = 0;
@@ -121,11 +126,13 @@ function intentoAplicarPromo(infoPromo, articulosPrincipales, articulosSecundari
                         }
                     }
                 }
+                console.log("principalAux: " + principalAux + " y secundariaAux: " + secundariaAux);
                 iPrincipal++;
                 iSecundaria++;
             }
             if (principalAux && secundariaAux) // Si hay de los dos
             {
+                console.log("SE PUEDE APLICAR UNA OFERTA!");
                 if (cesta[posEnCestaPrincipal].unidades / cantidadPrincipal >= 2) {
                     unidadesOfertaPrincipal = parseInt(cesta[posEnCestaPrincipal].unidades / cantidadPrincipal);
                 }
@@ -151,7 +158,7 @@ function intentoAplicarPromo(infoPromo, articulosPrincipales, articulosSecundari
                 }
                 //---
                 if (cesta[posEnCestaSecundaria].unidades === cantidadSecundario * unidadesOferta) {
-                    cesta.splice(posEnCestaPrincipal, 1);
+                    cesta.splice(posEnCestaSecundaria, 1);
                 }
                 else {
                     if (cesta[posEnCestaSecundaria].unidades > cantidadSecundario * unidadesOferta) {
@@ -168,7 +175,6 @@ function intentoAplicarPromo(infoPromo, articulosPrincipales, articulosSecundari
                 cumpleOferta = false;
 
                 for (let j = 0; j < articulosPrincipales.length; j++) {
-                    console.log("TAMBIEN DEBERIA ENTRAR");
                     if (cesta[i].idArticulo === articulosPrincipales[j].id) //El artículo existe dentro de la cesta.
                     {
                         if (cesta[i].unidades >= cantidadPrincipal) // Se puede aplicar la oferta.
@@ -206,21 +212,45 @@ function insertarOferta(cesta, promocion, unidades, tipoOferta) {
         }
     }
     if (posExiste !== -1) {
+        total1 = cesta[posExiste].subtotal + (unidades * promocion.precioFinal * promocion.cantidadPrincipal);
+        total2 = cesta[posExiste].subtotal + (unidades * promocion.precioFinal);
         cesta[posExiste].unidades += unidades;
-
+        if (tipoOferta === OFERTA_INDIVIDUAL) {
+            cesta[posExiste].subtotal = redondearPrecio(total1);
+        }
+        else {
+            if (tipoOferta === OFERTA_COMBO) {
+                cesta[posExiste].subtotal = redondearPrecio(total2);
+            }
+        }
     }
     else {
-        datos = {
-            idArticulo: promocion.id,
-            nombreArticulo: nombre,
-            unidades: unidades,
-            subtotal: promocion.precioFinal * unidades,
-            promocion: 1,
-            activo: 0
-        };
+        if (tipoOferta === OFERTA_COMBO) {
+            datos = {
+                idArticulo: promocion.id,
+                nombreArticulo: nombre,
+                unidades: unidades,
+                subtotal: redondearPrecio(promocion.precioFinal * unidades),
+                promocion: 1,
+                activo: 0
+            };
+        }
+        else {
+            if (tipoOferta === OFERTA_INDIVIDUAL) {
+                datos = {
+                    idArticulo: promocion.id,
+                    nombreArticulo: nombre,
+                    unidades: unidades,
+                    subtotal: redondearPrecio(promocion.precioFinal * unidades * promocion.cantidadPrincipal),
+                    promocion: 1,
+                    activo: 0
+                };
+            }
+        }
+
         cesta.push(datos);
     }
-
+    console.log("promocion.prefioFinal: " + promocion.precioFinal + " unidades: " + unidades);
     return cesta;
 }
 function yaExiste(cesta, id) {
