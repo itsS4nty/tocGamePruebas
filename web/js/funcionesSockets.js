@@ -1,4 +1,5 @@
-function cargarTecladoSockets(arraySubmenus, arrayTeclas, arrayArticulos, arrayTrabajadores, arrayFamilias, arrayPromociones) {
+/* ESTA FUNCIÓN HAY QUE CAMBIARLA DE NOMBRE, NO HACE LO QUE DICE, CARGA TODO */
+function cargarTecladoSockets(arraySubmenus, arrayTeclas, arrayArticulos, arrayTrabajadores, arrayFamilias, arrayPromociones, arrayClientes) {
     //1 - Limpiar teclado.
     clearKeyboard().then(function (res) {
         var submenus = [];
@@ -27,8 +28,13 @@ function cargarTecladoSockets(arraySubmenus, arrayTeclas, arrayArticulos, arrayT
                     db.trabajadores.bulkPut(arrayTrabajadores).then(function (x) {
                         db.familias.bulkPut(arrayFamilias).then(function () {
                             db.promociones.bulkPut(arrayPromociones).then(x => {
-                                console.log("¡CARGA COMPLETA 100% OK!");
-                                //iniciarToc();
+                                db.clientes.bulkPut(arrayClientes).then(function () {
+                                    console.log("¡CARGA COMPLETA 100% OK!");
+                                    //iniciarToc();
+                                }).catch(err => {
+                                    console.log(err);
+                                    notificacion('Error al insertar clientes finales', 'error');
+                                });
                             }).catch(err => {
                                 console.log(err);
                                 notificacion('Error al insertar promociones', 'error');

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="assets/css/toastr.min.css">
     <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/jkeyboard.css">
+
     <script src="js/render.js"></script>
 </head>
 
@@ -349,7 +350,7 @@
                                 </button>
                                 <div class="btn-group btn-group-justified">
                                     <div class="btn-group">
-                                        <button class="btn btn-success"
+                                        <button class="btn btn-success" onclick="abrirModalClientes();"
                                             style="font-family: 'Anton', sans-serif; font-size: 20px; font-style: normal; color: black;">
                                             CLIENTE
                                             <div class="ripple-container"></div>
@@ -358,7 +359,7 @@
                                     <div class="btn-group">
                                         <button onclick="abrirMenuPrincipal();" class="btn btn-default"
                                             style="background-color:#f19797;font-family: 'Anton', sans-serif; font-size: 20px; font-style: normal; color: black;">
-                                            MENÚ
+                                            FICHAR
                                             <div class="ripple-container"></div>
                                         </button>
                                     </div>
@@ -879,6 +880,44 @@
         <!-- modal-dialog -->
     </div>
     <!-- FIN MODAL APERTURA CAJA NUEVO  -->
+    <!-- MODAL CLIENTES -->
+    <div class="modal fullscreen fade" id="modalClientes" tabindex="-1" role="dialog"
+        aria-labelledby="fullscreen_modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel-2">Cientes</h4>
+                    <ul class="card-actions icons right-top">
+                        <a href="javascript:void(0)" data-dismiss="modal" class="text-white" aria-label="Close">
+                            <i class="zmdi zmdi-close"></i>
+                        </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-body scrollbar">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <select id="selectClientes" class="selectpicker" style="width: 100% !important;"
+                                data-show-subtext="true" data-live-search="true">
+
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary"
+                                style="font-family: 'Anton', sans-serif; font-size: 25px; font-style: normal; color: black;">OK</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        style="font-family: 'Anton', sans-serif; font-size: 25px; font-style: normal; color: black;">SALIR</button>
+                </div>
+            </div>
+            <!-- modal-content -->
+        </div>
+        <!-- modal-dialog -->
+    </div>
+    <!-- FIN MODAL CLIENTES -->
     <!-- END MODALS =============================================-->
     <script>window.$ = window.jQuery = require('jquery');</script>
     <script src="js/vue.js"></script>
@@ -900,6 +939,7 @@
     <script src="js/underscore-min.js"></script>
     <script src="js/funcionesSockets.js"></script>
     <script src="js/socket.io.js"></script>
+    <script src="assets/js/bootstrap-select.min.js"></script>
 
 
     <script>

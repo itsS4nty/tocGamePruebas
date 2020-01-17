@@ -1,20 +1,22 @@
 const path = require('path');
 const { app, BrowserWindow, ipcMain } = require('electron');
+const exec = require('child_process').exec;
 var net = require('net');
 var impresora = require('./componentes/impresora');
+var tecladoVirtual = require('./componentes/teclado');
 var escpos = require('escpos');
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 app.on('ready', () => {
     var ventanaPrincipal = new BrowserWindow({
-        kiosk: false, //cambiar a true
-        frame: true, //cambiar a false
+        kiosk: true, //cambiar a true
+        frame: false, //cambiar a false
         webPreferences: {
             nodeIntegration: true
         }
     });
 
     ventanaPrincipal.loadFile('./web/index.html');
-    ventanaPrincipal.webContents.openDevTools();
+    //ventanaPrincipal.webContents.openDevTools();
 });
 /* ACCIONES IPC-MAIN */
 ipcMain.on('venta', (event, args) => {
@@ -48,4 +50,7 @@ ipcMain.on('consulta', (event, args) => {
 ipcMain.on('imprimir', (event, args) => {
 
     impresora.imprimirTicket(args);
+});
+ipcMain.on('tecladoVirtual', (event, args) => {
+    tecladoVirtual.showTouchKeyboard(exec);
 });

@@ -126,13 +126,11 @@ function intentoAplicarPromo(infoPromo, articulosPrincipales, articulosSecundari
                         }
                     }
                 }
-                console.log("principalAux: " + principalAux + " y secundariaAux: " + secundariaAux);
                 iPrincipal++;
                 iSecundaria++;
             }
             if (principalAux && secundariaAux) // Si hay de los dos
             {
-                console.log("SE PUEDE APLICAR UNA OFERTA!");
                 if (cesta[posEnCestaPrincipal].unidades / cantidadPrincipal >= 2) {
                     unidadesOfertaPrincipal = parseInt(cesta[posEnCestaPrincipal].unidades / cantidadPrincipal);
                 }
@@ -250,7 +248,7 @@ function insertarOferta(cesta, promocion, unidades, tipoOferta) {
 
         cesta.push(datos);
     }
-    console.log("promocion.prefioFinal: " + promocion.precioFinal + " unidades: " + unidades);
+
     return cesta;
 }
 function yaExiste(cesta, id) {

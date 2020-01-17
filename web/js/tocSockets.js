@@ -20,8 +20,10 @@ socket.on('install-licencia', (data) => {
 socket.on('cargar-todo', (data) => {
     try {
         if (!data.error) {
+            console.log("ESTO POR K NO SALE");
             console.log(data);
-            cargarTecladoSockets(data.menus, data.teclas, data.articulos, data.dependentes, data.familias, data.promociones);
+
+            cargarTecladoSockets(data.menus, data.teclas, data.articulos, data.dependentes, data.familias, data.promociones, data.clientes);
         }
         else {
             console.log(data.infoError);

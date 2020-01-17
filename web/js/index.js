@@ -16,6 +16,7 @@ function startDB() {
         parametros: 'licencia, nombreEmpresa, database',
         cajas: '++id, inicioTime, finalTime, inicioDependenta, finalDependenta, totalApertura, totalCierre, descuadre, recaudado, abierta',
         movimientos: '++id, timestamp, tipo, valor, idCaja',
+        clientes: 'id, nombre, tarjetaCliente',
         familias: 'nombre, padre',
         activo: 'idTrabajador',
         currentCaja: 'idCaja'
@@ -592,6 +593,22 @@ function vaciarCesta() {
     db.cesta.clear().then(function () {
         actualizarCesta();
     });
+}
+
+function abrirModalClientes() {
+    db.clientes.toArray().then(info => {
+        document.getElementById('selectClientes').innerHTML = '';
+        /* for (let i = 0; i < info.length; i++) {
+             document.getElementById('selectClientes').innerHTML += '<option data-subtext="' + info[i].nombre + '" value="' + info[i].id + '">' + info[i].nombre + '</option>';
+         }
+         
+        console.log(info);
+
+        $("#modalClientes").modal();*/
+    }).catch(err => {
+        console.log(err);
+        notificacion('Error al cargar clientes', 'error');
+    })
 }
 
 async function actualizarCesta() {
