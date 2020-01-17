@@ -9,7 +9,7 @@ process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 app.on('ready', () => {
     var ventanaPrincipal = new BrowserWindow({
         kiosk: true, //cambiar a true
-        frame: true, //cambiar a false
+        frame: false, //cambiar a false
         webPreferences: {
             nodeIntegration: true
         }

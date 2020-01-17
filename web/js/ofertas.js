@@ -88,7 +88,10 @@ async function buscarOfertas() {
             secundarios = await db.articulos.where('id').equals(Number(promociones[i].secundario)).toArray();
         }
         if (cestaOriginal.length > 1 || tipoOferta === OFERTA_INDIVIDUAL) {
-            intentoAplicarPromo(promociones[i], principales, secundarios, cestaOriginal, promociones[i].cantidadPrincipal, promociones[i].cantidadSecundario, tipoOferta);
+            if (intentoAplicarPromo(promociones[i], principales, secundarios, cestaOriginal, promociones[i].cantidadPrincipal, promociones[i].cantidadSecundario, tipoOferta)) {
+                await actualizarCesta();
+                break;
+            }
         }
     }
 }
@@ -180,8 +183,10 @@ function intentoAplicarPromo(infoPromo, articulosPrincipales, articulosSecundari
                 if (cumpleOferta) {
                     cesta = insertarOferta(cesta, infoPromo, unidadesOferta, tipoOferta);
                     insertarCestaCompleta(cesta);
+                    return true;
                     break;
                 }
+                return false;
             }
         }
     }
@@ -204,6 +209,7 @@ function intentoAplicarPromo(infoPromo, articulosPrincipales, articulosSecundari
         unidadesOferta = Math.min(unidadesOfertaPrincipal, unidadesOfertaSecundario);
         if (cesta[posEnCestaPrincipal].unidades === cantidadPrincipal * unidadesOferta) {
             cesta.splice(posEnCestaPrincipal, 1);
+            posEnCestaSecundaria--;
         }
         else {
             if (cesta[posEnCestaPrincipal].unidades > cantidadPrincipal * unidadesOferta) {
@@ -212,9 +218,6 @@ function intentoAplicarPromo(infoPromo, articulosPrincipales, articulosSecundari
         }
         //---
         try {
-            console.log("----")
-            console.log("indice: ", posEnCestaSecundaria, "cesta: ", cesta, " cesta[posEnCestaSecundaria].unidades: ", cesta[posEnCestaSecundaria].unidades);
-            console.log("----")
             if (cesta[posEnCestaSecundaria].unidades === cantidadSecundario * unidadesOferta) {
                 cesta.splice(posEnCestaSecundaria, 1);
             }
@@ -230,7 +233,9 @@ function intentoAplicarPromo(infoPromo, articulosPrincipales, articulosSecundari
 
         cesta = insertarOferta(cesta, infoPromo, unidadesOferta, tipoOferta);
         insertarCestaCompleta(cesta);
+        return true;
     }
+    return false;
 }
 
 function insertarOferta(cesta, promocion, unidades, tipoOferta) {

@@ -597,14 +597,14 @@ function vaciarCesta() {
 
 function abrirModalClientes() {
     db.clientes.toArray().then(info => {
-        document.getElementById('selectClientes').innerHTML = '';
-        /* for (let i = 0; i < info.length; i++) {
-             document.getElementById('selectClientes').innerHTML += '<option data-subtext="' + info[i].nombre + '" value="' + info[i].id + '">' + info[i].nombre + '</option>';
-         }
-         
-        console.log(info);
+        // var str = '';
+        // for (let i = 0; i < info.length; i++) {
+        //     str += '<option data-subtext="' + info[i].nombre + '" value="' + info[i].id + '">' + info[i].nombre + '</option>';
+        // }
 
-        $("#modalClientes").modal();*/
+        // document.getElementById('selectClientes').innerHTML += str;
+        // $("#selectClientes").selectpicker('refresh');
+        // $("#modalClientes").modal();
     }).catch(err => {
         console.log(err);
         notificacion('Error al cargar clientes', 'error');
@@ -612,7 +612,7 @@ function abrirModalClientes() {
 }
 
 async function actualizarCesta() {
-    var lista = await db.cesta.toArray();
+    var lista = (await db.cesta.toArray()).reverse();
     let outHTML = '';
     let sumaTotal = 0.0;
     for (var key in lista) {
