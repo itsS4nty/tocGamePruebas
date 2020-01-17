@@ -87,16 +87,14 @@ async function buscarOfertas() {
         else {
             secundarios = await db.articulos.where('id').equals(Number(promociones[i].secundario)).toArray();
         }
-        intentoAplicarPromo(promociones[i], principales, secundarios, cestaOriginal, promociones[i].cantidadPrincipal, promociones[i].cantidadSecundario, tipoOferta);
-
+        if (cestaOriginal.length > 1 || tipoOferta === OFERTA_INDIVIDUAL) {
+            intentoAplicarPromo(promociones[i], principales, secundarios, cestaOriginal, promociones[i].cantidadPrincipal, promociones[i].cantidadSecundario, tipoOferta);
+        }
     }
 }
 
 function intentoAplicarPromo(infoPromo, articulosPrincipales, articulosSecundarios, cesta, cantidadPrincipal, cantidadSecundario, tipoOferta) {
-    // if (infoPromo.id == '4ACC0886-FCE3-4462-80B1-8D4CEF46F03B') {
-    //     console.log(articulosPrincipales);
-    //     console.log(articulosSecundarios);
-    // }
+
     principalAux = false;
     secundariaAux = false;
 
@@ -108,63 +106,55 @@ function intentoAplicarPromo(infoPromo, articulosPrincipales, articulosSecundari
             posEnCestaPrincipal = 0;
             posEnCestaSecundaria = 0;
 
-            while ((!principalAux || !secundariaAux) && (iPrincipal < articulosPrincipales.length || iSecundaria < articulosSecundarios.length)) {
-                if (iPrincipal < articulosPrincipales.length) {
-                    if (articulosPrincipales[iPrincipal].id === cesta[i].idArticulo) //El artículo existe dentro de la cesta.
+            // while ((!principalAux || !secundariaAux) && (iPrincipal < articulosPrincipales.length || iSecundaria < articulosSecundarios.length)) {
+            //     if (iPrincipal < articulosPrincipales.length) {
+            //         if (articulosPrincipales[iPrincipal].id === cesta[i].idArticulo) //El artículo existe dentro de la cesta.
+            //         {
+            //             if (cesta[i].unidades >= cantidadPrincipal) { //El artículo contiene la cantidad necesaria para la promo
+            //                 posEnCestaPrincipal = i;
+            //                 principalAux = true;
+            //             }
+            //         }
+            //     }
+            //     if (iSecundaria < articulosSecundarios.length) {
+            //         if (articulosSecundarios[iSecundaria].id === cesta[i].idArticulo) { //El artículo existe dentro de la cesta.
+            //             if (cesta[i].unidades >= cantidadSecundario) { //El artículo contiene la cantidad necesaria para la promo
+            //                 posEnCestaSecundaria = i;
+            //                 console.log("posEnCestaSecundaria: " + posEnCestaSecundaria + " con i=" + i);
+            //                 if (i === 1) {
+            //                     console.log("articulosSecundarios[iSecundaria].id = cesta[i].idArticulo = " + articulosSecundarios[iSecundaria].id);
+            //                     console.log("cesta[i].unidades = " + cesta[i].unidades);
+            //                     console.log("cantidadSecundario = " + cantidadSecundario);
+            //                 }
+            //                 secundariaAux = true;
+            //             }
+            //         }
+            //     }
+            //     iPrincipal++;
+            //     iSecundaria++;
+            // }
+            for (let m = 0; m < articulosPrincipales.length; m++) {
+                if (articulosPrincipales[m].id === cesta[i].idArticulo) {
+                    if (cesta[i].unidades >= cantidadPrincipal) //El artículo contiene la cantidad necesaria para la promo.
                     {
-                        if (cesta[i].unidades >= cantidadPrincipal) { //El artículo contiene la cantidad necesaria para la promo
-                            posEnCestaPrincipal = i;
-                            principalAux = true;
-                        }
+                        posEnCestaPrincipal = i;
+                        principalAux = true;
+                        break;
                     }
                 }
-                if (iSecundaria < articulosSecundarios.length) {
-                    if (articulosSecundarios[iSecundaria].id === cesta[i].idArticulo) { //El artículo existe dentro de la cesta.
-                        if (cesta[i].unidades >= cantidadSecundario) { //El artículo contiene la cantidad necesaria para la promo
-                            posEnCestaSecundaria = i;
-                            secundariaAux = true;
-                        }
+            }
+            for (let m = 0; m < articulosSecundarios.length; m++) {
+                if (articulosSecundarios[m].id === cesta[i].idArticulo) {
+                    if (cesta[i].unidades >= cantidadSecundario) //El artículo contiene la cantidad necesaria para la promo.
+                    {
+                        posEnCestaSecundaria = i;
+                        secundariaAux = true;
+                        break;
                     }
                 }
-                iPrincipal++;
-                iSecundaria++;
             }
             if (principalAux && secundariaAux) // Si hay de los dos
             {
-                if (cesta[posEnCestaPrincipal].unidades / cantidadPrincipal >= 2) {
-                    unidadesOfertaPrincipal = parseInt(cesta[posEnCestaPrincipal].unidades / cantidadPrincipal);
-                }
-                else {
-                    unidadesOfertaPrincipal = 1;
-                }
-
-                if (cesta[posEnCestaSecundaria].unidades / cantidadSecundario >= 2) {
-                    unidadesOfertaSecundario = parseInt(cesta[posEnCestaSecundaria].unidades / cantidadSecundario);
-                }
-                else {
-                    unidadesOfertaSecundario = 1;
-                }
-
-                unidadesOferta = Math.min(unidadesOfertaPrincipal, unidadesOfertaSecundario);
-                if (cesta[posEnCestaPrincipal].unidades === cantidadPrincipal * unidadesOferta) {
-                    cesta.splice(posEnCestaPrincipal, 1);
-                }
-                else {
-                    if (cesta[posEnCestaPrincipal].unidades > cantidadPrincipal * unidadesOferta) {
-                        cesta[posEnCestaPrincipal].unidades -= (cantidadPrincipal * unidadesOferta);
-                    }
-                }
-                //---
-                if (cesta[posEnCestaSecundaria].unidades === cantidadSecundario * unidadesOferta) {
-                    cesta.splice(posEnCestaSecundaria, 1);
-                }
-                else {
-                    if (cesta[posEnCestaSecundaria].unidades > cantidadSecundario * unidadesOferta) {
-                        cesta[posEnCestaSecundaria].unidades -= (cantidadSecundario * unidadesOferta);
-                    }
-                }
-                cesta = insertarOferta(cesta, infoPromo, unidadesOferta, tipoOferta);
-                insertarCestaCompleta(cesta);
                 break;
             }
         }
@@ -194,6 +184,52 @@ function intentoAplicarPromo(infoPromo, articulosPrincipales, articulosSecundari
                 }
             }
         }
+    }
+    if (principalAux && secundariaAux) // Si hay de los dos
+    {
+        if (cesta[posEnCestaPrincipal].unidades / cantidadPrincipal >= 2) {
+            unidadesOfertaPrincipal = parseInt(cesta[posEnCestaPrincipal].unidades / cantidadPrincipal);
+        }
+        else {
+            unidadesOfertaPrincipal = 1;
+        }
+
+        if (cesta[posEnCestaSecundaria].unidades / cantidadSecundario >= 2) {
+            unidadesOfertaSecundario = parseInt(cesta[posEnCestaSecundaria].unidades / cantidadSecundario);
+        }
+        else {
+            unidadesOfertaSecundario = 1;
+        }
+
+        unidadesOferta = Math.min(unidadesOfertaPrincipal, unidadesOfertaSecundario);
+        if (cesta[posEnCestaPrincipal].unidades === cantidadPrincipal * unidadesOferta) {
+            cesta.splice(posEnCestaPrincipal, 1);
+        }
+        else {
+            if (cesta[posEnCestaPrincipal].unidades > cantidadPrincipal * unidadesOferta) {
+                cesta[posEnCestaPrincipal].unidades -= (cantidadPrincipal * unidadesOferta);
+            }
+        }
+        //---
+        try {
+            console.log("----")
+            console.log("indice: ", posEnCestaSecundaria, "cesta: ", cesta, " cesta[posEnCestaSecundaria].unidades: ", cesta[posEnCestaSecundaria].unidades);
+            console.log("----")
+            if (cesta[posEnCestaSecundaria].unidades === cantidadSecundario * unidadesOferta) {
+                cesta.splice(posEnCestaSecundaria, 1);
+            }
+            else {
+                if (cesta[posEnCestaSecundaria].unidades > cantidadSecundario * unidadesOferta) {
+                    cesta[posEnCestaSecundaria].unidades -= (cantidadSecundario * unidadesOferta);
+                }
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+
+        cesta = insertarOferta(cesta, infoPromo, unidadesOferta, tipoOferta);
+        insertarCestaCompleta(cesta);
     }
 }
 
@@ -277,6 +313,7 @@ async function getArticulosFamilia(familia) /* ESTA FUNCIÓN DEBE DEVOLVER UN AR
     var info = await db.familias.where("nombre").equals(familia).or("padre").equals(familia).toArray();
     let articulos = [];
     let aux = [];
+
     for (let i = 0; i < info.length; i++) {
         aux = [];
         aux = await db.articulos.where("familia").equals(info[i].nombre).toArray();
