@@ -4,7 +4,7 @@ var imprimirPrueba = function (numFactura, arrayCompra, total, visa) {
     var detalles = '';
     var pagoTarjeta = '';
     for (let i = 0; i < arrayCompra.length; i++) {
-        detalles += `${arrayCompra[i].cantidad}     ${arrayCompra[i].articuloNombre}   ${arrayCompra[i].importe}  e\n`;
+        detalles += `${arrayCompra[i].cantidad}     ${arrayCompra[i].articuloNombre}   ${arrayCompra[i].importe}\n`;
     }
     var fecha = new Date();
     if (visa) {
@@ -15,27 +15,29 @@ var imprimirPrueba = function (numFactura, arrayCompra, total, visa) {
         printer
             .encode('EUC-KR')
             .size(2, 2)
-            .text('PA NATURAL')
+            .text('365')
             .size(1, 1)
-            .text('C Antoni Forrellat 116, 6')
-            .text('Sabadell - 08207')
-
-            .text('Tel. 937175121')
+            .text('Plaza Catalunya, 6')
+            .text('BARCELONA - 08208')
+            .text('NIF: B61957189')
+            .text('Tel. 647 798 051')
             .text('Data: ' + fecha.getDate() + '-' + fecha.getMonth() + '-' + fecha.getFullYear() + ' ' + fecha.getHours() + ':' + fecha.getMinutes())
             .text('Factura simplificada N: ' + numFactura)
             .control('LF')
             .control('LF')
             .control('LF')
             .control('LF')
-            .text('Quantitat      Article             Import')
+            .text('Quantitat      Article        Import (EUR)')
             .text('-----------------------------------------')
             .text(detalles)
             .text(pagoTarjeta)
             .size(2, 2)
-            .text('TOTAL: ' + total + ' euros')
+            .text('TOTAL: ' + total + ' EUR')
             .size(1, 1)
-            .text('IVA 10% : ' + (total / 1.1).toFixed(2) + ' euros')
-            .text('          GRACIES PER LA SEVA VISITA')
+            .text('IVA 10% : ' + (total / 1.1).toFixed(2) + ' EUR')
+            .text('GRACIES PER LA SEVA VISITA')
+            .text('WiFi: 365Cafe')
+            .text('Psw: 365sabadell')
             .control('LF')
             .control('LF')
             .control('LF')
