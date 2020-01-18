@@ -87,8 +87,8 @@ async function imprimirSubmenus(listaSubmenus = null) {
         }
         for (let i = 0; i < listaSubmenus.length; i++) {
             strAux += `
-                        <div class="col-md-${buttonSize}">
-                            <button class="btn btn-danger btn-lg btn-block" onclick="clickSubmenu(${listaSubmenus[i].idTeclado})" style="font-family: 'Anton', sans-serif; font-size: 20px; font-style: normal;">
+                        <div class="col-md-${buttonSize}" style="padding: 0;">
+                            <button class="btn btn-danger btn-lg btn-block" onclick="clickSubmenu(${listaSubmenus[i].idTeclado})" style="font-family: 'Anton', sans-serif; font-size: 20px; font-style: normal; border: 2px solid #000;">
                                 ${listaSubmenus[i].nombre}
                                 <div class="ripple-container"></div>
                             </button>

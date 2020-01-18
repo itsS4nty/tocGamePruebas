@@ -49,7 +49,8 @@ var imprimirPrueba = function (numFactura, arrayCompra, total, visa) {
 // Select the adapter based on your printer type
 
 try {
-    var device = new escpos.USB('0x4B8', '0x202'); //ESTE ES EL BUENO
+    var device = new escpos.USB('0x4B8', '0x202'); //USB
+    //var device = new escpos.Serial('COM1') //SERIE
     var options = { encoding: "GB18030" };
     var printer = new escpos.Printer(device, options);
 
@@ -58,7 +59,7 @@ try {
 }
 
 exports.imprimirTicket = function (req) {
-    console.log(req);
+    //console.log(req);
     imprimirPrueba(req.numFactura, req.arrayCompra, req.total, req.visa);
 
     //res.json({ status: 'ok' }).end();

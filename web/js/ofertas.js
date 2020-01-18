@@ -97,148 +97,75 @@ async function buscarOfertas() {
 }
 
 function intentoAplicarPromo(infoPromo, articulosPrincipales, articulosSecundarios, cesta, cantidadPrincipal, cantidadSecundario, tipoOferta) {
+    if (tipoOferta === OFERTA_COMBO) {
+        idArticuloPrincipal = null;
+        idArticuloSecundario = null;
 
-    principalAux = false;
-    secundariaAux = false;
-
-    for (let i = 0; i < cesta.length; i++) {
-        iPrincipal = 0;
-        iSecundaria = 0;
-
-        if (tipoOferta === OFERTA_COMBO) {
-            posEnCestaPrincipal = 0;
-            posEnCestaSecundaria = 0;
-
-            // while ((!principalAux || !secundariaAux) && (iPrincipal < articulosPrincipales.length || iSecundaria < articulosSecundarios.length)) {
-            //     if (iPrincipal < articulosPrincipales.length) {
-            //         if (articulosPrincipales[iPrincipal].id === cesta[i].idArticulo) //El artículo existe dentro de la cesta.
-            //         {
-            //             if (cesta[i].unidades >= cantidadPrincipal) { //El artículo contiene la cantidad necesaria para la promo
-            //                 posEnCestaPrincipal = i;
-            //                 principalAux = true;
-            //             }
-            //         }
-            //     }
-            //     if (iSecundaria < articulosSecundarios.length) {
-            //         if (articulosSecundarios[iSecundaria].id === cesta[i].idArticulo) { //El artículo existe dentro de la cesta.
-            //             if (cesta[i].unidades >= cantidadSecundario) { //El artículo contiene la cantidad necesaria para la promo
-            //                 posEnCestaSecundaria = i;
-            //                 console.log("posEnCestaSecundaria: " + posEnCestaSecundaria + " con i=" + i);
-            //                 if (i === 1) {
-            //                     console.log("articulosSecundarios[iSecundaria].id = cesta[i].idArticulo = " + articulosSecundarios[iSecundaria].id);
-            //                     console.log("cesta[i].unidades = " + cesta[i].unidades);
-            //                     console.log("cantidadSecundario = " + cantidadSecundario);
-            //                 }
-            //                 secundariaAux = true;
-            //             }
-            //         }
-            //     }
-            //     iPrincipal++;
-            //     iSecundaria++;
-            // }
-            for (let m = 0; m < articulosPrincipales.length; m++) {
+        for (let m = 0; m < articulosPrincipales.length; m++) {
+            for (let i = 0; i < cesta.length; i++) {
                 if (articulosPrincipales[m].id === cesta[i].idArticulo) {
-                    if (cesta[i].unidades >= cantidadPrincipal) //El artículo contiene la cantidad necesaria para la promo.
+                    if (cesta[i].unidades === cantidadPrincipal) //El artículo contiene la cantidad necesaria para la promo.
                     {
-                        posEnCestaPrincipal = i;
-                        principalAux = true;
+                        idArticuloPrincipal = cesta[i].idArticulo;
                         break;
                     }
                 }
-            }
-            for (let m = 0; m < articulosSecundarios.length; m++) {
-                if (articulosSecundarios[m].id === cesta[i].idArticulo) {
-                    if (cesta[i].unidades >= cantidadSecundario) //El artículo contiene la cantidad necesaria para la promo.
-                    {
-                        posEnCestaSecundaria = i;
-                        secundariaAux = true;
-                        break;
-                    }
-                }
-            }
-            if (principalAux && secundariaAux) // Si hay de los dos
-            {
-                break;
             }
         }
-        else {
-            if (tipoOferta === OFERTA_INDIVIDUAL) {
-                cumpleOferta = false;
+        for (let b = 0; b < articulosSecundarios.length; b++) {
+            for (let i = 0; i < cesta.length; i++) {
+                if (articulosSecundarios[b].id === cesta[i].idArticulo) {
+                    if (cesta[i].unidades === cantidadSecundario) //El artículo contiene la cantidad necesaria para la promo.
+                    {
+                        idArticuloSecundario = cesta[i].idArticulo;
+                        break;
+                    }
+                }
+            }
+        }
+        if (idArticuloPrincipal !== null && idArticuloSecundario !== null) {
+            cesta = corregirCesta(idArticuloPrincipal, cesta);
+            cesta = corregirCesta(idArticuloSecundario, cesta);
 
-                for (let j = 0; j < articulosPrincipales.length; j++) {
+            cesta = insertarOferta(cesta, infoPromo, tipoOferta);
+            insertarCestaCompleta(cesta);
+            return true;
+        }
+        return false;
+    }
+    else {
+        if (tipoOferta === OFERTA_INDIVIDUAL) {
+            for (let j = 0; j < articulosPrincipales.length; j++) {
+                for (let i = 0; i < cesta.length; i++) {
                     if (cesta[i].idArticulo === articulosPrincipales[j].id) //El artículo existe dentro de la cesta.
                     {
-                        if (cesta[i].unidades >= cantidadPrincipal) // Se puede aplicar la oferta.
+                        if (cesta[i].unidades === cantidadPrincipal) // Se puede aplicar la oferta.
                         {
-                            cumpleOferta = true;
-                            unidadesOferta = parseInt(cesta[i].unidades / cantidadPrincipal);
-                            cesta[i].unidades -= unidadesOferta * cantidadPrincipal;
-                            if (cesta[i].unidades <= 0) {
-                                cesta.splice(i, 1);
-                            }
-                            break;
+                            cesta = corregirCesta(cesta[i].idArticulo, cesta);
+                            cesta = insertarOferta(cesta, infoPromo, tipoOferta);
+                            insertarCestaCompleta(cesta);
+                            return true;
                         }
                     }
                 }
-                if (cumpleOferta) {
-                    cesta = insertarOferta(cesta, infoPromo, unidadesOferta, tipoOferta);
-                    insertarCestaCompleta(cesta);
-                    return true;
-                    break;
-                }
-                return false;
             }
+            return false;
         }
-    }
-    if (principalAux && secundariaAux) // Si hay de los dos
-    {
-        if (cesta[posEnCestaPrincipal].unidades / cantidadPrincipal >= 2) {
-            unidadesOfertaPrincipal = parseInt(cesta[posEnCestaPrincipal].unidades / cantidadPrincipal);
-        }
-        else {
-            unidadesOfertaPrincipal = 1;
-        }
-
-        if (cesta[posEnCestaSecundaria].unidades / cantidadSecundario >= 2) {
-            unidadesOfertaSecundario = parseInt(cesta[posEnCestaSecundaria].unidades / cantidadSecundario);
-        }
-        else {
-            unidadesOfertaSecundario = 1;
-        }
-
-        unidadesOferta = Math.min(unidadesOfertaPrincipal, unidadesOfertaSecundario);
-        if (cesta[posEnCestaPrincipal].unidades === cantidadPrincipal * unidadesOferta) {
-            cesta.splice(posEnCestaPrincipal, 1);
-            posEnCestaSecundaria--;
-        }
-        else {
-            if (cesta[posEnCestaPrincipal].unidades > cantidadPrincipal * unidadesOferta) {
-                cesta[posEnCestaPrincipal].unidades -= (cantidadPrincipal * unidadesOferta);
-            }
-        }
-        //---
-        try {
-            if (cesta[posEnCestaSecundaria].unidades === cantidadSecundario * unidadesOferta) {
-                cesta.splice(posEnCestaSecundaria, 1);
-            }
-            else {
-                if (cesta[posEnCestaSecundaria].unidades > cantidadSecundario * unidadesOferta) {
-                    cesta[posEnCestaSecundaria].unidades -= (cantidadSecundario * unidadesOferta);
-                }
-            }
-        }
-        catch (error) {
-            console.log(error);
-        }
-
-        cesta = insertarOferta(cesta, infoPromo, unidadesOferta, tipoOferta);
-        insertarCestaCompleta(cesta);
-        return true;
     }
     return false;
 }
 
-function insertarOferta(cesta, promocion, unidades, tipoOferta) {
+function corregirCesta(idArticulo, cesta) {
+    for (let i = 0; i < cesta.length; i++) {
+        if (cesta[i].idArticulo === idArticulo) {
+            cesta.splice(i, 1);
+        }
+    }
+    return cesta;
+}
+
+function insertarOferta(cesta, promocion, tipoOferta) {
+
     var nombre = '';
     var posExiste = yaExiste(cesta, promocion.id);
 
@@ -251,9 +178,9 @@ function insertarOferta(cesta, promocion, unidades, tipoOferta) {
         }
     }
     if (posExiste !== -1) {
-        total1 = cesta[posExiste].subtotal + (unidades * promocion.precioFinal * promocion.cantidadPrincipal);
-        total2 = cesta[posExiste].subtotal + (unidades * promocion.precioFinal);
-        cesta[posExiste].unidades += unidades;
+        total1 = cesta[posExiste].subtotal + (promocion.precioFinal * promocion.cantidadPrincipal);
+        total2 = cesta[posExiste].subtotal + (promocion.precioFinal);
+        cesta[posExiste].unidades++;
         if (tipoOferta === OFERTA_INDIVIDUAL) {
             cesta[posExiste].subtotal = redondearPrecio(total1);
         }
@@ -268,8 +195,8 @@ function insertarOferta(cesta, promocion, unidades, tipoOferta) {
             datos = {
                 idArticulo: promocion.id,
                 nombreArticulo: nombre,
-                unidades: unidades,
-                subtotal: redondearPrecio(promocion.precioFinal * unidades),
+                unidades: 1,
+                subtotal: redondearPrecio(promocion.precioFinal),
                 promocion: 1,
                 activo: 0
             };
@@ -279,8 +206,8 @@ function insertarOferta(cesta, promocion, unidades, tipoOferta) {
                 datos = {
                     idArticulo: promocion.id,
                     nombreArticulo: nombre,
-                    unidades: unidades,
-                    subtotal: redondearPrecio(promocion.precioFinal * unidades * promocion.cantidadPrincipal),
+                    unidades: 1,
+                    subtotal: redondearPrecio(promocion.precioFinal * promocion.cantidadPrincipal),
                     promocion: 1,
                     activo: 0
                 };
@@ -303,7 +230,7 @@ function yaExiste(cesta, id) {
 function insertarCestaCompleta(cesta) {
     db.cesta.clear().then(function () {
         db.cesta.bulkPut(cesta).then(function (lastKey) {
-
+            console.log("insertarCestaCompleta()", cesta);
         }).catch(Dexie.BulkError, function (e) {
             console.error("Error al insertarCestaCompleta");
             notificacion('Error al insertarCestaCompleta()', 'error');
