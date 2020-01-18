@@ -27,3 +27,6 @@ function imprimirEscpos(data) {
 function abrirTecladoVirtual() {
     ipcRenderer.send('tecladoVirtual', true);
 }
+function cerrarPrograma() {
+    ipcRenderer.send('cerrarToc', true);
+}
