@@ -1,6 +1,7 @@
 const path = require('path');
 const { app, BrowserWindow, ipcMain, globalShortcut } = require('electron');
 const exec = require('child_process').exec;
+const os = require('os');
 var net = require('net');
 var impresora = require('./componentes/impresora');
 var tecladoVirtual = require('./componentes/teclado');
@@ -55,7 +56,15 @@ app.on('ready', () => {
         impresora.imprimirTicket(args);
     });
     ipcMain.on('tecladoVirtual', (event, args) => {
-        tecladoVirtual.showTouchKeyboard(exec);
+        if (os.platform() === 'win32') { //
+            console.log("Hey, soy windows!");
+            tecladoVirtual.showTouchKeyboard(exec);
+        }
+        else {
+            if (os.platform() === 'linux') {
+
+            }
+        }
     });
     ipcMain.on('cerrarToc', (event, args) => {
         cerrar.cerrar(ventanaPrincipal);
