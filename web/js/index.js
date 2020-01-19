@@ -533,56 +533,55 @@ function nuevoArticulo(idArticulo, nombreArticulo, precioArticulo, ivaArticulo) 
     }
 }
 
-function addItemCesta(idArticulo, nombreArticulo, precio, sumable, gramos = false) //id, nombre, precio, iva, aPeso
+async function addItemCesta(idArticulo, nombreArticulo, precio, sumable, idBoton, gramos = false) //id, nombre, precio, iva, aPeso
 {
+    $('#' + idBoton).attr('disabled', true);
     if (sumable === 1 || gramos !== false) {
-        //primero comprobamos si el item ya existe en la lista con un get
-        db.cesta.get(idArticulo, res => {
-            if (res) {
-                let uds = res.unidades + 1;
-                let subt = res.subtotal + precio;
-                if (!gramos) {
-                    db.cesta.update(idArticulo, { unidades: uds, subtotal: subt, activo: false }).then(updated => {
-                        if (updated) {
-                            buscarOfertas().then(function () {
-                                actualizarCesta();
-                            });
-                        } else {
-                            alert("Error al actualizar cesta");
-                        }
-                    });
-                } else {
-                    db.cesta.put({ idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio * (gramos / 1000), promocion: -1, activo: false }).then(function () {
-                        actualizarCesta();
-                    }).catch(err => {
-                        console.log(err);
-                        notificacion('Error 456', 'error');
-                    });
+        var res = await db.cesta.get(idArticulo);
+        if (res) {
+            let uds = res.unidades + 1;
+            let subt = res.subtotal + precio;
+            if (!gramos) {
+                let updated = await db.cesta.update(idArticulo, { unidades: uds, subtotal: redondearPrecio(subt), activo: false });
+                if (updated) {
+                    await buscarOfertas();
                 }
-            } else {
-                if (!gramos) {
-                    db.cesta.put({ idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio, promocion: -1, activo: false }).then(function () {
-                        buscarOfertas().then(function () {
-                            actualizarCesta();
-                        });
-                    });
-                } else {
-                    db.cesta.put({ idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio * (gramos / 1000), promocion: -1, activo: false }).then(function () {
-                        actualizarCesta();
-                    }).catch(err => {
-                        console.log(err);
-                        notificacion('Error 4566', 'error');
-                    });
+                else {
+                    notificacion('La cesta no se ha actualizado', 'error');
                 }
             }
-        });
-    } else //Va por peso
+            else {
+                await db.cesta.put({ idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio * (gramos / 1000), promocion: -1, activo: false }).catch(err => {
+                    console.log(err);
+                    notificacion('Error 456', 'error');
+                });
+            }
+        }
+        else {
+            if (!gramos) {
+                await db.cesta.put({ idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio, promocion: -1, activo: false }).catch(err => {
+                    notificacion('Error 2431', 'error');
+                    console.log(err);
+                });
+                await buscarOfertas();
+            }
+            else {
+                await db.cesta.put({ idArticulo: idArticulo, nombreArticulo: nombreArticulo, unidades: 1, subtotal: precio * (gramos / 1000), promocion: -1, activo: false }).catch(err => {
+                    console.log(err);
+                    notificacion('Error 4566', 'error');
+                });
+            }
+        }
+        await actualizarCesta();
+    }
+    else //Va por peso
     {
         cosaParaPeso = { idArticulo: idArticulo, nombreArticulo: nombreArticulo, precio: precio, sumable: sumable };
         vuePeso.cosaParaPeso = cosaParaPeso;
         console.log(vuePeso.cosaParaPeso);
         $('#modalAPeso').modal('show');
     }
+    $('#' + idBoton).attr('disabled', false);
 }
 
 function borrarItemCesta(idArticulo) {

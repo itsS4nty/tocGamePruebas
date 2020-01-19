@@ -52,7 +52,7 @@ function imprimirTeclado(id) //Hay que mejorarla y mucho
                         aux = getInfoArticulo(listaArticulos, infoTeclado[id].arrayTeclado[i].id);
                         strPos = 'tecla' + infoTeclado[id].arrayTeclado[i].posicion;
                         if (typeof aux.nombre !== "undefined") {
-                            strFun = `addItemCesta(${infoTeclado[id].arrayTeclado[i].id}, '${aux.nombre}', ${aux.precio}, ${aux.sumable});`;
+                            strFun = `addItemCesta(${infoTeclado[id].arrayTeclado[i].id}, '${aux.nombre}', ${aux.precio}, ${aux.sumable}, this.id);`;
                         }
                         else {
                             strFun = '';

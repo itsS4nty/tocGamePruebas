@@ -1,6 +1,12 @@
 var escpos = require('escpos');
 
 var imprimirPrueba = function (numFactura, arrayCompra, total, visa) {
+
+    var device = new escpos.USB('0x4B8', '0x202'); //USB
+    //var device = new escpos.Serial('COM1') //SERIE
+    var options = { encoding: "GB18030" };
+    var printer = new escpos.Printer(device, options);
+
     var detalles = '';
     var pagoTarjeta = '';
     for (let i = 0; i < arrayCompra.length; i++) {
@@ -44,23 +50,15 @@ var imprimirPrueba = function (numFactura, arrayCompra, total, visa) {
             .cut('PAPER_FULL_CUT')
             .close()
     });
-}
-
-// Select the adapter based on your printer type
-
-try {
-    var device = new escpos.USB('0x4B8', '0x202'); //USB
-    //var device = new escpos.Serial('COM1') //SERIE
-    var options = { encoding: "GB18030" };
-    var printer = new escpos.Printer(device, options);
-
-} catch (err) {
-    console.log(err);
+    device.close();
 }
 
 exports.imprimirTicket = function (req) {
-    //console.log(req);
-    imprimirPrueba(req.numFactura, req.arrayCompra, req.total, req.visa);
+    try {
+        imprimirPrueba(req.numFactura, req.arrayCompra, req.total, req.visa);
+    } catch (err) {
+        console.log("No se encuentra la impresora");
+        console.log(err);
 
-    //res.json({ status: 'ok' }).end();
+    }
 }
