@@ -53,12 +53,12 @@ var imprimirPrueba = function (numFactura, arrayCompra, total, visa) {
     device.close();
 }
 
-exports.imprimirTicket = function (req) {
+exports.imprimirTicket = function (req, event) {
     try {
         imprimirPrueba(req.numFactura, req.arrayCompra, req.total, req.visa);
     } catch (err) {
         console.log("No se encuentra la impresora");
         console.log(err);
-
+        event.sender.send('falloImpresora', 'La impresora no está configurada');
     }
 }

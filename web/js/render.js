@@ -19,6 +19,9 @@ ipcRenderer.on('consulta', (ev, args) => {
 ipcRenderer.on('imprimir', (ev, args) => {
 
 });
+ipcRenderer.on('falloImpresora', (ev, data) => {
+    notificacion(data, 'error');
+});
 /* FIN RESPUESTAS ACCIONES IPC-MAIN */
 
 function imprimirEscpos(data) {

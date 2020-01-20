@@ -53,7 +53,7 @@ app.on('ready', () => {
     });
     ipcMain.on('imprimir', (event, args) => {
 
-        impresora.imprimirTicket(args);
+        impresora.imprimirTicket(args, event);
     });
     ipcMain.on('tecladoVirtual', (event, args) => {
         if (os.platform() === 'win32') { //
@@ -66,6 +66,7 @@ app.on('ready', () => {
             }
         }
     });
+
     ipcMain.on('cerrarToc', (event, args) => {
         cerrar.cerrar(ventanaPrincipal);
     });
